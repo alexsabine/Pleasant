@@ -25,3 +25,5 @@ web/db.sqlite3
 
 # static export for GitHub Pages: committed on purpose (own-origin tiles under ODbL/PD with attribution)
 !site/tiles/*.pmtiles
+!web/static/fonts/**/*.pbf
+!site/static/fonts/**/*.pbf
