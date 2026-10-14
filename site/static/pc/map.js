@@ -6,6 +6,11 @@
   const el = document.getElementById("map");
   if (!el || !window.maplibregl || !window.pmtiles) return;
   const cfg = JSON.parse(el.dataset.config);
+  const layersBtn = document.querySelector(".layers-toggle"), layersPanel = document.getElementById("layer-switch");
+  if (layersBtn && layersPanel) layersBtn.addEventListener("click", () => {   // phones: the layer panel is collapsed by default
+    const open = !layersPanel.classList.contains("open");
+    layersPanel.classList.toggle("open", open); layersBtn.setAttribute("aria-expanded", String(open));
+  });
   const ORIGIN = location.origin + ((window.PC_STATIC && window.PC_STATIC.base) || "/").replace(/\/$/, "");
   const protocol = new pmtiles.Protocol();
   maplibregl.addProtocol("pmtiles", protocol.tile);
@@ -41,7 +46,9 @@
     let currentRes = cfg.venueRes || 11;
     let pinsData = null;
 
+    if (window.ResizeObserver) new ResizeObserver(() => map.resize()).observe(el);   // phones: address bar and layout changes
     map.on("load", async () => {
+      map.resize();
       // Boundaries (public domain, Census TIGER)
       map.addSource("county", { type: "geojson", data: cfg.api.county });
       map.addLayer({ id: "pc_county", type: "line", source: "county", paint: { "line-color": cfg.colors.boundary, "line-width": 2, "line-dasharray": [3, 2] } });

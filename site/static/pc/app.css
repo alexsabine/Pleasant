@@ -218,3 +218,47 @@ h2.display{font-size:clamp(1.6rem,3.5vw,2.3rem);margin:0 0 .4em;font-weight:400}
 .private-banner a{color:inherit;font-weight:600}
 
 .suggest button.guide-start{background:var(--pc-accent);color:var(--pc-accent-on);border-color:var(--pc-accent)}
+
+/* ---------- Phones: map first, nothing wider than the screen ---------- */
+.layout>section{min-width:0}
+.cards{grid-template-columns:minmax(0,1fr)}
+.card{min-width:0}
+.src,.kv dd,.detail-grid p,.prose-page p,.pin-list li{overflow-wrap:anywhere}
+.tbl{display:block;overflow-x:auto;max-width:100%;-webkit-overflow-scrolling:touch}
+@media (max-width:899px){
+  .layout.split{display:flex;flex-direction:column}
+  .layout.split>section[aria-label="Map of results"]{order:-1}
+  .map-wrap{height:min(62vh,560px);min-height:340px}
+  .pin-list{display:none}
+}
+@media (max-width:640px){
+  .layer-switch{top:auto;left:8px;right:8px;bottom:26px;width:auto;max-height:44%;padding:6px 8px;display:flex;flex-wrap:wrap;gap:0 10px;align-items:center}
+  .layer-switch legend{float:left;width:100%;font-size:.78rem;margin-bottom:2px}
+  .layer-switch label.grp{min-height:26px;font-size:.76rem}
+  .layer-switch details.adv{width:100%}
+  .kv{grid-template-columns:1fr}
+  .kv dt{margin-top:6px}
+}
+.detail-grid>*{min-width:0}
+.kv,.gauge,.gauge p{min-width:0}
+code{overflow-wrap:anywhere}
+@media (max-width:640px){
+  .private-banner{font-size:.76rem;padding:5px 12px}
+  .site-head{padding:8px 12px;gap:8px}
+  .brand .wordmark{font-size:1.15rem}
+  .site-nav{order:3;width:100%;margin-left:0;flex-wrap:nowrap;overflow-x:auto;white-space:nowrap;-webkit-overflow-scrolling:touch;scrollbar-width:none;gap:0}
+  .site-nav::-webkit-scrollbar{display:none}
+  .site-nav a{padding:6px 8px;font-size:.66rem;min-height:36px}
+  .compass-toggle{margin-left:auto;padding:6px 10px;min-height:40px}
+  .site-main{padding:12px 16px 40px}
+  h1{font-size:1.6rem;margin:6px 0 8px}
+}
+
+.layers-toggle{display:none}
+@media (max-width:640px){
+  .layers-toggle{display:inline-flex;align-items:center;position:absolute;top:10px;right:10px;z-index:6;font:inherit;font-size:.8rem;min-height:40px;padding:6px 12px;border-radius:999px;border:1px solid var(--pc-line);background:color-mix(in srgb,var(--pc-surface) 94%,transparent);color:var(--pc-ink);box-shadow:0 2px 8px rgba(20,40,50,.1);cursor:pointer}
+  .layers-toggle[aria-expanded="true"]{background:var(--pc-accent);color:var(--pc-accent-on);border-color:var(--pc-accent)}
+  .layer-switch{display:none}
+  .layer-switch.open{display:flex}
+}
+.gauge p{overflow-wrap:anywhere}
