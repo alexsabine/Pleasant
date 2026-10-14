@@ -188,3 +188,11 @@ h2.display{font-size:clamp(1.6rem,3.5vw,2.3rem);margin:0 0 .4em;font-weight:400}
 .foot-rule{height:1px;background:var(--pc-line);margin:22px 0 12px}
 .foot-small{font-family:var(--pc-font-mono);font-size:.62rem;letter-spacing:.06em;line-height:1.6}
 .foot-small .right{float:right;letter-spacing:.18em;text-transform:uppercase}
+
+.ph.photo img{display:block;width:100%;height:100%;object-fit:cover}
+.ph.photo::after{display:none}
+.ph.photo figcaption{background:rgba(26,22,18,.55);color:#fff}
+.ph.wide{aspect-ratio:21/9;border-radius:10px;margin:0 0 18px}
+.photo-band{margin:36px -16px 0;position:relative;max-height:420px;overflow:hidden}
+.photo-band img{display:block;width:100%;height:420px;object-fit:cover;object-position:center 60%}
+.photo-caption{position:absolute;left:0;right:0;bottom:0;margin:0;padding:8px 24px;font-family:var(--pc-font-mono);font-size:.62rem;letter-spacing:.06em;color:#fff;background:linear-gradient(transparent,rgba(26,22,18,.6))}

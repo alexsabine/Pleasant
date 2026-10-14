@@ -1,4 +1,4 @@
-{% extends "base.html" %}{% load wagtailcore_tags wagtailimages_tags atlas_extras %}
+{% extends "base.html" %}{% load static wagtailcore_tags wagtailimages_tags atlas_extras %}
 {% block bodyclass %}home{% endblock %}
 {% block content %}
 <section class="hero-sz">
@@ -21,7 +21,7 @@
     <div class="cards-sz">
       {% for k,v in groups %}
       <a class="card-sz" href="{% url 'explore' %}?group={{ k }}">
-        {% include "includes/placeholder.html" with slot=k label=v group=k %}
+        {% with gp=group_photos|get_item:k %}{% include "includes/placeholder.html" with slot=k label=v group=k photo=gp.0 caption=gp.1 %}{% endwith %}
         <span class="num">0{{ forloop.counter }}</span>
         <h3>· {{ v }}</h3>
         <p>{{ group_blurbs|get_item:k }}</p>
@@ -59,6 +59,7 @@
 </section>
 {% endif %}
 
+<section class="photo-band" aria-label="Coastal overlook at evening"><img src="{% static 'photos/coast-overlook.jpg' %}" alt="Coastal overlook at evening, sea stacks in low light"><p class="photo-caption">Project-supplied coastal photography. Scenic images are not mapped or labelled as verified locations.</p></section>
 <section class="promise">
   <div class="band-inner">
     <div class="emblem small" aria-hidden="true">{{ logo_svg|safe|cut:'width="36"'|cut:'height="36"' }}</div>

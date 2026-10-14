@@ -93,7 +93,10 @@ def solve_lightness(C, h, bg, target, darker=True):
 
 
 # ---- anchors ----------------------------------------------------------------------
-H = {"river": 192.0, "emerald": 160.0, "ocean": 236.0, "bark": 32.0, "needle": 145.0, "sand": 80.0, "fog": 215.0, "kelp": 120.0}
+# Anchors re-measured from the owner's photographs (chroma-weighted hue histograms, 14 Oct 2026):
+# Smith River pools ~250 (sky-reflecting blue), river-bank and canopy greens 110-120, ocean/fog ~262,
+# sunset gold 75-90, sand and shells 60-90. The accent stays a teal between river and green.
+H = {"river": 245.0, "emerald": 160.0, "ocean": 262.0, "bark": 32.0, "needle": 112.0, "sand": 80.0, "fog": 240.0, "kelp": 120.0, "teal": 200.0}
 
 light_bg = oklch_to_rgb(0.962, 0.012, H["sand"])        # warm paper page (space-zero-informed)
 surface = (1.0, 1.0, 1.0)
@@ -103,7 +106,7 @@ dark_surface = oklch_to_rgb(0.26, 0.02, H["ocean"])
 
 ink, _ = solve_lightness(0.03, H["ocean"], light_bg, 10.5)             # primary text: deep ocean ink
 ink2, _ = solve_lightness(0.03, H["ocean"], light_bg, 5.5)            # secondary
-accent, _ = solve_lightness(0.11, H["river"], surface, 4.5)           # river teal for links/buttons (AA on white)
+accent, _ = solve_lightness(0.11, H["teal"], surface, 4.5)            # teal between river blue and canopy green (AA on white)
 accent_on = (1.0, 1.0, 1.0)
 emerald, _ = solve_lightness(0.12, H["emerald"], surface, 4.5)        # river-emerald for "free"/verified
 bark, _ = solve_lightness(0.08, H["bark"], surface, 4.5)              # redwood bark for warnings/stale
@@ -113,12 +116,12 @@ unknown, _ = solve_lightness(0.015, H["fog"], surface, 4.5)
 
 d_ink, _ = solve_lightness(0.02, H["fog"], dark_bg, 7.0, darker=False)
 d_ink2, _ = solve_lightness(0.02, H["fog"], dark_bg, 4.5, darker=False)
-d_accent, _ = solve_lightness(0.10, H["river"], dark_surface, 4.5, darker=False)
+d_accent, _ = solve_lightness(0.10, H["teal"], dark_surface, 4.5, darker=False)
 d_emerald, _ = solve_lightness(0.11, H["emerald"], dark_surface, 4.5, darker=False)
 d_bark, _ = solve_lightness(0.09, H["bark"], dark_surface, 4.5, darker=False)
 
 # map (light): water is the only blue family, parks the only green family
-water = oklch_to_rgb(0.90, 0.045, H["river"])
+water = oklch_to_rgb(0.90, 0.040, H["river"])
 water_deep = oklch_to_rgb(0.86, 0.055, H["ocean"])
 park = oklch_to_rgb(0.90, 0.055, H["needle"])
 park_light = oklch_to_rgb(0.94, 0.035, H["needle"])
@@ -152,7 +155,7 @@ assert min(checks["dE_land_water"], checks["dE_land_park"], checks["dE_water_par
 # Categorical colours for Kim's nine groups: hue spread around the wheel starting at the river hue,
 # fixed lightness/chroma so no group shouts; checked for pairwise separation and white-stroke contrast.
 GROUP_ORDER = ["parks", "pools", "attractions", "water", "nature", "learning", "arts", "services", "programs"]
-GROUP_HUES = {"parks": 145, "pools": 228, "attractions": 40, "water": 195, "nature": 105, "learning": 272, "arts": 338, "services": 302, "programs": 72}
+GROUP_HUES = {"parks": 145, "pools": 212, "attractions": 40, "water": 248, "nature": 108, "learning": 285, "arts": 338, "services": 310, "programs": 72}
 GROUP_L = {"parks": 0.52, "pools": 0.55, "attractions": 0.60, "water": 0.63, "nature": 0.45, "learning": 0.55, "arts": 0.58, "services": 0.49, "programs": 0.62}
 group_rgb = {g: oklch_to_rgb(GROUP_L[g], 0.12, GROUP_HUES[g]) for g in GROUP_ORDER}
 _min_de = min(delta_e(group_rgb[a], group_rgb[b]) for i, a in enumerate(GROUP_ORDER) for b in GROUP_ORDER[i + 1:])
@@ -162,7 +165,7 @@ checks["min_group_on_white"] = _min_white
 assert _min_de >= 0.05 and _min_white >= 3.0, (_min_de, _min_white)
 
 tokens = {
-    "name": "Pleasant Crescent palette v2: Smith River, redwoods, Pacific (OKLCH-solved for WCAG 2.2)",
+    "name": "Pleasant Crescent palette v3: anchors measured from the owner's photographs; OKLCH-solved for WCAG 2.2",
     "method": "hue/chroma anchors fixed; lightness solved by bisection for contrast targets; see web/tools/palette.py",
     "anchors_oklch_hue": H,
     "contrast_checks": {k: round(v, 3) for k, v in checks.items()},
@@ -188,13 +191,13 @@ tokens = {
         "label": hexstr(label), "label_muted": hexstr(label_muted), "hill_shadow": hexstr(hill_shadow), "hill_light": "#ffffff",
         "pois": {"blue": hexstr(accent), "green": hexstr(emerald), "lapis": hexstr(oklch_to_rgb(0.5, 0.11, H["ocean"])),
                  "pink": hexstr(oklch_to_rgb(0.55, 0.10, 350)), "red": hexstr(bark), "slategray": hexstr(ink2),
-                 "tangerine": hexstr(oklch_to_rgb(0.58, 0.12, 55)), "turquoise": hexstr(oklch_to_rgb(0.58, 0.10, H["river"]))},
-        "hex_venue": hexstr(accent), "hex_venue_fill": hexstr(oklch_to_rgb(0.75, 0.09, H["river"])),
+                 "tangerine": hexstr(oklch_to_rgb(0.58, 0.12, 55)), "turquoise": hexstr(oklch_to_rgb(0.58, 0.10, H["teal"]))},
+        "hex_venue": hexstr(accent), "hex_venue_fill": hexstr(oklch_to_rgb(0.75, 0.09, H["teal"])),
     },
     "groups": {g: {"color": hexstr(group_rgb[g]), "fill": hexstr(oklch_to_rgb(0.80, 0.07, GROUP_HUES[g])),
                    "dark": hexstr(oklch_to_rgb(0.72, 0.11, GROUP_HUES[g]))} for g in GROUP_ORDER},
     "logo": {"disc": hexstr(oklch_to_rgb(0.80, 0.10, 75)), "shadow": hexstr(oklch_to_rgb(0.40, 0.06, H["ocean"])),
-             "ring": hexstr(accent), "glow": hexstr(oklch_to_rgb(0.92, 0.06, H["river"]))},
+             "ring": hexstr(accent), "glow": hexstr(oklch_to_rgb(0.92, 0.05, H["river"]))},
     "sprite_url": "/static/sprites/light",
 }
 OUT.write_text(json.dumps(tokens, indent=1) + "\n")

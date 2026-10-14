@@ -31,6 +31,14 @@ class HomePage(Page):
             "services": "Libraries and family services with their official sources.",
             "programs": "After-school programmes, youth clubs and the people to call.",
         }
+        # Owner's photographs for group cards (landscape only, no people); other slots stay placeholders.
+        ctx["group_photos"] = {
+            "parks": ("photos/coast-bench.jpg", "A bench above the rocks and sea stacks"),
+            "attractions": ("photos/sunset-rock.jpg", "Sea stack at sunset"),
+            "water": ("photos/smith-river-pool.jpg", "Emerald pool on the Smith River"),
+            "nature": ("photos/redwood-canopy.jpg", "Looking up into the redwood canopy"),
+            "programs": ("photos/foggy-beach.jpg", "Fog over the beach and headland"),
+        }
         ctx["featured"] = Resource.objects.filter(live=True, visibility="public").order_by("-last_verified_at")[:4]
         ctx["upcoming"] = Event.objects.filter(live=True, start_at__gte=timezone.now()).order_by("start_at")[:3]
         return ctx

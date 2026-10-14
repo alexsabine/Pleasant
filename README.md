@@ -19,6 +19,11 @@ This is a **code-and-design starter kit**, not a deployed website and **not a bu
 * `frontend/` — a MapLibre layer adapter outline for *your* locally hosted map tiles; not production client code.
 * `integrations/` — Daniel Friedman GIS compatibility questionnaire, export/import contracts, optional messaging strategy.
 
+### Added 14 October 2026, fifth pass: the owner's photographs and a measured palette
+
+* Twelve landscape and detail photographs from the owner's Google Drive zip (coast, Smith River, redwoods, creek, sunset, fog, sand dollars, a sea star, an ink cap) are served as metadata-free web copies in `web/static/photos/` with a usage manifest. Frames with identifiable people were not used; wildlife and fungi photographs carry no location. They fill five of the nine group cards, a coastal band on the home page and the About page.
+* Palette v3: the hue anchors were measured from the photographs with chroma-weighted histograms (river pools about 250, canopy greens 108 to 120, ocean and fog 262, sunset gold 75 to 90) and the palette re-solved; map water is now the pool blue, the accent a teal between river and canopy.
+
 ### Added 14 October 2026, fourth pass: the front-facing site and gentle onboarding
 
 * **Site shell** informed by space-zero.org: warm paper ground, the living crescent as a centred emblem, self-hosted Cormorant Garamond for display type, quiet uppercase mono navigation, centred intro, nine numbered image placeholders for Kim's launch groups (`templates/includes/placeholder.html`, slots the owner fills in Wagtail), the three pillars (discover, coordinate, belong), a gentle three-step start, the core promise, and a footer with visit and contact placeholders. Pages still make zero off-origin requests.
