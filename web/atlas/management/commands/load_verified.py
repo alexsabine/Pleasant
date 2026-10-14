@@ -136,6 +136,8 @@ class Command(BaseCommand):
         n_new = 0
         for e, lon, lat, src in placed:
             cat = CATEGORY_MAP.get(e.get("category", ""), "attraction")
+            if cat == "park" and ("river" in e["name"].lower() or "swimming hole" in (e.get("summary") or "").lower()):
+                cat = "river"
             CategoryHazard.for_category(cat)
             slug = slugify(e["name"])[:160]
             if Resource.objects.filter(slug=slug).exists():

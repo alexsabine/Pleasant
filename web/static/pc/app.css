@@ -54,7 +54,7 @@ h2{font-size:1.2rem;margin:1.2em 0 .5em}
 .src{font-size:.78rem;color:var(--pc-ink-2);margin-top:4px}
 .map-wrap{position:relative;min-height:420px;height:min(72vh,680px);border-radius:var(--pc-radius);overflow:hidden;border:1px solid var(--pc-line);background:var(--pc-bg)}
 #map{position:absolute;inset:0}
-.layer-switch{position:absolute;top:10px;right:10px;background:color-mix(in srgb,var(--pc-surface) 94%,transparent);border-radius:12px;padding:8px 10px;font-size:.82rem;z-index:5;max-width:240px;box-shadow:0 2px 8px rgba(20,40,50,.1);border:1px solid var(--pc-line)}
+.layer-switch{position:absolute;top:10px;right:10px;background:color-mix(in srgb,var(--pc-surface) 94%,transparent);border-radius:12px;padding:8px 10px;font-size:.82rem;z-index:5;width:250px;max-height:calc(100% - 40px);overflow:auto;box-shadow:0 2px 8px rgba(20,40,50,.1);border:1px solid var(--pc-line)}
 .layer-switch legend{font-weight:600;padding:0 2px}
 .layer-switch label{display:flex;align-items:center;gap:8px;min-height:30px;color:var(--pc-ink);flex-wrap:wrap}
 .layer-switch small{display:block;color:var(--pc-ink-2);font-size:.7rem;margin-left:24px}
@@ -102,3 +102,12 @@ table.tbl th,table.tbl td{text-align:left;padding:6px 8px;border-bottom:1px soli
 .gauge{display:flex;gap:14px;align-items:center;background:var(--pc-surface);border:1px solid var(--pc-line);border-radius:var(--pc-radius);padding:12px 14px;margin:10px 0}
 .gauge p{margin:0;font-size:.85rem;color:var(--pc-ink-2)}
 @media (prefers-reduced-motion: reduce){*{animation:none!important;transition:none!important} svg animate{display:none}}
+
+.layer-switch label.grp{min-height:28px;font-size:.8rem;flex-wrap:nowrap;line-height:1.2}
+.layer-switch label.grp input{flex:none}
+.layer-switch .sw{width:12px;height:12px;border-radius:50%;display:inline-block;flex:none;border:2px solid #fff;box-shadow:0 0 0 1px rgba(0,0,0,.15)}
+.layer-switch details.adv{margin-top:6px;border-top:1px solid var(--pc-line);padding-top:4px}
+.layer-switch details.adv summary{cursor:pointer;font-size:.78rem;color:var(--pc-ink-2);min-height:28px;display:flex;align-items:center}
+.tag .sw{width:9px;height:9px;border-radius:50%;display:inline-block;margin-right:5px;vertical-align:0;background:var(--pc-ink-2)}
+.maplibregl-popup-content ul{margin:6px 0 0;padding-left:16px}
+.maplibregl-popup-content li{margin:2px 0}

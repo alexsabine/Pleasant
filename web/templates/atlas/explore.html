@@ -1,4 +1,4 @@
-{% extends "base.html" %}{% load static %}
+{% extends "base.html" %}{% load static atlas_extras %}
 {% block title %}Explore · Pleasant Crescent{% endblock %}
 {% block content %}
 <h1>Explore</h1>
@@ -9,7 +9,8 @@
     <button type="submit" name="free" value="{% if params.free %}0{% else %}1{% endif %}" class="chip" aria-pressed="{% if params.free == '1' %}true{% else %}false{% endif %}">Free only</button>
   </div>
   <label>Child's age <input type="number" name="age" min="0" max="18" value="{{ params.age }}" placeholder="any"></label>
-  <label>Category <select name="category"><option value="">Any</option>{% for k,v in categories %}<option value="{{ k }}" {% if params.category == k %}selected{% endif %}>{{ v }}</option>{% endfor %}</select></label>
+  <label>What kind <select name="group"><option value="">Anything</option>{% for k,v in groups %}<option value="{{ k }}" {% if params.group == k %}selected{% endif %}>{{ v }}</option>{% endfor %}</select></label>
+  <label>Type <select name="category"><option value="">Any</option>{% for k,v in categories %}<option value="{{ k }}" {% if params.category == k %}selected{% endif %}>{{ v }}</option>{% endfor %}</select></label>
   <label>Community <select name="community"><option value="">Any</option>{% for k,v in communities %}<option value="{{ k }}" {% if params.community == k %}selected{% endif %}>{{ v }}</option>{% endfor %}</select></label>
   <label class="check"><input type="checkbox" name="access" value="1" {% if params.access == '1' %}checked{% endif %}> Verified wheelchair access only</label>
   <label>Search <input type="search" name="q" value="{{ params.q }}" placeholder="name or word"></label>
@@ -29,7 +30,7 @@
       <article class="card">
         <h3>{% if view == 'map' %}<span class="pin">{{ forloop.counter }}</span>{% endif %}<a href="{% url 'resource_detail' r.slug %}">{{ r.name }}</a></h3>
         <div class="meta">
-          <span class="tag">{{ r.get_category_display }}</span>
+          <span class="tag group-{{ r.group }}"><i class="sw" aria-hidden="true"></i>{{ r.get_category_display }}</span>
           <span class="tag">Ages {{ r.min_age }} to {{ r.max_age }}</span>
           {% if r.cost_status == 'free' %}<span class="tag free">Free</span>{% elif r.cost_status == 'priced' %}<span class="tag">${{ r.cost_usd|floatformat:0 }}</span>{% else %}<span class="tag unknown">Cost {{ r.cost_status }}</span>{% endif %}
           {% if r.accessibility_status == 'verified_yes' %}<span class="tag">Access: verified yes</span>{% elif r.accessibility_status == 'verified_no' %}<span class="tag">Access: verified no</span>{% else %}<span class="tag unknown">Access: unknown</span>{% endif %}
@@ -49,14 +50,18 @@
   {% if view == 'map' %}
   <section aria-label="Map of results">
     <div class="map-wrap">
-      <div id="map" data-config='{"styleUrl":"{% static 'style/basemap.json' %}","center":{{ map_center }},"zoom":{{ map_zoom }},"api":{"pins":"{% url 'api_resources_geojson' %}?{{ request.GET.urlencode }}","county":"{% url 'api_boundary' 'county' %}","places":"{% url 'api_boundary' 'places' %}","aiannh":"{% url 'api_boundary' 'aiannh' %}","h3":"{% url 'api_h3' %}?res=7&amp;k=2","venues":"{% url 'api_h3_venues' %}?{{ request.GET.urlencode }}"},"venueRes":11,"colors":{"accent":"{{ tokens.ui.accent }}","ink":"{{ tokens.ui.ink }}","ink2":"{{ tokens.ui.ink_2 }}","boundary":"{{ tokens.map.boundary }}","sensitive":"{{ tokens.ui.sensitive }}","hex":"{{ tokens.map.hex_venue }}","hexFill":"{{ tokens.map.hex_venue_fill }}"}}' role="application" aria-label="Interactive map; the list beside it has the same results"></div>
-      <fieldset class="layer-switch"><legend>Layers</legend>
-        <label><input type="checkbox" data-layer="venues" checked> Venue cells (H3) <select data-res aria-label="H3 resolution"><option value="9">res 9 · 175 m</option><option value="10">res 10 · 65 m</option><option value="11" selected>res 11 · 25 m</option><option value="12">res 12 · 9 m</option></select></label><small>Exact containing cell of each verified place, with a one-step halo</small>
-        <label><input type="checkbox" data-layer="pins" checked> Names and points</label>
-        <label><input type="checkbox" data-layer="terrain" checked> Terrain shading</label><small>USGS 3DEP</small>
-        <label><input type="checkbox" data-layer="boundaries" checked> County and city limits</label><small>Census TIGER 2025</small>
-        <label><input type="checkbox" data-layer="tribal"> Tribal land boundaries</label><small>Census AIANNH, statistical only; names pending confirmation with each Nation</small>
-        <label><input type="checkbox" data-layer="h3"> H3 aggregate (debug)</label><small>Derived index, counts &lt; k suppressed</small>
+      <div id="map" data-config='{"styleUrl":"{% static 'style/basemap.json' %}","center":{{ map_center }},"zoom":{{ map_zoom }},"api":{"pins":"{% url 'api_resources_geojson' %}?{{ request.GET.urlencode }}","county":"{% url 'api_boundary' 'county' %}","places":"{% url 'api_boundary' 'places' %}","aiannh":"{% url 'api_boundary' 'aiannh' %}","h3":"{% url 'api_h3' %}?res=7&amp;k=2","venues":"{% url 'api_h3_venues' %}?{{ request.GET.urlencode }}"},"venueRes":11,"groups":{{ tokens.groups|tojson }},"colors":{"accent":"{{ tokens.ui.accent }}","ink":"{{ tokens.ui.ink }}","ink2":"{{ tokens.ui.ink_2 }}","boundary":"{{ tokens.map.boundary }}","sensitive":"{{ tokens.ui.sensitive }}","hex":"{{ tokens.map.hex_venue }}","hexFill":"{{ tokens.map.hex_venue_fill }}"}}' role="application" aria-label="Interactive map; the list beside it has the same results"></div>
+      <fieldset class="layer-switch"><legend>Show on the map</legend>
+        {% for k,v in groups %}<label class="grp"><input type="checkbox" data-group="{{ k }}" checked> <i class="sw" style="background:{{ tokens.groups|get_item:k|get_item:'color' }}" aria-hidden="true"></i>{{ v }}</label>
+        {% endfor %}
+        <details class="adv"><summary>Map details</summary>
+          <label><input type="checkbox" data-layer="venues" checked> Place cells (H3) <select data-res aria-label="H3 resolution"><option value="9">res 9 · 175 m</option><option value="10">res 10 · 65 m</option><option value="11" selected>res 11 · 25 m</option><option value="12">res 12 · 9 m</option></select></label><small>Exact containing cell of each verified place, with a one-step halo</small>
+          <label><input type="checkbox" data-layer="pins" checked> Names</label>
+          <label><input type="checkbox" data-layer="terrain" checked> Terrain shading</label><small>USGS 3DEP</small>
+          <label><input type="checkbox" data-layer="boundaries" checked> County and city limits</label><small>Census TIGER 2025</small>
+          <label><input type="checkbox" data-layer="tribal"> Tribal land boundaries</label><small>Census AIANNH, statistical only; names pending confirmation with each Nation</small>
+          <label><input type="checkbox" data-layer="h3"> H3 aggregate (debug)</label><small>Derived index, counts &lt; k suppressed</small>
+        </details>
       </fieldset>
       <div class="map-credit">© OpenStreetMap contributors (ODbL) · Protomaps build 2026-10-13 · Terrain USGS 3DEP · U.S. Census Bureau · served from this site only</div>
     </div>

@@ -1,7 +1,7 @@
 /* Pleasant Crescent map: MapLibre + PMTiles from our own origin only.
-   Layers: self-hosted OSM basemap, 3DEP hillshade, Census boundaries,
-   exact H3 venue cells (res 8-12) with a one-step halo, directory labels,
-   and the coarse k-anonymous H3 aggregate for debugging. */
+   Family groups (Kim's launch categories) drive colour and the main toggles.
+   Points cluster when they overlap; co-located listings open one combined popup.
+   Technical layers (H3 cells, terrain, boundaries, aggregate) live under "Map details". */
 (function () {
   const el = document.getElementById("map");
   if (!el || !window.maplibregl || !window.pmtiles) return;
@@ -9,6 +9,10 @@
   const protocol = new pmtiles.Protocol();
   maplibregl.addProtocol("pmtiles", protocol.tile);
   const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const GROUPS = Object.keys(cfg.groups || {});
+  const groupColor = ["match", ["get", "group"]].concat(GROUPS.flatMap(g => [g, cfg.groups[g].color])).concat([cfg.colors.accent]);
+  const groupFill = ["match", ["get", "group"]].concat(GROUPS.flatMap(g => [g, cfg.groups[g].fill])).concat([cfg.colors.hexFill]);
+  let activeGroups = new Set(GROUPS);
 
   fetch(cfg.styleUrl).then(r => r.json()).then(style => {
     for (const [k, s] of Object.entries(style.sources)) {
@@ -21,14 +25,19 @@
   }).catch(err => { el.innerHTML = '<p class="empty">Map unavailable: ' + err.message + '. The list view has everything.</p>'; });
 
   function venueUrl(res) { return cfg.api.venues + (cfg.api.venues.includes("?") ? "&" : "?") + "res=" + res; }
+  function groupFilter(extra) {
+    const f = ["in", ["get", "group"], ["literal", Array.from(activeGroups)]];
+    return extra ? ["all", extra, f] : f;
+  }
 
   function init(style) {
     const map = new maplibregl.Map({ container: "map", style, center: cfg.center, zoom: cfg.zoom, minZoom: 7, maxZoom: 17.5, attributionControl: false });
     map.addControl(new maplibregl.NavigationControl({ showCompass: false }), "top-left");
     map.addControl(new maplibregl.ScaleControl({ unit: "imperial" }), "bottom-left");
     let currentRes = cfg.venueRes || 11;
+    let pinsData = null;
 
-    map.on("load", () => {
+    map.on("load", async () => {
       // Boundaries (public domain, Census TIGER)
       map.addSource("county", { type: "geojson", data: cfg.api.county });
       map.addLayer({ id: "pc_county", type: "line", source: "county", paint: { "line-color": cfg.colors.boundary, "line-width": 2, "line-dasharray": [3, 2] } });
@@ -43,43 +52,60 @@
       map.addLayer({ id: "pc_h3", type: "fill", source: "h3", layout: { visibility: "none" }, paint: { "fill-color": cfg.colors.accent, "fill-opacity": ["case", ["get", "suppressed"], 0.05, ["min", 0.5, ["+", 0.1, ["*", 0.08, ["get", "count"]]]]] } });
       map.addLayer({ id: "pc_h3_line", type: "line", source: "h3", layout: { visibility: "none" }, paint: { "line-color": cfg.colors.ink2, "line-opacity": .5, "line-width": .8 } });
 
-      // Exact venue cells: halo (one grid step) under the venue cell
+      // Exact venue cells coloured by group (shown from zoom 13 so they do not clutter the county view)
       map.addSource("venues", { type: "geojson", data: venueUrl(currentRes) });
-      map.addLayer({ id: "pc_venue_halo", type: "fill", source: "venues", filter: ["==", ["get", "role"], "halo"],
-        paint: { "fill-color": cfg.colors.hexFill, "fill-opacity": 0.14 } });
-      map.addLayer({ id: "pc_venue_halo_line", type: "line", source: "venues", filter: ["==", ["get", "role"], "halo"],
-        paint: { "line-color": cfg.colors.hex, "line-opacity": 0.25, "line-width": 0.6 } });
-      map.addLayer({ id: "pc_venue_cell", type: "fill", source: "venues", filter: ["==", ["get", "role"], "venue"],
-        paint: { "fill-color": cfg.colors.hexFill, "fill-opacity": ["interpolate", ["linear"], ["zoom"], 10, 0.55, 15, 0.42] } });
-      map.addLayer({ id: "pc_venue_cell_line", type: "line", source: "venues", filter: ["==", ["get", "role"], "venue"],
-        paint: { "line-color": cfg.colors.hex, "line-width": ["interpolate", ["linear"], ["zoom"], 10, 1.2, 15, 2.2] } });
+      map.addLayer({ id: "pc_venue_halo", type: "fill", source: "venues", minzoom: 13, filter: groupFilter(["==", ["get", "role"], "halo"]), paint: { "fill-color": groupFill, "fill-opacity": 0.16 } });
+      map.addLayer({ id: "pc_venue_cell", type: "fill", source: "venues", minzoom: 13, filter: groupFilter(["==", ["get", "role"], "venue"]), paint: { "fill-color": groupFill, "fill-opacity": 0.5 } });
+      map.addLayer({ id: "pc_venue_cell_line", type: "line", source: "venues", minzoom: 13, filter: groupFilter(["==", ["get", "role"], "venue"]), paint: { "line-color": groupColor, "line-width": ["interpolate", ["linear"], ["zoom"], 13, 1.2, 16, 2.2 ] } });
 
-      // Directory points: a small centre dot plus label, over the cells
-      map.addSource("pins", { type: "geojson", data: cfg.api.pins });
-      map.addLayer({ id: "pc_pins", type: "circle", source: "pins", paint: {
-        "circle-radius": ["interpolate", ["linear"], ["zoom"], 10, 4, 15, 7], "circle-color": cfg.colors.hex, "circle-stroke-color": "#ffffff", "circle-stroke-width": 2 } });
-      map.addLayer({ id: "pc_pins_label", type: "symbol", source: "pins", layout: {
-        "text-field": ["get", "name"], "text-size": ["interpolate", ["linear"], ["zoom"], 10, 11, 15, 13], "text-offset": [0, 1.1], "text-anchor": "top",
+      // Directory points: clustered. Clusters carry the count; a cluster of co-located points stays a cluster until clicked.
+      pinsData = await fetch(cfg.api.pins).then(r => r.json());
+      map.addSource("pins", { type: "geojson", data: filteredPins(), cluster: true, clusterRadius: 34, clusterMaxZoom: 15,
+        clusterProperties: { grp: ["coalesce", ["get", "group"], "attractions"] } });
+      map.addLayer({ id: "pc_cluster", type: "circle", source: "pins", filter: ["has", "point_count"], paint: {
+        "circle-radius": ["step", ["get", "point_count"], 14, 5, 18, 12, 22], "circle-color": cfg.colors.accent, "circle-stroke-color": "#ffffff", "circle-stroke-width": 2.5, "circle-opacity": 0.92 } });
+      map.addLayer({ id: "pc_cluster_count", type: "symbol", source: "pins", filter: ["has", "point_count"], layout: { "text-field": ["get", "point_count_abbreviated"], "text-size": 12, "text-font": ["Noto Sans Medium"] }, paint: { "text-color": "#ffffff" } });
+      map.addLayer({ id: "pc_pins", type: "circle", source: "pins", filter: ["!", ["has", "point_count"]], paint: {
+        "circle-radius": ["interpolate", ["linear"], ["zoom"], 10, 5, 15, 8], "circle-color": groupColor, "circle-stroke-color": "#ffffff", "circle-stroke-width": 2 } });
+      map.addLayer({ id: "pc_pins_label", type: "symbol", source: "pins", filter: ["!", ["has", "point_count"]], minzoom: 12, layout: {
+        "text-field": ["get", "name"], "text-size": ["interpolate", ["linear"], ["zoom"], 12, 11, 15, 13], "text-offset": [0, 1.1], "text-anchor": "top",
         "text-font": ["Noto Sans Medium"], "text-max-width": 9, "text-optional": true },
         paint: { "text-color": cfg.colors.ink, "text-halo-color": "#ffffff", "text-halo-width": 1.6 } });
 
-      const popup = (e, p) => {
-        const vl = p.verification_label || "";
-        const html = `<b>${esc(p.name)}</b><br>${esc(p.category_label)} · ages ${p.min_age} to ${p.max_age} · ${esc(p.cost_status)} · access: ${esc(String(p.accessibility_status).replace("_", " "))}<br>` +
-          `<small>${freshness(p)}${vl ? " · " + esc(vl) : ""}</small><br><small>H3 ${esc(p.h3_res_11 || "")}</small><br><a href="/resource/${esc(p.slug)}/">Details and sources</a>`;
-        new maplibregl.Popup({ offset: 12 }).setLngLat(e.lngLat).setHTML(html).addTo(map);
-      };
-      map.on("click", "pc_pins", e => popup(e, e.features[0].properties));
+      // Clicking a cluster: zoom in, or if its members share one point, open a combined popup.
+      map.on("click", "pc_cluster", async e => {
+        const f = e.features[0];
+        const src = map.getSource("pins");
+        const leaves = await src.getClusterLeaves(f.properties.cluster_id, 50, 0);
+        const samePoint = leaves.every(l => Math.abs(l.geometry.coordinates[0] - leaves[0].geometry.coordinates[0]) < 1e-5 && Math.abs(l.geometry.coordinates[1] - leaves[0].geometry.coordinates[1]) < 1e-5);
+        if (samePoint || map.getZoom() >= 15.5) { listPopup(e.lngLat, leaves.map(l => l.properties)); return; }
+        const z = await src.getClusterExpansionZoom(f.properties.cluster_id);
+        if (prefersReduced) map.jumpTo({ center: f.geometry.coordinates, zoom: z + 0.3 }); else map.easeTo({ center: f.geometry.coordinates, zoom: z + 0.3 });
+      });
+      map.on("click", "pc_pins", e => {
+        // several features under the cursor at the same spot -> combined popup
+        const here = map.queryRenderedFeatures(e.point, { layers: ["pc_pins"] }).map(x => x.properties);
+        if (here.length > 1) listPopup(e.lngLat, here); else popup(e.lngLat, here[0]);
+      });
       map.on("click", "pc_venue_cell", e => {
         const f = e.features[0].properties;
-        const pin = map.querySourceFeatures("pins").find(x => x.properties.id == f.id);
-        if (pin) popup(e, pin.properties);
+        const pin = (pinsData.features || []).find(x => x.properties.id == f.id);
+        if (pin) popup(e.lngLat, pin.properties);
       });
-      ["pc_pins", "pc_venue_cell"].forEach(id => { map.on("mouseenter", id, () => map.getCanvas().style.cursor = "pointer"); map.on("mouseleave", id, () => map.getCanvas().style.cursor = ""); });
+      ["pc_pins", "pc_cluster", "pc_venue_cell"].forEach(id => { map.on("mouseenter", id, () => map.getCanvas().style.cursor = "pointer"); map.on("mouseleave", id, () => map.getCanvas().style.cursor = ""); });
 
-      // Layer switcher and H3 resolution control
+      // Group toggles
+      document.querySelectorAll(".layer-switch input[data-group]").forEach(cb => cb.addEventListener("change", () => {
+        if (cb.checked) activeGroups.add(cb.dataset.group); else activeGroups.delete(cb.dataset.group);
+        map.getSource("pins").setData(filteredPins());
+        ["pc_venue_halo", "pc_venue_cell", "pc_venue_cell_line"].forEach(id => {
+          const role = id === "pc_venue_halo" ? "halo" : "venue";
+          map.setFilter(id, groupFilter(["==", ["get", "role"], role]));
+        });
+      }));
+      // Technical layer switches
       const switches = { terrain: ["pc_hillshade"], boundaries: ["pc_county", "pc_places"], tribal: ["pc_aiannh", "pc_aiannh_line"],
-        h3: ["pc_h3", "pc_h3_line"], venues: ["pc_venue_halo", "pc_venue_halo_line", "pc_venue_cell", "pc_venue_cell_line"], pins: ["pc_pins", "pc_pins_label"] };
+        h3: ["pc_h3", "pc_h3_line"], venues: ["pc_venue_halo", "pc_venue_cell", "pc_venue_cell_line"], pins: ["pc_pins_label"] };
       document.querySelectorAll(".layer-switch input[data-layer]").forEach(cb => cb.addEventListener("change", () => {
         (switches[cb.dataset.layer] || []).forEach(id => { if (map.getLayer(id)) map.setLayoutProperty(id, "visibility", cb.checked ? "visible" : "none"); });
       }));
@@ -90,7 +116,22 @@
         if (prefersReduced) map.jumpTo({ center: [lon, lat], zoom: 15.5 }); else map.flyTo({ center: [lon, lat], zoom: 15.5, speed: 0.9 });
       }));
     });
+
+    function filteredPins() {
+      return { type: "FeatureCollection", features: (pinsData.features || []).filter(f => activeGroups.has(f.properties.group)) };
+    }
+    function popup(lngLat, p) {
+      const html = `<b>${esc(p.name)}</b><br><span class="tag" style="border-color:${esc(colorOf(p.group))};color:${esc(colorOf(p.group))}">${esc(p.group_label)}</span> · ${esc(p.category_label)}<br>` +
+        `ages ${p.min_age} to ${p.max_age} · ${esc(p.cost_status)} · access: ${esc(String(p.accessibility_status).replace("_", " "))}<br>` +
+        `<small>${freshness(p)}${p.verification_label ? " · " + esc(p.verification_label) : ""}</small><br><a href="/resource/${esc(p.slug)}/">Details and sources</a>`;
+      new maplibregl.Popup({ offset: 12, maxWidth: "280px" }).setLngLat(lngLat).setHTML(html).addTo(map);
+    }
+    function listPopup(lngLat, items) {
+      const html = `<b>${items.length} listings here</b><ul>` + items.map(p => `<li><span class="sw" style="display:inline-block;width:9px;height:9px;border-radius:50%;background:${esc(colorOf(p.group))};margin-right:5px"></span><a href="/resource/${esc(p.slug)}/">${esc(p.name)}</a> <small>· ${esc(p.category_label)}</small></li>`).join("") + "</ul>";
+      new maplibregl.Popup({ offset: 12, maxWidth: "300px" }).setLngLat(lngLat).setHTML(html).addTo(map);
+    }
   }
+  function colorOf(g) { return (cfg.groups[g] || {}).color || cfg.colors.accent; }
   function esc(s) { return String(s == null ? "" : s).replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c])); }
   function freshness(p) {
     const band = { recently_verified: "Recently checked", verified_this_season: "Checked this season", needs_recheck: "Needs re-check", unverified: "Not yet verified" }[p.freshness_band] || "";

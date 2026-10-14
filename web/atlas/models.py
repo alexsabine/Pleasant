@@ -23,11 +23,26 @@ from pc_core.freshness import GammaRate, prob_current, review_priority
 CATEGORIES = [
     ("school", "School"), ("preschool", "Preschool and early learning"), ("childcare", "Childcare"), ("college", "College"),
     ("after_school", "After-school and youth"), ("library", "Library and story time"), ("class", "Class or club"),
-    ("playground", "Playground"), ("park", "Park"), ("beach", "Beach"), ("trail", "Trail"), ("sport", "Sport and swim"),
+    ("playground", "Playground"), ("park", "Park"), ("beach", "Beach"), ("river", "River access"), ("trail", "Trail"), ("sport", "Sport and swim"),
     ("attraction", "Attraction"), ("museum", "Museum"), ("visitor_center", "Visitor centre"), ("arts", "Arts"),
     ("indoor_play", "Indoor play"), ("family_service", "Family service"), ("health", "Health and wellbeing"),
     ("food", "Food help"), ("event_venue", "Event venue"),
 ]
+# Kim's launch groups (proposal section 3.2), in her order. Every category maps to exactly one group.
+GROUPS = [
+    ("parks", "Parks and playgrounds"), ("pools", "Pools and indoor recreation"), ("attractions", "Attractions"),
+    ("water", "Rivers and beaches"), ("nature", "Hiking and nature"), ("learning", "Learning and STEM"), ("arts", "Arts"),
+    ("services", "Libraries and family services"), ("programs", "Programs, events and people to call"),
+]
+CATEGORY_GROUP = {
+    "playground": "parks", "park": "parks", "sport": "pools", "indoor_play": "pools",
+    "attraction": "attractions", "museum": "attractions", "visitor_center": "attractions",
+    "beach": "water", "river": "water", "trail": "nature",
+    "school": "learning", "preschool": "learning", "childcare": "learning", "college": "learning", "class": "learning",
+    "arts": "arts", "library": "services", "family_service": "services", "health": "services", "food": "services",
+    "after_school": "programs", "event_venue": "programs",
+}
+GROUP_LABEL = dict(GROUPS)
 VERIFICATION_METHOD = [
     ("official_online", "Checked against official website (not visited)"),
     ("human_site", "Human site visit"),
@@ -139,6 +154,14 @@ class Resource(WorkflowMixin, DraftStateMixin, LockableMixin, RevisionMixin, ind
 
     # ---- freshness (declared model, see research/04) ----
     @property
+    def group(self) -> str:
+        return CATEGORY_GROUP.get(self.category, "attractions")
+
+    @property
+    def group_label(self) -> str:
+        return GROUP_LABEL[self.group]
+
+    @property
     def age_days(self) -> float | None:
         if not self.last_verified_at:
             return None
@@ -176,6 +199,7 @@ class Resource(WorkflowMixin, DraftStateMixin, LockableMixin, RevisionMixin, ind
         return {
             "id": self.pk, "slug": self.slug, "name": self.name, "description": self.description,
             "category": self.category, "category_label": self.get_category_display(),
+            "group": self.group, "group_label": self.group_label,
             "community": self.community, "community_label": self.get_community_display(),
             "min_age": self.min_age, "max_age": self.max_age,
             "cost_status": self.cost_status, "cost_usd": float(self.cost_usd) if self.cost_usd is not None else None,

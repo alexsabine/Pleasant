@@ -13,7 +13,7 @@ from django.shortcuts import get_object_or_404, render
 from django.utils import timezone
 from django.views.decorators.http import require_GET
 
-from .models import CATEGORIES, COMMUNITIES, Event, ProjectionVersion, Resource
+from .models import CATEGORIES, CATEGORY_GROUP, COMMUNITIES, GROUPS, Event, ProjectionVersion, Resource
 
 
 def _public_resources():
@@ -25,6 +25,9 @@ def _apply_filters(qs, params):
     cat = params.get("category")
     if cat:
         qs = qs.filter(category=cat)
+    grp = params.get("group")
+    if grp:
+        qs = qs.filter(category__in=[c for c, g in CATEGORY_GROUP.items() if g == grp])
     com = params.get("community")
     if com:
         qs = qs.filter(community__in=[com, "countywide"])
@@ -43,7 +46,7 @@ def _apply_filters(qs, params):
 
 
 def _common_ctx(request):
-    return {"categories": CATEGORIES, "communities": COMMUNITIES, "params": request.GET,
+    return {"categories": CATEGORIES, "communities": COMMUNITIES, "groups": GROUPS, "params": request.GET,
             "projection_version": ProjectionVersion.current()}
 
 
@@ -155,12 +158,12 @@ def api_h3_venues(request):
             continue
         feats.append({"type": "Feature", "geometry": {"type": "Polygon", "coordinates": [hx.cell_polygon(cell)]},
                       "properties": {"id": r.pk, "slug": r.slug, "name": r.name, "cell": cell, "res": res, "role": "venue",
-                                     "category": r.category, "freshness_band": r.freshness_band}})
+                                     "category": r.category, "group": r.group, "freshness_band": r.freshness_band}})
         if halo:
             for nb in hx.venue_neighbourhood(cell, 1):
                 if nb != cell:
                     feats.append({"type": "Feature", "geometry": {"type": "Polygon", "coordinates": [hx.cell_polygon(nb)]},
-                                  "properties": {"id": r.pk, "cell": nb, "res": res, "role": "halo"}})
+                                  "properties": {"id": r.pk, "cell": nb, "res": res, "role": "halo", "group": r.group}})
     return JsonResponse({"type": "FeatureCollection", "res": res, "features": feats,
                          "note": "Exact containing cells for public venues; a halo is one grid step, not a distance."})
 

@@ -149,6 +149,18 @@ assert checks["ink_on_bg"] >= 10 and checks["ink2_on_bg"] >= 5.5 and checks["acc
 assert checks["white_on_accent"] >= 4.5 and checks["label_on_land"] >= 4.5, checks
 assert min(checks["dE_land_water"], checks["dE_land_park"], checks["dE_water_park"], checks["dE_road_land"]) >= 0.04, checks
 
+# Categorical colours for Kim's nine groups: hue spread around the wheel starting at the river hue,
+# fixed lightness/chroma so no group shouts; checked for pairwise separation and white-stroke contrast.
+GROUP_ORDER = ["parks", "pools", "attractions", "water", "nature", "learning", "arts", "services", "programs"]
+GROUP_HUES = {"parks": 145, "pools": 228, "attractions": 40, "water": 195, "nature": 105, "learning": 272, "arts": 338, "services": 302, "programs": 72}
+GROUP_L = {"parks": 0.52, "pools": 0.55, "attractions": 0.60, "water": 0.63, "nature": 0.45, "learning": 0.55, "arts": 0.58, "services": 0.49, "programs": 0.62}
+group_rgb = {g: oklch_to_rgb(GROUP_L[g], 0.12, GROUP_HUES[g]) for g in GROUP_ORDER}
+_min_de = min(delta_e(group_rgb[a], group_rgb[b]) for i, a in enumerate(GROUP_ORDER) for b in GROUP_ORDER[i + 1:])
+_min_white = min(contrast(group_rgb[g], (1, 1, 1)) for g in GROUP_ORDER)
+checks["dE_min_between_groups"] = _min_de
+checks["min_group_on_white"] = _min_white
+assert _min_de >= 0.05 and _min_white >= 3.0, (_min_de, _min_white)
+
 tokens = {
     "name": "Pleasant Crescent palette v2: Smith River, redwoods, Pacific (OKLCH-solved for WCAG 2.2)",
     "method": "hue/chroma anchors fixed; lightness solved by bisection for contrast targets; see web/tools/palette.py",
@@ -178,6 +190,8 @@ tokens = {
                  "tangerine": hexstr(oklch_to_rgb(0.58, 0.12, 55)), "turquoise": hexstr(oklch_to_rgb(0.58, 0.10, H["river"]))},
         "hex_venue": hexstr(accent), "hex_venue_fill": hexstr(oklch_to_rgb(0.75, 0.09, H["river"])),
     },
+    "groups": {g: {"color": hexstr(group_rgb[g]), "fill": hexstr(oklch_to_rgb(0.80, 0.07, GROUP_HUES[g])),
+                   "dark": hexstr(oklch_to_rgb(0.72, 0.11, GROUP_HUES[g]))} for g in GROUP_ORDER},
     "logo": {"disc": hexstr(oklch_to_rgb(0.80, 0.10, 75)), "shadow": hexstr(oklch_to_rgb(0.40, 0.06, H["ocean"])),
              "ring": hexstr(accent), "glow": hexstr(oklch_to_rgb(0.92, 0.06, H["river"]))},
     "sprite_url": "/static/sprites/light",

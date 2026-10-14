@@ -21,7 +21,8 @@
   --pc-line:#2b3940;
 }}
 body{background:var(--pc-bg)}
-</style>
+{% for k,g in tokens.groups.items %}.tag.group-{{ k }} .sw{background:{{ g.color }}}
+{% endfor %}</style>
 {% block head %}{% endblock %}
 </head>
 <body>
