@@ -132,6 +132,11 @@ class Resource(WorkflowMixin, DraftStateMixin, LockableMixin, RevisionMixin, ind
 
     class Meta:
         ordering = ["name"]
+        indexes = [
+            models.Index(fields=["h3_res_8"], name="atlas_res_h3r8"),                     # cell lookups and public aggregates
+            models.Index(fields=["live", "visibility", "is_sensitive"], name="atlas_res_public"),  # the public projection filter
+            models.Index(fields=["category", "community"], name="atlas_res_facets"),
+        ]
 
     def __str__(self):
         return self.name
@@ -391,3 +396,17 @@ class ProjectionVersion(models.Model):
             obj.version += 1
             obj.save()
             return obj.version
+
+
+class ReviewNote(models.Model):
+    """A reviewer's reply to one of the 'Questions for Kim'. Private to stewards; never published."""
+    question_key = models.CharField(max_length=40)
+    reviewer = models.CharField(max_length=80, blank=True)
+    response = models.TextField()
+    created_at = models.DateTimeField(default=timezone.now)
+
+    class Meta:
+        ordering = ["-created_at"]
+
+    def __str__(self):
+        return f"{self.reviewer or 'anonymous'} on {self.question_key}"

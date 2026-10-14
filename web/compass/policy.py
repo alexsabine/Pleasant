@@ -68,6 +68,9 @@ def parse_intent_rules(question: str) -> Intent:
     for cat, words in tools.KEYWORDS.items():
         if any(re.search(r"\b" + re.escape(w) + r"s?\b", q) for w in words):
             it.categories.append(cat)
+    # "after school programs" is not a question about schools unless a school type is named
+    if "after_school" in it.categories and "school" in it.categories and not re.search(r"high school|elementary|middle school|charter|academy", q):
+        it.categories.remove("school")
     for key, label in (("smith_river", "smith river"), ("gasquet", "gasquet"), ("klamath", "klamath"), ("fort_dick", "fort dick"), ("hiouchi", "hiouchi"), ("crescent_city", "crescent city")):
         if label in q:
             it.community = key

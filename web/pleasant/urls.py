@@ -28,6 +28,7 @@ urlpatterns = [
     path("tiles/<slug:name>.pmtiles", atlas_views.serve_pmtiles, name="serve_pmtiles"),
     path("accounts/", include("accounts.urls")),
     path("contribute/", atlas_views.contribute, name="contribute"),
+    path("review/", atlas_views.review, name="review"),
     path("compass/", include("compass.urls")),
     path("", include(wagtail_urls)),
 ]

@@ -21,7 +21,7 @@ KEYWORDS = {
     "arts": ["art", "museum", "craft", "music", "paint", "rainy", "rain"],
     "playground": ["playground", "swings", "slide", "kidtown", "kid's town"],
     "trail": ["trail", "walk", "hike", "dunes", "redwood", "grove"],
-    "sport": ["swim", "pool", "sport", "soccer", "football", "basketball", "skate"],
+    "sport": ["swim", "swimming pool", "public pool", "lap pool", "sport", "soccer", "football", "basketball", "skate", "bowling", "bowl"],
     "class": ["class", "club", "lesson"],
     "family_service": ["help", "support", "service", "advice", "parenting"],
     "health": ["health", "clinic", "doctor", "wellbeing", "dentist"],
@@ -32,10 +32,10 @@ KEYWORDS = {
     "college": ["college", "community college"],
     "after_school": ["after school", "after-school", "youth program", "4-h", "summer program"],
     "museum": ["museum", "history", "historical"],
-    "beach": ["beach", "tidepool", "tide pool", "sand"],
-    "park": ["park", "picnic", "campground", "day use"],
+    "beach": ["beach", "tidepool", "tide pool", "tide pools", "sand", "shore"],
+    "park": ["park", "picnic", "campground", "camping", "day use", "lake"],
     "visitor_center": ["visitor center", "visitor centre", "information center", "ranger"],
-    "attraction": ["aquarium", "sea lion", "seal", "pier", "attraction", "trees of mystery", "overlook", "lighthouse"],
+    "attraction": ["aquarium", "sea lion", "seal", "pier", "attraction", "trees of mystery", "overlook", "lighthouse", "farm", "harbor", "harbour", "zoo", "animals"],
 }
 
 

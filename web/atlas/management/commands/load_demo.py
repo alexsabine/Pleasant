@@ -149,8 +149,12 @@ class Command(BaseCommand):
         for model in (Resource, Event, Claim, Submission):
             ct = ContentType.objects.get_for_model(model)
             for p in Permission.objects.filter(content_type=ct):
-                editors.permissions.add(p)
                 mods.permissions.add(p)
+                # Editors draft and verify; only Moderators (the two organisational admins) publish or delete.
+                if p.codename.startswith(("publish_", "delete_")):
+                    editors.permissions.remove(p)
+                else:
+                    editors.permissions.add(p)
         for codename in ("access_admin",):
             for p in Permission.objects.filter(codename=codename):
                 editors.permissions.add(p); mods.permissions.add(p)

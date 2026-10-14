@@ -151,3 +151,11 @@ Twelve end-to-end Django tests (`web/compass/tests.py`) add the invariants that 
 | CRDTs for concurrent editing | Over-engineering for two admins and a few editors; Wagtail revisions plus optimistic version checks suffice. |
 | Full belief-space POMDP solvers | Unnecessary at two states and three actions; exact enumeration is cheaper and more auditable. |
 | GPU continual learning | Out of scope by contract and by design; the agent reads verified records, it does not train on them. |
+
+## 8d. Third iteration: landmapping, tuning and trust (generated reports)
+
+- `research/06_landmapping_report.md`: six checks of every live venue and its H3 cells against TIGER/Line 2025 and USGS 3DEP (all pass; see `design/h3_basemap_optimisation.md` for the reasoning behind each threshold).
+- `research/07_compass_tuning.md`: declared Gamma priors per category class, horizons under p* = 0.75, exact-POMDP agreement with the myopic show rule, steward workload and a one-year homeostasis simulation, and the intent-coverage sweep. Priors are labelled `generated` until superseded claims update them by conjugacy.
+- `research/08_trust_check.md`: nine checks over the live database (audit chain, operational closure, no unverified listing live, no leakage, decision-record completeness, publish permissions, no child data fields, no off-origin loads, honest acceptance count). The pass found and removed publish rights from the Editors group.
+
+Commands: `python backend/examples/math_checks.py` (36), `python web/manage.py shell -c "import runpy; runpy.run_path('backend/examples/landmapping_checks.py', run_name='__main__')"`, `python web/manage.py tune_compass [--apply]`, `python web/manage.py check_trust`, `python web/manage.py test atlas accounts compass` (31).

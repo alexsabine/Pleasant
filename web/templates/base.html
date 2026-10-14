@@ -30,7 +30,7 @@ body{background:var(--pc-bg)}
 </head>
 <body class="{% block bodyclass %}{% endblock %}">
 <a class="skip" href="#main">Skip to content</a>
-{% if private_mode %}<div class="private-banner" role="status">Private preview. Listings are summarised from official websites and checked online, not yet visited in person.</div>{% endif %}
+{% if private_mode %}<div class="private-banner" role="status">Draft for review. Listings are summarised from official websites and checked online, not yet visited in person. <a href="{% url 'review' %}">Review guide and questions</a></div>{% endif %}
 <header class="site-head">
   <a class="brand" href="/" aria-label="Pleasant Crescent home">{{ logo_svg|safe }}<span class="wordmark">Pleasant Crescent</span></a>
   <nav class="site-nav" aria-label="Main">
@@ -38,6 +38,7 @@ body{background:var(--pc-bg)}
     <a href="{% url 'this_week' %}" {% if request.resolver_match.url_name == 'this_week' %}aria-current="page"{% endif %}>This week</a>
     <a href="{% url 'local_help' %}" {% if request.resolver_match.url_name == 'local_help' %}aria-current="page"{% endif %}>Local help</a>
     <a href="{% url 'about' %}" {% if request.resolver_match.url_name == 'about' %}aria-current="page"{% endif %}>About</a>
+    {% if private_mode %}<a href="{% url 'review' %}" class="review-link" {% if request.resolver_match.url_name == 'review' %}aria-current="page"{% endif %}>For Kim</a>{% endif %}
     {% if user.is_authenticated %}<a href="{% url 'accounts:my_atlas' %}" {% if request.resolver_match.namespace == 'accounts' %}aria-current="page"{% endif %}>My atlas</a>{% else %}<a href="{% url 'accounts:signup' %}" class="join">Join</a>{% endif %}
   </nav>
   <button class="compass-toggle" type="button" aria-expanded="false" aria-controls="compass-drawer" id="compass-toggle">

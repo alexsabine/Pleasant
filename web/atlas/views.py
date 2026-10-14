@@ -13,7 +13,8 @@ from django.shortcuts import get_object_or_404, render
 from django.utils import timezone
 from django.views.decorators.http import require_GET
 
-from .models import CATEGORIES, CATEGORY_GROUP, COMMUNITIES, GROUPS, Event, ProjectionVersion, Resource, Submission
+from .models import CATEGORIES, CATEGORY_GROUP, COMMUNITIES, GROUPS, Event, ProjectionVersion, Resource, ReviewNote, Submission
+from .review_questions import QUESTIONS
 
 
 def _public_resources():
@@ -270,3 +271,26 @@ def contribute(request):
     ctx = _common_ctx(request)
     ctx.update({"form": form, "sent": sent})
     return render(request, "atlas/contribute.html", ctx)
+
+
+def review(request):
+    """The draft-review page: a guide to what to look at, the questions only the organisation can
+    answer, and a reply form. Replies are stored as ReviewNote for stewards; nothing is published."""
+    saved = False
+    if request.method == "POST" and not request.POST.get("honey"):
+        reviewer = request.POST.get("reviewer", "").strip()[:80]
+        n = 0
+        for q in QUESTIONS:
+            text = request.POST.get(f"q_{q['key']}", "").strip()
+            if text:
+                ReviewNote.objects.create(question_key=q["key"], reviewer=reviewer, response=text[:4000])
+                n += 1
+        saved = n > 0
+    live = _public_resources()
+    counts = {}
+    for r in live:
+        counts[r.group] = counts.get(r.group, 0) + 1
+    ctx = _common_ctx(request)
+    ctx.update({"questions": QUESTIONS, "saved": saved, "n_live": live.count(), "group_counts": [(k, v, counts.get(k, 0)) for k, v in GROUPS],
+                "n_human": live.exclude(verification_method__in=("official_online", "none")).count()})
+    return render(request, "atlas/review.html", ctx)

@@ -6,7 +6,7 @@ from wagtail.admin.panels import FieldPanel, MultiFieldPanel
 from wagtail.snippets.models import register_snippet
 from wagtail.snippets.views.snippets import SnippetViewSet, SnippetViewSetGroup
 
-from .models import AuditEntry, CategoryHazard, Claim, Event, Resource, Submission
+from .models import AuditEntry, CategoryHazard, Claim, Event, Resource, ReviewNote, Submission
 
 
 class ResourceViewSet(SnippetViewSet):
@@ -70,10 +70,17 @@ class AuditViewSet(SnippetViewSet):
     inspect_view_enabled = True
 
 
+class ReviewNoteViewSet(SnippetViewSet):
+    model = ReviewNote
+    icon = "comment"
+    list_display = ["question_key", "reviewer", "created_at"]
+    panels = [FieldPanel("question_key"), FieldPanel("reviewer"), FieldPanel("response")]
+
+
 class AtlasGroup(SnippetViewSetGroup):
     menu_label = "Atlas"
     menu_icon = "globe"
-    items = (ResourceViewSet, EventViewSet, ClaimViewSet, SubmissionViewSet, HazardViewSet, AuditViewSet)
+    items = (ResourceViewSet, EventViewSet, ClaimViewSet, SubmissionViewSet, HazardViewSet, AuditViewSet, ReviewNoteViewSet)
 
 
 register_snippet(AtlasGroup)
