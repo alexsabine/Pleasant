@@ -34,9 +34,12 @@ node web/tools/build_style.js                                              # reg
 ## Tests and checks
 
 ```bash
-cd web && python manage.py test accounts compass atlas  # 19 end-to-end tests: onboarding, honesty, closure
+cd web && python manage.py test accounts compass atlas  # 31 end-to-end tests: onboarding, honesty, closure, API contract
 PYTHONPATH=backend python -m unittest discover -s backend/tests
-PYTHONPATH=backend python backend/examples/math_checks.py --report research/05_math_check_report.md   # 30 checks
+PYTHONPATH=backend python backend/examples/math_checks.py --report research/05_math_check_report.md   # 36 checks
+python manage.py tune_compass        # Compass priors, horizons, POMDP cross-check, workload (research/07)
+python manage.py check_trust         # nine trust checks over the live DB (research/08)
+python manage.py export_static --out ../site --base /Pleasant/   # static preview for GitHub Pages (docs/07)
 ```
 
 ## Settings that matter

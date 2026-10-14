@@ -1,0 +1,247 @@
+{
+ "keywords": {
+  "indoor_play": [
+   "indoor",
+   "rainy",
+   "rain",
+   "soft play",
+   "inside"
+  ],
+  "library": [
+   "library",
+   "story",
+   "books",
+   "storytime",
+   "rainy",
+   "rain",
+   "indoor"
+  ],
+  "arts": [
+   "art",
+   "museum",
+   "craft",
+   "music",
+   "paint",
+   "rainy",
+   "rain"
+  ],
+  "playground": [
+   "playground",
+   "swings",
+   "slide",
+   "kidtown",
+   "kid's town"
+  ],
+  "trail": [
+   "trail",
+   "walk",
+   "hike",
+   "dunes",
+   "redwood",
+   "grove"
+  ],
+  "sport": [
+   "swim",
+   "swimming pool",
+   "public pool",
+   "lap pool",
+   "sport",
+   "soccer",
+   "football",
+   "basketball",
+   "skate",
+   "bowling",
+   "bowl"
+  ],
+  "class": [
+   "class",
+   "club",
+   "lesson"
+  ],
+  "family_service": [
+   "help",
+   "support",
+   "service",
+   "advice",
+   "parenting"
+  ],
+  "health": [
+   "health",
+   "clinic",
+   "doctor",
+   "wellbeing",
+   "dentist"
+  ],
+  "food": [
+   "food",
+   "meal",
+   "pantry",
+   "hungry"
+  ],
+  "childcare": [
+   "childcare",
+   "daycare",
+   "nursery",
+   "infant",
+   "toddler care"
+  ],
+  "preschool": [
+   "preschool",
+   "head start",
+   "pre-k",
+   "early learning"
+  ],
+  "school": [
+   "school",
+   "elementary",
+   "middle school",
+   "high school",
+   "charter",
+   "academy"
+  ],
+  "college": [
+   "college",
+   "community college"
+  ],
+  "after_school": [
+   "after school",
+   "after-school",
+   "youth program",
+   "4-h",
+   "summer program"
+  ],
+  "museum": [
+   "museum",
+   "history",
+   "historical"
+  ],
+  "beach": [
+   "beach",
+   "tidepool",
+   "tide pool",
+   "tide pools",
+   "sand",
+   "shore"
+  ],
+  "park": [
+   "park",
+   "picnic",
+   "campground",
+   "camping",
+   "day use",
+   "lake"
+  ],
+  "visitor_center": [
+   "visitor center",
+   "visitor centre",
+   "information center",
+   "ranger"
+  ],
+  "attraction": [
+   "aquarium",
+   "sea lion",
+   "seal",
+   "pier",
+   "attraction",
+   "trees of mystery",
+   "overlook",
+   "lighthouse",
+   "farm",
+   "harbor",
+   "harbour",
+   "zoo",
+   "animals"
+  ]
+ },
+ "stopwords": [
+  "anything",
+  "around",
+  "best",
+  "can",
+  "cheap",
+  "child",
+  "children",
+  "could",
+  "family",
+  "free",
+  "good",
+  "have",
+  "ideas",
+  "kids",
+  "like",
+  "near",
+  "need",
+  "old",
+  "place",
+  "places",
+  "should",
+  "some",
+  "something",
+  "take",
+  "that",
+  "there",
+  "things",
+  "this",
+  "today",
+  "want",
+  "week",
+  "weekend",
+  "what",
+  "where",
+  "with",
+  "would",
+  "year",
+  "years"
+ ],
+ "event_words": [
+  "coming",
+  "event",
+  "events",
+  "happening",
+  "this",
+  "today",
+  "tomorrow",
+  "week",
+  "weekend",
+  "what",
+  "whats"
+ ],
+ "word_ages": {
+  "toddler": 2,
+  "baby": 0,
+  "teen": 14,
+  "teenager": 14,
+  "preschooler": 4
+ },
+ "utilities": {
+  "show_true": 1.0,
+  "show_false": -3.0,
+  "abstain": 0.0
+ },
+ "communities": [
+  [
+   "smith_river",
+   "smith river"
+  ],
+  [
+   "gasquet",
+   "gasquet"
+  ],
+  [
+   "klamath",
+   "klamath"
+  ],
+  [
+   "fort_dick",
+   "fort dick"
+  ],
+  [
+   "hiouchi",
+   "hiouchi"
+  ],
+  [
+   "crescent_city",
+   "crescent city"
+  ]
+ ]
+}

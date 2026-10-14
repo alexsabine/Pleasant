@@ -22,3 +22,6 @@ gis_processed/
 *.zip
 web/staticfiles/
 web/db.sqlite3
+
+# static export for GitHub Pages: committed on purpose (own-origin tiles under ODbL/PD with attribution)
+!site/tiles/*.pmtiles

@@ -1,0 +1,1191 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Explore · Pleasant Crescent</title>
+<meta name="description" content="A friendly, verified atlas for families, neighbours and newcomers in Del Norte County.">
+<link rel="icon" href="/Pleasant/logo.svg" type="image/svg+xml">
+<meta name="robots" content="noindex, nofollow">
+<script>window.PC_STATIC={"base": "/Pleasant/", "reviewEmail": ""};</script>
+<link rel="stylesheet" href="/Pleasant/static/fonts/cormorant/cormorant.css">
+<link rel="stylesheet" href="/Pleasant/static/vendor/maplibre-gl.css">
+<link rel="stylesheet" href="/Pleasant/static/pc/app.css">
+<style>
+:root{
+  --pc-bg:#f7f2ea;--pc-surface:#ffffff;--pc-ink:#303848;--pc-ink-2:#586273;
+  --pc-accent:#00848b;--pc-accent-on:#ffffff;--pc-accent-2:#a3675b;--pc-free:#14875a;--pc-unknown:#6f787f;
+  --pc-verified:#14875a;--pc-stale:#a3675b;--pc-sensitive:#ae6161;
+  --pc-radius:14px;--pc-font-ui:system-ui, -apple-system, 'Segoe UI', Roboto, Inter, sans-serif;--pc-line:#d8d0c3;
+  --pc-font-display:'Cormorant Garamond', Georgia, 'Times New Roman', serif;--pc-font-mono:ui-monospace, 'JetBrains Mono', SFMono-Regular, Menlo, monospace;
+}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){
+  --pc-bg:#131822;--pc-surface:#1f242e;--pc-ink:#98a5ae;--pc-ink-2:#76828b;
+  --pc-accent:#1d999f;--pc-accent-on:#131822;--pc-accent-2:#bd786a;--pc-free:#3f9a6f;
+  --pc-unknown:#76828b;--pc-verified:#3f9a6f;--pc-stale:#bd786a;--pc-sensitive:#bd786a;
+  --pc-line:#2b3940;
+}}
+body{background:var(--pc-bg)}
+.tag.group-parks .sw,.ph.group-parks::after{background:#357a3a}
+.tag.group-pools .sw,.ph.group-pools::after{background:#00839a}
+.tag.group-attractions .sw,.ph.group-attractions::after{background:#bb6546}
+.tag.group-water .sw,.ph.group-water::after{background:#478ece}
+.tag.group-nature .sw,.ph.group-nature::after{background:#5d5900}
+.tag.group-learning .sw,.ph.group-learning::after{background:#6b66b4}
+.tag.group-arts .sw,.ph.group-arts::after{background:#a75c93}
+.tag.group-services .sw,.ph.group-services::after{background:#754a93}
+.tag.group-programs .sw,.ph.group-programs::after{background:#b27923}
+</style>
+
+</head>
+<body class="">
+<a class="skip" href="#main">Skip to content</a>
+<div class="private-banner" role="status">Static preview for review. Listings and map are a snapshot checked online, not yet visited in person. Accounts, suggestions and Compass audit records need the hosted site. <a href="/Pleasant/review/">Review guide and questions</a></div>
+<header class="site-head">
+  <a class="brand" href="/" aria-label="Pleasant Crescent home"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="36" height="36" role="img" aria-label="Pleasant Crescent. Freshness gauge: mean P(current) 1.00 over 58 listings; belief moved 0.39 rad this window; 3859 changes"><title>Pleasant Crescent. Freshness gauge: mean P(current) 1.00 over 58 listings; belief moved 0.39 rad this window; 3859 changes</title><circle cx="50" cy="50" r="46" fill="#cae9ff" opacity="0.35"/><circle cx="50" cy="50" r="44" fill="#364868"/><path d="M50.00,6.00 L52.88,6.09 L55.74,6.38 L58.58,6.85 L61.39,7.50 L64.14,8.34 L66.84,9.35 L69.46,10.54 L72.00,11.89 L74.45,13.42 L76.79,15.09 L79.01,16.92 L81.11,18.89 L83.08,20.99 L84.91,23.21 L86.58,25.55 L88.11,28.00 L89.46,30.54 L90.65,33.16 L91.66,35.86 L92.50,38.61 L93.15,41.42 L93.62,44.26 L93.91,47.12 L94.00,50.00 L93.91,52.88 L93.62,55.74 L93.15,58.58 L92.50,61.39 L91.66,64.14 L90.65,66.84 L89.46,69.46 L88.11,72.00 L86.58,74.45 L84.91,76.79 L83.08,79.01 L81.11,81.11 L79.01,83.08 L76.79,84.91 L74.45,86.58 L72.00,88.11 L69.46,89.46 L66.84,90.65 L64.14,91.66 L61.39,92.50 L58.58,93.15 L55.74,93.62 L52.88,93.91 L50.00,94.00 L50.00,94.00 L47.13,93.91 L44.28,93.62 L41.45,93.15 L38.66,92.50 L35.92,91.66 L33.23,90.65 L30.62,89.46 L28.09,88.11 L25.66,86.58 L23.33,84.91 L21.11,83.08 L19.02,81.11 L17.06,79.01 L15.24,76.79 L13.57,74.45 L12.06,72.00 L10.70,69.46 L9.52,66.84 L8.51,64.14 L7.68,61.39 L7.03,58.58 L6.56,55.74 L6.28,52.88 L6.19,50.00 L6.28,47.12 L6.56,44.26 L7.03,41.42 L7.68,38.61 L8.51,35.86 L9.52,33.16 L10.70,30.54 L12.06,28.00 L13.57,25.55 L15.24,23.21 L17.06,20.99 L19.02,18.89 L21.11,16.92 L23.33,15.09 L25.66,13.42 L28.09,11.89 L30.62,10.54 L33.23,9.35 L35.92,8.34 L38.66,7.50 L41.45,6.85 L44.28,6.38 L47.13,6.09 L50.00,6.00 Z" fill="#e4b572"><animate attributeName="d" dur="14s" repeatCount="indefinite" calcMode="spline" keyTimes="0;0.5;1" keySplines="0.45 0 0.55 1;0.45 0 0.55 1" values="M50.00,6.00 L52.88,6.09 L55.74,6.38 L58.58,6.85 L61.39,7.50 L64.14,8.34 L66.84,9.35 L69.46,10.54 L72.00,11.89 L74.45,13.42 L76.79,15.09 L79.01,16.92 L81.11,18.89 L83.08,20.99 L84.91,23.21 L86.58,25.55 L88.11,28.00 L89.46,30.54 L90.65,33.16 L91.66,35.86 L92.50,38.61 L93.15,41.42 L93.62,44.26 L93.91,47.12 L94.00,50.00 L93.91,52.88 L93.62,55.74 L93.15,58.58 L92.50,61.39 L91.66,64.14 L90.65,66.84 L89.46,69.46 L88.11,72.00 L86.58,74.45 L84.91,76.79 L83.08,79.01 L81.11,81.11 L79.01,83.08 L76.79,84.91 L74.45,86.58 L72.00,88.11 L69.46,89.46 L66.84,90.65 L64.14,91.66 L61.39,92.50 L58.58,93.15 L55.74,93.62 L52.88,93.91 L50.00,94.00 L50.00,94.00 L47.40,93.91 L44.81,93.62 L42.24,93.15 L39.71,92.50 L37.22,91.66 L34.78,90.65 L32.41,89.46 L30.11,88.11 L27.90,86.58 L25.79,84.91 L23.78,83.08 L21.88,81.11 L20.10,79.01 L18.45,76.79 L16.93,74.45 L15.56,72.00 L14.33,69.46 L13.26,66.84 L12.34,64.14 L11.58,61.39 L10.99,58.58 L10.57,55.74 L10.31,52.88 L10.23,50.00 L10.31,47.12 L10.57,44.26 L10.99,41.42 L11.58,38.61 L12.34,35.86 L13.26,33.16 L14.33,30.54 L15.56,28.00 L16.93,25.55 L18.45,23.21 L20.10,20.99 L21.88,18.89 L23.78,16.92 L25.79,15.09 L27.90,13.42 L30.11,11.89 L32.41,10.54 L34.78,9.35 L37.22,8.34 L39.71,7.50 L42.24,6.85 L44.81,6.38 L47.40,6.09 L50.00,6.00 Z;M50.00,6.00 L52.88,6.09 L55.74,6.38 L58.58,6.85 L61.39,7.50 L64.14,8.34 L66.84,9.35 L69.46,10.54 L72.00,11.89 L74.45,13.42 L76.79,15.09 L79.01,16.92 L81.11,18.89 L83.08,20.99 L84.91,23.21 L86.58,25.55 L88.11,28.00 L89.46,30.54 L90.65,33.16 L91.66,35.86 L92.50,38.61 L93.15,41.42 L93.62,44.26 L93.91,47.12 L94.00,50.00 L93.91,52.88 L93.62,55.74 L93.15,58.58 L92.50,61.39 L91.66,64.14 L90.65,66.84 L89.46,69.46 L88.11,72.00 L86.58,74.45 L84.91,76.79 L83.08,79.01 L81.11,81.11 L79.01,83.08 L76.79,84.91 L74.45,86.58 L72.00,88.11 L69.46,89.46 L66.84,90.65 L64.14,91.66 L61.39,92.50 L58.58,93.15 L55.74,93.62 L52.88,93.91 L50.00,94.00 L50.00,94.00 L47.12,93.91 L44.26,93.62 L41.42,93.15 L38.61,92.50 L35.86,91.66 L33.16,90.65 L30.54,89.46 L28.00,88.11 L25.55,86.58 L23.21,84.91 L20.99,83.08 L18.89,81.11 L16.92,79.01 L15.09,76.79 L13.42,74.45 L11.89,72.00 L10.54,69.46 L9.35,66.84 L8.34,64.14 L7.50,61.39 L6.85,58.58 L6.38,55.74 L6.09,52.88 L6.00,50.00 L6.09,47.12 L6.38,44.26 L6.85,41.42 L7.50,38.61 L8.34,35.86 L9.35,33.16 L10.54,30.54 L11.89,28.00 L13.42,25.55 L15.09,23.21 L16.92,20.99 L18.89,18.89 L20.99,16.92 L23.21,15.09 L25.55,13.42 L28.00,11.89 L30.54,10.54 L33.16,9.35 L35.86,8.34 L38.61,7.50 L41.42,6.85 L44.26,6.38 L47.12,6.09 L50.00,6.00 Z;M50.00,6.00 L52.88,6.09 L55.74,6.38 L58.58,6.85 L61.39,7.50 L64.14,8.34 L66.84,9.35 L69.46,10.54 L72.00,11.89 L74.45,13.42 L76.79,15.09 L79.01,16.92 L81.11,18.89 L83.08,20.99 L84.91,23.21 L86.58,25.55 L88.11,28.00 L89.46,30.54 L90.65,33.16 L91.66,35.86 L92.50,38.61 L93.15,41.42 L93.62,44.26 L93.91,47.12 L94.00,50.00 L93.91,52.88 L93.62,55.74 L93.15,58.58 L92.50,61.39 L91.66,64.14 L90.65,66.84 L89.46,69.46 L88.11,72.00 L86.58,74.45 L84.91,76.79 L83.08,79.01 L81.11,81.11 L79.01,83.08 L76.79,84.91 L74.45,86.58 L72.00,88.11 L69.46,89.46 L66.84,90.65 L64.14,91.66 L61.39,92.50 L58.58,93.15 L55.74,93.62 L52.88,93.91 L50.00,94.00 L50.00,94.00 L47.40,93.91 L44.81,93.62 L42.24,93.15 L39.71,92.50 L37.22,91.66 L34.78,90.65 L32.41,89.46 L30.11,88.11 L27.90,86.58 L25.79,84.91 L23.78,83.08 L21.88,81.11 L20.10,79.01 L18.45,76.79 L16.93,74.45 L15.56,72.00 L14.33,69.46 L13.26,66.84 L12.34,64.14 L11.58,61.39 L10.99,58.58 L10.57,55.74 L10.31,52.88 L10.23,50.00 L10.31,47.12 L10.57,44.26 L10.99,41.42 L11.58,38.61 L12.34,35.86 L13.26,33.16 L14.33,30.54 L15.56,28.00 L16.93,25.55 L18.45,23.21 L20.10,20.99 L21.88,18.89 L23.78,16.92 L25.79,15.09 L27.90,13.42 L30.11,11.89 L32.41,10.54 L34.78,9.35 L37.22,8.34 L39.71,7.50 L42.24,6.85 L44.81,6.38 L47.40,6.09 L50.00,6.00 Z"/></path><defs><radialGradient id="pc_limb" cx="0.42" cy="0.40" r="0.62"><stop offset="0.6" stop-color="#000" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity="0.22"/></radialGradient></defs><circle cx="50" cy="50" r="44" fill="url(#pc_limb)"/><circle cx="50" cy="50" r="46" fill="none" stroke="#00848b" stroke-width="1.5" opacity="0.8"/><circle cx="50.0" cy="1.8" r="0.9" fill="#00848b" opacity="0.8"/><circle cx="74.1" cy="8.3" r="0.9" fill="#00848b" opacity="0.8"/><circle cx="91.7" cy="25.9" r="0.9" fill="#00848b" opacity="0.8"/><circle cx="98.2" cy="50.0" r="0.9" fill="#00848b" opacity="0.8"/><circle cx="91.7" cy="74.1" r="0.9" fill="#00848b" opacity="0.8"/><circle cx="74.1" cy="91.7" r="0.9" fill="#00848b" opacity="0.8"/><circle cx="50.0" cy="98.2" r="0.9" fill="#00848b" opacity="0.8"/><circle cx="25.9" cy="91.7" r="0.9" fill="#00848b" opacity="0.8"/><circle cx="8.3" cy="74.1" r="0.9" fill="#00848b" opacity="0.8"/><circle cx="1.8" cy="50.0" r="0.9" fill="#00848b" opacity="0.8"/><circle cx="8.3" cy="25.9" r="0.9" fill="#00848b" opacity="0.8"/><circle cx="25.9" cy="8.3" r="0.9" fill="#00848b" opacity="0.8"/></svg><span class="wordmark">Pleasant Crescent</span></a>
+  <nav class="site-nav" aria-label="Main">
+    <a href="/Pleasant/explore/" aria-current="page">Explore</a>
+    <a href="/Pleasant/this-week/" >This week</a>
+    <a href="/Pleasant/local-help/" >Local help</a>
+    <a href="/Pleasant/about/" >About</a>
+    <a href="/Pleasant/review/" class="review-link" >For Kim</a>
+    <a href="/Pleasant/accounts/join/" class="join">Join</a>
+  </nav>
+  <button class="compass-toggle" type="button" aria-expanded="false" aria-controls="compass-drawer" id="compass-toggle">
+    <span class="compass-icon" aria-hidden="true"></span>Compass
+  </button>
+</header>
+<main id="main" class="site-main">
+<h1>Explore</h1>
+<p class="lede">Verified places and activities for families in Del Norte County. The list is the default; the map is a view of the same results.</p>
+<form method="get" action="/Pleasant/explore/" class="filters" role="search" aria-label="Filter listings" data-group="">
+  <input type="hidden" name="view" value="map">
+  <div class="question"><span>Just show free things?</span>
+    <button type="submit" name="free" value="1" class="chip" aria-pressed="false">Free only</button>
+  </div>
+  <label>Child's age <input type="number" name="age" min="0" max="18" value="" placeholder="any"></label>
+  <label>What kind <select name="group"><option value="">Anything</option><option value="parks" >Parks and playgrounds</option><option value="pools" >Pools and indoor recreation</option><option value="attractions" >Attractions</option><option value="water" >Rivers and beaches</option><option value="nature" >Hiking and nature</option><option value="learning" >Learning and STEM</option><option value="arts" >Arts</option><option value="services" >Libraries and family services</option><option value="programs" >Programs, events and people to call</option></select></label>
+  <label>Type <select name="category"><option value="">Any</option><option value="school" >School</option><option value="preschool" >Preschool and early learning</option><option value="childcare" >Childcare</option><option value="college" >College</option><option value="after_school" >After-school and youth</option><option value="library" >Library and story time</option><option value="class" >Class or club</option><option value="playground" >Playground</option><option value="park" >Park</option><option value="beach" >Beach</option><option value="river" >River access</option><option value="trail" >Trail</option><option value="sport" >Sport and swim</option><option value="attraction" >Attraction</option><option value="museum" >Museum</option><option value="visitor_center" >Visitor centre</option><option value="arts" >Arts</option><option value="indoor_play" >Indoor play</option><option value="family_service" >Family service</option><option value="health" >Health and wellbeing</option><option value="food" >Food help</option><option value="event_venue" >Event venue</option></select></label>
+  <label>Community <select name="community"><option value="">Any</option><option value="crescent_city" >Crescent City</option><option value="smith_river" >Smith River</option><option value="gasquet" >Gasquet</option><option value="klamath" >Klamath</option><option value="fort_dick" >Fort Dick</option><option value="hiouchi" >Hiouchi</option><option value="countywide" >Countywide</option></select></label>
+  <label class="check"><input type="checkbox" name="access" value="1" > Verified wheelchair access only</label>
+  <label>Search <input type="search" name="q" value="" placeholder="name or word"></label>
+  <button type="submit" class="chip">Apply</button>
+  <a class="chip" href="/Pleasant/explore/map/">Show all</a>
+</form>
+<div class="toggle" role="group" aria-label="View">
+  <a href="/Pleasant/explore/map/" aria-current="false">List</a>
+  <a href="/Pleasant/explore/map/" aria-current="true">Map</a>
+</div>
+<p class="lede" aria-live="polite">58 listings match. Unknown access is shown as unknown, never as accessible.</p>
+<div class="layout split">
+  <section aria-label="Results list">
+    
+    <div class="cards">
+      
+      <article class="card" data-f="4|14|free|unknown|klamath|school|learning|&#x27;o me-nok learning center (klamath) del norte county unified&#x27;s school in klamath, listed by cde as an active public elementary school; its calendar refers to k-8 minimum days and the site mentions preschool, tk and kindergarten enrolment. it operates a community school programme, a library and title i services.">
+        <h3><span class="pin">1</span><a href="/Pleasant/resource/o-me-nok-learning-center-klamath/">&#x27;O Me-nok Learning Center (Klamath)</a></h3>
+        <div class="meta">
+          <span class="tag group-learning"><i class="sw" aria-hidden="true"></i>School</span>
+          <span class="tag">Ages 4 to 14</span>
+          <span class="tag free">Free</span>
+          <span class="tag unknown">Access: unknown</span>
+          <span class="tag">Klamath</span>
+          <span class="tag verified">Checked online</span>
+        </div>
+        <div class="fresh"><span class="dot recently_verified"></span>
+          Checked 20 hours ago
+        </div>
+        <p class="src">Del Norte County Unified&#x27;s school in Klamath, listed by CDE as an active public elementary school; its calendar refers to K-8 minimum days and the site mention…</p>
+        
+        <div class="src">Source: <a href="https://www.omenok.org" rel="noopener">https://www.omenok.org</a> · <button type="button" class="chip" style="min-height:32px;padding:4px 10px" data-fly="-124.05263,41.55584">Show on map</button></div>
+      </article>
+      
+      <article class="card" data-f="4|11|free|unknown|crescent_city|school|learning|bess maxwell elementary school public elementary school in the del norte county unified school district, listed by the california department of education as an active public elementary school. the school site is also one of the district&#x27;s california state preschool program locations and takes part in the community schools partne…">
+        <h3><span class="pin">2</span><a href="/Pleasant/resource/bess-maxwell-elementary-school/">Bess Maxwell Elementary School</a></h3>
+        <div class="meta">
+          <span class="tag group-learning"><i class="sw" aria-hidden="true"></i>School</span>
+          <span class="tag">Ages 4 to 11</span>
+          <span class="tag free">Free</span>
+          <span class="tag unknown">Access: unknown</span>
+          <span class="tag">Crescent City</span>
+          <span class="tag verified">Checked online</span>
+        </div>
+        <div class="fresh"><span class="dot recently_verified"></span>
+          Checked 20 hours ago
+        </div>
+        <p class="src">Public elementary school in the Del Norte County Unified School District, listed by the California Department of Education as an active public elementary schoo…</p>
+        
+        <div class="src">Source: <a href="https://www.bmelementary.org" rel="noopener">https://www.bmelementary.org</a> · <button type="button" class="chip" style="min-height:32px;padding:4px 10px" data-fly="-124.20925,41.766385">Show on map</button></div>
+      </article>
+      
+      <article class="card" data-f="5|18|free|unknown|crescent_city|school|learning|castle rock charter school a k-12 public charter school authorised by the del norte county office of education (cde charter number 0358, locally funded). the cde record and the county office both list the glenn street address; the school site has enrollment links and an academic calendar.">
+        <h3><span class="pin">3</span><a href="/Pleasant/resource/castle-rock-charter-school/">Castle Rock Charter School</a></h3>
+        <div class="meta">
+          <span class="tag group-learning"><i class="sw" aria-hidden="true"></i>School</span>
+          <span class="tag">Ages 5 to 18</span>
+          <span class="tag free">Free</span>
+          <span class="tag unknown">Access: unknown</span>
+          <span class="tag">Crescent City</span>
+          <span class="tag verified">Checked online</span>
+        </div>
+        <div class="fresh"><span class="dot recently_verified"></span>
+          Checked 20 hours ago
+        </div>
+        <p class="src">A K-12 public charter school authorised by the Del Norte County Office of Education (CDE charter number 0358, locally funded). The CDE record and the county of…</p>
+        
+        <div class="src">Source: <a href="https://castlerockschool.org/" rel="noopener">https://castlerockschool.org/</a> · <button type="button" class="chip" style="min-height:32px;padding:4px 10px" data-fly="-124.21144,41.767856">Show on map</button></div>
+      </article>
+      
+      <article class="card" data-f="11|14|free|unknown|crescent_city|school|learning|crescent elk middle school the district&#x27;s public middle school, listed by cde as an active intermediate/middle school. its site refers to 6th grade and 7/8 events and it takes part in the community schools partnership program.">
+        <h3><span class="pin">4</span><a href="/Pleasant/resource/crescent-elk-middle-school/">Crescent Elk Middle School</a></h3>
+        <div class="meta">
+          <span class="tag group-learning"><i class="sw" aria-hidden="true"></i>School</span>
+          <span class="tag">Ages 11 to 14</span>
+          <span class="tag free">Free</span>
+          <span class="tag unknown">Access: unknown</span>
+          <span class="tag">Crescent City</span>
+          <span class="tag verified">Checked online</span>
+        </div>
+        <div class="fresh"><span class="dot recently_verified"></span>
+          Checked 20 hours ago
+        </div>
+        <p class="src">The district&#x27;s public middle school, listed by CDE as an active intermediate/middle school. Its site refers to 6th grade and 7/8 events and it takes part in th…</p>
+        
+        <div class="src">Source: <a href="https://www.cemiddle.org" rel="noopener">https://www.cemiddle.org</a> · <button type="button" class="chip" style="min-height:32px;padding:4px 10px" data-fly="-124.20323,41.756316">Show on map</button></div>
+      </article>
+      
+      <article class="card" data-f="12|18|free|unknown|crescent_city|school|learning|del norte community school a county community school operated by the del norte county office of education, listed by cde as an active county community school. its site describes title i services, counsellors, and life-skills, college and career programmes.">
+        <h3><span class="pin">5</span><a href="/Pleasant/resource/del-norte-community-school/">Del Norte Community School</a></h3>
+        <div class="meta">
+          <span class="tag group-learning"><i class="sw" aria-hidden="true"></i>School</span>
+          <span class="tag">Ages 12 to 18</span>
+          <span class="tag free">Free</span>
+          <span class="tag unknown">Access: unknown</span>
+          <span class="tag">Crescent City</span>
+          <span class="tag verified">Checked online</span>
+        </div>
+        <div class="fresh"><span class="dot recently_verified"></span>
+          Checked 20 hours ago
+        </div>
+        <p class="src">A county community school operated by the Del Norte County Office of Education, listed by CDE as an active County Community school. Its site describes Title I …</p>
+        
+        <div class="src">Source: <a href="https://www.dncommunityschool.org/" rel="noopener">https://www.dncommunityschool.org/</a> · <button type="button" class="chip" style="min-height:32px;padding:4px 10px" data-fly="-124.20745,41.767783">Show on map</button></div>
+      </article>
+      
+      <article class="card" data-f="14|18|free|unknown|crescent_city|school|learning|del norte high school the county&#x27;s comprehensive public high school, listed by cde as an active public high school, adjacent to the college of the redwoods del norte campus. it participates in the community schools partnership program and publishes a bell schedule on its site.">
+        <h3><span class="pin">6</span><a href="/Pleasant/resource/del-norte-high-school/">Del Norte High School</a></h3>
+        <div class="meta">
+          <span class="tag group-learning"><i class="sw" aria-hidden="true"></i>School</span>
+          <span class="tag">Ages 14 to 18</span>
+          <span class="tag free">Free</span>
+          <span class="tag unknown">Access: unknown</span>
+          <span class="tag">Crescent City</span>
+          <span class="tag verified">Checked online</span>
+        </div>
+        <div class="fresh"><span class="dot recently_verified"></span>
+          Checked 20 hours ago
+        </div>
+        <p class="src">The county&#x27;s comprehensive public high school, listed by CDE as an active public high school, adjacent to the College of the Redwoods Del Norte campus. It part…</p>
+        
+        <div class="src">Source: <a href="https://www.dnhigh.org" rel="noopener">https://www.dnhigh.org</a> · <button type="button" class="chip" style="min-height:32px;padding:4px 10px" data-fly="-124.20913,41.767313">Show on map</button></div>
+      </article>
+      
+      <article class="card" data-f="4|11|free|unknown|crescent_city|school|learning|joe hamilton elementary school public elementary school in del norte county unified, listed by cde as an active public elementary school. the campus also hosts a california state preschool program classroom run by the district&#x27;s early childhood education department.">
+        <h3><span class="pin">7</span><a href="/Pleasant/resource/joe-hamilton-elementary-school/">Joe Hamilton Elementary School</a></h3>
+        <div class="meta">
+          <span class="tag group-learning"><i class="sw" aria-hidden="true"></i>School</span>
+          <span class="tag">Ages 4 to 11</span>
+          <span class="tag free">Free</span>
+          <span class="tag unknown">Access: unknown</span>
+          <span class="tag">Crescent City</span>
+          <span class="tag verified">Checked online</span>
+        </div>
+        <div class="fresh"><span class="dot recently_verified"></span>
+          Checked 20 hours ago
+        </div>
+        <p class="src">Public elementary school in Del Norte County Unified, listed by CDE as an active public elementary school. The campus also hosts a California State Preschool P…</p>
+        
+        <div class="src">Source: <a href="https://www.jhelementary.org" rel="noopener">https://www.jhelementary.org</a> · <button type="button" class="chip" style="min-height:32px;padding:4px 10px" data-fly="-124.20526,41.755632">Show on map</button></div>
+      </article>
+      
+      <article class="card" data-f="4|11|free|unknown|crescent_city|school|learning|mary peacock elementary school public elementary school in del norte county unified, listed by cde as an active public elementary school. its site mentions preschool, tk and kindergarten enrollment, and the campus hosts a state preschool classroom and the child care council&#x27;s after-school center.">
+        <h3><span class="pin">8</span><a href="/Pleasant/resource/mary-peacock-elementary-school/">Mary Peacock Elementary School</a></h3>
+        <div class="meta">
+          <span class="tag group-learning"><i class="sw" aria-hidden="true"></i>School</span>
+          <span class="tag">Ages 4 to 11</span>
+          <span class="tag free">Free</span>
+          <span class="tag unknown">Access: unknown</span>
+          <span class="tag">Crescent City</span>
+          <span class="tag verified">Checked online</span>
+        </div>
+        <div class="fresh"><span class="dot recently_verified"></span>
+          Checked 20 hours ago
+        </div>
+        <p class="src">Public elementary school in Del Norte County Unified, listed by CDE as an active public elementary school. Its site mentions preschool, TK and kindergarten enr…</p>
+        
+        <div class="src">Source: <a href="https://www.mpelementary.org" rel="noopener">https://www.mpelementary.org</a> · <button type="button" class="chip" style="min-height:32px;padding:4px 10px" data-fly="-124.21124,41.77713">Show on map</button></div>
+      </article>
+      
+      <article class="card" data-f="4|14|free|unknown|gasquet|school|learning|mountain elementary school (gasquet) a small tk-8 open-enrolment magnet school in the redwoods of gasquet, part of del norte county unified and listed by cde as an active public elementary school. the site states the tk-8 span and that it is a magnet school.">
+        <h3><span class="pin">9</span><a href="/Pleasant/resource/mountain-elementary-school-gasquet/">Mountain Elementary School (Gasquet)</a></h3>
+        <div class="meta">
+          <span class="tag group-learning"><i class="sw" aria-hidden="true"></i>School</span>
+          <span class="tag">Ages 4 to 14</span>
+          <span class="tag free">Free</span>
+          <span class="tag unknown">Access: unknown</span>
+          <span class="tag">Gasquet</span>
+          <span class="tag verified">Checked online</span>
+        </div>
+        <div class="fresh"><span class="dot recently_verified"></span>
+          Checked 20 hours ago
+        </div>
+        <p class="src">A small TK-8 open-enrolment magnet school in the redwoods of Gasquet, part of Del Norte County Unified and listed by CDE as an active public elementary school.…</p>
+        
+        <div class="src">Source: <a href="https://www.mtelementary.org" rel="noopener">https://www.mtelementary.org</a> · <button type="button" class="chip" style="min-height:32px;padding:4px 10px" data-fly="-123.96239,41.84656">Show on map</button></div>
+      </article>
+      
+      <article class="card" data-f="4|14|free|unknown|crescent_city|school|learning|pine grove elementary school public school in del norte county unified whose calendar refers to k-8 events as well as preschool, tk and kindergarten enrollment. the campus also hosts a california state preschool program classroom and takes part in the community schools partnership program.">
+        <h3><span class="pin">10</span><a href="/Pleasant/resource/pine-grove-elementary-school/">Pine Grove Elementary School</a></h3>
+        <div class="meta">
+          <span class="tag group-learning"><i class="sw" aria-hidden="true"></i>School</span>
+          <span class="tag">Ages 4 to 14</span>
+          <span class="tag free">Free</span>
+          <span class="tag unknown">Access: unknown</span>
+          <span class="tag">Crescent City</span>
+          <span class="tag verified">Checked online</span>
+        </div>
+        <div class="fresh"><span class="dot recently_verified"></span>
+          Checked 20 hours ago
+        </div>
+        <p class="src">Public school in Del Norte County Unified whose calendar refers to K-8 events as well as preschool, TK and kindergarten enrollment. The campus also hosts a Cal…</p>
+        
+        <div class="src">Source: <a href="https://www.pgelementary.org" rel="noopener">https://www.pgelementary.org</a> · <button type="button" class="chip" style="min-height:32px;padding:4px 10px" data-fly="-124.19502,41.784926">Show on map</button></div>
+      </article>
+      
+      <article class="card" data-f="4|11|free|unknown|crescent_city|school|learning|redwood elementary school public elementary school in del norte county unified on lake earl drive north of town, listed by cde as an active public elementary school. the official site gives the address and phone but does not state the grade span.">
+        <h3><span class="pin">11</span><a href="/Pleasant/resource/redwood-elementary-school/">Redwood Elementary School</a></h3>
+        <div class="meta">
+          <span class="tag group-learning"><i class="sw" aria-hidden="true"></i>School</span>
+          <span class="tag">Ages 4 to 11</span>
+          <span class="tag free">Free</span>
+          <span class="tag unknown">Access: unknown</span>
+          <span class="tag">Crescent City</span>
+          <span class="tag verified">Checked online</span>
+        </div>
+        <div class="fresh"><span class="dot recently_verified"></span>
+          Checked 20 hours ago
+        </div>
+        <p class="src">Public elementary school in Del Norte County Unified on Lake Earl Drive north of town, listed by CDE as an active public elementary school. The official site g…</p>
+        
+        <div class="src">Source: <a href="https://www.rwelementary.org" rel="noopener">https://www.rwelementary.org</a> · <button type="button" class="chip" style="min-height:32px;padding:4px 10px" data-fly="-124.14932,41.868014">Show on map</button></div>
+      </article>
+      
+      <article class="card" data-f="3|14|free|unknown|smith_river|school|learning|smith river elementary school public k-8 school in del norte county unified serving the smith river community, listed by cde as an active public elementary school. the campus also hosts the district-run preschool for smith river and participates in the community schools partnership program.">
+        <h3><span class="pin">12</span><a href="/Pleasant/resource/smith-river-elementary-school/">Smith River Elementary School</a></h3>
+        <div class="meta">
+          <span class="tag group-learning"><i class="sw" aria-hidden="true"></i>School</span>
+          <span class="tag">Ages 3 to 14</span>
+          <span class="tag free">Free</span>
+          <span class="tag unknown">Access: unknown</span>
+          <span class="tag">Smith River</span>
+          <span class="tag verified">Checked online</span>
+        </div>
+        <div class="fresh"><span class="dot recently_verified"></span>
+          Checked 20 hours ago
+        </div>
+        <p class="src">Public K-8 school in Del Norte County Unified serving the Smith River community, listed by CDE as an active public elementary school. The campus also hosts the…</p>
+        
+        <div class="src">Source: <a href="https://www.srelementary.org" rel="noopener">https://www.srelementary.org</a> · <button type="button" class="chip" style="min-height:32px;padding:4px 10px" data-fly="-124.1524,41.926832">Show on map</button></div>
+      </article>
+      
+      <article class="card" data-f="14|18|free|unknown|crescent_city|school|learning|sunset high school listed by cde as a continuation high school in del norte county unified. the campus offers a career and technical education program and a community school program, and it also houses the district&#x27;s early head start infant/toddler center.">
+        <h3><span class="pin">13</span><a href="/Pleasant/resource/sunset-high-school/">Sunset High School</a></h3>
+        <div class="meta">
+          <span class="tag group-learning"><i class="sw" aria-hidden="true"></i>School</span>
+          <span class="tag">Ages 14 to 18</span>
+          <span class="tag free">Free</span>
+          <span class="tag unknown">Access: unknown</span>
+          <span class="tag">Crescent City</span>
+          <span class="tag verified">Checked online</span>
+        </div>
+        <div class="fresh"><span class="dot recently_verified"></span>
+          Checked 20 hours ago
+        </div>
+        <p class="src">Listed by CDE as a continuation high school in Del Norte County Unified. The campus offers a Career and Technical Education program and a community school prog…</p>
+        
+        <div class="src">Source: <a href="https://www.sshigh.org" rel="noopener">https://www.sshigh.org</a> · <button type="button" class="chip" style="min-height:32px;padding:4px 10px" data-fly="-124.15409,41.809252">Show on map</button></div>
+      </article>
+      
+      <article class="card" data-f="4|15|free|unknown|crescent_city|school|learning|uncharted shores academy a tuition-free public charter school serving tk-9, listed by cde as an active charter in del norte county unified. it offers an in-class &#x27;onshore&#x27; option with credentialed teachers and a homeschool-based &#x27;offshore&#x27; option.">
+        <h3><span class="pin">14</span><a href="/Pleasant/resource/uncharted-shores-academy/">Uncharted Shores Academy</a></h3>
+        <div class="meta">
+          <span class="tag group-learning"><i class="sw" aria-hidden="true"></i>School</span>
+          <span class="tag">Ages 4 to 15</span>
+          <span class="tag free">Free</span>
+          <span class="tag unknown">Access: unknown</span>
+          <span class="tag">Crescent City</span>
+          <span class="tag verified">Checked online</span>
+        </div>
+        <div class="fresh"><span class="dot recently_verified"></span>
+          Checked 20 hours ago
+        </div>
+        <p class="src">A tuition-free public charter school serving TK-9, listed by CDE as an active charter in Del Norte County Unified. It offers an in-class &#x27;Onshore&#x27; option with …</p>
+        
+        <div class="src">Source: <a href="https://shoresacademy.com/" rel="noopener">https://shoresacademy.com/</a> · <button type="button" class="chip" style="min-height:32px;padding:4px 10px" data-fly="-124.20101,41.75082">Show on map</button></div>
+      </article>
+      
+      <article class="card" data-f="0|18|free|unknown|crescent_city|attraction|attractions|b street pier a large wooden public viewing pier reaching out over crescent city bay from the west end of the waterfront, with panoramic views of the harbor and lighthouse. the city lists crabbing and sea-lion watching as the main draws, and the pier can be rented for special events.">
+        <h3><span class="pin">15</span><a href="/Pleasant/resource/b-street-pier/">B Street Pier</a></h3>
+        <div class="meta">
+          <span class="tag group-attractions"><i class="sw" aria-hidden="true"></i>Attraction</span>
+          <span class="tag">Ages 0 to 18</span>
+          <span class="tag free">Free</span>
+          <span class="tag unknown">Access: unknown</span>
+          <span class="tag">Crescent City</span>
+          <span class="tag verified">Checked online</span>
+        </div>
+        <div class="fresh"><span class="dot recently_verified"></span>
+          Checked 20 hours ago
+        </div>
+        <p class="src">A large wooden public viewing pier reaching out over Crescent City bay from the west end of the waterfront, with panoramic views of the harbor and lighthouse. …</p>
+        
+        <div class="src">Source: <a href="https://www.crescentcity.org/Parks" rel="noopener">https://www.crescentcity.org/Parks</a> · <button type="button" class="chip" style="min-height:32px;padding:4px 10px" data-fly="-124.196459,41.743512">Show on map</button></div>
+      </article>
+      
+      <article class="card" data-f="0|18|unknown|unknown|crescent_city|attraction|attractions|battery point lighthouse an 1856 lighthouse on a small tidal island at the end of lighthouse way, run by the del norte county historical society and still used as a private aid to navigation. tours take visitors through the keepers&#x27; quarters and up into the light tower, but the island can only be reached on foot at low tid…">
+        <h3><span class="pin">16</span><a href="/Pleasant/resource/battery-point-lighthouse/">Battery Point Lighthouse</a></h3>
+        <div class="meta">
+          <span class="tag group-attractions"><i class="sw" aria-hidden="true"></i>Attraction</span>
+          <span class="tag">Ages 0 to 18</span>
+          <span class="tag unknown">Cost unknown</span>
+          <span class="tag unknown">Access: unknown</span>
+          <span class="tag">Crescent City</span>
+          <span class="tag verified">Checked online</span>
+        </div>
+        <div class="fresh"><span class="dot recently_verified"></span>
+          Checked 20 hours ago
+        </div>
+        <p class="src">An 1856 lighthouse on a small tidal island at the end of Lighthouse Way, run by the Del Norte County Historical Society and still used as a private aid to navi…</p>
+        
+        <div class="src">Source: <a href="https://delnortehistory.org/battery-point-lighthouse/" rel="noopener">https://delnortehistory.org/battery-point-lightho…</a> · <button type="button" class="chip" style="min-height:32px;padding:4px 10px" data-fly="-124.203079,41.74423">Show on map</button></div>
+      </article>
+      
+      <article class="card" data-f="0|18|free|verified_no|crescent_city|trail|nature|boy scout tree trail a moderate 2.8-mile one-way (5.5 miles round trip) walk through old-growth redwoods to fern falls, with an unmarked spur at about 2.5 miles to the double-trunked boy scout tree. nps suggests a half day and about 900 feet of elevation change, so it suits older children used to hiking rather than tod…">
+        <h3><span class="pin">17</span><a href="/Pleasant/resource/boy-scout-tree-trail/">Boy Scout Tree Trail</a></h3>
+        <div class="meta">
+          <span class="tag group-nature"><i class="sw" aria-hidden="true"></i>Trail</span>
+          <span class="tag">Ages 0 to 18</span>
+          <span class="tag free">Free</span>
+          <span class="tag">Access: verified no</span>
+          <span class="tag">Crescent City</span>
+          <span class="tag verified">Checked online</span>
+        </div>
+        <div class="fresh"><span class="dot recently_verified"></span>
+          Checked 20 hours ago
+        </div>
+        <p class="src">A moderate 2.8-mile one-way (5.5 miles round trip) walk through old-growth redwoods to Fern Falls, with an unmarked spur at about 2.5 miles to the double-trunk…</p>
+        
+        <div class="src">Source: <a href="https://www.nps.gov/places/boyscouttreetrailhead.htm" rel="noopener">https://www.nps.gov/places/boyscouttreetrailhead.…</a> · <button type="button" class="chip" style="min-height:32px;padding:4px 10px" data-fly="-124.119882,41.774472">Show on map</button></div>
+      </article>
+      
+      <article class="card" data-f="0|18|free|unknown|crescent_city|attraction|attractions|crescent beach overlook a bluff-top viewpoint at the top of enderts beach road looking back over crescent beach and the city, with interpretive signs, three picnic tables and a scenic viewpoint used for whale watching. parking at the overlook itself holds only two vehicles; more parking and an accessible vault toilet are …">
+        <h3><span class="pin">18</span><a href="/Pleasant/resource/crescent-beach-overlook/">Crescent Beach Overlook</a></h3>
+        <div class="meta">
+          <span class="tag group-attractions"><i class="sw" aria-hidden="true"></i>Attraction</span>
+          <span class="tag">Ages 0 to 18</span>
+          <span class="tag free">Free</span>
+          <span class="tag unknown">Access: unknown</span>
+          <span class="tag">Crescent City</span>
+          <span class="tag verified">Checked online</span>
+        </div>
+        <div class="fresh"><span class="dot recently_verified"></span>
+          Checked 20 hours ago
+        </div>
+        <p class="src">A bluff-top viewpoint at the top of Enderts Beach Road looking back over Crescent Beach and the city, with interpretive signs, three picnic tables and a scenic…</p>
+        
+        <div class="src">Source: <a href="https://www.nps.gov/places/cresbeachoverlook.htm" rel="noopener">https://www.nps.gov/places/cresbeachoverlook.htm</a> · <button type="button" class="chip" style="min-height:32px;padding:4px 10px" data-fly="-124.143743,41.70715">Show on map</button></div>
+      </article>
+      
+      <article class="card" data-f="0|18|unknown|verified_yes|gasquet|trail|nature|darlingtonia trail (smith river nra) a very short graveled loop to a bog full of carnivorous california pitcher plants, with two wooden viewing platforms, designed for wheelchair access. it is a quick, unusual nature stop for children on the way up us 199.">
+        <h3><span class="pin">19</span><a href="/Pleasant/resource/darlingtonia-trail-smith-river-nra/">Darlingtonia Trail (Smith River NRA)</a></h3>
+        <div class="meta">
+          <span class="tag group-nature"><i class="sw" aria-hidden="true"></i>Trail</span>
+          <span class="tag">Ages 0 to 18</span>
+          <span class="tag unknown">Cost unknown</span>
+          <span class="tag">Access: verified yes</span>
+          <span class="tag">Gasquet</span>
+          <span class="tag verified">Checked online</span>
+        </div>
+        <div class="fresh"><span class="dot recently_verified"></span>
+          Checked 20 hours ago
+        </div>
+        <p class="src">A very short graveled loop to a bog full of carnivorous California pitcher plants, with two wooden viewing platforms, designed for wheelchair access. It is a q…</p>
+        
+        <div class="src">Source: <a href="https://www.fs.usda.gov/r05/sixrivers/recreation/trails/darlingtonia-trail" rel="noopener">https://www.fs.usda.gov/r05/sixrivers/recreation/…</a> · <button type="button" class="chip" style="min-height:32px;padding:4px 10px" data-fly="-123.908057,41.850491">Show on map</button></div>
+      </article>
+      
+      <article class="card" data-f="0|18|free|verified_no|hiouchi|trail|nature|grove of titans trail a 1.5-mile loop (the 2026 guide lists 1.7 miles out and back) to a cluster of the largest known coast redwoods, where about 1,500 feet of elevated metal boardwalk completed in 2022 protects the forest floor and lets visitors walk among the giants. the route is compacted gravel and duff with roots a…">
+        <h3><span class="pin">20</span><a href="/Pleasant/resource/grove-of-titans-trail/">Grove of Titans Trail</a></h3>
+        <div class="meta">
+          <span class="tag group-nature"><i class="sw" aria-hidden="true"></i>Trail</span>
+          <span class="tag">Ages 0 to 18</span>
+          <span class="tag free">Free</span>
+          <span class="tag">Access: verified no</span>
+          <span class="tag">Hiouchi</span>
+          <span class="tag verified">Checked online</span>
+        </div>
+        <div class="fresh"><span class="dot recently_verified"></span>
+          Checked 20 hours ago
+        </div>
+        <p class="src">A 1.5-mile loop (the 2026 guide lists 1.7 miles out and back) to a cluster of the largest known coast redwoods, where about 1,500 feet of elevated metal boardw…</p>
+        
+        <div class="src">Source: <a href="https://www.nps.gov/thingstodo/got.htm" rel="noopener">https://www.nps.gov/thingstodo/got.htm</a> · <button type="button" class="chip" style="min-height:32px;padding:4px 10px" data-fly="-124.101319,41.778696">Show on map</button></div>
+      </article>
+      
+      <article class="card" data-f="0|18|free|unknown|klamath|attraction|attractions|klamath river overlook a viewpoint 650 feet above the pacific where the klamath river meets the ocean, reached by a steep, narrow paved road through the historic village of requa. nps describes it as a top spot for whale watching, seabirds and coastal views, and it is the southern trailhead of the coastal trail&#x27;s klamath…">
+        <h3><span class="pin">21</span><a href="/Pleasant/resource/klamath-river-overlook/">Klamath River Overlook</a></h3>
+        <div class="meta">
+          <span class="tag group-attractions"><i class="sw" aria-hidden="true"></i>Attraction</span>
+          <span class="tag">Ages 0 to 18</span>
+          <span class="tag free">Free</span>
+          <span class="tag unknown">Access: unknown</span>
+          <span class="tag">Klamath</span>
+          <span class="tag verified">Checked online</span>
+        </div>
+        <div class="fresh"><span class="dot recently_verified"></span>
+          Checked 20 hours ago
+        </div>
+        <p class="src">A viewpoint 650 feet above the Pacific where the Klamath River meets the ocean, reached by a steep, narrow paved road through the historic village of Requa. NP…</p>
+        
+        <div class="src">Source: <a href="https://www.nps.gov/redw/planyourvisit/drives.htm" rel="noopener">https://www.nps.gov/redw/planyourvisit/drives.htm</a> · <button type="button" class="chip" style="min-height:32px;padding:4px 10px" data-fly="-124.08662,41.554399">Show on map</button></div>
+      </article>
+      
+      <article class="card" data-f="0|18|unknown|unknown|crescent_city|trail|nature|mill creek campground trail (del norte coast redwoods sp) a 0.7-mile easy, flat trail along the mill creek campground road in del norte coast redwoods state park that nps lists as suitable for children, connecting to the 1-mile alder basin trail and the campground&#x27;s nature loop. the campground is seasonal and a gate blocks vehicle access off-season, when …">
+        <h3><span class="pin">22</span><a href="/Pleasant/resource/mill-creek-campground-trail-del-norte-coast-redwoods-sp/">Mill Creek Campground Trail (Del Norte Coast Redwoods SP)</a></h3>
+        <div class="meta">
+          <span class="tag group-nature"><i class="sw" aria-hidden="true"></i>Trail</span>
+          <span class="tag">Ages 0 to 18</span>
+          <span class="tag unknown">Cost unknown</span>
+          <span class="tag unknown">Access: unknown</span>
+          <span class="tag">Crescent City</span>
+          <span class="tag verified">Checked online</span>
+        </div>
+        <div class="fresh"><span class="dot recently_verified"></span>
+          Checked 20 hours ago
+        </div>
+        <p class="src">A 0.7-mile easy, flat trail along the Mill Creek Campground road in Del Norte Coast Redwoods State Park that NPS lists as suitable for children, connecting to …</p>
+        
+        <div class="src">Source: <a href="https://www.nps.gov/redw/planyourvisit/hiking-trails-north.htm" rel="noopener">https://www.nps.gov/redw/planyourvisit/hiking-tra…</a> · <button type="button" class="chip" style="min-height:32px;padding:4px 10px" data-fly="-124.098,41.7028">Show on map</button></div>
+      </article>
+      
+      <article class="card" data-f="0|18|priced|verified_yes|hiouchi|trail|nature|nature river trail (jedediah smith day-use area) a 0.6-mile accessible trail on compacted aggregate linking the day-use area and the campground through redwood forest with views of the smith river. an accessible picnic area sits at the day-use trailhead, with accessible parking and restrooms near both ends.">
+        <h3><span class="pin">23</span><a href="/Pleasant/resource/nature-river-trail-jedediah-smith-day-use-area/">Nature River Trail (Jedediah Smith day-use area)</a></h3>
+        <div class="meta">
+          <span class="tag group-nature"><i class="sw" aria-hidden="true"></i>Trail</span>
+          <span class="tag">Ages 0 to 18</span>
+          <span class="tag">$</span>
+          <span class="tag">Access: verified yes</span>
+          <span class="tag">Hiouchi</span>
+          <span class="tag verified">Checked online</span>
+        </div>
+        <div class="fresh"><span class="dot recently_verified"></span>
+          Checked 20 hours ago
+        </div>
+        <p class="src">A 0.6-mile accessible trail on compacted aggregate linking the day-use area and the campground through redwood forest with views of the Smith River. An accessi…</p>
+        
+        <div class="src">Source: <a href="https://www.parks.ca.gov/AccessibleFeatures/Details/413" rel="noopener">https://www.parks.ca.gov/AccessibleFeatures/Detai…</a> · <button type="button" class="chip" style="min-height:32px;padding:4px 10px" data-fly="-124.083,41.797">Show on map</button></div>
+      </article>
+      
+      <article class="card" data-f="0|18|unknown|unknown|crescent_city|attraction|attractions|northcoast marine mammal center a nonprofit seal and sea lion rescue and rehabilitation center in beachfront park near the lighthouse, with outdoor animal pens, a harbor seal pup room and a gift shop/information center. its stated aim includes public education about marine mammals, and it runs on donations and memberships.">
+        <h3><span class="pin">24</span><a href="/Pleasant/resource/northcoast-marine-mammal-center/">Northcoast Marine Mammal Center</a></h3>
+        <div class="meta">
+          <span class="tag group-attractions"><i class="sw" aria-hidden="true"></i>Attraction</span>
+          <span class="tag">Ages 0 to 18</span>
+          <span class="tag unknown">Cost unknown</span>
+          <span class="tag unknown">Access: unknown</span>
+          <span class="tag">Crescent City</span>
+          <span class="tag verified">Checked online</span>
+        </div>
+        <div class="fresh"><span class="dot recently_verified"></span>
+          Checked 20 hours ago
+        </div>
+        <p class="src">A nonprofit seal and sea lion rescue and rehabilitation center in Beachfront Park near the lighthouse, with outdoor animal pens, a harbor seal pup room and a g…</p>
+        
+        <div class="src">Source: <a href="https://northcoastmmc.org/about/" rel="noopener">https://northcoastmmc.org/about/</a> · <button type="button" class="chip" style="min-height:32px;padding:4px 10px" data-fly="-124.1987425,41.747818">Show on map</button></div>
+      </article>
+      
+      <article class="card" data-f="0|18|priced|unknown|crescent_city|attraction|attractions|ocean world a small private aquarium on us 101 at the south end of town offering a guided tour of roughly 45 minutes that includes a touch tide pool, a shark and bat-ray tank, resident seals and sea lions, and a sea-lion show. tours leave about every 20 minutes and are first come, first served.">
+        <h3><span class="pin">25</span><a href="/Pleasant/resource/ocean-world/">Ocean World</a></h3>
+        <div class="meta">
+          <span class="tag group-attractions"><i class="sw" aria-hidden="true"></i>Attraction</span>
+          <span class="tag">Ages 0 to 18</span>
+          <span class="tag">$</span>
+          <span class="tag unknown">Access: unknown</span>
+          <span class="tag">Crescent City</span>
+          <span class="tag verified">Checked online</span>
+        </div>
+        <div class="fresh"><span class="dot recently_verified"></span>
+          Checked 20 hours ago
+        </div>
+        <p class="src">A small private aquarium on US 101 at the south end of town offering a guided tour of roughly 45 minutes that includes a touch tide pool, a shark and bat-ray t…</p>
+        
+        <div class="src">Source: <a href="https://oceanworldonline.com/" rel="noopener">https://oceanworldonline.com/</a> · <button type="button" class="chip" style="min-height:32px;padding:4px 10px" data-fly="-124.188316,41.752001">Show on map</button></div>
+      </article>
+      
+      <article class="card" data-f="0|18|free|verified_yes|hiouchi|trail|nature|simpson-reed trail the easiest old-growth walk in the north of the parks: a level 0.8-mile loop on a wide compacted gravel path past huge redwoods, nurse logs, ferns and a creek, with interpretive panels. the connecting peterson memorial loop adds about half a mile.">
+        <h3><span class="pin">26</span><a href="/Pleasant/resource/simpson-reed-trail/">Simpson-Reed Trail</a></h3>
+        <div class="meta">
+          <span class="tag group-nature"><i class="sw" aria-hidden="true"></i>Trail</span>
+          <span class="tag">Ages 0 to 18</span>
+          <span class="tag free">Free</span>
+          <span class="tag">Access: verified yes</span>
+          <span class="tag">Hiouchi</span>
+          <span class="tag verified">Checked online</span>
+        </div>
+        <div class="fresh"><span class="dot recently_verified"></span>
+          Checked 20 hours ago
+        </div>
+        <p class="src">The easiest old-growth walk in the north of the parks: a level 0.8-mile loop on a wide compacted gravel path past huge redwoods, nurse logs, ferns and a creek,…</p>
+        
+        <div class="src">Source: <a href="https://www.nps.gov/thingstodo/simspon-reed_trail.htm" rel="noopener">https://www.nps.gov/thingstodo/simspon-reed_trail…</a> · <button type="button" class="chip" style="min-height:32px;padding:4px 10px" data-fly="-124.10711,41.813116">Show on map</button></div>
+      </article>
+      
+      <article class="card" data-f="0|18|priced|verified_no|klamath|attraction|attractions|trees of mystery a family-owned roadside redwood attraction marked by giant paul bunyan and babe statues, where one ticket covers the forest trails, the redwood canopy trail of suspended bridges, the end of the trail native american museum and the skytrail gondola, an 8-10 minute ride in enclosed six-passenger cars…">
+        <h3><span class="pin">27</span><a href="/Pleasant/resource/trees-of-mystery/">Trees of Mystery</a></h3>
+        <div class="meta">
+          <span class="tag group-attractions"><i class="sw" aria-hidden="true"></i>Attraction</span>
+          <span class="tag">Ages 0 to 18</span>
+          <span class="tag">$</span>
+          <span class="tag">Access: verified no</span>
+          <span class="tag">Klamath</span>
+          <span class="tag verified">Checked online</span>
+        </div>
+        <div class="fresh"><span class="dot recently_verified"></span>
+          Checked 20 hours ago
+        </div>
+        <p class="src">A family-owned roadside redwood attraction marked by giant Paul Bunyan and Babe statues, where one ticket covers the forest trails, the Redwood Canopy Trail of…</p>
+        
+        <div class="src">Source: <a href="https://treesofmystery.net/" rel="noopener">https://treesofmystery.net/</a> · <button type="button" class="chip" style="min-height:32px;padding:4px 10px" data-fly="-124.085281,41.584369">Show on map</button></div>
+      </article>
+      
+      <article class="card" data-f="0|18|free|verified_no|klamath|trail|nature|yurok loop trail an easy one-mile coastal loop (1.25 miles in the 2026 guide) from the lagoon creek picnic area through coastal forest and wildflowers to bluff views of sea stacks and seabirds, about ten minutes&#x27; walk from the car to the first viewpoint. the first half mile doubles as the coastal trail, which conti…">
+        <h3><span class="pin">28</span><a href="/Pleasant/resource/yurok-loop-trail/">Yurok Loop Trail</a></h3>
+        <div class="meta">
+          <span class="tag group-nature"><i class="sw" aria-hidden="true"></i>Trail</span>
+          <span class="tag">Ages 0 to 18</span>
+          <span class="tag free">Free</span>
+          <span class="tag">Access: verified no</span>
+          <span class="tag">Klamath</span>
+          <span class="tag verified">Checked online</span>
+        </div>
+        <div class="fresh"><span class="dot recently_verified"></span>
+          Checked 20 hours ago
+        </div>
+        <p class="src">An easy one-mile coastal loop (1.25 miles in the 2026 guide) from the Lagoon Creek picnic area through coastal forest and wildflowers to bluff views of sea sta…</p>
+        
+        <div class="src">Source: <a href="https://www.nps.gov/places/yuroklooptrail.htm" rel="noopener">https://www.nps.gov/places/yuroklooptrail.htm</a> · <button type="button" class="chip" style="min-height:32px;padding:4px 10px" data-fly="-124.101655,41.594568">Show on map</button></div>
+      </article>
+      
+      <article class="card" data-f="0|18|free|unknown|crescent_city|visitor_center|attractions|crescent city information center (redwood national and state parks headquarters bookstore) the park headquarters information center and bookstore in downtown crescent city, one of five visitor centers for redwood national and state parks. staff provide orientation and trip planning, and the 2026 park guide says every center hands out maps, junior ranger books and passport stamps; park wi…">
+        <h3><span class="pin">29</span><a href="/Pleasant/resource/crescent-city-information-center-redwood-national-and-state-parks-headquarters-bookstore/">Crescent City Information Center (Redwood National and State Parks headquarters bookstore)</a></h3>
+        <div class="meta">
+          <span class="tag group-attractions"><i class="sw" aria-hidden="true"></i>Visitor centre</span>
+          <span class="tag">Ages 0 to 18</span>
+          <span class="tag free">Free</span>
+          <span class="tag unknown">Access: unknown</span>
+          <span class="tag">Crescent City</span>
+          <span class="tag verified">Checked online</span>
+        </div>
+        <div class="fresh"><span class="dot recently_verified"></span>
+          Checked 20 hours ago
+        </div>
+        <p class="src">The park headquarters information center and bookstore in downtown Crescent City, one of five visitor centers for Redwood National and State Parks. Staff provi…</p>
+        
+        <div class="src">Source: <a href="https://www.nps.gov/redw/planyourvisit/visitorcenters.htm" rel="noopener">https://www.nps.gov/redw/planyourvisit/visitorcen…</a> · <button type="button" class="chip" style="min-height:32px;padding:4px 10px" data-fly="-124.19419,41.752845">Show on map</button></div>
+      </article>
+      
+      <article class="card" data-f="0|18|free|unknown|hiouchi|visitor_center|attractions|hiouchi visitor center the nps visitor center on us 199 at hiouchi, the main stop for information on scenic drives, trails and camping in the northern (jedediah smith) part of the parks. like the other centers it offers maps, junior ranger books and passport stamps, and it hosts ranger porch programs.">
+        <h3><span class="pin">30</span><a href="/Pleasant/resource/hiouchi-visitor-center/">Hiouchi Visitor Center</a></h3>
+        <div class="meta">
+          <span class="tag group-attractions"><i class="sw" aria-hidden="true"></i>Visitor centre</span>
+          <span class="tag">Ages 0 to 18</span>
+          <span class="tag free">Free</span>
+          <span class="tag unknown">Access: unknown</span>
+          <span class="tag">Hiouchi</span>
+          <span class="tag verified">Checked online</span>
+        </div>
+        <div class="fresh"><span class="dot recently_verified"></span>
+          Checked 20 hours ago
+        </div>
+        <p class="src">The NPS visitor center on US 199 at Hiouchi, the main stop for information on scenic drives, trails and camping in the northern (Jedediah Smith) part of the pa…</p>
+        
+        <div class="src">Source: <a href="https://www.nps.gov/redw/planyourvisit/visitorcenters.htm" rel="noopener">https://www.nps.gov/redw/planyourvisit/visitorcen…</a> · <button type="button" class="chip" style="min-height:32px;padding:4px 10px" data-fly="-124.08188,41.796752">Show on map</button></div>
+      </article>
+      
+      <article class="card" data-f="0|18|unknown|unknown|hiouchi|visitor_center|attractions|jedediah smith visitor center (seasonal) a summer-season visitor center and campground store inside the state park campground by the smith river. it provides the same orientation, maps and junior ranger materials as the other park centers during the months it is open.">
+        <h3><span class="pin">31</span><a href="/Pleasant/resource/jedediah-smith-visitor-center-seasonal/">Jedediah Smith Visitor Center (seasonal)</a></h3>
+        <div class="meta">
+          <span class="tag group-attractions"><i class="sw" aria-hidden="true"></i>Visitor centre</span>
+          <span class="tag">Ages 0 to 18</span>
+          <span class="tag unknown">Cost unknown</span>
+          <span class="tag unknown">Access: unknown</span>
+          <span class="tag">Hiouchi</span>
+          <span class="tag verified">Checked online</span>
+        </div>
+        <div class="fresh"><span class="dot recently_verified"></span>
+          Checked 20 hours ago
+        </div>
+        <p class="src">A summer-season visitor center and campground store inside the state park campground by the Smith River. It provides the same orientation, maps and Junior Rang…</p>
+        
+        <div class="src">Source: <a href="https://www.nps.gov/redw/planyourvisit/directions.htm" rel="noopener">https://www.nps.gov/redw/planyourvisit/directions…</a> · <button type="button" class="chip" style="min-height:32px;padding:4px 10px" data-fly="-124.086647,41.795714">Show on map</button></div>
+      </article>
+      
+      <article class="card" data-f="0|18|free|unknown|gasquet|visitor_center|attractions|smith river national recreation area visitor center (gasquet ranger station) the forest service office and visitor center for the smith river national recreation area on us 199 in gasquet, offering information services, free maps and brochures, souvenirs and campfire permits. it is the place to ask about river access, swimming holes and trail conditions along the undammed s…">
+        <h3><span class="pin">32</span><a href="/Pleasant/resource/smith-river-national-recreation-area-visitor-center-gasquet-ranger-station/">Smith River National Recreation Area Visitor Center (Gasquet Ranger Station)</a></h3>
+        <div class="meta">
+          <span class="tag group-attractions"><i class="sw" aria-hidden="true"></i>Visitor centre</span>
+          <span class="tag">Ages 0 to 18</span>
+          <span class="tag free">Free</span>
+          <span class="tag unknown">Access: unknown</span>
+          <span class="tag">Gasquet</span>
+          <span class="tag verified">Checked online</span>
+        </div>
+        <div class="fresh"><span class="dot recently_verified"></span>
+          Checked 20 hours ago
+        </div>
+        <p class="src">The Forest Service office and visitor center for the Smith River National Recreation Area on US 199 in Gasquet, offering information services, free maps and br…</p>
+        
+        <div class="src">Source: <a href="https://www.fs.usda.gov/r05/sixrivers/offices/smith-river-national-recreation-area" rel="noopener">https://www.fs.usda.gov/r05/sixrivers/offices/smi…</a> · <button type="button" class="chip" style="min-height:32px;padding:4px 10px" data-fly="-123.9662658,41.8452385">Show on map</button></div>
+      </article>
+      
+      <article class="card" data-f="0|18|free|unknown|crescent_city|park|parks|brother jonathan park and overlook a 1.36-acre waterfront park beside fraser park with lawns, benches, a memorial and gravesite for the 1865 brother jonathan shipwreck, and an observation point across pebble beach drive. the overlook has parking and benches and looks south to battery point lighthouse and north to preston island.">
+        <h3><span class="pin">33</span><a href="/Pleasant/resource/brother-jonathan-park-and-overlook/">Brother Jonathan Park and Overlook</a></h3>
+        <div class="meta">
+          <span class="tag group-parks"><i class="sw" aria-hidden="true"></i>Park</span>
+          <span class="tag">Ages 0 to 18</span>
+          <span class="tag free">Free</span>
+          <span class="tag unknown">Access: unknown</span>
+          <span class="tag">Crescent City</span>
+          <span class="tag verified">Checked online</span>
+        </div>
+        <div class="fresh"><span class="dot recently_verified"></span>
+          Checked 20 hours ago
+        </div>
+        <p class="src">A 1.36-acre waterfront park beside Fraser Park with lawns, benches, a memorial and gravesite for the 1865 Brother Jonathan shipwreck, and an observation point …</p>
+        
+        <div class="src">Source: <a href="https://www.crescentcity.org/Parks" rel="noopener">https://www.crescentcity.org/Parks</a> · <button type="button" class="chip" style="min-height:32px;padding:4px 10px" data-fly="-124.210326,41.751108">Show on map</button></div>
+      </article>
+      
+      <article class="card" data-f="0|18|free|unknown|smith_river|park|parks|clifford kamph memorial park a small county park of just over 3 acres on a bluff above the pacific near the state line, with 14 tent-only campsites and a beach below. it was dedicated in 1949 in memory of a wwii pilot and is one of three del norte county campgrounds.">
+        <h3><span class="pin">34</span><a href="/Pleasant/resource/clifford-kamph-memorial-park/">Clifford Kamph Memorial Park</a></h3>
+        <div class="meta">
+          <span class="tag group-parks"><i class="sw" aria-hidden="true"></i>Park</span>
+          <span class="tag">Ages 0 to 18</span>
+          <span class="tag free">Free</span>
+          <span class="tag unknown">Access: unknown</span>
+          <span class="tag">Smith River</span>
+          <span class="tag verified">Checked online</span>
+        </div>
+        <div class="fresh"><span class="dot recently_verified"></span>
+          Checked 20 hours ago
+        </div>
+        <p class="src">A small county park of just over 3 acres on a bluff above the Pacific near the state line, with 14 tent-only campsites and a beach below. It was dedicated in 1…</p>
+        
+        <div class="src">Source: <a href="https://www.co.del-norte.ca.us/departments/Parks/Clifford-Kamph-Memorial-Park" rel="noopener">https://www.co.del-norte.ca.us/departments/Parks/…</a> · <button type="button" class="chip" style="min-height:32px;padding:4px 10px" data-fly="-124.204178,41.97087">Show on map</button></div>
+      </article>
+      
+      <article class="card" data-f="0|99|free|unknown|crescent_city|library|services|del norte county library (main library) the main public library of the del norte county library district, an independent special district funded partly by a share of county property tax. the state library&#x27;s locations file records the price mall address, phone and coordinates; the district&#x27;s own site indicates internet, computer and copy …">
+        <h3><span class="pin">35</span><a href="/Pleasant/resource/del-norte-county-library-main-library/">Del Norte County Library (Main Library)</a></h3>
+        <div class="meta">
+          <span class="tag group-services"><i class="sw" aria-hidden="true"></i>Library and story time</span>
+          <span class="tag">Ages 0 to 99</span>
+          <span class="tag free">Free</span>
+          <span class="tag unknown">Access: unknown</span>
+          <span class="tag">Crescent City</span>
+          <span class="tag verified">Checked online</span>
+        </div>
+        <div class="fresh"><span class="dot recently_verified"></span>
+          Checked 20 hours ago
+        </div>
+        <p class="src">The main public library of the Del Norte County Library District, an independent special district funded partly by a share of county property tax. The State Li…</p>
+        
+        <div class="src">Source: <a href="https://delnortecountylibrary.org/" rel="noopener">https://delnortecountylibrary.org/</a> · <button type="button" class="chip" style="min-height:32px;padding:4px 10px" data-fly="-124.20259,41.75575">Show on map</button></div>
+      </article>
+      
+      <article class="card" data-f="0|99|free|unknown|smith_river|library|services|del norte county library - smith river branch branch library of the del norte county library district in smith river, recorded in the california state library&#x27;s local library locations file with its address, phone and coordinates. no hours or programme details were available from a reachable official page.">
+        <h3><span class="pin">36</span><a href="/Pleasant/resource/del-norte-county-library-smith-river-branch/">Del Norte County Library - Smith River Branch</a></h3>
+        <div class="meta">
+          <span class="tag group-services"><i class="sw" aria-hidden="true"></i>Library and story time</span>
+          <span class="tag">Ages 0 to 99</span>
+          <span class="tag free">Free</span>
+          <span class="tag unknown">Access: unknown</span>
+          <span class="tag">Smith River</span>
+          <span class="tag verified">Checked online</span>
+        </div>
+        <div class="fresh"><span class="dot recently_verified"></span>
+          Checked 20 hours ago
+        </div>
+        <p class="src">Branch library of the Del Norte County Library District in Smith River, recorded in the California State Library&#x27;s local library locations file with its addres…</p>
+        
+        <div class="src">Source: <a href="https://delnortecountylibrary.org/" rel="noopener">https://delnortecountylibrary.org/</a> · <button type="button" class="chip" style="min-height:32px;padding:4px 10px" data-fly="-124.14821,41.92632">Show on map</button></div>
+      </article>
+      
+      <article class="card" data-f="0|99|unknown|unknown|crescent_city|library|services|elk valley rancheria library a small tribal library at the elk valley rancheria offices that the tribe says is open to the general public. its collection of 600-plus titles, periodicals and videos focuses on native american culture and includes a small artefact display.">
+        <h3><span class="pin">37</span><a href="/Pleasant/resource/elk-valley-rancheria-library/">Elk Valley Rancheria Library</a></h3>
+        <div class="meta">
+          <span class="tag group-services"><i class="sw" aria-hidden="true"></i>Library and story time</span>
+          <span class="tag">Ages 0 to 99</span>
+          <span class="tag unknown">Cost unknown</span>
+          <span class="tag unknown">Access: unknown</span>
+          <span class="tag">Crescent City</span>
+          <span class="tag verified">Checked online</span>
+        </div>
+        <div class="fresh"><span class="dot recently_verified"></span>
+          Checked 20 hours ago
+        </div>
+        <p class="src">A small tribal library at the Elk Valley Rancheria offices that the tribe says is open to the general public. Its collection of 600-plus titles, periodicals an…</p>
+        
+        <div class="src">Source: <a href="https://elk-valley.com/the-rancheria/library/" rel="noopener">https://elk-valley.com/the-rancheria/library/</a> · <button type="button" class="chip" style="min-height:32px;padding:4px 10px" data-fly="-124.1582893,41.7586439">Show on map</button></div>
+      </article>
+      
+      <article class="card" data-f="0|18|free|unknown|hiouchi|river|water|forks river access and boat ramp (smith river nra) a forest service day-use site at the confluence area of the smith river forks with an asphalt parking lot, boat ramp and vault toilets, used for swimming, sunbathing, non-motorized boating and fishing. it is the nearest smith river nra river access to crescent city.">
+        <h3><span class="pin">38</span><a href="/Pleasant/resource/forks-river-access-and-boat-ramp-smith-river-nra/">Forks River Access and Boat Ramp (Smith River NRA)</a></h3>
+        <div class="meta">
+          <span class="tag group-water"><i class="sw" aria-hidden="true"></i>River access</span>
+          <span class="tag">Ages 0 to 18</span>
+          <span class="tag free">Free</span>
+          <span class="tag unknown">Access: unknown</span>
+          <span class="tag">Hiouchi</span>
+          <span class="tag verified">Checked online</span>
+        </div>
+        <div class="fresh"><span class="dot recently_verified"></span>
+          Checked 20 hours ago
+        </div>
+        <p class="src">A Forest Service day-use site at the confluence area of the Smith River forks with an asphalt parking lot, boat ramp and vault toilets, used for swimming, sunb…</p>
+        
+        <div class="src">Source: <a href="https://www.fs.usda.gov/r05/sixrivers/recreation/forks-river-access-and-boat-ramp" rel="noopener">https://www.fs.usda.gov/r05/sixrivers/recreation/…</a> · <button type="button" class="chip" style="min-height:32px;padding:4px 10px" data-fly="-124.0551,41.79725">Show on map</button></div>
+      </article>
+      
+      <article class="card" data-f="0|18|priced|verified_yes|hiouchi|river|water|jedediah smith redwoods state park - campground day-use area and river beach the developed heart of jedediah smith redwoods state park, where a paved day-use area beside the smith river gives access to a gravel river beach, a small-boat launch, picnic tables, drinking water, vault toilets and the trailheads for the nature river trail and the summer footbridge to stout grove…">
+        <h3><span class="pin">39</span><a href="/Pleasant/resource/jedediah-smith-redwoods-state-park-campground-day-use-area-and-river-beach/">Jedediah Smith Redwoods State Park - campground day-use area and river beach</a></h3>
+        <div class="meta">
+          <span class="tag group-water"><i class="sw" aria-hidden="true"></i>River access</span>
+          <span class="tag">Ages 0 to 18</span>
+          <span class="tag">$</span>
+          <span class="tag">Access: verified yes</span>
+          <span class="tag">Hiouchi</span>
+          <span class="tag verified">Checked online</span>
+        </div>
+        <div class="fresh"><span class="dot recently_verified"></span>
+          Checked 20 hours ago
+        </div>
+        <p class="src">The developed heart of Jedediah Smith Redwoods State Park, where a paved day-use area beside the Smith River gives access to a gravel river beach, a small-boat…</p>
+        
+        <div class="src">Source: <a href="https://www.parks.ca.gov/?page_id=413" rel="noopener">https://www.parks.ca.gov/?page_id=413</a> · <button type="button" class="chip" style="min-height:32px;padding:4px 10px" data-fly="-124.083,41.797">Show on map</button></div>
+      </article>
+      
+      <article class="card" data-f="0|18|free|unknown|gasquet|river|water|panther flat picnic area and swimming holes (smith river nra) a no-fee day-use picnic area next to the panther flat campground on the middle fork smith river, with eight picnic tables, grills, water and a horseshoe pit. two short paths lead from the picnic area to river swimming holes, one with a small sandy beach.">
+        <h3><span class="pin">40</span><a href="/Pleasant/resource/panther-flat-picnic-area-and-swimming-holes-smith-river-nra/">Panther Flat Picnic Area and swimming holes (Smith River NRA)</a></h3>
+        <div class="meta">
+          <span class="tag group-water"><i class="sw" aria-hidden="true"></i>River access</span>
+          <span class="tag">Ages 0 to 18</span>
+          <span class="tag free">Free</span>
+          <span class="tag unknown">Access: unknown</span>
+          <span class="tag">Gasquet</span>
+          <span class="tag verified">Checked online</span>
+        </div>
+        <div class="fresh"><span class="dot recently_verified"></span>
+          Checked 20 hours ago
+        </div>
+        <p class="src">A no-fee day-use picnic area next to the Panther Flat campground on the Middle Fork Smith River, with eight picnic tables, grills, water and a horseshoe pit. T…</p>
+        
+        <div class="src">Source: <a href="https://www.fs.usda.gov/r05/sixrivers/recreation/panther-flat-campground" rel="noopener">https://www.fs.usda.gov/r05/sixrivers/recreation/…</a> · <button type="button" class="chip" style="min-height:32px;padding:4px 10px" data-fly="-123.9288889,41.84305556">Show on map</button></div>
+      </article>
+      
+      <article class="card" data-f="0|18|free|unknown|fort_dick|park|parks|tolowa dunes state park a large coastal park of dunes, wetlands, forest and ocean beach between crescent city and the smith river mouth, with many miles of hiking, biking and horse trails and a long undeveloped beach. from us 101 take northcrest drive north (it becomes lake earl drive), turn left on lower lake road and go…">
+        <h3><span class="pin">41</span><a href="/Pleasant/resource/tolowa-dunes-state-park/">Tolowa Dunes State Park</a></h3>
+        <div class="meta">
+          <span class="tag group-parks"><i class="sw" aria-hidden="true"></i>Park</span>
+          <span class="tag">Ages 0 to 18</span>
+          <span class="tag free">Free</span>
+          <span class="tag unknown">Access: unknown</span>
+          <span class="tag">Fort Dick</span>
+          <span class="tag verified">Checked online</span>
+        </div>
+        <div class="fresh"><span class="dot recently_verified"></span>
+          Checked 20 hours ago
+        </div>
+        <p class="src">A large coastal park of dunes, wetlands, forest and ocean beach between Crescent City and the Smith River mouth, with many miles of hiking, biking and horse tr…</p>
+        
+        <div class="src">Source: <a href="https://www.parks.ca.gov/?page_id=430" rel="noopener">https://www.parks.ca.gov/?page_id=430</a> · <button type="button" class="chip" style="min-height:32px;padding:4px 10px" data-fly="-124.216927,41.79877">Show on map</button></div>
+      </article>
+      
+      <article class="card" data-f="0|18|free|verified_yes|crescent_city|playground|parks|beachfront park and kid&#x27;s town (kidtown) playground the city&#x27;s main waterfront park along the harbor, hosting community events and bundling several family draws: the kid&#x27;s town playground on play street with swings, a wheelchair swing, tot lot, picnic areas and restrooms, plus a fenced dog park, a 23-hole disc golf course, soccer fields, bbq pits an…">
+        <h3><span class="pin">42</span><a href="/Pleasant/resource/beachfront-park-and-kids-town-kidtown-playground/">Beachfront Park and Kid&#x27;s Town (KidTown) playground</a></h3>
+        <div class="meta">
+          <span class="tag group-parks"><i class="sw" aria-hidden="true"></i>Playground</span>
+          <span class="tag">Ages 0 to 18</span>
+          <span class="tag free">Free</span>
+          <span class="tag">Access: verified yes</span>
+          <span class="tag">Crescent City</span>
+          <span class="tag verified">Checked online</span>
+        </div>
+        <div class="fresh"><span class="dot recently_verified"></span>
+          Checked 20 hours ago
+        </div>
+        <p class="src">The city&#x27;s main waterfront park along the harbor, hosting community events and bundling several family draws: the Kid&#x27;s Town playground on Play Street with swi…</p>
+        
+        <div class="src">Source: <a href="https://www.crescentcity.org/BeachfrontPark-1" rel="noopener">https://www.crescentcity.org/BeachfrontPark-1</a> · <button type="button" class="chip" style="min-height:32px;padding:4px 10px" data-fly="-124.1952786,41.7503712">Show on map</button></div>
+      </article>
+      
+      <article class="card" data-f="0|18|free|verified_yes|crescent_city|beach|water|crescent beach day use area a long sandy beach just south of town in redwood national park, reached by a short paved road with plenty of car and rv parking, picnic tables, a fire pit and a vault toilet. it is a place for beachcombing and play rather than swimming, since the water is cold with swift currents; elk are often see…">
+        <h3><span class="pin">43</span><a href="/Pleasant/resource/crescent-beach-day-use-area/">Crescent Beach Day Use Area</a></h3>
+        <div class="meta">
+          <span class="tag group-water"><i class="sw" aria-hidden="true"></i>Beach</span>
+          <span class="tag">Ages 0 to 18</span>
+          <span class="tag free">Free</span>
+          <span class="tag">Access: verified yes</span>
+          <span class="tag">Crescent City</span>
+          <span class="tag verified">Checked online</span>
+        </div>
+        <div class="fresh"><span class="dot recently_verified"></span>
+          Checked 20 hours ago
+        </div>
+        <p class="src">A long sandy beach just south of town in Redwood National Park, reached by a short paved road with plenty of car and RV parking, picnic tables, a fire pit and …</p>
+        
+        <div class="src">Source: <a href="https://www.nps.gov/places/crescentbeachdayuse.htm" rel="noopener">https://www.nps.gov/places/crescentbeachdayuse.htm</a> · <button type="button" class="chip" style="min-height:32px;padding:4px 10px" data-fly="-124.169873,41.742031">Show on map</button></div>
+      </article>
+      
+      <article class="card" data-f="0|18|free|unknown|smith_river|beach|water|pelican state beach california&#x27;s northernmost beach, a small undeveloped and secluded state beach right at the oregon border with parking, beach access and surf-watching. there are no facilities, and the page recommends layered clothing for changeable weather.">
+        <h3><span class="pin">44</span><a href="/Pleasant/resource/pelican-state-beach/">Pelican State Beach</a></h3>
+        <div class="meta">
+          <span class="tag group-water"><i class="sw" aria-hidden="true"></i>Beach</span>
+          <span class="tag">Ages 0 to 18</span>
+          <span class="tag free">Free</span>
+          <span class="tag unknown">Access: unknown</span>
+          <span class="tag">Smith River</span>
+          <span class="tag verified">Checked online</span>
+        </div>
+        <div class="fresh"><span class="dot recently_verified"></span>
+          Checked 20 hours ago
+        </div>
+        <p class="src">California&#x27;s northernmost beach, a small undeveloped and secluded state beach right at the Oregon border with parking, beach access and surf-watching. There ar…</p>
+        
+        <div class="src">Source: <a href="https://www.parks.ca.gov/?page_id=412" rel="noopener">https://www.parks.ca.gov/?page_id=412</a> · <button type="button" class="chip" style="min-height:32px;padding:4px 10px" data-fly="-124.208449,41.991347">Show on map</button></div>
+      </article>
+      
+      <article class="card" data-f="0|18|free|unknown|crescent_city|playground|parks|pyke field playground and softball fields a del norte county recreation site at the county recreation department address on h street, listed as a playground together with softball fields. the county map page gives little more than the name and location.">
+        <h3><span class="pin">45</span><a href="/Pleasant/resource/pyke-field-playground-and-softball-fields/">Pyke Field playground and softball fields</a></h3>
+        <div class="meta">
+          <span class="tag group-parks"><i class="sw" aria-hidden="true"></i>Playground</span>
+          <span class="tag">Ages 0 to 18</span>
+          <span class="tag free">Free</span>
+          <span class="tag unknown">Access: unknown</span>
+          <span class="tag">Crescent City</span>
+          <span class="tag verified">Checked online</span>
+        </div>
+        <div class="fresh"><span class="dot recently_verified"></span>
+          Checked 20 hours ago
+        </div>
+        <p class="src">A Del Norte County recreation site at the county Recreation Department address on H Street, listed as a playground together with softball fields. The county ma…</p>
+        
+        <div class="src">Source: <a href="https://www.co.del-norte.ca.us/maps/location/PykeField" rel="noopener">https://www.co.del-norte.ca.us/maps/location/Pyke…</a> · <button type="button" class="chip" style="min-height:32px;padding:4px 10px" data-fly="-124.202486,41.756785">Show on map</button></div>
+      </article>
+      
+      <article class="card" data-f="16|99|unknown|unknown|crescent_city|college|learning|college of the redwoods - del norte campus the crescent city campus of the college of the redwoods community college district, located next to del norte high school. the campus page lists a student commons help desk, trio and eops support programmes, a link for high school students, and campus and safety maps.">
+        <h3><span class="pin">46</span><a href="/Pleasant/resource/college-of-the-redwoods-del-norte-campus/">College of the Redwoods - Del Norte Campus</a></h3>
+        <div class="meta">
+          <span class="tag group-learning"><i class="sw" aria-hidden="true"></i>College</span>
+          <span class="tag">Ages 16 to 99</span>
+          <span class="tag unknown">Cost unknown</span>
+          <span class="tag unknown">Access: unknown</span>
+          <span class="tag">Crescent City</span>
+          <span class="tag verified">Checked online</span>
+        </div>
+        <div class="fresh"><span class="dot recently_verified"></span>
+          Checked 20 hours ago
+        </div>
+        <p class="src">The Crescent City campus of the College of the Redwoods community college district, located next to Del Norte High School. The campus page lists a Student Comm…</p>
+        
+        <div class="src">Source: <a href="https://www.redwoods.edu/delnorte/" rel="noopener">https://www.redwoods.edu/delnorte/</a> · <button type="button" class="chip" style="min-height:32px;padding:4px 10px" data-fly="-124.2099517,41.7726685">Show on map</button></div>
+      </article>
+      
+      <article class="card" data-f="0|18|unknown|unknown|crescent_city|museum|attractions|del norte county historical society main museum the historical society&#x27;s main museum in downtown crescent city at 6th and h streets holds local history collections, with linked topic pages on the tolowa and yurok peoples, regional lighthouses and the 1964 tsunami. it has a gift shop and is paired with the battery point lighthouse under one membe…">
+        <h3><span class="pin">47</span><a href="/Pleasant/resource/del-norte-county-historical-society-main-museum/">Del Norte County Historical Society Main Museum</a></h3>
+        <div class="meta">
+          <span class="tag group-attractions"><i class="sw" aria-hidden="true"></i>Museum</span>
+          <span class="tag">Ages 0 to 18</span>
+          <span class="tag unknown">Cost unknown</span>
+          <span class="tag unknown">Access: unknown</span>
+          <span class="tag">Crescent City</span>
+          <span class="tag verified">Checked online</span>
+        </div>
+        <div class="fresh"><span class="dot recently_verified"></span>
+          Checked 20 hours ago
+        </div>
+        <p class="src">The Historical Society&#x27;s main museum in downtown Crescent City at 6th and H Streets holds local history collections, with linked topic pages on the Tolowa and …</p>
+        
+        <div class="src">Source: <a href="https://delnortehistory.org/about-dnchs/" rel="noopener">https://delnortehistory.org/about-dnchs/</a> · <button type="button" class="chip" style="min-height:32px;padding:4px 10px" data-fly="-124.19934,41.754234">Show on map</button></div>
+      </article>
+      
+      <article class="card" data-f="5|19|unknown|unknown|countywide|after_school|programs|del norte county 4-h program (uc cooperative extension) the county 4-h youth development programme administered by uc cooperative extension from its crescent city office. youth members and adult volunteers enrol online through zsuite, clubs and projects are listed on the site, and a programme leadership team meets monthly.">
+        <h3><span class="pin">48</span><a href="/Pleasant/resource/del-norte-county-4-h-program-uc-cooperative-extension/">Del Norte County 4-H Program (UC Cooperative Extension)</a></h3>
+        <div class="meta">
+          <span class="tag group-programs"><i class="sw" aria-hidden="true"></i>After-school and youth</span>
+          <span class="tag">Ages 5 to 19</span>
+          <span class="tag unknown">Cost unknown</span>
+          <span class="tag unknown">Access: unknown</span>
+          <span class="tag">Countywide</span>
+          <span class="tag verified">Checked online</span>
+        </div>
+        <div class="fresh"><span class="dot recently_verified"></span>
+          Checked 20 hours ago
+        </div>
+        <p class="src">The county 4-H youth development programme administered by UC Cooperative Extension from its Crescent City office. Youth members and adult volunteers enrol onl…</p>
+        
+        <div class="src">Source: <a href="https://ucanr.edu/county/ucce-humboldt-del-norte-counties/del-norte-county-4-h-program" rel="noopener">https://ucanr.edu/county/ucce-humboldt-del-norte-…</a> · <button type="button" class="chip" style="min-height:32px;padding:4px 10px" data-fly="-124.2006045,41.7535113">Show on map</button></div>
+      </article>
+      
+      <article class="card" data-f="15|18|free|unknown|crescent_city|after_school|programs|e3 summer youth program (dncoe / smart workforce center) a paid summer work-experience programme for high school sophomores, juniors and seniors run through the county office of education and the smart workforce center. selected students are matched with local worksites and can earn up to 10 elective credits; applications open each spring.">
+        <h3><span class="pin">49</span><a href="/Pleasant/resource/e3-summer-youth-program-dncoe-smart-workforce-center/">E3 Summer Youth Program (DNCOE / SMART Workforce Center)</a></h3>
+        <div class="meta">
+          <span class="tag group-programs"><i class="sw" aria-hidden="true"></i>After-school and youth</span>
+          <span class="tag">Ages 15 to 18</span>
+          <span class="tag free">Free</span>
+          <span class="tag unknown">Access: unknown</span>
+          <span class="tag">Crescent City</span>
+          <span class="tag verified">Checked online</span>
+        </div>
+        <div class="fresh"><span class="dot recently_verified"></span>
+          Checked 20 hours ago
+        </div>
+        <p class="src">A paid summer work-experience programme for high school sophomores, juniors and seniors run through the county office of education and the SMART Workforce Cent…</p>
+        
+        <div class="src">Source: <a href="https://www.dncoe.org/pillars-of-support/real-world-learning-career-technical-education/e3-summer-youth-program" rel="noopener">https://www.dncoe.org/pillars-of-support/real-wor…</a> · <button type="button" class="chip" style="min-height:32px;padding:4px 10px" data-fly="-124.1984718,41.7537862">Show on map</button></div>
+      </article>
+      
+      <article class="card" data-f="4|11|unknown|unknown|crescent_city|after_school|programs|mary peacock after school center (del norte child care council) a licensed after-school enrichment programme run by the child care council on the grounds of mary peacock elementary; children do not have to attend that school to enrol. it serves tk through 5th grade, monday to friday from 1:00 to 5:30 pm, with enrolment through an online waitlist application.">
+        <h3><span class="pin">50</span><a href="/Pleasant/resource/mary-peacock-after-school-center-del-norte-child-care-council/">Mary Peacock After School Center (Del Norte Child Care Council)</a></h3>
+        <div class="meta">
+          <span class="tag group-programs"><i class="sw" aria-hidden="true"></i>After-school and youth</span>
+          <span class="tag">Ages 4 to 11</span>
+          <span class="tag unknown">Cost unknown</span>
+          <span class="tag unknown">Access: unknown</span>
+          <span class="tag">Crescent City</span>
+          <span class="tag verified">Checked online</span>
+        </div>
+        <div class="fresh"><span class="dot recently_verified"></span>
+          Checked 20 hours ago
+        </div>
+        <p class="src">A licensed after-school enrichment programme run by the Child Care Council on the grounds of Mary Peacock Elementary; children do not have to attend that schoo…</p>
+        
+        <div class="src">Source: <a href="https://www.dnccc.com/mary-peacock-after-school-center/" rel="noopener">https://www.dnccc.com/mary-peacock-after-school-c…</a> · <button type="button" class="chip" style="min-height:32px;padding:4px 10px" data-fly="-124.211828,41.777369">Show on map</button></div>
+      </article>
+      
+      <article class="card" data-f="5|18|unknown|unknown|crescent_city|after_school|programs|two trees student support center / expanded learning (dncoe) a del norte county office of education support centre that houses the expanded learning opportunities program, offering after-school and school-break activities for students, and a teen center for which programme details are still to be posted.">
+        <h3><span class="pin">51</span><a href="/Pleasant/resource/two-trees-student-support-center-expanded-learning-dncoe/">Two Trees Student Support Center / Expanded Learning (DNCOE)</a></h3>
+        <div class="meta">
+          <span class="tag group-programs"><i class="sw" aria-hidden="true"></i>After-school and youth</span>
+          <span class="tag">Ages 5 to 18</span>
+          <span class="tag unknown">Cost unknown</span>
+          <span class="tag unknown">Access: unknown</span>
+          <span class="tag">Crescent City</span>
+          <span class="tag verified">Checked online</span>
+        </div>
+        <div class="fresh"><span class="dot recently_verified"></span>
+          Checked 20 hours ago
+        </div>
+        <p class="src">A Del Norte County Office of Education support centre that houses the Expanded Learning Opportunities Program, offering after-school and school-break activitie…</p>
+        
+        <div class="src">Source: <a href="https://www.dncoe.org/who-we-are/locations-resources/two-trees" rel="noopener">https://www.dncoe.org/who-we-are/locations-resour…</a> · <button type="button" class="chip" style="min-height:32px;padding:4px 10px" data-fly="-124.2060808,41.77284">Show on map</button></div>
+      </article>
+      
+      <article class="card" data-f="0|12|unknown|unknown|countywide|family_service|services|del norte child care council the county&#x27;s child care resource and referral agency, a nonprofit that helps families find licensed child care, administers child care subsidies, and runs a toy lending library, car-seat lending, first aid/cpr classes, a food programme for home providers, and an after-school centre. it also trains …">
+        <h3><span class="pin">52</span><a href="/Pleasant/resource/del-norte-child-care-council/">Del Norte Child Care Council</a></h3>
+        <div class="meta">
+          <span class="tag group-services"><i class="sw" aria-hidden="true"></i>Family service</span>
+          <span class="tag">Ages 0 to 12</span>
+          <span class="tag unknown">Cost unknown</span>
+          <span class="tag unknown">Access: unknown</span>
+          <span class="tag">Countywide</span>
+          <span class="tag verified">Checked online</span>
+        </div>
+        <div class="fresh"><span class="dot recently_verified"></span>
+          Checked 20 hours ago
+        </div>
+        <p class="src">The county&#x27;s child care resource and referral agency, a nonprofit that helps families find licensed child care, administers child care subsidies, and runs a to…</p>
+        
+        <div class="src">Source: <a href="https://www.dnccc.com/" rel="noopener">https://www.dnccc.com/</a> · <button type="button" class="chip" style="min-height:32px;padding:4px 10px" data-fly="-124.19478,41.7530614">Show on map</button></div>
+      </article>
+      
+      <article class="card" data-f="3|17|unknown|unknown|crescent_city|sport|pools|del norte county recreation department the county&#x27;s recreation department runs tiny tots, youth sports, teen sports, a summer kids camp, a drop-in programme and special events, with league schedules and brackets posted online. registration is online or in person (cash or cheque in office).">
+        <h3><span class="pin">53</span><a href="/Pleasant/resource/del-norte-county-recreation-department/">Del Norte County Recreation Department</a></h3>
+        <div class="meta">
+          <span class="tag group-pools"><i class="sw" aria-hidden="true"></i>Sport and swim</span>
+          <span class="tag">Ages 3 to 17</span>
+          <span class="tag unknown">Cost unknown</span>
+          <span class="tag unknown">Access: unknown</span>
+          <span class="tag">Crescent City</span>
+          <span class="tag verified">Checked online</span>
+        </div>
+        <div class="fresh"><span class="dot recently_verified"></span>
+          Checked 20 hours ago
+        </div>
+        <p class="src">The county&#x27;s recreation department runs Tiny Tots, youth sports, teen sports, a summer kids camp, a drop-in programme and special events, with league schedules…</p>
+        
+        <div class="src">Source: <a href="https://www.co.del-norte.ca.us/departments/recreation" rel="noopener">https://www.co.del-norte.ca.us/departments/recrea…</a> · <button type="button" class="chip" style="min-height:32px;padding:4px 10px" data-fly="-124.2023664,41.7570207">Show on map</button></div>
+      </article>
+      
+      <article class="card" data-f="0|5|unknown|unknown|gasquet|class|learning|frc little neighbors playgroup at gasquet mountain school a weekly playgroup run by the family resource center of the redwoods at mountain school in gasquet, listed on the frc programmes page for wednesdays 10:30 am to 12:30 pm. ages and cost are not stated on the page.">
+        <h3><span class="pin">54</span><a href="/Pleasant/resource/frc-little-neighbors-playgroup-at-gasquet-mountain-school/">FRC Little Neighbors Playgroup at Gasquet Mountain School</a></h3>
+        <div class="meta">
+          <span class="tag group-learning"><i class="sw" aria-hidden="true"></i>Class or club</span>
+          <span class="tag">Ages 0 to 5</span>
+          <span class="tag unknown">Cost unknown</span>
+          <span class="tag unknown">Access: unknown</span>
+          <span class="tag">Gasquet</span>
+          <span class="tag verified">Checked online</span>
+        </div>
+        <div class="fresh"><span class="dot recently_verified"></span>
+          Checked 20 hours ago
+        </div>
+        <p class="src">A weekly playgroup run by the Family Resource Center of the Redwoods at Mountain School in Gasquet, listed on the FRC programmes page for Wednesdays 10:30 am t…</p>
+        
+        <div class="src">Source: <a href="https://www.frcredwoods.org/programs" rel="noopener">https://www.frcredwoods.org/programs</a> · <button type="button" class="chip" style="min-height:32px;padding:4px 10px" data-fly="-123.96271,41.846192">Show on map</button></div>
+      </article>
+      
+      <article class="card" data-f="0|17|unknown|unknown|crescent_city|family_service|services|family resource center of the redwoods a nonprofit family resource centre offering weekly children&#x27;s activities (arts and crafts, baby signs, sensory play, toddler time), parenting classes (incredible years, love and logic), a postpartum group, a teen cooking class for ages 11-17, a two-week pre-k university for incoming kindergartners,…">
+        <h3><span class="pin">55</span><a href="/Pleasant/resource/family-resource-center-of-the-redwoods/">Family Resource Center of the Redwoods</a></h3>
+        <div class="meta">
+          <span class="tag group-services"><i class="sw" aria-hidden="true"></i>Family service</span>
+          <span class="tag">Ages 0 to 17</span>
+          <span class="tag unknown">Cost unknown</span>
+          <span class="tag unknown">Access: unknown</span>
+          <span class="tag">Crescent City</span>
+          <span class="tag verified">Checked online</span>
+        </div>
+        <div class="fresh"><span class="dot recently_verified"></span>
+          Checked 20 hours ago
+        </div>
+        <p class="src">A nonprofit family resource centre offering weekly children&#x27;s activities (arts and crafts, baby signs, sensory play, toddler time), parenting classes (Incredib…</p>
+        
+        <div class="src">Source: <a href="https://frcredwoods.org/" rel="noopener">https://frcredwoods.org/</a> · <button type="button" class="chip" style="min-height:32px;padding:4px 10px" data-fly="-124.2079641,41.758308">Show on map</button></div>
+      </article>
+      
+      <article class="card" data-f="0|18|priced|verified_yes|crescent_city|sport|pools|fred endert municipal pool crescent city&#x27;s indoor municipal pool in beachfront park, with a 25-yard pool, a waterslide, a hot tub and a sauna. it runs swim lessons from 6 months up, youth programs and open/lap swim, and the del norte healthcare district sponsors a free all-ages recreation swim on saturdays.">
+        <h3><span class="pin">56</span><a href="/Pleasant/resource/fred-endert-municipal-pool/">Fred Endert Municipal Pool</a></h3>
+        <div class="meta">
+          <span class="tag group-pools"><i class="sw" aria-hidden="true"></i>Sport and swim</span>
+          <span class="tag">Ages 0 to 18</span>
+          <span class="tag">$</span>
+          <span class="tag">Access: verified yes</span>
+          <span class="tag">Crescent City</span>
+          <span class="tag verified">Checked online</span>
+        </div>
+        <div class="fresh"><span class="dot recently_verified"></span>
+          Checked 20 hours ago
+        </div>
+        <p class="src">Crescent City&#x27;s indoor municipal pool in Beachfront Park, with a 25-yard pool, a waterslide, a hot tub and a sauna. It runs swim lessons from 6 months up, yout…</p>
+        
+        <div class="src">Source: <a href="https://crescentcitypool.com/" rel="noopener">https://crescentcitypool.com/</a> · <button type="button" class="chip" style="min-height:32px;padding:4px 10px" data-fly="-124.1941463,41.7506883">Show on map</button></div>
+      </article>
+      
+      <article class="card" data-f="0|6|unknown|unknown|countywide|class|learning|the wonder bus (del norte child care council) a mobile early-literacy programme that travels around del norte county offering story time, music and movement, crafts and play for children aged 0-6 and their caregivers. each child chooses a free book at every visit and families can borrow books; a monthly stop calendar is emailed to registered f…">
+        <h3><span class="pin">57</span><a href="/Pleasant/resource/the-wonder-bus-del-norte-child-care-council/">The Wonder Bus (Del Norte Child Care Council)</a></h3>
+        <div class="meta">
+          <span class="tag group-learning"><i class="sw" aria-hidden="true"></i>Class or club</span>
+          <span class="tag">Ages 0 to 6</span>
+          <span class="tag unknown">Cost unknown</span>
+          <span class="tag unknown">Access: unknown</span>
+          <span class="tag">Countywide</span>
+          <span class="tag verified">Checked online</span>
+        </div>
+        <div class="fresh"><span class="dot recently_verified"></span>
+          Checked 20 hours ago
+        </div>
+        <p class="src">A mobile early-literacy programme that travels around Del Norte County offering story time, music and movement, crafts and play for children aged 0-6 and their…</p>
+        
+        <div class="src">Source: <a href="https://www.dnccc.com/parents/the-wonder-bus/" rel="noopener">https://www.dnccc.com/parents/the-wonder-bus/</a> · <button type="button" class="chip" style="min-height:32px;padding:4px 10px" data-fly="-124.19478,41.7530614">Show on map</button></div>
+      </article>
+      
+      <article class="card" data-f="3|5|variable|unknown|countywide|preschool|learning|dnusd early childhood education - california state preschool program the school district runs state-funded preschool classrooms at bess maxwell, joe hamilton, mary peacock and pine grove (california state preschool program) and a district preschool at smith river elementary. enrollment is income-based using state income tables, children must turn 3 before 1 december…">
+        <h3><span class="pin">58</span><a href="/Pleasant/resource/dnusd-early-childhood-education-california-state-preschool-program/">DNUSD Early Childhood Education - California State Preschool Program</a></h3>
+        <div class="meta">
+          <span class="tag group-learning"><i class="sw" aria-hidden="true"></i>Preschool and early learning</span>
+          <span class="tag">Ages 3 to 5</span>
+          <span class="tag unknown">Cost variable</span>
+          <span class="tag unknown">Access: unknown</span>
+          <span class="tag">Countywide</span>
+          <span class="tag verified">Checked online</span>
+        </div>
+        <div class="fresh"><span class="dot recently_verified"></span>
+          Checked 20 hours ago
+        </div>
+        <p class="src">The school district runs state-funded preschool classrooms at Bess Maxwell, Joe Hamilton, Mary Peacock and Pine Grove (California State Preschool Program) and …</p>
+        
+        <div class="src">Source: <a href="https://www.dnusd.org/departments/early-childhood-education" rel="noopener">https://www.dnusd.org/departments/early-childhood…</a> · <button type="button" class="chip" style="min-height:32px;padding:4px 10px" data-fly="-124.200468,41.767457">Show on map</button></div>
+      </article>
+      
+    </div>
+    
+  </section>
+  
+  <section aria-label="Map of results">
+    <div class="map-wrap">
+      <div id="map" data-config='{"styleUrl":"/Pleasant/static/style/basemap.json","center":[-124.195, 41.755],"zoom":12.2,"api":{"pins":"/Pleasant/api/resources.geojson","county":"/Pleasant/api/boundaries/county.geojson","places":"/Pleasant/api/boundaries/places.geojson","aiannh":"/Pleasant/api/boundaries/aiannh.geojson","h3":"/Pleasant/api/h3.geojson","venues":"/Pleasant/api/h3_venues.geojson"},"venueRes":11,"groups":{"parks": {"color": "#357a3a", "fill": "#a2caa2", "dark": "#77b779"}, "pools": {"color": "#00839a", "fill": "#88cad8", "dark": "#3ab7cd"}, "attractions": {"color": "#bb6546", "fill": "#e6af9c", "dark": "#df8c6f"}, "water": {"color": "#478ece", "fill": "#9ac2e9", "dark": "#6aaae6"}, "nature": {"color": "#5d5900", "fill": "#c2c28d", "dark": "#abaa53"}, "learning": {"color": "#6b66b4", "fill": "#b8b8ea", "dark": "#9d9be7"}, "arts": {"color": "#a75c93", "fill": "#dcadce", "dark": "#d189bd"}, "services": {"color": "#754a93", "fill": "#ccb2e0", "dark": "#ba91d8"}, "programs": {"color": "#b27923", "fill": "#dab78c", "dark": "#cf9951"}},"colors":{"accent":"#00848b","ink":"#303848","ink2":"#586273","boundary":"#c19187","sensitive":"#ae6161","hex":"#00848b","hexFill":"#60bfc4"}}' role="application" aria-label="Interactive map; the list beside it has the same results"></div>
+      <fieldset class="layer-switch"><legend>Show on the map</legend>
+        <label class="grp"><input type="checkbox" data-group="parks" checked> <i class="sw" style="background:#357a3a" aria-hidden="true"></i>Parks and playgrounds</label>
+        <label class="grp"><input type="checkbox" data-group="pools" checked> <i class="sw" style="background:#00839a" aria-hidden="true"></i>Pools and indoor recreation</label>
+        <label class="grp"><input type="checkbox" data-group="attractions" checked> <i class="sw" style="background:#bb6546" aria-hidden="true"></i>Attractions</label>
+        <label class="grp"><input type="checkbox" data-group="water" checked> <i class="sw" style="background:#478ece" aria-hidden="true"></i>Rivers and beaches</label>
+        <label class="grp"><input type="checkbox" data-group="nature" checked> <i class="sw" style="background:#5d5900" aria-hidden="true"></i>Hiking and nature</label>
+        <label class="grp"><input type="checkbox" data-group="learning" checked> <i class="sw" style="background:#6b66b4" aria-hidden="true"></i>Learning and STEM</label>
+        <label class="grp"><input type="checkbox" data-group="arts" checked> <i class="sw" style="background:#a75c93" aria-hidden="true"></i>Arts</label>
+        <label class="grp"><input type="checkbox" data-group="services" checked> <i class="sw" style="background:#754a93" aria-hidden="true"></i>Libraries and family services</label>
+        <label class="grp"><input type="checkbox" data-group="programs" checked> <i class="sw" style="background:#b27923" aria-hidden="true"></i>Programs, events and people to call</label>
+        
+        <details class="adv"><summary>Map details</summary>
+          <label><input type="checkbox" data-layer="venues" checked> Place cells (H3) <select data-res aria-label="H3 resolution"><option value="9">res 9 · 175 m</option><option value="10">res 10 · 65 m</option><option value="11" selected>res 11 · 25 m</option><option value="12">res 12 · 9 m</option></select></label><small>Exact containing cell of each verified place, with a one-step halo</small>
+          <label><input type="checkbox" data-layer="pins" checked> Names</label>
+          <label><input type="checkbox" data-layer="terrain" checked> Terrain shading</label><small>USGS 3DEP</small>
+          <label><input type="checkbox" data-layer="boundaries" checked> County and city limits</label><small>Census TIGER 2025</small>
+          <label><input type="checkbox" data-layer="tribal"> Tribal land boundaries</label><small>Census AIANNH, statistical only; names pending confirmation with each Nation</small>
+          <label><input type="checkbox" data-layer="h3"> H3 aggregate (debug)</label><small>Derived index, counts &lt; k suppressed</small>
+        </details>
+      </fieldset>
+      <div class="map-credit">© OpenStreetMap contributors (ODbL) · Protomaps build 2026-10-13 · Terrain USGS 3DEP · U.S. Census Bureau · served from this site only</div>
+    </div>
+    <ol class="pin-list" aria-label="Pins on the map"><li>1. &#x27;O Me-nok Learning Center (Klamath) — free, checked 20 hours ago · H3 8b281c84b12afff</li><li>2. Bess Maxwell Elementary School — free, checked 20 hours ago · H3 8b281ca19b46fff</li><li>3. Castle Rock Charter School — free, checked 20 hours ago · H3 8b281ca0a696fff</li><li>4. Crescent Elk Middle School — free, checked 20 hours ago · H3 8b281ca1d256fff</li><li>5. Del Norte Community School — free, checked 20 hours ago · H3 8b281ca19a2cfff</li><li>6. Del Norte High School — free, checked 20 hours ago · H3 8b281ca19b5cfff</li><li>7. Joe Hamilton Elementary School — free, checked 20 hours ago · H3 8b281ca1d262fff</li><li>8. Mary Peacock Elementary School — free, checked 20 hours ago · H3 8b281cae4524fff</li><li>9. Mountain Elementary School (Gasquet) — free, checked 20 hours ago · H3 8b281ca9e503fff</li><li>10. Pine Grove Elementary School — free, checked 20 hours ago · H3 8b281cae6d69fff</li><li>11. Redwood Elementary School — free, checked 20 hours ago · H3 8b281cad5626fff</li><li>12. Smith River Elementary School — free, checked 20 hours ago · H3 8b281cada0b2fff</li><li>13. Sunset High School — free, checked 20 hours ago · H3 8b281caf0951fff</li><li>14. Uncharted Shores Academy — free, checked 20 hours ago · H3 8b281ca1d326fff</li><li>15. B Street Pier — free, checked 20 hours ago · H3 8b281ca1d81bfff</li><li>16. Battery Point Lighthouse — unknown, checked 20 hours ago · H3 8b281ca1db15fff</li><li>17. Boy Scout Tree Trail — free, checked 20 hours ago · H3 8b281caad743fff</li><li>18. Crescent Beach Overlook — free, checked 20 hours ago · H3 8b281ca158c1fff</li><li>19. Darlingtonia Trail (Smith River NRA) — unknown, checked 20 hours ago · H3 8b281c06125cfff</li><li>20. Grove of Titans Trail — free, checked 20 hours ago · H3 8b281caa8b9afff</li><li>21. Klamath River Overlook — free, checked 20 hours ago · H3 8b281cb145b4fff</li><li>22. Mill Creek Campground Trail (Del Norte Coast Redwoods SP) — unknown, checked 20 hours ago · H3 8b281cb89253fff</li><li>23. Nature River Trail (Jedediah Smith day-use area) — priced, checked 20 hours ago · H3 8b281caaa36efff</li><li>24. Northcoast Marine Mammal Center — unknown, checked 20 hours ago · H3 8b281ca1d16bfff</li><li>25. Ocean World — priced, checked 20 hours ago · H3 8b281ca1d096fff</li><li>26. Simpson-Reed Trail — free, checked 20 hours ago · H3 8b281ca8d96dfff</li><li>27. Trees of Mystery — priced, checked 20 hours ago · H3 8b281cb12bb3fff</li><li>28. Yurok Loop Trail — free, checked 20 hours ago · H3 8b281cb131a6fff</li><li>29. Crescent City Information Center (Redwood National and State Parks headquarters bookstore) — free, checked 20 hours ago · H3 8b281ca1d0c0fff</li><li>30. Hiouchi Visitor Center — free, checked 20 hours ago · H3 8b281caaa362fff</li><li>31. Jedediah Smith Visitor Center (seasonal) — unknown, checked 20 hours ago · H3 8b281caabdaafff</li><li>32. Smith River National Recreation Area Visitor Center (Gasquet Ranger Station) — free, checked 20 hours ago · H3 8b281ca9ecddfff</li><li>33. Brother Jonathan Park and Overlook — free, checked 20 hours ago · H3 8b281ca0ada9fff</li><li>34. Clifford Kamph Memorial Park — free, checked 20 hours ago · H3 8b281c362798fff</li><li>35. Del Norte County Library (Main Library) — free, checked 20 hours ago · H3 8b281ca1d208fff</li><li>36. Del Norte County Library - Smith River Branch — free, checked 20 hours ago · H3 8b281cada556fff</li><li>37. Elk Valley Rancheria Library — unknown, checked 20 hours ago · H3 8b281ca18ca2fff</li><li>38. Forks River Access and Boat Ramp (Smith River NRA) — free, checked 20 hours ago · H3 8b281ca81969fff</li><li>39. Jedediah Smith Redwoods State Park - campground day-use area and river beach — priced, checked 20 hours ago · H3 8b281caaa36efff</li><li>40. Panther Flat Picnic Area and swimming holes (Smith River NRA) — free, checked 20 hours ago · H3 8b281c06c958fff</li><li>41. Tolowa Dunes State Park — free, checked 20 hours ago · H3 8b281cae0cccfff</li><li>42. Beachfront Park and Kid&#x27;s Town (KidTown) playground — free, checked 20 hours ago · H3 8b281ca1d00dfff</li><li>43. Crescent Beach Day Use Area — free, checked 20 hours ago · H3 8b281ca1c072fff</li><li>44. Pelican State Beach — free, checked 20 hours ago · H3 8b281c344636fff</li><li>45. Pyke Field playground and softball fields — free, checked 20 hours ago · H3 8b281ca1d2e5fff</li><li>46. College of the Redwoods - Del Norte Campus — unknown, checked 20 hours ago · H3 8b281cae4d80fff</li><li>47. Del Norte County Historical Society Main Museum — unknown, checked 20 hours ago · H3 8b281ca1d3abfff</li><li>48. Del Norte County 4-H Program (UC Cooperative Extension) — unknown, checked 20 hours ago · H3 8b281ca1d31afff</li><li>49. E3 Summer Youth Program (DNCOE / SMART Workforce Center) — free, checked 20 hours ago · H3 8b281ca1d385fff</li><li>50. Mary Peacock After School Center (Del Norte Child Care Council) — unknown, checked 20 hours ago · H3 8b281cae4525fff</li><li>51. Two Trees Student Support Center / Expanded Learning (DNCOE) — unknown, checked 20 hours ago · H3 8b281ca19ad8fff</li><li>52. Del Norte Child Care Council — unknown, checked 20 hours ago · H3 8b281ca1d0c1fff</li><li>53. Del Norte County Recreation Department — unknown, checked 20 hours ago · H3 8b281ca1d2e0fff</li><li>54. FRC Little Neighbors Playgroup at Gasquet Mountain School — unknown, checked 20 hours ago · H3 8b281ca9e500fff</li><li>55. Family Resource Center of the Redwoods — unknown, checked 20 hours ago · H3 8b281ca0a51efff</li><li>56. Fred Endert Municipal Pool — priced, checked 20 hours ago · H3 8b281ca1d01dfff</li><li>57. The Wonder Bus (Del Norte Child Care Council) — unknown, checked 20 hours ago · H3 8b281ca1d0c1fff</li><li>58. DNUSD Early Childhood Education - California State Preschool Program — variable, checked 20 hours ago · H3 8b281ca19b96fff</li></ol>
+  </section>
+  
+</div>
+</main>
+<aside id="compass-drawer" class="compass-drawer" aria-label="Crescent Compass" hidden><div class="compass-head"><span class="compass-icon" aria-hidden="true"></span><h2>Crescent Compass</h2><button type="button" data-close aria-label="Close Compass">×</button></div>
+<p class="lede" style="padding:10px 16px 0;font-size:.85rem">I only answer from the verified directory. I show where each answer came from, and I say so when I don't know.</p>
+<div class="compass-log" role="log" aria-live="polite"></div>
+<div class="suggest" aria-label="Example questions">
+  <button type="button">Free rainy-day ideas for a 6-year-old?</button>
+  <button type="button">Where can we go with a wheelchair?</button>
+  <button type="button">What's on this week?</button>
+  <button type="button">forget that</button>
+</div>
+<form class="compass-form" data-url="/Pleasant/compass/ask"><input type="hidden" name="csrfmiddlewaretoken" value="nx8YG6jee8nGJXbcyAbviZ2lRW7uiL2fqNdDtbFDJlyNDDSmeRShSK4I9013kCWh"><label class="skip" for="compass-q">Your question</label><input id="compass-q" type="text" placeholder="Ask one thing, e.g. story time for a toddler" autocomplete="off" maxlength="1000"><button type="submit">Ask</button></form>
+</aside>
+<footer class="site-foot">
+  <div class="foot-grid">
+    <div class="foot-brand"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="36" height="36" role="img" aria-label="Pleasant Crescent. Freshness gauge: mean P(current) 1.00 over 58 listings; belief moved 0.39 rad this window; 3859 changes"><title>Pleasant Crescent. Freshness gauge: mean P(current) 1.00 over 58 listings; belief moved 0.39 rad this window; 3859 changes</title><circle cx="50" cy="50" r="46" fill="#cae9ff" opacity="0.35"/><circle cx="50" cy="50" r="44" fill="#364868"/><path d="M50.00,6.00 L52.88,6.09 L55.74,6.38 L58.58,6.85 L61.39,7.50 L64.14,8.34 L66.84,9.35 L69.46,10.54 L72.00,11.89 L74.45,13.42 L76.79,15.09 L79.01,16.92 L81.11,18.89 L83.08,20.99 L84.91,23.21 L86.58,25.55 L88.11,28.00 L89.46,30.54 L90.65,33.16 L91.66,35.86 L92.50,38.61 L93.15,41.42 L93.62,44.26 L93.91,47.12 L94.00,50.00 L93.91,52.88 L93.62,55.74 L93.15,58.58 L92.50,61.39 L91.66,64.14 L90.65,66.84 L89.46,69.46 L88.11,72.00 L86.58,74.45 L84.91,76.79 L83.08,79.01 L81.11,81.11 L79.01,83.08 L76.79,84.91 L74.45,86.58 L72.00,88.11 L69.46,89.46 L66.84,90.65 L64.14,91.66 L61.39,92.50 L58.58,93.15 L55.74,93.62 L52.88,93.91 L50.00,94.00 L50.00,94.00 L47.13,93.91 L44.28,93.62 L41.45,93.15 L38.66,92.50 L35.92,91.66 L33.23,90.65 L30.62,89.46 L28.09,88.11 L25.66,86.58 L23.33,84.91 L21.11,83.08 L19.02,81.11 L17.06,79.01 L15.24,76.79 L13.57,74.45 L12.06,72.00 L10.70,69.46 L9.52,66.84 L8.51,64.14 L7.68,61.39 L7.03,58.58 L6.56,55.74 L6.28,52.88 L6.19,50.00 L6.28,47.12 L6.56,44.26 L7.03,41.42 L7.68,38.61 L8.51,35.86 L9.52,33.16 L10.70,30.54 L12.06,28.00 L13.57,25.55 L15.24,23.21 L17.06,20.99 L19.02,18.89 L21.11,16.92 L23.33,15.09 L25.66,13.42 L28.09,11.89 L30.62,10.54 L33.23,9.35 L35.92,8.34 L38.66,7.50 L41.45,6.85 L44.28,6.38 L47.13,6.09 L50.00,6.00 Z" fill="#e4b572"><animate attributeName="d" dur="14s" repeatCount="indefinite" calcMode="spline" keyTimes="0;0.5;1" keySplines="0.45 0 0.55 1;0.45 0 0.55 1" values="M50.00,6.00 L52.88,6.09 L55.74,6.38 L58.58,6.85 L61.39,7.50 L64.14,8.34 L66.84,9.35 L69.46,10.54 L72.00,11.89 L74.45,13.42 L76.79,15.09 L79.01,16.92 L81.11,18.89 L83.08,20.99 L84.91,23.21 L86.58,25.55 L88.11,28.00 L89.46,30.54 L90.65,33.16 L91.66,35.86 L92.50,38.61 L93.15,41.42 L93.62,44.26 L93.91,47.12 L94.00,50.00 L93.91,52.88 L93.62,55.74 L93.15,58.58 L92.50,61.39 L91.66,64.14 L90.65,66.84 L89.46,69.46 L88.11,72.00 L86.58,74.45 L84.91,76.79 L83.08,79.01 L81.11,81.11 L79.01,83.08 L76.79,84.91 L74.45,86.58 L72.00,88.11 L69.46,89.46 L66.84,90.65 L64.14,91.66 L61.39,92.50 L58.58,93.15 L55.74,93.62 L52.88,93.91 L50.00,94.00 L50.00,94.00 L47.40,93.91 L44.81,93.62 L42.24,93.15 L39.71,92.50 L37.22,91.66 L34.78,90.65 L32.41,89.46 L30.11,88.11 L27.90,86.58 L25.79,84.91 L23.78,83.08 L21.88,81.11 L20.10,79.01 L18.45,76.79 L16.93,74.45 L15.56,72.00 L14.33,69.46 L13.26,66.84 L12.34,64.14 L11.58,61.39 L10.99,58.58 L10.57,55.74 L10.31,52.88 L10.23,50.00 L10.31,47.12 L10.57,44.26 L10.99,41.42 L11.58,38.61 L12.34,35.86 L13.26,33.16 L14.33,30.54 L15.56,28.00 L16.93,25.55 L18.45,23.21 L20.10,20.99 L21.88,18.89 L23.78,16.92 L25.79,15.09 L27.90,13.42 L30.11,11.89 L32.41,10.54 L34.78,9.35 L37.22,8.34 L39.71,7.50 L42.24,6.85 L44.81,6.38 L47.40,6.09 L50.00,6.00 Z;M50.00,6.00 L52.88,6.09 L55.74,6.38 L58.58,6.85 L61.39,7.50 L64.14,8.34 L66.84,9.35 L69.46,10.54 L72.00,11.89 L74.45,13.42 L76.79,15.09 L79.01,16.92 L81.11,18.89 L83.08,20.99 L84.91,23.21 L86.58,25.55 L88.11,28.00 L89.46,30.54 L90.65,33.16 L91.66,35.86 L92.50,38.61 L93.15,41.42 L93.62,44.26 L93.91,47.12 L94.00,50.00 L93.91,52.88 L93.62,55.74 L93.15,58.58 L92.50,61.39 L91.66,64.14 L90.65,66.84 L89.46,69.46 L88.11,72.00 L86.58,74.45 L84.91,76.79 L83.08,79.01 L81.11,81.11 L79.01,83.08 L76.79,84.91 L74.45,86.58 L72.00,88.11 L69.46,89.46 L66.84,90.65 L64.14,91.66 L61.39,92.50 L58.58,93.15 L55.74,93.62 L52.88,93.91 L50.00,94.00 L50.00,94.00 L47.12,93.91 L44.26,93.62 L41.42,93.15 L38.61,92.50 L35.86,91.66 L33.16,90.65 L30.54,89.46 L28.00,88.11 L25.55,86.58 L23.21,84.91 L20.99,83.08 L18.89,81.11 L16.92,79.01 L15.09,76.79 L13.42,74.45 L11.89,72.00 L10.54,69.46 L9.35,66.84 L8.34,64.14 L7.50,61.39 L6.85,58.58 L6.38,55.74 L6.09,52.88 L6.00,50.00 L6.09,47.12 L6.38,44.26 L6.85,41.42 L7.50,38.61 L8.34,35.86 L9.35,33.16 L10.54,30.54 L11.89,28.00 L13.42,25.55 L15.09,23.21 L16.92,20.99 L18.89,18.89 L20.99,16.92 L23.21,15.09 L25.55,13.42 L28.00,11.89 L30.54,10.54 L33.16,9.35 L35.86,8.34 L38.61,7.50 L41.42,6.85 L44.26,6.38 L47.12,6.09 L50.00,6.00 Z;M50.00,6.00 L52.88,6.09 L55.74,6.38 L58.58,6.85 L61.39,7.50 L64.14,8.34 L66.84,9.35 L69.46,10.54 L72.00,11.89 L74.45,13.42 L76.79,15.09 L79.01,16.92 L81.11,18.89 L83.08,20.99 L84.91,23.21 L86.58,25.55 L88.11,28.00 L89.46,30.54 L90.65,33.16 L91.66,35.86 L92.50,38.61 L93.15,41.42 L93.62,44.26 L93.91,47.12 L94.00,50.00 L93.91,52.88 L93.62,55.74 L93.15,58.58 L92.50,61.39 L91.66,64.14 L90.65,66.84 L89.46,69.46 L88.11,72.00 L86.58,74.45 L84.91,76.79 L83.08,79.01 L81.11,81.11 L79.01,83.08 L76.79,84.91 L74.45,86.58 L72.00,88.11 L69.46,89.46 L66.84,90.65 L64.14,91.66 L61.39,92.50 L58.58,93.15 L55.74,93.62 L52.88,93.91 L50.00,94.00 L50.00,94.00 L47.40,93.91 L44.81,93.62 L42.24,93.15 L39.71,92.50 L37.22,91.66 L34.78,90.65 L32.41,89.46 L30.11,88.11 L27.90,86.58 L25.79,84.91 L23.78,83.08 L21.88,81.11 L20.10,79.01 L18.45,76.79 L16.93,74.45 L15.56,72.00 L14.33,69.46 L13.26,66.84 L12.34,64.14 L11.58,61.39 L10.99,58.58 L10.57,55.74 L10.31,52.88 L10.23,50.00 L10.31,47.12 L10.57,44.26 L10.99,41.42 L11.58,38.61 L12.34,35.86 L13.26,33.16 L14.33,30.54 L15.56,28.00 L16.93,25.55 L18.45,23.21 L20.10,20.99 L21.88,18.89 L23.78,16.92 L25.79,15.09 L27.90,13.42 L30.11,11.89 L32.41,10.54 L34.78,9.35 L37.22,8.34 L39.71,7.50 L42.24,6.85 L44.81,6.38 L47.40,6.09 L50.00,6.00 Z"/></path><defs><radialGradient id="pc_limb" cx="0.42" cy="0.40" r="0.62"><stop offset="0.6" stop-color="#000" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity="0.22"/></radialGradient></defs><circle cx="50" cy="50" r="44" fill="url(#pc_limb)"/><circle cx="50" cy="50" r="46" fill="none" stroke="#00848b" stroke-width="1.5" opacity="0.8"/><circle cx="50.0" cy="1.8" r="0.9" fill="#00848b" opacity="0.8"/><circle cx="74.1" cy="8.3" r="0.9" fill="#00848b" opacity="0.8"/><circle cx="91.7" cy="25.9" r="0.9" fill="#00848b" opacity="0.8"/><circle cx="98.2" cy="50.0" r="0.9" fill="#00848b" opacity="0.8"/><circle cx="91.7" cy="74.1" r="0.9" fill="#00848b" opacity="0.8"/><circle cx="74.1" cy="91.7" r="0.9" fill="#00848b" opacity="0.8"/><circle cx="50.0" cy="98.2" r="0.9" fill="#00848b" opacity="0.8"/><circle cx="25.9" cy="91.7" r="0.9" fill="#00848b" opacity="0.8"/><circle cx="8.3" cy="74.1" r="0.9" fill="#00848b" opacity="0.8"/><circle cx="1.8" cy="50.0" r="0.9" fill="#00848b" opacity="0.8"/><circle cx="8.3" cy="25.9" r="0.9" fill="#00848b" opacity="0.8"/><circle cx="25.9" cy="8.3" r="0.9" fill="#00848b" opacity="0.8"/></svg><p>Pleasant Crescent is a locally governed atlas for families, neighbours and newcomers. It helps people notice and care for their shared surroundings, and it never claims to be a complete picture of a place or of the people who live there.</p></div>
+    <div><p class="eyebrow">Visit</p><p>Organisation name<br>Street address<br>Crescent City, CA 95531<br><small class="ph-note">placeholder: owner supplies</small></p></div>
+    <div><p class="eyebrow">Contact</p><p><a href="mailto:hello@example.invalid">hello@example.invalid</a><br><a href="/Pleasant/contribute/">Suggest a place or correction</a><br><a href="/Pleasant/about/#governance">Governance and commitments</a></p></div>
+  </div>
+  <div class="foot-rule"></div>
+  <p class="foot-small">Map data © OpenStreetMap contributors (ODbL) via Protomaps · Terrain USGS 3DEP · Boundaries U.S. Census Bureau · Fonts Noto Sans and Cormorant Garamond (OFL). Directory guidance is not medical, legal or emergency advice; verification dates are shown on every listing. <span class="right">Crescent City · California</span></p>
+</footer>
+<script src="/Pleasant/static/pc/compass.js" defer></script>
+<script src="/Pleasant/static/pc/static.js" defer></script>
+
+<script src="/Pleasant/static/vendor/maplibre-gl.js"></script>
+<script src="/Pleasant/static/vendor/pmtiles.js"></script>
+<script src="/Pleasant/static/pc/map.js"></script>
+
+</body>
+</html>

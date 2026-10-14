@@ -1,0 +1,271 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pleasant Crescent</title>
+<meta name="description" content="A friendly, verified atlas for families, neighbours and newcomers in Del Norte County.">
+<link rel="icon" href="/Pleasant/logo.svg" type="image/svg+xml">
+<meta name="robots" content="noindex, nofollow">
+<script>window.PC_STATIC={"base": "/Pleasant/", "reviewEmail": ""};</script>
+<link rel="stylesheet" href="/Pleasant/static/fonts/cormorant/cormorant.css">
+<link rel="stylesheet" href="/Pleasant/static/vendor/maplibre-gl.css">
+<link rel="stylesheet" href="/Pleasant/static/pc/app.css">
+<style>
+:root{
+  --pc-bg:#f7f2ea;--pc-surface:#ffffff;--pc-ink:#303848;--pc-ink-2:#586273;
+  --pc-accent:#00848b;--pc-accent-on:#ffffff;--pc-accent-2:#a3675b;--pc-free:#14875a;--pc-unknown:#6f787f;
+  --pc-verified:#14875a;--pc-stale:#a3675b;--pc-sensitive:#ae6161;
+  --pc-radius:14px;--pc-font-ui:system-ui, -apple-system, 'Segoe UI', Roboto, Inter, sans-serif;--pc-line:#d8d0c3;
+  --pc-font-display:'Cormorant Garamond', Georgia, 'Times New Roman', serif;--pc-font-mono:ui-monospace, 'JetBrains Mono', SFMono-Regular, Menlo, monospace;
+}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){
+  --pc-bg:#131822;--pc-surface:#1f242e;--pc-ink:#98a5ae;--pc-ink-2:#76828b;
+  --pc-accent:#1d999f;--pc-accent-on:#131822;--pc-accent-2:#bd786a;--pc-free:#3f9a6f;
+  --pc-unknown:#76828b;--pc-verified:#3f9a6f;--pc-stale:#bd786a;--pc-sensitive:#bd786a;
+  --pc-line:#2b3940;
+}}
+body{background:var(--pc-bg)}
+.tag.group-parks .sw,.ph.group-parks::after{background:#357a3a}
+.tag.group-pools .sw,.ph.group-pools::after{background:#00839a}
+.tag.group-attractions .sw,.ph.group-attractions::after{background:#bb6546}
+.tag.group-water .sw,.ph.group-water::after{background:#478ece}
+.tag.group-nature .sw,.ph.group-nature::after{background:#5d5900}
+.tag.group-learning .sw,.ph.group-learning::after{background:#6b66b4}
+.tag.group-arts .sw,.ph.group-arts::after{background:#a75c93}
+.tag.group-services .sw,.ph.group-services::after{background:#754a93}
+.tag.group-programs .sw,.ph.group-programs::after{background:#b27923}
+</style>
+
+</head>
+<body class="home">
+<a class="skip" href="#main">Skip to content</a>
+<div class="private-banner" role="status">Static preview for review. Listings and map are a snapshot checked online, not yet visited in person. Accounts, suggestions and Compass audit records need the hosted site. <a href="/Pleasant/review/">Review guide and questions</a></div>
+<header class="site-head">
+  <a class="brand" href="/" aria-label="Pleasant Crescent home"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="36" height="36" role="img" aria-label="Pleasant Crescent. Freshness gauge: mean P(current) 1.00 over 58 listings; belief moved 0.39 rad this window; 3859 changes"><title>Pleasant Crescent. Freshness gauge: mean P(current) 1.00 over 58 listings; belief moved 0.39 rad this window; 3859 changes</title><circle cx="50" cy="50" r="46" fill="#cae9ff" opacity="0.35"/><circle cx="50" cy="50" r="44" fill="#364868"/><path d="M50.00,6.00 L52.88,6.09 L55.74,6.38 L58.58,6.85 L61.39,7.50 L64.14,8.34 L66.84,9.35 L69.46,10.54 L72.00,11.89 L74.45,13.42 L76.79,15.09 L79.01,16.92 L81.11,18.89 L83.08,20.99 L84.91,23.21 L86.58,25.55 L88.11,28.00 L89.46,30.54 L90.65,33.16 L91.66,35.86 L92.50,38.61 L93.15,41.42 L93.62,44.26 L93.91,47.12 L94.00,50.00 L93.91,52.88 L93.62,55.74 L93.15,58.58 L92.50,61.39 L91.66,64.14 L90.65,66.84 L89.46,69.46 L88.11,72.00 L86.58,74.45 L84.91,76.79 L83.08,79.01 L81.11,81.11 L79.01,83.08 L76.79,84.91 L74.45,86.58 L72.00,88.11 L69.46,89.46 L66.84,90.65 L64.14,91.66 L61.39,92.50 L58.58,93.15 L55.74,93.62 L52.88,93.91 L50.00,94.00 L50.00,94.00 L47.13,93.91 L44.28,93.62 L41.45,93.15 L38.66,92.50 L35.92,91.66 L33.23,90.65 L30.62,89.46 L28.09,88.11 L25.66,86.58 L23.33,84.91 L21.11,83.08 L19.02,81.11 L17.06,79.01 L15.24,76.79 L13.57,74.45 L12.06,72.00 L10.70,69.46 L9.52,66.84 L8.51,64.14 L7.68,61.39 L7.03,58.58 L6.56,55.74 L6.28,52.88 L6.19,50.00 L6.28,47.12 L6.56,44.26 L7.03,41.42 L7.68,38.61 L8.51,35.86 L9.52,33.16 L10.70,30.54 L12.06,28.00 L13.57,25.55 L15.24,23.21 L17.06,20.99 L19.02,18.89 L21.11,16.92 L23.33,15.09 L25.66,13.42 L28.09,11.89 L30.62,10.54 L33.23,9.35 L35.92,8.34 L38.66,7.50 L41.45,6.85 L44.28,6.38 L47.13,6.09 L50.00,6.00 Z" fill="#e4b572"><animate attributeName="d" dur="14s" repeatCount="indefinite" calcMode="spline" keyTimes="0;0.5;1" keySplines="0.45 0 0.55 1;0.45 0 0.55 1" values="M50.00,6.00 L52.88,6.09 L55.74,6.38 L58.58,6.85 L61.39,7.50 L64.14,8.34 L66.84,9.35 L69.46,10.54 L72.00,11.89 L74.45,13.42 L76.79,15.09 L79.01,16.92 L81.11,18.89 L83.08,20.99 L84.91,23.21 L86.58,25.55 L88.11,28.00 L89.46,30.54 L90.65,33.16 L91.66,35.86 L92.50,38.61 L93.15,41.42 L93.62,44.26 L93.91,47.12 L94.00,50.00 L93.91,52.88 L93.62,55.74 L93.15,58.58 L92.50,61.39 L91.66,64.14 L90.65,66.84 L89.46,69.46 L88.11,72.00 L86.58,74.45 L84.91,76.79 L83.08,79.01 L81.11,81.11 L79.01,83.08 L76.79,84.91 L74.45,86.58 L72.00,88.11 L69.46,89.46 L66.84,90.65 L64.14,91.66 L61.39,92.50 L58.58,93.15 L55.74,93.62 L52.88,93.91 L50.00,94.00 L50.00,94.00 L47.40,93.91 L44.81,93.62 L42.24,93.15 L39.71,92.50 L37.22,91.66 L34.78,90.65 L32.41,89.46 L30.11,88.11 L27.90,86.58 L25.79,84.91 L23.78,83.08 L21.88,81.11 L20.10,79.01 L18.45,76.79 L16.93,74.45 L15.56,72.00 L14.33,69.46 L13.26,66.84 L12.34,64.14 L11.58,61.39 L10.99,58.58 L10.57,55.74 L10.31,52.88 L10.23,50.00 L10.31,47.12 L10.57,44.26 L10.99,41.42 L11.58,38.61 L12.34,35.86 L13.26,33.16 L14.33,30.54 L15.56,28.00 L16.93,25.55 L18.45,23.21 L20.10,20.99 L21.88,18.89 L23.78,16.92 L25.79,15.09 L27.90,13.42 L30.11,11.89 L32.41,10.54 L34.78,9.35 L37.22,8.34 L39.71,7.50 L42.24,6.85 L44.81,6.38 L47.40,6.09 L50.00,6.00 Z;M50.00,6.00 L52.88,6.09 L55.74,6.38 L58.58,6.85 L61.39,7.50 L64.14,8.34 L66.84,9.35 L69.46,10.54 L72.00,11.89 L74.45,13.42 L76.79,15.09 L79.01,16.92 L81.11,18.89 L83.08,20.99 L84.91,23.21 L86.58,25.55 L88.11,28.00 L89.46,30.54 L90.65,33.16 L91.66,35.86 L92.50,38.61 L93.15,41.42 L93.62,44.26 L93.91,47.12 L94.00,50.00 L93.91,52.88 L93.62,55.74 L93.15,58.58 L92.50,61.39 L91.66,64.14 L90.65,66.84 L89.46,69.46 L88.11,72.00 L86.58,74.45 L84.91,76.79 L83.08,79.01 L81.11,81.11 L79.01,83.08 L76.79,84.91 L74.45,86.58 L72.00,88.11 L69.46,89.46 L66.84,90.65 L64.14,91.66 L61.39,92.50 L58.58,93.15 L55.74,93.62 L52.88,93.91 L50.00,94.00 L50.00,94.00 L47.12,93.91 L44.26,93.62 L41.42,93.15 L38.61,92.50 L35.86,91.66 L33.16,90.65 L30.54,89.46 L28.00,88.11 L25.55,86.58 L23.21,84.91 L20.99,83.08 L18.89,81.11 L16.92,79.01 L15.09,76.79 L13.42,74.45 L11.89,72.00 L10.54,69.46 L9.35,66.84 L8.34,64.14 L7.50,61.39 L6.85,58.58 L6.38,55.74 L6.09,52.88 L6.00,50.00 L6.09,47.12 L6.38,44.26 L6.85,41.42 L7.50,38.61 L8.34,35.86 L9.35,33.16 L10.54,30.54 L11.89,28.00 L13.42,25.55 L15.09,23.21 L16.92,20.99 L18.89,18.89 L20.99,16.92 L23.21,15.09 L25.55,13.42 L28.00,11.89 L30.54,10.54 L33.16,9.35 L35.86,8.34 L38.61,7.50 L41.42,6.85 L44.26,6.38 L47.12,6.09 L50.00,6.00 Z;M50.00,6.00 L52.88,6.09 L55.74,6.38 L58.58,6.85 L61.39,7.50 L64.14,8.34 L66.84,9.35 L69.46,10.54 L72.00,11.89 L74.45,13.42 L76.79,15.09 L79.01,16.92 L81.11,18.89 L83.08,20.99 L84.91,23.21 L86.58,25.55 L88.11,28.00 L89.46,30.54 L90.65,33.16 L91.66,35.86 L92.50,38.61 L93.15,41.42 L93.62,44.26 L93.91,47.12 L94.00,50.00 L93.91,52.88 L93.62,55.74 L93.15,58.58 L92.50,61.39 L91.66,64.14 L90.65,66.84 L89.46,69.46 L88.11,72.00 L86.58,74.45 L84.91,76.79 L83.08,79.01 L81.11,81.11 L79.01,83.08 L76.79,84.91 L74.45,86.58 L72.00,88.11 L69.46,89.46 L66.84,90.65 L64.14,91.66 L61.39,92.50 L58.58,93.15 L55.74,93.62 L52.88,93.91 L50.00,94.00 L50.00,94.00 L47.40,93.91 L44.81,93.62 L42.24,93.15 L39.71,92.50 L37.22,91.66 L34.78,90.65 L32.41,89.46 L30.11,88.11 L27.90,86.58 L25.79,84.91 L23.78,83.08 L21.88,81.11 L20.10,79.01 L18.45,76.79 L16.93,74.45 L15.56,72.00 L14.33,69.46 L13.26,66.84 L12.34,64.14 L11.58,61.39 L10.99,58.58 L10.57,55.74 L10.31,52.88 L10.23,50.00 L10.31,47.12 L10.57,44.26 L10.99,41.42 L11.58,38.61 L12.34,35.86 L13.26,33.16 L14.33,30.54 L15.56,28.00 L16.93,25.55 L18.45,23.21 L20.10,20.99 L21.88,18.89 L23.78,16.92 L25.79,15.09 L27.90,13.42 L30.11,11.89 L32.41,10.54 L34.78,9.35 L37.22,8.34 L39.71,7.50 L42.24,6.85 L44.81,6.38 L47.40,6.09 L50.00,6.00 Z"/></path><defs><radialGradient id="pc_limb" cx="0.42" cy="0.40" r="0.62"><stop offset="0.6" stop-color="#000" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity="0.22"/></radialGradient></defs><circle cx="50" cy="50" r="44" fill="url(#pc_limb)"/><circle cx="50" cy="50" r="46" fill="none" stroke="#00848b" stroke-width="1.5" opacity="0.8"/><circle cx="50.0" cy="1.8" r="0.9" fill="#00848b" opacity="0.8"/><circle cx="74.1" cy="8.3" r="0.9" fill="#00848b" opacity="0.8"/><circle cx="91.7" cy="25.9" r="0.9" fill="#00848b" opacity="0.8"/><circle cx="98.2" cy="50.0" r="0.9" fill="#00848b" opacity="0.8"/><circle cx="91.7" cy="74.1" r="0.9" fill="#00848b" opacity="0.8"/><circle cx="74.1" cy="91.7" r="0.9" fill="#00848b" opacity="0.8"/><circle cx="50.0" cy="98.2" r="0.9" fill="#00848b" opacity="0.8"/><circle cx="25.9" cy="91.7" r="0.9" fill="#00848b" opacity="0.8"/><circle cx="8.3" cy="74.1" r="0.9" fill="#00848b" opacity="0.8"/><circle cx="1.8" cy="50.0" r="0.9" fill="#00848b" opacity="0.8"/><circle cx="8.3" cy="25.9" r="0.9" fill="#00848b" opacity="0.8"/><circle cx="25.9" cy="8.3" r="0.9" fill="#00848b" opacity="0.8"/></svg><span class="wordmark">Pleasant Crescent</span></a>
+  <nav class="site-nav" aria-label="Main">
+    <a href="/Pleasant/explore/" >Explore</a>
+    <a href="/Pleasant/this-week/" >This week</a>
+    <a href="/Pleasant/local-help/" >Local help</a>
+    <a href="/Pleasant/about/" >About</a>
+    <a href="/Pleasant/review/" class="review-link" >For Kim</a>
+    <a href="/Pleasant/accounts/join/" class="join">Join</a>
+  </nav>
+  <button class="compass-toggle" type="button" aria-expanded="false" aria-controls="compass-drawer" id="compass-toggle">
+    <span class="compass-icon" aria-hidden="true"></span>Compass
+  </button>
+</header>
+<main id="main" class="site-main">
+<section class="hero-sz">
+  <div class="emblem" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"   role="img" aria-label="Pleasant Crescent. Freshness gauge: mean P(current) 1.00 over 58 listings; belief moved 0.39 rad this window; 3859 changes"><title>Pleasant Crescent. Freshness gauge: mean P(current) 1.00 over 58 listings; belief moved 0.39 rad this window; 3859 changes</title><circle cx="50" cy="50" r="46" fill="#cae9ff" opacity="0.35"/><circle cx="50" cy="50" r="44" fill="#364868"/><path d="M50.00,6.00 L52.88,6.09 L55.74,6.38 L58.58,6.85 L61.39,7.50 L64.14,8.34 L66.84,9.35 L69.46,10.54 L72.00,11.89 L74.45,13.42 L76.79,15.09 L79.01,16.92 L81.11,18.89 L83.08,20.99 L84.91,23.21 L86.58,25.55 L88.11,28.00 L89.46,30.54 L90.65,33.16 L91.66,35.86 L92.50,38.61 L93.15,41.42 L93.62,44.26 L93.91,47.12 L94.00,50.00 L93.91,52.88 L93.62,55.74 L93.15,58.58 L92.50,61.39 L91.66,64.14 L90.65,66.84 L89.46,69.46 L88.11,72.00 L86.58,74.45 L84.91,76.79 L83.08,79.01 L81.11,81.11 L79.01,83.08 L76.79,84.91 L74.45,86.58 L72.00,88.11 L69.46,89.46 L66.84,90.65 L64.14,91.66 L61.39,92.50 L58.58,93.15 L55.74,93.62 L52.88,93.91 L50.00,94.00 L50.00,94.00 L47.13,93.91 L44.28,93.62 L41.45,93.15 L38.66,92.50 L35.92,91.66 L33.23,90.65 L30.62,89.46 L28.09,88.11 L25.66,86.58 L23.33,84.91 L21.11,83.08 L19.02,81.11 L17.06,79.01 L15.24,76.79 L13.57,74.45 L12.06,72.00 L10.70,69.46 L9.52,66.84 L8.51,64.14 L7.68,61.39 L7.03,58.58 L6.56,55.74 L6.28,52.88 L6.19,50.00 L6.28,47.12 L6.56,44.26 L7.03,41.42 L7.68,38.61 L8.51,35.86 L9.52,33.16 L10.70,30.54 L12.06,28.00 L13.57,25.55 L15.24,23.21 L17.06,20.99 L19.02,18.89 L21.11,16.92 L23.33,15.09 L25.66,13.42 L28.09,11.89 L30.62,10.54 L33.23,9.35 L35.92,8.34 L38.66,7.50 L41.45,6.85 L44.28,6.38 L47.13,6.09 L50.00,6.00 Z" fill="#e4b572"><animate attributeName="d" dur="14s" repeatCount="indefinite" calcMode="spline" keyTimes="0;0.5;1" keySplines="0.45 0 0.55 1;0.45 0 0.55 1" values="M50.00,6.00 L52.88,6.09 L55.74,6.38 L58.58,6.85 L61.39,7.50 L64.14,8.34 L66.84,9.35 L69.46,10.54 L72.00,11.89 L74.45,13.42 L76.79,15.09 L79.01,16.92 L81.11,18.89 L83.08,20.99 L84.91,23.21 L86.58,25.55 L88.11,28.00 L89.46,30.54 L90.65,33.16 L91.66,35.86 L92.50,38.61 L93.15,41.42 L93.62,44.26 L93.91,47.12 L94.00,50.00 L93.91,52.88 L93.62,55.74 L93.15,58.58 L92.50,61.39 L91.66,64.14 L90.65,66.84 L89.46,69.46 L88.11,72.00 L86.58,74.45 L84.91,76.79 L83.08,79.01 L81.11,81.11 L79.01,83.08 L76.79,84.91 L74.45,86.58 L72.00,88.11 L69.46,89.46 L66.84,90.65 L64.14,91.66 L61.39,92.50 L58.58,93.15 L55.74,93.62 L52.88,93.91 L50.00,94.00 L50.00,94.00 L47.40,93.91 L44.81,93.62 L42.24,93.15 L39.71,92.50 L37.22,91.66 L34.78,90.65 L32.41,89.46 L30.11,88.11 L27.90,86.58 L25.79,84.91 L23.78,83.08 L21.88,81.11 L20.10,79.01 L18.45,76.79 L16.93,74.45 L15.56,72.00 L14.33,69.46 L13.26,66.84 L12.34,64.14 L11.58,61.39 L10.99,58.58 L10.57,55.74 L10.31,52.88 L10.23,50.00 L10.31,47.12 L10.57,44.26 L10.99,41.42 L11.58,38.61 L12.34,35.86 L13.26,33.16 L14.33,30.54 L15.56,28.00 L16.93,25.55 L18.45,23.21 L20.10,20.99 L21.88,18.89 L23.78,16.92 L25.79,15.09 L27.90,13.42 L30.11,11.89 L32.41,10.54 L34.78,9.35 L37.22,8.34 L39.71,7.50 L42.24,6.85 L44.81,6.38 L47.40,6.09 L50.00,6.00 Z;M50.00,6.00 L52.88,6.09 L55.74,6.38 L58.58,6.85 L61.39,7.50 L64.14,8.34 L66.84,9.35 L69.46,10.54 L72.00,11.89 L74.45,13.42 L76.79,15.09 L79.01,16.92 L81.11,18.89 L83.08,20.99 L84.91,23.21 L86.58,25.55 L88.11,28.00 L89.46,30.54 L90.65,33.16 L91.66,35.86 L92.50,38.61 L93.15,41.42 L93.62,44.26 L93.91,47.12 L94.00,50.00 L93.91,52.88 L93.62,55.74 L93.15,58.58 L92.50,61.39 L91.66,64.14 L90.65,66.84 L89.46,69.46 L88.11,72.00 L86.58,74.45 L84.91,76.79 L83.08,79.01 L81.11,81.11 L79.01,83.08 L76.79,84.91 L74.45,86.58 L72.00,88.11 L69.46,89.46 L66.84,90.65 L64.14,91.66 L61.39,92.50 L58.58,93.15 L55.74,93.62 L52.88,93.91 L50.00,94.00 L50.00,94.00 L47.12,93.91 L44.26,93.62 L41.42,93.15 L38.61,92.50 L35.86,91.66 L33.16,90.65 L30.54,89.46 L28.00,88.11 L25.55,86.58 L23.21,84.91 L20.99,83.08 L18.89,81.11 L16.92,79.01 L15.09,76.79 L13.42,74.45 L11.89,72.00 L10.54,69.46 L9.35,66.84 L8.34,64.14 L7.50,61.39 L6.85,58.58 L6.38,55.74 L6.09,52.88 L6.00,50.00 L6.09,47.12 L6.38,44.26 L6.85,41.42 L7.50,38.61 L8.34,35.86 L9.35,33.16 L10.54,30.54 L11.89,28.00 L13.42,25.55 L15.09,23.21 L16.92,20.99 L18.89,18.89 L20.99,16.92 L23.21,15.09 L25.55,13.42 L28.00,11.89 L30.54,10.54 L33.16,9.35 L35.86,8.34 L38.61,7.50 L41.42,6.85 L44.26,6.38 L47.12,6.09 L50.00,6.00 Z;M50.00,6.00 L52.88,6.09 L55.74,6.38 L58.58,6.85 L61.39,7.50 L64.14,8.34 L66.84,9.35 L69.46,10.54 L72.00,11.89 L74.45,13.42 L76.79,15.09 L79.01,16.92 L81.11,18.89 L83.08,20.99 L84.91,23.21 L86.58,25.55 L88.11,28.00 L89.46,30.54 L90.65,33.16 L91.66,35.86 L92.50,38.61 L93.15,41.42 L93.62,44.26 L93.91,47.12 L94.00,50.00 L93.91,52.88 L93.62,55.74 L93.15,58.58 L92.50,61.39 L91.66,64.14 L90.65,66.84 L89.46,69.46 L88.11,72.00 L86.58,74.45 L84.91,76.79 L83.08,79.01 L81.11,81.11 L79.01,83.08 L76.79,84.91 L74.45,86.58 L72.00,88.11 L69.46,89.46 L66.84,90.65 L64.14,91.66 L61.39,92.50 L58.58,93.15 L55.74,93.62 L52.88,93.91 L50.00,94.00 L50.00,94.00 L47.40,93.91 L44.81,93.62 L42.24,93.15 L39.71,92.50 L37.22,91.66 L34.78,90.65 L32.41,89.46 L30.11,88.11 L27.90,86.58 L25.79,84.91 L23.78,83.08 L21.88,81.11 L20.10,79.01 L18.45,76.79 L16.93,74.45 L15.56,72.00 L14.33,69.46 L13.26,66.84 L12.34,64.14 L11.58,61.39 L10.99,58.58 L10.57,55.74 L10.31,52.88 L10.23,50.00 L10.31,47.12 L10.57,44.26 L10.99,41.42 L11.58,38.61 L12.34,35.86 L13.26,33.16 L14.33,30.54 L15.56,28.00 L16.93,25.55 L18.45,23.21 L20.10,20.99 L21.88,18.89 L23.78,16.92 L25.79,15.09 L27.90,13.42 L30.11,11.89 L32.41,10.54 L34.78,9.35 L37.22,8.34 L39.71,7.50 L42.24,6.85 L44.81,6.38 L47.40,6.09 L50.00,6.00 Z"/></path><defs><radialGradient id="pc_limb" cx="0.42" cy="0.40" r="0.62"><stop offset="0.6" stop-color="#000" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity="0.22"/></radialGradient></defs><circle cx="50" cy="50" r="44" fill="url(#pc_limb)"/><circle cx="50" cy="50" r="46" fill="none" stroke="#00848b" stroke-width="1.5" opacity="0.8"/><circle cx="50.0" cy="1.8" r="0.9" fill="#00848b" opacity="0.8"/><circle cx="74.1" cy="8.3" r="0.9" fill="#00848b" opacity="0.8"/><circle cx="91.7" cy="25.9" r="0.9" fill="#00848b" opacity="0.8"/><circle cx="98.2" cy="50.0" r="0.9" fill="#00848b" opacity="0.8"/><circle cx="91.7" cy="74.1" r="0.9" fill="#00848b" opacity="0.8"/><circle cx="74.1" cy="91.7" r="0.9" fill="#00848b" opacity="0.8"/><circle cx="50.0" cy="98.2" r="0.9" fill="#00848b" opacity="0.8"/><circle cx="25.9" cy="91.7" r="0.9" fill="#00848b" opacity="0.8"/><circle cx="8.3" cy="74.1" r="0.9" fill="#00848b" opacity="0.8"/><circle cx="1.8" cy="50.0" r="0.9" fill="#00848b" opacity="0.8"/><circle cx="8.3" cy="25.9" r="0.9" fill="#00848b" opacity="0.8"/><circle cx="25.9" cy="8.3" r="0.9" fill="#00848b" opacity="0.8"/></svg></div>
+  <h1 class="display">A friendly atlas for families, neighbours and newcomers.</h1>
+  <p class="place-line">· Crescent City · California ·</p>
+</section>
+
+<section class="intro-sz">
+  <div class="prose-center"><p>A locally governed map and quiet assistant to help people arriving in Crescent City discover places, people, services and community life, without turning anyone into a data point.</p><p>Held by the beauty of the Northern California coast, it begins with what families ask for first: parks, pools, schools, libraries, beaches, trails and the people to call.</p><p>Every listing shows its official source and the date it was last checked. Unknown is shown as unknown.</p></div>
+  <div class="rule"></div>
+  <p class="motto">A living atlas for a connected community</p>
+</section>
+
+<section class="band">
+  <div class="band-inner">
+    <div class="rule short"></div>
+    <h2 class="display center">Nine ways to start</h2>
+    <p class="lede center">Kim's launch categories, each one a verified list and a map. Pick what your family needs today.</p>
+    <div class="cards-sz">
+      
+      <a class="card-sz" href="/Pleasant/explore/group/parks/">
+        
+
+
+<figure class="ph photo group-parks" data-slot="parks">
+  <img src="/Pleasant/static/photos/coast-bench.jpg" alt="A bench above the rocks and sea stacks" loading="lazy" width="1800" height="1350">
+  <figcaption>A bench above the rocks and sea stacks</figcaption>
+</figure>
+
+        <span class="num">01</span>
+        <h3>· Parks and playgrounds</h3>
+        <p>Playgrounds, picnic lawns and the county parks, with access notes where known.</p>
+      </a>
+      
+      <a class="card-sz" href="/Pleasant/explore/group/pools/">
+        
+
+
+
+<figure class="ph group-pools" data-slot="pools" role="img" aria-label="Image placeholder: Pools and indoor recreation">
+  <svg viewBox="0 0 400 300" preserveAspectRatio="none" aria-hidden="true"><defs><linearGradient id="g-pools" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#e8eef0"/><stop offset="1" stop-color="#d6e4e4"/></linearGradient></defs><rect width="400" height="300" fill="url(#g-pools)"/><path d="M0,220 C80,180 140,240 220,200 C300,160 340,210 400,190 L400,300 L0,300 Z" fill="#cfdedc" opacity=".8"/><circle cx="320" cy="80" r="26" fill="#f3e6cc" opacity=".9"/></svg>
+  <figcaption>Image: Pools and indoor recreation <small>(placeholder, slot “pools”)</small></figcaption>
+</figure>
+
+
+        <span class="num">02</span>
+        <h3>· Pools and indoor recreation</h3>
+        <p>The municipal pool, indoor play and sports halls for wet days.</p>
+      </a>
+      
+      <a class="card-sz" href="/Pleasant/explore/group/attractions/">
+        
+
+
+<figure class="ph photo group-attractions" data-slot="attractions">
+  <img src="/Pleasant/static/photos/sunset-rock.jpg" alt="Sea stack at sunset" loading="lazy" width="1800" height="1350">
+  <figcaption>Sea stack at sunset</figcaption>
+</figure>
+
+        <span class="num">03</span>
+        <h3>· Attractions</h3>
+        <p>The lighthouse, the aquarium, the museum and the visitor centres.</p>
+      </a>
+      
+      <a class="card-sz" href="/Pleasant/explore/group/water/">
+        
+
+
+<figure class="ph photo group-water" data-slot="water">
+  <img src="/Pleasant/static/photos/smith-river-pool.jpg" alt="Emerald pool on the Smith River" loading="lazy" width="1800" height="1350">
+  <figcaption>Emerald pool on the Smith River</figcaption>
+</figure>
+
+        <span class="num">04</span>
+        <h3>· Rivers and beaches</h3>
+        <p>River put-ins and swimming holes on the Smith, and the beaches.</p>
+      </a>
+      
+      <a class="card-sz" href="/Pleasant/explore/group/nature/">
+        
+
+
+<figure class="ph photo group-nature" data-slot="nature">
+  <img src="/Pleasant/static/photos/redwood-canopy.jpg" alt="Looking up into the redwood canopy" loading="lazy" width="1800" height="1350">
+  <figcaption>Looking up into the redwood canopy</figcaption>
+</figure>
+
+        <span class="num">05</span>
+        <h3>· Hiking and nature</h3>
+        <p>Short redwood and coastal trails that work with children, with warnings stated.</p>
+      </a>
+      
+      <a class="card-sz" href="/Pleasant/explore/group/learning/">
+        
+
+
+
+<figure class="ph group-learning" data-slot="learning" role="img" aria-label="Image placeholder: Learning and STEM">
+  <svg viewBox="0 0 400 300" preserveAspectRatio="none" aria-hidden="true"><defs><linearGradient id="g-learning" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#e8eef0"/><stop offset="1" stop-color="#d6e4e4"/></linearGradient></defs><rect width="400" height="300" fill="url(#g-learning)"/><path d="M0,220 C80,180 140,240 220,200 C300,160 340,210 400,190 L400,300 L0,300 Z" fill="#cfdedc" opacity=".8"/><circle cx="320" cy="80" r="26" fill="#f3e6cc" opacity=".9"/></svg>
+  <figcaption>Image: Learning and STEM <small>(placeholder, slot “learning”)</small></figcaption>
+</figure>
+
+
+        <span class="num">06</span>
+        <h3>· Learning and STEM</h3>
+        <p>Schools, preschools, childcare, the college and classes.</p>
+      </a>
+      
+      <a class="card-sz" href="/Pleasant/explore/group/arts/">
+        
+
+
+
+<figure class="ph group-arts" data-slot="arts" role="img" aria-label="Image placeholder: Arts">
+  <svg viewBox="0 0 400 300" preserveAspectRatio="none" aria-hidden="true"><defs><linearGradient id="g-arts" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#e8eef0"/><stop offset="1" stop-color="#d6e4e4"/></linearGradient></defs><rect width="400" height="300" fill="url(#g-arts)"/><path d="M0,220 C80,180 140,240 220,200 C300,160 340,210 400,190 L400,300 L0,300 Z" fill="#cfdedc" opacity=".8"/><circle cx="320" cy="80" r="26" fill="#f3e6cc" opacity=".9"/></svg>
+  <figcaption>Image: Arts <small>(placeholder, slot “arts”)</small></figcaption>
+</figure>
+
+
+        <span class="num">07</span>
+        <h3>· Arts</h3>
+        <p>Galleries, music and making, as they are verified.</p>
+      </a>
+      
+      <a class="card-sz" href="/Pleasant/explore/group/services/">
+        
+
+
+
+<figure class="ph group-services" data-slot="services" role="img" aria-label="Image placeholder: Libraries and family services">
+  <svg viewBox="0 0 400 300" preserveAspectRatio="none" aria-hidden="true"><defs><linearGradient id="g-services" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#e8eef0"/><stop offset="1" stop-color="#d6e4e4"/></linearGradient></defs><rect width="400" height="300" fill="url(#g-services)"/><path d="M0,220 C80,180 140,240 220,200 C300,160 340,210 400,190 L400,300 L0,300 Z" fill="#cfdedc" opacity=".8"/><circle cx="320" cy="80" r="26" fill="#f3e6cc" opacity=".9"/></svg>
+  <figcaption>Image: Libraries and family services <small>(placeholder, slot “services”)</small></figcaption>
+</figure>
+
+
+        <span class="num">08</span>
+        <h3>· Libraries and family services</h3>
+        <p>Libraries and family services with their official sources.</p>
+      </a>
+      
+      <a class="card-sz" href="/Pleasant/explore/group/programs/">
+        
+
+
+<figure class="ph photo group-programs" data-slot="programs">
+  <img src="/Pleasant/static/photos/foggy-beach.jpg" alt="Fog over the beach and headland" loading="lazy" width="1800" height="1350">
+  <figcaption>Fog over the beach and headland</figcaption>
+</figure>
+
+        <span class="num">09</span>
+        <h3>· Programs, events and people to call</h3>
+        <p>After-school programmes, youth clubs and the people to call.</p>
+      </a>
+      
+    </div>
+  </div>
+</section>
+
+<section class="intro-sz">
+  <h2 class="display center">What people can do</h2>
+  <div class="three">
+    <div class="pillar"><p class="eyebrow">Discover</p><p>Find schools, parks, libraries, clinics, trails, public events and local resources, each with its source and the date it was checked.</p></div>
+    <div class="pillar"><p class="eyebrow">Coordinate</p><p>Ask Compass for places, events and practical help. It answers only from verified records and shows you where every answer came from.</p></div>
+    <div class="pillar"><p class="eyebrow">Belong</p><p>Save useful places, share approved information, and join community life at your own pace. Quiet is always a choice.</p></div>
+  </div>
+</section>
+
+<section class="band alt">
+  <div class="band-inner">
+    <h2 class="display center">A gentle starting experience</h2>
+    <div class="three steps">
+      <div class="pillar"><span class="num">01</span><h3>Browse without an account</h3><p>The whole map and every listing are open. No sign-up, no location permission.</p><a class="btn secondary" href="/Pleasant/explore/">Explore</a></div>
+      <div class="pillar"><span class="num">02</span><h3>Choose what help you want</h3><p>Family support, local orientation, community events or practical guidance. Age bands and budget are your choices, never a child profile.</p><a class="btn" href="/Pleasant/accounts/join/">Join gently</a></div>
+      <div class="pillar"><span class="num">03</span><h3>Keep control as you settle</h3><p>Save places, ask questions, suggest corrections for review. Permissions grow only by choice, and you can pause, simplify or leave at any time.</p><a class="btn secondary" href="/Pleasant/about/">How it works</a></div>
+    </div>
+  </div>
+</section>
+
+
+
+<section class="photo-band" aria-label="Coastal overlook at evening"><img src="/Pleasant/static/photos/coast-overlook.jpg" alt="Coastal overlook at evening, sea stacks in low light"><p class="photo-caption">Project-supplied coastal photography. Scenic images are not mapped or labelled as verified locations.</p></section>
+<section class="promise">
+  <div class="band-inner">
+    <div class="emblem small" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"   role="img" aria-label="Pleasant Crescent. Freshness gauge: mean P(current) 1.00 over 58 listings; belief moved 0.39 rad this window; 3859 changes"><title>Pleasant Crescent. Freshness gauge: mean P(current) 1.00 over 58 listings; belief moved 0.39 rad this window; 3859 changes</title><circle cx="50" cy="50" r="46" fill="#cae9ff" opacity="0.35"/><circle cx="50" cy="50" r="44" fill="#364868"/><path d="M50.00,6.00 L52.88,6.09 L55.74,6.38 L58.58,6.85 L61.39,7.50 L64.14,8.34 L66.84,9.35 L69.46,10.54 L72.00,11.89 L74.45,13.42 L76.79,15.09 L79.01,16.92 L81.11,18.89 L83.08,20.99 L84.91,23.21 L86.58,25.55 L88.11,28.00 L89.46,30.54 L90.65,33.16 L91.66,35.86 L92.50,38.61 L93.15,41.42 L93.62,44.26 L93.91,47.12 L94.00,50.00 L93.91,52.88 L93.62,55.74 L93.15,58.58 L92.50,61.39 L91.66,64.14 L90.65,66.84 L89.46,69.46 L88.11,72.00 L86.58,74.45 L84.91,76.79 L83.08,79.01 L81.11,81.11 L79.01,83.08 L76.79,84.91 L74.45,86.58 L72.00,88.11 L69.46,89.46 L66.84,90.65 L64.14,91.66 L61.39,92.50 L58.58,93.15 L55.74,93.62 L52.88,93.91 L50.00,94.00 L50.00,94.00 L47.13,93.91 L44.28,93.62 L41.45,93.15 L38.66,92.50 L35.92,91.66 L33.23,90.65 L30.62,89.46 L28.09,88.11 L25.66,86.58 L23.33,84.91 L21.11,83.08 L19.02,81.11 L17.06,79.01 L15.24,76.79 L13.57,74.45 L12.06,72.00 L10.70,69.46 L9.52,66.84 L8.51,64.14 L7.68,61.39 L7.03,58.58 L6.56,55.74 L6.28,52.88 L6.19,50.00 L6.28,47.12 L6.56,44.26 L7.03,41.42 L7.68,38.61 L8.51,35.86 L9.52,33.16 L10.70,30.54 L12.06,28.00 L13.57,25.55 L15.24,23.21 L17.06,20.99 L19.02,18.89 L21.11,16.92 L23.33,15.09 L25.66,13.42 L28.09,11.89 L30.62,10.54 L33.23,9.35 L35.92,8.34 L38.66,7.50 L41.45,6.85 L44.28,6.38 L47.13,6.09 L50.00,6.00 Z" fill="#e4b572"><animate attributeName="d" dur="14s" repeatCount="indefinite" calcMode="spline" keyTimes="0;0.5;1" keySplines="0.45 0 0.55 1;0.45 0 0.55 1" values="M50.00,6.00 L52.88,6.09 L55.74,6.38 L58.58,6.85 L61.39,7.50 L64.14,8.34 L66.84,9.35 L69.46,10.54 L72.00,11.89 L74.45,13.42 L76.79,15.09 L79.01,16.92 L81.11,18.89 L83.08,20.99 L84.91,23.21 L86.58,25.55 L88.11,28.00 L89.46,30.54 L90.65,33.16 L91.66,35.86 L92.50,38.61 L93.15,41.42 L93.62,44.26 L93.91,47.12 L94.00,50.00 L93.91,52.88 L93.62,55.74 L93.15,58.58 L92.50,61.39 L91.66,64.14 L90.65,66.84 L89.46,69.46 L88.11,72.00 L86.58,74.45 L84.91,76.79 L83.08,79.01 L81.11,81.11 L79.01,83.08 L76.79,84.91 L74.45,86.58 L72.00,88.11 L69.46,89.46 L66.84,90.65 L64.14,91.66 L61.39,92.50 L58.58,93.15 L55.74,93.62 L52.88,93.91 L50.00,94.00 L50.00,94.00 L47.40,93.91 L44.81,93.62 L42.24,93.15 L39.71,92.50 L37.22,91.66 L34.78,90.65 L32.41,89.46 L30.11,88.11 L27.90,86.58 L25.79,84.91 L23.78,83.08 L21.88,81.11 L20.10,79.01 L18.45,76.79 L16.93,74.45 L15.56,72.00 L14.33,69.46 L13.26,66.84 L12.34,64.14 L11.58,61.39 L10.99,58.58 L10.57,55.74 L10.31,52.88 L10.23,50.00 L10.31,47.12 L10.57,44.26 L10.99,41.42 L11.58,38.61 L12.34,35.86 L13.26,33.16 L14.33,30.54 L15.56,28.00 L16.93,25.55 L18.45,23.21 L20.10,20.99 L21.88,18.89 L23.78,16.92 L25.79,15.09 L27.90,13.42 L30.11,11.89 L32.41,10.54 L34.78,9.35 L37.22,8.34 L39.71,7.50 L42.24,6.85 L44.81,6.38 L47.40,6.09 L50.00,6.00 Z;M50.00,6.00 L52.88,6.09 L55.74,6.38 L58.58,6.85 L61.39,7.50 L64.14,8.34 L66.84,9.35 L69.46,10.54 L72.00,11.89 L74.45,13.42 L76.79,15.09 L79.01,16.92 L81.11,18.89 L83.08,20.99 L84.91,23.21 L86.58,25.55 L88.11,28.00 L89.46,30.54 L90.65,33.16 L91.66,35.86 L92.50,38.61 L93.15,41.42 L93.62,44.26 L93.91,47.12 L94.00,50.00 L93.91,52.88 L93.62,55.74 L93.15,58.58 L92.50,61.39 L91.66,64.14 L90.65,66.84 L89.46,69.46 L88.11,72.00 L86.58,74.45 L84.91,76.79 L83.08,79.01 L81.11,81.11 L79.01,83.08 L76.79,84.91 L74.45,86.58 L72.00,88.11 L69.46,89.46 L66.84,90.65 L64.14,91.66 L61.39,92.50 L58.58,93.15 L55.74,93.62 L52.88,93.91 L50.00,94.00 L50.00,94.00 L47.12,93.91 L44.26,93.62 L41.42,93.15 L38.61,92.50 L35.86,91.66 L33.16,90.65 L30.54,89.46 L28.00,88.11 L25.55,86.58 L23.21,84.91 L20.99,83.08 L18.89,81.11 L16.92,79.01 L15.09,76.79 L13.42,74.45 L11.89,72.00 L10.54,69.46 L9.35,66.84 L8.34,64.14 L7.50,61.39 L6.85,58.58 L6.38,55.74 L6.09,52.88 L6.00,50.00 L6.09,47.12 L6.38,44.26 L6.85,41.42 L7.50,38.61 L8.34,35.86 L9.35,33.16 L10.54,30.54 L11.89,28.00 L13.42,25.55 L15.09,23.21 L16.92,20.99 L18.89,18.89 L20.99,16.92 L23.21,15.09 L25.55,13.42 L28.00,11.89 L30.54,10.54 L33.16,9.35 L35.86,8.34 L38.61,7.50 L41.42,6.85 L44.26,6.38 L47.12,6.09 L50.00,6.00 Z;M50.00,6.00 L52.88,6.09 L55.74,6.38 L58.58,6.85 L61.39,7.50 L64.14,8.34 L66.84,9.35 L69.46,10.54 L72.00,11.89 L74.45,13.42 L76.79,15.09 L79.01,16.92 L81.11,18.89 L83.08,20.99 L84.91,23.21 L86.58,25.55 L88.11,28.00 L89.46,30.54 L90.65,33.16 L91.66,35.86 L92.50,38.61 L93.15,41.42 L93.62,44.26 L93.91,47.12 L94.00,50.00 L93.91,52.88 L93.62,55.74 L93.15,58.58 L92.50,61.39 L91.66,64.14 L90.65,66.84 L89.46,69.46 L88.11,72.00 L86.58,74.45 L84.91,76.79 L83.08,79.01 L81.11,81.11 L79.01,83.08 L76.79,84.91 L74.45,86.58 L72.00,88.11 L69.46,89.46 L66.84,90.65 L64.14,91.66 L61.39,92.50 L58.58,93.15 L55.74,93.62 L52.88,93.91 L50.00,94.00 L50.00,94.00 L47.40,93.91 L44.81,93.62 L42.24,93.15 L39.71,92.50 L37.22,91.66 L34.78,90.65 L32.41,89.46 L30.11,88.11 L27.90,86.58 L25.79,84.91 L23.78,83.08 L21.88,81.11 L20.10,79.01 L18.45,76.79 L16.93,74.45 L15.56,72.00 L14.33,69.46 L13.26,66.84 L12.34,64.14 L11.58,61.39 L10.99,58.58 L10.57,55.74 L10.31,52.88 L10.23,50.00 L10.31,47.12 L10.57,44.26 L10.99,41.42 L11.58,38.61 L12.34,35.86 L13.26,33.16 L14.33,30.54 L15.56,28.00 L16.93,25.55 L18.45,23.21 L20.10,20.99 L21.88,18.89 L23.78,16.92 L25.79,15.09 L27.90,13.42 L30.11,11.89 L32.41,10.54 L34.78,9.35 L37.22,8.34 L39.71,7.50 L42.24,6.85 L44.81,6.38 L47.40,6.09 L50.00,6.00 Z"/></path><defs><radialGradient id="pc_limb" cx="0.42" cy="0.40" r="0.62"><stop offset="0.6" stop-color="#000" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity="0.22"/></radialGradient></defs><circle cx="50" cy="50" r="44" fill="url(#pc_limb)"/><circle cx="50" cy="50" r="46" fill="none" stroke="#00848b" stroke-width="1.5" opacity="0.8"/><circle cx="50.0" cy="1.8" r="0.9" fill="#00848b" opacity="0.8"/><circle cx="74.1" cy="8.3" r="0.9" fill="#00848b" opacity="0.8"/><circle cx="91.7" cy="25.9" r="0.9" fill="#00848b" opacity="0.8"/><circle cx="98.2" cy="50.0" r="0.9" fill="#00848b" opacity="0.8"/><circle cx="91.7" cy="74.1" r="0.9" fill="#00848b" opacity="0.8"/><circle cx="74.1" cy="91.7" r="0.9" fill="#00848b" opacity="0.8"/><circle cx="50.0" cy="98.2" r="0.9" fill="#00848b" opacity="0.8"/><circle cx="25.9" cy="91.7" r="0.9" fill="#00848b" opacity="0.8"/><circle cx="8.3" cy="74.1" r="0.9" fill="#00848b" opacity="0.8"/><circle cx="1.8" cy="50.0" r="0.9" fill="#00848b" opacity="0.8"/><circle cx="8.3" cy="25.9" r="0.9" fill="#00848b" opacity="0.8"/><circle cx="25.9" cy="8.3" r="0.9" fill="#00848b" opacity="0.8"/></svg></div>
+    <p class="eyebrow">Core promise</p>
+    <p class="display">The map helps people notice and care for their shared surroundings. It must never claim to be a complete picture of a place, or of the people who live there.</p>
+  </div>
+</section>
+</main>
+<aside id="compass-drawer" class="compass-drawer" aria-label="Crescent Compass" hidden><div class="compass-head"><span class="compass-icon" aria-hidden="true"></span><h2>Crescent Compass</h2><button type="button" data-close aria-label="Close Compass">×</button></div>
+<p class="lede" style="padding:10px 16px 0;font-size:.85rem">I only answer from the verified directory. I show where each answer came from, and I say so when I don't know.</p>
+<div class="compass-log" role="log" aria-live="polite"></div>
+<div class="suggest" aria-label="Example questions">
+  <button type="button">Free rainy-day ideas for a 6-year-old?</button>
+  <button type="button">Where can we go with a wheelchair?</button>
+  <button type="button">What's on this week?</button>
+  <button type="button">forget that</button>
+</div>
+<form class="compass-form" data-url="/Pleasant/compass/ask"><input type="hidden" name="csrfmiddlewaretoken" value="Z9pGEo8sTKrvPW8ELaiV7enVo9GrfPaY2pulrtuRoXCCJCPOrrZHHZpiGdA0hG40"><label class="skip" for="compass-q">Your question</label><input id="compass-q" type="text" placeholder="Ask one thing, e.g. story time for a toddler" autocomplete="off" maxlength="1000"><button type="submit">Ask</button></form>
+</aside>
+<footer class="site-foot">
+  <div class="foot-grid">
+    <div class="foot-brand"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="36" height="36" role="img" aria-label="Pleasant Crescent. Freshness gauge: mean P(current) 1.00 over 58 listings; belief moved 0.39 rad this window; 3859 changes"><title>Pleasant Crescent. Freshness gauge: mean P(current) 1.00 over 58 listings; belief moved 0.39 rad this window; 3859 changes</title><circle cx="50" cy="50" r="46" fill="#cae9ff" opacity="0.35"/><circle cx="50" cy="50" r="44" fill="#364868"/><path d="M50.00,6.00 L52.88,6.09 L55.74,6.38 L58.58,6.85 L61.39,7.50 L64.14,8.34 L66.84,9.35 L69.46,10.54 L72.00,11.89 L74.45,13.42 L76.79,15.09 L79.01,16.92 L81.11,18.89 L83.08,20.99 L84.91,23.21 L86.58,25.55 L88.11,28.00 L89.46,30.54 L90.65,33.16 L91.66,35.86 L92.50,38.61 L93.15,41.42 L93.62,44.26 L93.91,47.12 L94.00,50.00 L93.91,52.88 L93.62,55.74 L93.15,58.58 L92.50,61.39 L91.66,64.14 L90.65,66.84 L89.46,69.46 L88.11,72.00 L86.58,74.45 L84.91,76.79 L83.08,79.01 L81.11,81.11 L79.01,83.08 L76.79,84.91 L74.45,86.58 L72.00,88.11 L69.46,89.46 L66.84,90.65 L64.14,91.66 L61.39,92.50 L58.58,93.15 L55.74,93.62 L52.88,93.91 L50.00,94.00 L50.00,94.00 L47.13,93.91 L44.28,93.62 L41.45,93.15 L38.66,92.50 L35.92,91.66 L33.23,90.65 L30.62,89.46 L28.09,88.11 L25.66,86.58 L23.33,84.91 L21.11,83.08 L19.02,81.11 L17.06,79.01 L15.24,76.79 L13.57,74.45 L12.06,72.00 L10.70,69.46 L9.52,66.84 L8.51,64.14 L7.68,61.39 L7.03,58.58 L6.56,55.74 L6.28,52.88 L6.19,50.00 L6.28,47.12 L6.56,44.26 L7.03,41.42 L7.68,38.61 L8.51,35.86 L9.52,33.16 L10.70,30.54 L12.06,28.00 L13.57,25.55 L15.24,23.21 L17.06,20.99 L19.02,18.89 L21.11,16.92 L23.33,15.09 L25.66,13.42 L28.09,11.89 L30.62,10.54 L33.23,9.35 L35.92,8.34 L38.66,7.50 L41.45,6.85 L44.28,6.38 L47.13,6.09 L50.00,6.00 Z" fill="#e4b572"><animate attributeName="d" dur="14s" repeatCount="indefinite" calcMode="spline" keyTimes="0;0.5;1" keySplines="0.45 0 0.55 1;0.45 0 0.55 1" values="M50.00,6.00 L52.88,6.09 L55.74,6.38 L58.58,6.85 L61.39,7.50 L64.14,8.34 L66.84,9.35 L69.46,10.54 L72.00,11.89 L74.45,13.42 L76.79,15.09 L79.01,16.92 L81.11,18.89 L83.08,20.99 L84.91,23.21 L86.58,25.55 L88.11,28.00 L89.46,30.54 L90.65,33.16 L91.66,35.86 L92.50,38.61 L93.15,41.42 L93.62,44.26 L93.91,47.12 L94.00,50.00 L93.91,52.88 L93.62,55.74 L93.15,58.58 L92.50,61.39 L91.66,64.14 L90.65,66.84 L89.46,69.46 L88.11,72.00 L86.58,74.45 L84.91,76.79 L83.08,79.01 L81.11,81.11 L79.01,83.08 L76.79,84.91 L74.45,86.58 L72.00,88.11 L69.46,89.46 L66.84,90.65 L64.14,91.66 L61.39,92.50 L58.58,93.15 L55.74,93.62 L52.88,93.91 L50.00,94.00 L50.00,94.00 L47.40,93.91 L44.81,93.62 L42.24,93.15 L39.71,92.50 L37.22,91.66 L34.78,90.65 L32.41,89.46 L30.11,88.11 L27.90,86.58 L25.79,84.91 L23.78,83.08 L21.88,81.11 L20.10,79.01 L18.45,76.79 L16.93,74.45 L15.56,72.00 L14.33,69.46 L13.26,66.84 L12.34,64.14 L11.58,61.39 L10.99,58.58 L10.57,55.74 L10.31,52.88 L10.23,50.00 L10.31,47.12 L10.57,44.26 L10.99,41.42 L11.58,38.61 L12.34,35.86 L13.26,33.16 L14.33,30.54 L15.56,28.00 L16.93,25.55 L18.45,23.21 L20.10,20.99 L21.88,18.89 L23.78,16.92 L25.79,15.09 L27.90,13.42 L30.11,11.89 L32.41,10.54 L34.78,9.35 L37.22,8.34 L39.71,7.50 L42.24,6.85 L44.81,6.38 L47.40,6.09 L50.00,6.00 Z;M50.00,6.00 L52.88,6.09 L55.74,6.38 L58.58,6.85 L61.39,7.50 L64.14,8.34 L66.84,9.35 L69.46,10.54 L72.00,11.89 L74.45,13.42 L76.79,15.09 L79.01,16.92 L81.11,18.89 L83.08,20.99 L84.91,23.21 L86.58,25.55 L88.11,28.00 L89.46,30.54 L90.65,33.16 L91.66,35.86 L92.50,38.61 L93.15,41.42 L93.62,44.26 L93.91,47.12 L94.00,50.00 L93.91,52.88 L93.62,55.74 L93.15,58.58 L92.50,61.39 L91.66,64.14 L90.65,66.84 L89.46,69.46 L88.11,72.00 L86.58,74.45 L84.91,76.79 L83.08,79.01 L81.11,81.11 L79.01,83.08 L76.79,84.91 L74.45,86.58 L72.00,88.11 L69.46,89.46 L66.84,90.65 L64.14,91.66 L61.39,92.50 L58.58,93.15 L55.74,93.62 L52.88,93.91 L50.00,94.00 L50.00,94.00 L47.12,93.91 L44.26,93.62 L41.42,93.15 L38.61,92.50 L35.86,91.66 L33.16,90.65 L30.54,89.46 L28.00,88.11 L25.55,86.58 L23.21,84.91 L20.99,83.08 L18.89,81.11 L16.92,79.01 L15.09,76.79 L13.42,74.45 L11.89,72.00 L10.54,69.46 L9.35,66.84 L8.34,64.14 L7.50,61.39 L6.85,58.58 L6.38,55.74 L6.09,52.88 L6.00,50.00 L6.09,47.12 L6.38,44.26 L6.85,41.42 L7.50,38.61 L8.34,35.86 L9.35,33.16 L10.54,30.54 L11.89,28.00 L13.42,25.55 L15.09,23.21 L16.92,20.99 L18.89,18.89 L20.99,16.92 L23.21,15.09 L25.55,13.42 L28.00,11.89 L30.54,10.54 L33.16,9.35 L35.86,8.34 L38.61,7.50 L41.42,6.85 L44.26,6.38 L47.12,6.09 L50.00,6.00 Z;M50.00,6.00 L52.88,6.09 L55.74,6.38 L58.58,6.85 L61.39,7.50 L64.14,8.34 L66.84,9.35 L69.46,10.54 L72.00,11.89 L74.45,13.42 L76.79,15.09 L79.01,16.92 L81.11,18.89 L83.08,20.99 L84.91,23.21 L86.58,25.55 L88.11,28.00 L89.46,30.54 L90.65,33.16 L91.66,35.86 L92.50,38.61 L93.15,41.42 L93.62,44.26 L93.91,47.12 L94.00,50.00 L93.91,52.88 L93.62,55.74 L93.15,58.58 L92.50,61.39 L91.66,64.14 L90.65,66.84 L89.46,69.46 L88.11,72.00 L86.58,74.45 L84.91,76.79 L83.08,79.01 L81.11,81.11 L79.01,83.08 L76.79,84.91 L74.45,86.58 L72.00,88.11 L69.46,89.46 L66.84,90.65 L64.14,91.66 L61.39,92.50 L58.58,93.15 L55.74,93.62 L52.88,93.91 L50.00,94.00 L50.00,94.00 L47.40,93.91 L44.81,93.62 L42.24,93.15 L39.71,92.50 L37.22,91.66 L34.78,90.65 L32.41,89.46 L30.11,88.11 L27.90,86.58 L25.79,84.91 L23.78,83.08 L21.88,81.11 L20.10,79.01 L18.45,76.79 L16.93,74.45 L15.56,72.00 L14.33,69.46 L13.26,66.84 L12.34,64.14 L11.58,61.39 L10.99,58.58 L10.57,55.74 L10.31,52.88 L10.23,50.00 L10.31,47.12 L10.57,44.26 L10.99,41.42 L11.58,38.61 L12.34,35.86 L13.26,33.16 L14.33,30.54 L15.56,28.00 L16.93,25.55 L18.45,23.21 L20.10,20.99 L21.88,18.89 L23.78,16.92 L25.79,15.09 L27.90,13.42 L30.11,11.89 L32.41,10.54 L34.78,9.35 L37.22,8.34 L39.71,7.50 L42.24,6.85 L44.81,6.38 L47.40,6.09 L50.00,6.00 Z"/></path><defs><radialGradient id="pc_limb" cx="0.42" cy="0.40" r="0.62"><stop offset="0.6" stop-color="#000" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity="0.22"/></radialGradient></defs><circle cx="50" cy="50" r="44" fill="url(#pc_limb)"/><circle cx="50" cy="50" r="46" fill="none" stroke="#00848b" stroke-width="1.5" opacity="0.8"/><circle cx="50.0" cy="1.8" r="0.9" fill="#00848b" opacity="0.8"/><circle cx="74.1" cy="8.3" r="0.9" fill="#00848b" opacity="0.8"/><circle cx="91.7" cy="25.9" r="0.9" fill="#00848b" opacity="0.8"/><circle cx="98.2" cy="50.0" r="0.9" fill="#00848b" opacity="0.8"/><circle cx="91.7" cy="74.1" r="0.9" fill="#00848b" opacity="0.8"/><circle cx="74.1" cy="91.7" r="0.9" fill="#00848b" opacity="0.8"/><circle cx="50.0" cy="98.2" r="0.9" fill="#00848b" opacity="0.8"/><circle cx="25.9" cy="91.7" r="0.9" fill="#00848b" opacity="0.8"/><circle cx="8.3" cy="74.1" r="0.9" fill="#00848b" opacity="0.8"/><circle cx="1.8" cy="50.0" r="0.9" fill="#00848b" opacity="0.8"/><circle cx="8.3" cy="25.9" r="0.9" fill="#00848b" opacity="0.8"/><circle cx="25.9" cy="8.3" r="0.9" fill="#00848b" opacity="0.8"/></svg><p>Pleasant Crescent is a locally governed atlas for families, neighbours and newcomers. It helps people notice and care for their shared surroundings, and it never claims to be a complete picture of a place or of the people who live there.</p></div>
+    <div><p class="eyebrow">Visit</p><p>Organisation name<br>Street address<br>Crescent City, CA 95531<br><small class="ph-note">placeholder: owner supplies</small></p></div>
+    <div><p class="eyebrow">Contact</p><p><a href="mailto:hello@example.invalid">hello@example.invalid</a><br><a href="/Pleasant/contribute/">Suggest a place or correction</a><br><a href="/Pleasant/about/#governance">Governance and commitments</a></p></div>
+  </div>
+  <div class="foot-rule"></div>
+  <p class="foot-small">Map data © OpenStreetMap contributors (ODbL) via Protomaps · Terrain USGS 3DEP · Boundaries U.S. Census Bureau · Fonts Noto Sans and Cormorant Garamond (OFL). Directory guidance is not medical, legal or emergency advice; verification dates are shown on every listing. <span class="right">Crescent City · California</span></p>
+</footer>
+<script src="/Pleasant/static/pc/compass.js" defer></script>
+<script src="/Pleasant/static/pc/static.js" defer></script>
+
+</body>
+</html>

@@ -36,6 +36,12 @@
     add("user", q); input.value = "";
     const thinking = document.createElement("div"); thinking.className = "msg bot"; thinking.textContent = "Checking the verified directory…"; log.appendChild(thinking);
     try {
+      if (window.PC_STATIC && window.PCCompassStatic) {
+        const data = await window.PCCompassStatic.ask(q);
+        thinking.remove();
+        add("bot", data.text, Object.assign({ action: data.action, reason: data.reason }, data.provenance || {}));
+        return;
+      }
       const r = await fetch(form.dataset.url, { method: "POST", headers: { "Content-Type": "application/json", "X-CSRFToken": csrf() }, body: JSON.stringify({ question: q }) });
       const data = await r.json();
       thinking.remove();

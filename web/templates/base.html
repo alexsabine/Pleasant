@@ -6,6 +6,8 @@
 <title>{% block title %}Pleasant Crescent{% endblock %}</title>
 <meta name="description" content="A friendly, verified atlas for families, neighbours and newcomers in Del Norte County.">
 <link rel="icon" href="{% url 'logo_svg' %}?size=64&static=1" type="image/svg+xml">
+{% if static_export %}<meta name="robots" content="noindex, nofollow">
+<script>window.PC_STATIC={{ static_config|safe }};</script>{% endif %}
 <link rel="stylesheet" href="{% static 'fonts/cormorant/cormorant.css' %}">
 <link rel="stylesheet" href="{% static 'vendor/maplibre-gl.css' %}">
 <link rel="stylesheet" href="{% static 'pc/app.css' %}">
@@ -30,7 +32,7 @@ body{background:var(--pc-bg)}
 </head>
 <body class="{% block bodyclass %}{% endblock %}">
 <a class="skip" href="#main">Skip to content</a>
-{% if private_mode %}<div class="private-banner" role="status">Draft for review. Listings are summarised from official websites and checked online, not yet visited in person. <a href="{% url 'review' %}">Review guide and questions</a></div>{% endif %}
+{% if static_export %}<div class="private-banner" role="status">Static preview for review. Listings and map are a snapshot checked online, not yet visited in person. Accounts, suggestions and Compass audit records need the hosted site. <a href="{% url 'review' %}">Review guide and questions</a></div>{% elif private_mode %}<div class="private-banner" role="status">Draft for review. Listings are summarised from official websites and checked online, not yet visited in person. <a href="{% url 'review' %}">Review guide and questions</a></div>{% endif %}
 <header class="site-head">
   <a class="brand" href="/" aria-label="Pleasant Crescent home">{{ logo_svg|safe }}<span class="wordmark">Pleasant Crescent</span></a>
   <nav class="site-nav" aria-label="Main">
@@ -57,6 +59,7 @@ body{background:var(--pc-bg)}
   <p class="foot-small">Map data © OpenStreetMap contributors (ODbL) via Protomaps · Terrain USGS 3DEP · Boundaries U.S. Census Bureau · Fonts Noto Sans and Cormorant Garamond (OFL). Directory guidance is not medical, legal or emergency advice; verification dates are shown on every listing. <span class="right">Crescent City · California</span></p>
 </footer>
 <script src="{% static 'pc/compass.js' %}" defer></script>
+{% if static_export %}<script src="{% static 'pc/static.js' %}" defer></script>{% endif %}
 {% block scripts %}{% endblock %}
 </body>
 </html>

@@ -6,6 +6,7 @@
   const el = document.getElementById("map");
   if (!el || !window.maplibregl || !window.pmtiles) return;
   const cfg = JSON.parse(el.dataset.config);
+  const ORIGIN = location.origin + ((window.PC_STATIC && window.PC_STATIC.base) || "/").replace(/\/$/, "");
   const protocol = new pmtiles.Protocol();
   maplibregl.addProtocol("pmtiles", protocol.tile);
   const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -17,14 +18,17 @@
   fetch(cfg.styleUrl).then(r => r.json()).then(style => {
     for (const [k, s] of Object.entries(style.sources)) {
       if ((s.url && !s.url.startsWith("pmtiles:///")) || s.tiles) throw new Error("off-origin source " + k);
-      if (s.url) s.url = "pmtiles://" + location.origin + s.url.slice("pmtiles://".length);
+      if (s.url) s.url = "pmtiles://" + ORIGIN + s.url.slice("pmtiles://".length);
     }
-    style.glyphs = location.origin + style.glyphs;
-    style.sprite = location.origin + style.sprite;
+    style.glyphs = ORIGIN + style.glyphs;
+    style.sprite = ORIGIN + style.sprite;
     init(style);
   }).catch(err => { el.innerHTML = '<p class="empty">Map unavailable: ' + err.message + '. The list view has everything.</p>'; });
 
-  function venueUrl(res) { return cfg.api.venues + (cfg.api.venues.includes("?") ? "&" : "?") + "res=" + res; }
+  function venueUrl(res) {
+    if (window.PC_STATIC) return cfg.api.venues.replace(/\.geojson.*$/, "_res" + res + ".geojson");   // static export: one file per resolution
+    return cfg.api.venues + (cfg.api.venues.includes("?") ? "&" : "?") + "res=" + res;
+  }
   function groupFilter(extra) {
     const f = ["in", ["get", "group"], ["literal", Array.from(activeGroups)]];
     return extra ? ["all", extra, f] : f;
@@ -123,11 +127,11 @@
     function popup(lngLat, p) {
       const html = `<b>${esc(p.name)}</b><br><span class="tag" style="border-color:${esc(colorOf(p.group))};color:${esc(colorOf(p.group))}">${esc(p.group_label)}</span> · ${esc(p.category_label)}<br>` +
         `ages ${p.min_age} to ${p.max_age} · ${esc(p.cost_status)} · access: ${esc(String(p.accessibility_status).replace("_", " "))}<br>` +
-        `<small>${freshness(p)}${p.verification_label ? " · " + esc(p.verification_label) : ""}</small><br><a href="/resource/${esc(p.slug)}/">Details and sources</a>`;
+        `<small>${freshness(p)}${p.verification_label ? " · " + esc(p.verification_label) : ""}</small><br><a href="${ORIGIN}/resource/${esc(p.slug)}/">Details and sources</a>`;
       new maplibregl.Popup({ offset: 12, maxWidth: "280px" }).setLngLat(lngLat).setHTML(html).addTo(map);
     }
     function listPopup(lngLat, items) {
-      const html = `<b>${items.length} listings here</b><ul>` + items.map(p => `<li><span class="sw" style="display:inline-block;width:9px;height:9px;border-radius:50%;background:${esc(colorOf(p.group))};margin-right:5px"></span><a href="/resource/${esc(p.slug)}/">${esc(p.name)}</a> <small>· ${esc(p.category_label)}</small></li>`).join("") + "</ul>";
+      const html = `<b>${items.length} listings here</b><ul>` + items.map(p => `<li><span class="sw" style="display:inline-block;width:9px;height:9px;border-radius:50%;background:${esc(colorOf(p.group))};margin-right:5px"></span><a href="${ORIGIN}/resource/${esc(p.slug)}/">${esc(p.name)}</a> <small>· ${esc(p.category_label)}</small></li>`).join("") + "</ul>";
       new maplibregl.Popup({ offset: 12, maxWidth: "300px" }).setLngLat(lngLat).setHTML(html).addTo(map);
     }
   }

@@ -3,7 +3,7 @@
 {% block content %}
 <h1>Explore</h1>
 <p class="lede">Verified places and activities for families in Del Norte County. The list is the default; the map is a view of the same results.</p>
-<form method="get" action="{% url 'explore' %}" class="filters" role="search" aria-label="Filter listings">
+<form method="get" action="{% url 'explore' %}" class="filters" role="search" aria-label="Filter listings" data-group="{{ params.group }}">
   <input type="hidden" name="view" value="{{ view }}">
   <div class="question"><span>Just show free things?</span>
     <button type="submit" name="free" value="{% if params.free %}0{% else %}1{% endif %}" class="chip" aria-pressed="{% if params.free == '1' %}true{% else %}false{% endif %}">Free only</button>
@@ -27,7 +27,7 @@
     {% if items %}
     <div class="cards">
       {% for r in items %}
-      <article class="card">
+      <article class="card" data-f="{{ r.min_age }}|{{ r.max_age }}|{{ r.cost_status }}|{{ r.accessibility_status }}|{{ r.community }}|{{ r.category }}|{{ r.group }}|{{ r.name|lower }} {{ r.description|lower|truncatechars:300 }}">
         <h3>{% if view == 'map' %}<span class="pin">{{ forloop.counter }}</span>{% endif %}<a href="{% url 'resource_detail' r.slug %}">{{ r.name }}</a></h3>
         <div class="meta">
           <span class="tag group-{{ r.group }}"><i class="sw" aria-hidden="true"></i>{{ r.get_category_display }}</span>

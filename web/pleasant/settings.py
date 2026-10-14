@@ -126,6 +126,8 @@ LAYER_MANIFEST = REPO_ROOT / "data" / "layer_manifest.json"
 PC_PRIVATE_MODE = os.environ.get("PC_PRIVATE_MODE", "1") == "1"   # first iteration is private
 PC_MAP_CENTER = [-124.195, 41.755]
 PC_MAP_ZOOM = 12.2
+PC_STATIC_BASE = os.environ.get("PC_STATIC_BASE", "/Pleasant/")   # path prefix of the static (GitHub Pages) export
+PC_REVIEW_EMAIL = os.environ.get("PC_REVIEW_EMAIL", "")            # where static-preview review replies are addressed (optional)
 
 # Crescent Compass agent: read-only, allow-listed tools, feature-flagged LLM.
 COMPASS_LLM_ENABLED = os.environ.get("COMPASS_LLM_ENABLED", "0") == "1"

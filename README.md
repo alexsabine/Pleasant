@@ -72,6 +72,10 @@ This is a **code-and-design starter kit**, not a deployed website and **not a bu
 
 > Read `CLAUDE.md`, `docs/01_client_scope.md`, `licenses/layer_rights_matrix.csv`, `architecture/01_base_map.md`, and `architecture/02_data_and_memory.md`. Create a working Django/Wagtail/PostGIS/MapLibre vertical slice with **five clearly fictional** directory items and a public map; a contributor suggests an edit; an editor approves it; an admin checks the audit log. All writes must be server-authorized. First run the supplied reference unit tests, then run framework migrations and workflow tests. Document risks, licensing gaps, and what still needs the client to decide. Make no external GIS download or paid API call without explicit approval.
 
+## Share a link-only preview (GitHub Pages)
+
+A static export of the public site lives in `site/` and is published by `.github/workflows/pages.yml`. Setup and limits: `docs/07_github_pages_preview.md`. Regenerate with `cd web && python manage.py export_static --out ../site --base /Pleasant/`.
+
 ## Run reference checks
 
 ```bash

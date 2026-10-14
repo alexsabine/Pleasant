@@ -1,0 +1,150 @@
+{
+ "generated": "2026-10-14",
+ "rule": "No identifiable people; EXIF/GPS removed by re-encoding; wildlife and fungi photos carry no location.",
+ "photos": [
+  {
+   "slug": "smith-river-pool",
+   "file": "photos/smith-river-pool.jpg",
+   "source_file": "IMG_2205.HEIC",
+   "caption": "Emerald pool on the Smith River, summer light",
+   "people": false,
+   "gps_stripped": true,
+   "credit": "Project-supplied photography (owner)",
+   "licence": "Owner's own photographs; use within Pleasant Crescent only",
+   "location_published": false,
+   "note": "Scenic images are not mapped or labelled as verified locations."
+  },
+  {
+   "slug": "smith-river-gorge",
+   "file": "photos/smith-river-gorge.jpg",
+   "source_file": "IMG_1292.HEIC",
+   "caption": "The Smith River gorge, turquoise water between rocks",
+   "people": false,
+   "gps_stripped": true,
+   "credit": "Project-supplied photography (owner)",
+   "licence": "Owner's own photographs; use within Pleasant Crescent only",
+   "location_published": false,
+   "note": "Scenic images are not mapped or labelled as verified locations."
+  },
+  {
+   "slug": "redwood-canopy",
+   "file": "photos/redwood-canopy.jpg",
+   "source_file": "IMG_1659.HEIC",
+   "caption": "Looking up into the redwood canopy",
+   "people": false,
+   "gps_stripped": true,
+   "credit": "Project-supplied photography (owner)",
+   "licence": "Owner's own photographs; use within Pleasant Crescent only",
+   "location_published": false,
+   "note": "Scenic images are not mapped or labelled as verified locations."
+  },
+  {
+   "slug": "creek-ferns",
+   "file": "photos/creek-ferns.jpg",
+   "source_file": "IMG_1421.HEIC",
+   "caption": "A small creek through ferns and fallen redwood",
+   "people": false,
+   "gps_stripped": true,
+   "credit": "Project-supplied photography (owner)",
+   "licence": "Owner's own photographs; use within Pleasant Crescent only",
+   "location_published": false,
+   "note": "Scenic images are not mapped or labelled as verified locations."
+  },
+  {
+   "slug": "coast-bench",
+   "file": "photos/coast-bench.jpg",
+   "source_file": "IMG_1451.HEIC",
+   "caption": "A bench above the rocks and sea stacks",
+   "people": false,
+   "gps_stripped": true,
+   "credit": "Project-supplied photography (owner)",
+   "licence": "Owner's own photographs; use within Pleasant Crescent only",
+   "location_published": false,
+   "note": "Scenic images are not mapped or labelled as verified locations."
+  },
+  {
+   "slug": "sunset-rock",
+   "file": "photos/sunset-rock.jpg",
+   "source_file": "IMG_2674.HEIC",
+   "caption": "Sea stack at sunset",
+   "people": false,
+   "gps_stripped": true,
+   "credit": "Project-supplied photography (owner)",
+   "licence": "Owner's own photographs; use within Pleasant Crescent only",
+   "location_published": false,
+   "note": "Scenic images are not mapped or labelled as verified locations."
+  },
+  {
+   "slug": "foggy-beach",
+   "file": "photos/foggy-beach.jpg",
+   "source_file": "IMG_2582.HEIC",
+   "caption": "Fog over the beach and headland",
+   "people": false,
+   "gps_stripped": true,
+   "credit": "Project-supplied photography (owner)",
+   "licence": "Owner's own photographs; use within Pleasant Crescent only",
+   "location_published": false,
+   "note": "Scenic images are not mapped or labelled as verified locations."
+  },
+  {
+   "slug": "beach-rocks-bw",
+   "file": "photos/beach-rocks-bw.jpg",
+   "source_file": "IMG_2155.HEIC",
+   "caption": "Beach rocks and tide, black and white",
+   "people": false,
+   "gps_stripped": true,
+   "credit": "Project-supplied photography (owner)",
+   "licence": "Owner's own photographs; use within Pleasant Crescent only",
+   "location_published": false,
+   "note": "Scenic images are not mapped or labelled as verified locations."
+  },
+  {
+   "slug": "sand-dollars",
+   "file": "photos/sand-dollars.jpg",
+   "source_file": "IMG_1473-EDIT.jpg",
+   "caption": "Two sand dollars on sand (species and location not stated)",
+   "people": false,
+   "gps_stripped": true,
+   "credit": "Project-supplied photography (owner)",
+   "licence": "Owner's own photographs; use within Pleasant Crescent only",
+   "location_published": false,
+   "note": "Scenic images are not mapped or labelled as verified locations."
+  },
+  {
+   "slug": "sea-star",
+   "file": "photos/sea-star.jpg",
+   "source_file": "IMG_2506.HEIC",
+   "caption": "An ochre sea star on sand (location deliberately not recorded)",
+   "people": false,
+   "gps_stripped": true,
+   "credit": "Project-supplied photography (owner)",
+   "licence": "Owner's own photographs; use within Pleasant Crescent only",
+   "location_published": false,
+   "note": "Scenic images are not mapped or labelled as verified locations."
+  },
+  {
+   "slug": "ink-cap",
+   "file": "photos/ink-cap.jpg",
+   "source_file": "IMG_2688.HEIC",
+   "caption": "A shaggy ink cap mushroom (location not recorded)",
+   "people": false,
+   "gps_stripped": true,
+   "credit": "Project-supplied photography (owner)",
+   "licence": "Owner's own photographs; use within Pleasant Crescent only",
+   "location_published": false,
+   "note": "Scenic images are not mapped or labelled as verified locations."
+  },
+  {
+   "slug": "coast-overlook",
+   "file": "photos/coast-overlook.jpg",
+   "source_file": "IMG_1639.HEIC",
+   "caption": "Coastal overlook at evening",
+   "people": false,
+   "gps_stripped": true,
+   "credit": "Project-supplied photography (owner)",
+   "licence": "Owner's own photographs; use within Pleasant Crescent only",
+   "location_published": false,
+   "note": "Scenic images are not mapped or labelled as verified locations."
+  }
+ ]
+}
