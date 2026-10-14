@@ -55,7 +55,7 @@ def explore(request):
     qs = _apply_filters(_public_resources(), request.GET)
     items = sorted(qs, key=lambda r: (-(r.p_current or 0), r.name))
     ctx = _common_ctx(request)
-    ctx.update({"items": items, "count": len(items), "view": request.GET.get("view", "list")})
+    ctx.update({"items": items, "count": len(items), "view": request.GET.get("view", "map")})
     return render(request, "atlas/explore.html", ctx)
 
 

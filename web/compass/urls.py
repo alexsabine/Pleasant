@@ -6,4 +6,5 @@ app_name = "compass"
 urlpatterns = [
     path("", views.panel, name="panel"),
     path("ask", views.ask, name="ask"),
+    path("feedback", views.feedback, name="feedback"),
 ]

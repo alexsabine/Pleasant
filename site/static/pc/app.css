@@ -216,3 +216,5 @@ h2.display{font-size:clamp(1.6rem,3.5vw,2.3rem);margin:0 0 .4em;font-weight:400}
 .qcard .field{margin-top:10px}
 .site-nav a.review-link{color:var(--pc-stale)}
 .private-banner a{color:inherit;font-weight:600}
+
+.suggest button.guide-start{background:var(--pc-accent);color:var(--pc-accent-on);border-color:var(--pc-accent)}

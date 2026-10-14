@@ -2,7 +2,7 @@
 {% block title %}Explore · Pleasant Crescent{% endblock %}
 {% block content %}
 <h1>Explore</h1>
-<p class="lede">Verified places and activities for families in Del Norte County. The list is the default; the map is a view of the same results.</p>
+<p class="lede">Verified places and activities for families in Del Norte County. The map and the list show the same results; the list works on its own if you prefer it.</p>
 <form method="get" action="{% url 'explore' %}" class="filters" role="search" aria-label="Filter listings" data-group="{{ params.group }}">
   <input type="hidden" name="view" value="{{ view }}">
   <div class="question"><span>Just show free things?</span>

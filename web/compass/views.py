@@ -12,7 +12,9 @@ from django.shortcuts import render
 from django.utils import timezone
 from django.views.decorators.http import require_GET, require_POST
 
-from atlas.models import AuditEntry, ProjectionVersion, Submission
+from atlas.models import AuditEntry, ProjectionVersion, ReviewNote, Submission
+
+from .guide import QUESTIONS
 
 from . import adapter, honesty, memory, policy
 from .tools import ALLOW_LIST
@@ -146,3 +148,24 @@ def ask(request):
                        "audit_hash": record.hash, "llm_used": llm_used, "intent": intent.as_dict(), "memory_used": used,
                        "limitations": answer["limitations"]},
     })
+
+
+@require_POST
+def feedback(request):
+    """Answers from the guide mode ('Help shape Compass'). Stored as ReviewNote rows for the
+    stewards, never published, never fed back into any answer. Anonymous replies are allowed
+    so a reviewer need not create an account."""
+    try:
+        body = json.loads(request.body or b"{}")
+    except json.JSONDecodeError:
+        return JsonResponse({"error": "invalid JSON"}, status=400)
+    keys = {q["key"] for q in QUESTIONS}
+    reviewer = (body.get("reviewer") or (request.user.get_username() if request.user.is_authenticated else "")).strip()[:80]
+    saved = 0
+    for a in (body.get("answers") or [])[:len(QUESTIONS)]:
+        key, text = str(a.get("key", ""))[:40], (a.get("answer") or "").strip()[:4000]
+        if key in keys and text:
+            ReviewNote.objects.create(question_key=f"compass:{key}", reviewer=reviewer, response=text)
+            saved += 1
+    AuditEntry.append({"event": "compass_guide_feedback", "saved": saved, "reviewer": reviewer or None, "timestamp": timezone.now().isoformat()})
+    return JsonResponse({"saved": saved})

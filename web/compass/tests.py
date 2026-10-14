@@ -129,3 +129,21 @@ class PublicationClosure(TestCase):
         self.assertEqual(ProjectionVersion.current(), v0 + 1)
         self.assertEqual(AuditEntry.objects.count(), n0 + 1)
         self.assertEqual(AuditEntry.objects.latest("index").payload["event"], "published")
+
+
+class GuideFeedback(TestCase):
+    def test_guide_answers_are_stored_for_stewards_and_never_published(self):
+        from atlas.models import AuditEntry, ReviewNote
+        from django.test import Client
+        c = Client()
+        panel = c.get("/compass/").content.decode()
+        self.assertIn("Help shape Compass", panel)
+        self.assertIn("serve_first", panel)
+        r = c.post("/compass/feedback", data=json.dumps({"answers": [{"key": "serve_first", "answer": "Newcomers first."}, {"key": "bogus", "answer": "x"}, {"key": "red_lines", "answer": ""}]}), content_type="application/json")
+        self.assertEqual(r.json()["saved"], 1)
+        note = ReviewNote.objects.get()
+        self.assertEqual(note.question_key, "compass:serve_first")
+        self.assertTrue(AuditEntry.objects.filter(payload__event="compass_guide_feedback").exists())
+        for url in ("/api/resources.json", "/explore/"):
+            self.assertNotIn("Newcomers first", c.get(url).content.decode())
+        self.assertEqual(c.post("/compass/feedback", data="nope", content_type="application/json").status_code, 400)

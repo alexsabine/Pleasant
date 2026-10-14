@@ -11,9 +11,11 @@ def _tokens():
 
 
 def site_tokens(request):
+    from compass.guide import CLOSING, INTRO, QUESTIONS
     static_export = request.META.get("HTTP_X_PC_STATIC") == "1"   # set only by manage.py export_static
     return {"tokens": _tokens(), "private_mode": settings.PC_PRIVATE_MODE, "static_export": static_export,
             "static_config": json.dumps({"base": settings.PC_STATIC_BASE, "reviewEmail": settings.PC_REVIEW_EMAIL}),
+            "compass_guide": json.dumps({"intro": INTRO, "questions": QUESTIONS, "closing": CLOSING}),
             "map_center": settings.PC_MAP_CENTER, "map_zoom": settings.PC_MAP_ZOOM}
 
 

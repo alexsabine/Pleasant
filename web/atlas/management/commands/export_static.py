@@ -34,8 +34,8 @@ def static_path(url: str) -> str:
     path, _, qs = url.partition("?")
     params = {k: v[0] for k, v in parse_qs(qs.replace("&amp;", "&")).items()}
     if path == "/explore/":
-        if params.get("view") == "map":
-            return "/explore/map/"
+        if params.get("view") == "list":
+            return "/explore/list/"                  # the map is the default view
         return f"/explore/group/{params['group']}/" if params.get("group") else "/explore/"
     if path == "/api/h3_venues.geojson":
         return "/api/h3_venues.geojson"           # map.js swaps in _res{N}.geojson
@@ -80,7 +80,7 @@ class Command(BaseCommand):
                 dest.write_bytes(body)
             return dest
 
-        pages = ["/", "/explore/", "/explore/?view=map", "/this-week/", "/local-help/", "/about/", "/review/", "/contribute/", "/accounts/join/", "/accounts/sign-in/"]
+        pages = ["/", "/explore/", "/explore/?view=list", "/this-week/", "/local-help/", "/about/", "/review/", "/contribute/", "/accounts/join/", "/accounts/sign-in/"]
         pages += [f"/explore/?group={k}" for k, _ in GROUPS]
         slugs = list(Resource.objects.filter(live=True, visibility="public", is_sensitive=False).values_list("slug", flat=True))
         pages += [f"/resource/{s}/" for s in slugs]
