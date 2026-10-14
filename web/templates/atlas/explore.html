@@ -75,5 +75,5 @@
 {% block scripts %}{% if view == 'map' %}
 <script src="{% static 'vendor/maplibre-gl.js' %}"></script>
 <script src="{% static 'vendor/pmtiles.js' %}"></script>
-<script src="{% static 'pc/map.js' %}"></script>
+<script src="{% static 'pc/map.js' %}?v={{ asset_v }}"></script>
 {% endif %}{% endblock %}

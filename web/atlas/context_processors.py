@@ -5,6 +5,16 @@ from django.conf import settings
 
 
 @lru_cache(maxsize=1)
+def _asset_version() -> str:
+    """Short content hash of our own CSS/JS, appended to their URLs so phones never keep a stale copy."""
+    import hashlib
+    h = hashlib.sha256()
+    for p in sorted((settings.BASE_DIR / "static" / "pc").glob("*.*")):
+        h.update(p.read_bytes())
+    return h.hexdigest()[:10]
+
+
+@lru_cache(maxsize=1)
 def _tokens():
     with open(settings.BASE_DIR / "static" / "style" / "tokens.json", encoding="utf8") as fh:
         return json.load(fh)
@@ -13,7 +23,7 @@ def _tokens():
 def site_tokens(request):
     from compass.guide import CLOSING, INTRO, QUESTIONS
     static_export = request.META.get("HTTP_X_PC_STATIC") == "1"   # set only by manage.py export_static
-    return {"tokens": _tokens(), "private_mode": settings.PC_PRIVATE_MODE, "static_export": static_export,
+    return {"tokens": _tokens(), "private_mode": settings.PC_PRIVATE_MODE, "static_export": static_export, "asset_v": _asset_version(),
             "static_config": json.dumps({"base": settings.PC_STATIC_BASE, "reviewEmail": settings.PC_REVIEW_EMAIL}),
             "compass_guide": json.dumps({"intro": INTRO, "questions": QUESTIONS, "closing": CLOSING}),
             "map_center": settings.PC_MAP_CENTER, "map_zoom": settings.PC_MAP_ZOOM}

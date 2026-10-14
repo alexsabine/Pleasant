@@ -32,6 +32,8 @@ CSS_URL_RE = re.compile(r"url\((['\"]?)/static/")
 def static_path(url: str) -> str:
     """Map a dynamic URL (with query string) to the file the export writes for it."""
     path, _, qs = url.partition("?")
+    if path.startswith("/static/"):
+        return url                                # keep cache-busting ?v= on our own assets
     params = {k: v[0] for k, v in parse_qs(qs.replace("&amp;", "&")).items()}
     if path == "/explore/":
         if params.get("view") == "list":

@@ -10,7 +10,7 @@
 <script>window.PC_STATIC={{ static_config|safe }};</script>{% endif %}
 <link rel="stylesheet" href="{% static 'fonts/cormorant/cormorant.css' %}">
 <link rel="stylesheet" href="{% static 'vendor/maplibre-gl.css' %}">
-<link rel="stylesheet" href="{% static 'pc/app.css' %}">
+<link rel="stylesheet" href="{% static 'pc/app.css' %}?v={{ asset_v }}">
 <style>
 :root{
   --pc-bg:{{ tokens.ui.paper|default:tokens.ui.bg }};--pc-surface:{{ tokens.ui.surface }};--pc-ink:{{ tokens.ui.ink }};--pc-ink-2:{{ tokens.ui.ink_2 }};
@@ -58,8 +58,8 @@ body{background:var(--pc-bg)}
   <div class="foot-rule"></div>
   <p class="foot-small">Map data © OpenStreetMap contributors (ODbL) via Protomaps · Terrain USGS 3DEP · Boundaries U.S. Census Bureau · Fonts Noto Sans and Cormorant Garamond (OFL). Directory guidance is not medical, legal or emergency advice; verification dates are shown on every listing. <span class="right">Crescent City · California</span></p>
 </footer>
-<script src="{% static 'pc/compass.js' %}" defer></script>
-{% if static_export %}<script src="{% static 'pc/static.js' %}" defer></script>{% endif %}
+<script src="{% static 'pc/compass.js' %}?v={{ asset_v }}" defer></script>
+{% if static_export %}<script src="{% static 'pc/static.js' %}?v={{ asset_v }}" defer></script>{% endif %}
 {% block scripts %}{% endblock %}
 </body>
 </html>

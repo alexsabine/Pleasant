@@ -294,3 +294,9 @@ code{overflow-wrap:anywhere}
   .compass-form{padding-bottom:calc(10px + env(safe-area-inset-bottom,0px))}
   body.compass-open{position:fixed;width:100%}
 }
+
+.compass-drawer{box-sizing:border-box}
+@media (max-width:640px){
+  /* Chrome on Android with the VirtualKeyboard API: the keyboard overlays the page and reports its height */
+  .compass-drawer{padding-bottom:env(keyboard-inset-height,0px)}
+}

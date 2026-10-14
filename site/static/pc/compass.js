@@ -13,17 +13,35 @@
   // iOS does not. Size the drawer to the *visual* viewport so the question box always sits above
   // the keyboard on both.
   const vv = window.visualViewport;
+  // Chrome on Android exposes the keyboard directly (VirtualKeyboard API): ask it to overlay and
+  // read its height, which also makes env(keyboard-inset-height) available to the CSS.
+  let kbdInset = 0;
+  const vk = navigator.virtualKeyboard;
+  if (vk) {
+    try { vk.overlaysContent = true; } catch (err) { /* older builds */ }
+    vk.addEventListener("geometrychange", e => { const r = (e.target && e.target.boundingRect) || vk.boundingRect; kbdInset = r ? Math.round(r.height) : 0; fit(); });
+  }
   function fit() {
     if (drawer.hidden) return;
-    if (vv && window.matchMedia("(max-width: 640px)").matches) {
-      drawer.style.height = Math.round(vv.height) + "px";
-      drawer.style.top = Math.round(vv.offsetTop) + "px";
-    } else { drawer.style.height = ""; drawer.style.top = ""; }
+    if (window.matchMedia("(max-width: 640px)").matches) {
+      const h = vv ? vv.height : window.innerHeight;
+      const top = vv ? vv.offsetTop : 0;
+      drawer.style.top = Math.round(top) + "px";
+      drawer.style.height = Math.round(h) + "px";
+      drawer.style.paddingBottom = kbdInset ? kbdInset + "px" : "";
+    } else { drawer.style.height = ""; drawer.style.top = ""; drawer.style.paddingBottom = ""; }
     log.scrollTop = log.scrollHeight;
   }
   if (vv) { vv.addEventListener("resize", fit); vv.addEventListener("scroll", fit); }
   window.addEventListener("resize", fit);
-  input.addEventListener("focus", () => { setTimeout(fit, 250); setTimeout(fit, 600); });
+  let fitTimer = null;
+  function fitForAWhile() {   // keyboards animate; re-measure for 1.5 s after focus and after blur
+    if (fitTimer) clearInterval(fitTimer);
+    let n = 0;
+    fitTimer = setInterval(() => { fit(); if (++n > 15) { clearInterval(fitTimer); fitTimer = null; } }, 100);
+  }
+  input.addEventListener("focus", fitForAWhile);
+  input.addEventListener("blur", () => { kbdInset = 0; fitForAWhile(); });
   let guideStep = -1, guideAnswers = [];
   function open(v) {
     drawer.hidden = !v; toggle.setAttribute("aria-expanded", String(v));
