@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block title %}About · Pleasant Crescent{% endblock %}
+{% block content %}
+<h1>About this atlas</h1>
+<p class="lede">Pleasant Crescent is a caregiver-directed directory for Del Norte County. Every listing shows its source and the date it was last verified. Unknown is shown as unknown. Nothing is tracked about children.</p>
+<h2>How visibility works</h2>
+<p class="lede">A contributor suggests; an editor verifies the claim against a source; an administrator approves publication. Each step is written to a hash-chained audit log. Crescent Compass reads only the published projection and records the provenance of every answer.</p>
+<h2>Map data and licences</h2>
+<table class="tbl"><thead><tr><th>Dataset</th><th>Source</th><th>Licence</th><th>Fetched</th><th>Attribution</th></tr></thead><tbody>
+{% for i in ingest %}<tr><td>{{ i.id }}</td><td><a href="{{ i.source_url }}" rel="noopener">{{ i.product|default:i.source_url|truncatechars:60 }}</a></td><td>{{ i.licence }}</td><td>{{ i.fetched_at|slice:":10" }}</td><td>{{ i.attribution }}</td></tr>{% endfor %}
+</tbody></table>
+<p class="src">Style code: @protomaps/basemaps (BSD-3). Map rendering: MapLibre GL JS (BSD-3). PMTiles (BSD-3). Fonts: Noto Sans (SIL OFL 1.1). All map assets are served from this site; browsing makes no requests to source agencies.</p>
+<h2>Correct a listing</h2>
+<p class="lede">Use the correction form on any listing page, or email the editors. Corrections become claims that an editor checks before anything changes publicly.</p>
+<h2>Governance</h2>
+<p class="lede">The freshness model, decision constants and the Compass policy are published in the repository (research/04_mathematics_register.md) and editable by administrators without code changes. Monthly review covers corrections, audit-log entries and Compass abstentions.</p>
+{% endblock %}

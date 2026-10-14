@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block title %}{{ r.name }} · Pleasant Crescent{% endblock %}
+{% block content %}
+<h1>{{ r.name }}{% if r.is_fictional %} <span class="tag fiction">Fictional demo</span>{% endif %}</h1>
+<div class="meta"><span class="tag">{{ r.get_category_display }}</span><span class="tag">Ages {{ r.min_age }} to {{ r.max_age }}</span>{% if r.cost_status == 'free' %}<span class="tag free">Free</span>{% elif r.cost_status == 'priced' %}<span class="tag">${{ r.cost_usd|floatformat:0 }}</span>{% else %}<span class="tag unknown">Cost {{ r.cost_status }}</span>{% endif %}{% if r.accessibility_status == 'verified_yes' %}<span class="tag">Access: verified yes</span>{% elif r.accessibility_status == 'verified_no' %}<span class="tag">Access: verified no</span>{% else %}<span class="tag unknown">Access: unknown</span>{% endif %}<span class="tag">{{ r.get_community_display }}</span></div>
+<div class="fresh" style="margin:8px 0 16px"><span class="dot {{ r.freshness_band }}"></span>{% if r.last_verified_at %}Verified {{ r.last_verified_at|timesince }} ago · model estimate that it is still current: {{ r.p_current|floatformat:2 }} ({{ r.freshness_band }}){% else %}Not yet verified{% endif %}</div>
+<div class="detail-grid">
+<section><p>{{ r.description }}</p>{% if r.access_notes %}<p class="src">Access notes: {{ r.access_notes }}</p>{% endif %}
+<dl class="kv">
+<dt>Website</dt><dd>{% if r.website_url %}<a href="{{ r.website_url }}" rel="noopener">{{ r.website_url }}</a>{% else %}none on file{% endif %}</dd>
+<dt>Phone</dt><dd>{{ r.phone_public|default:"none on file" }}</dd>
+<dt>Source</dt><dd>{% if r.public_source_url %}<a href="{{ r.public_source_url }}" rel="noopener">{{ r.public_source_url }}</a>{% endif %} {{ r.source_note }}</dd>
+<dt>Last verified</dt><dd>{{ r.last_verified_at|date:"j F Y"|default:"never" }}</dd>
+<dt>Last material change</dt><dd>{{ r.last_material_change_at|date:"j F Y"|default:"none recorded" }}</dd>
+<dt>Location</dt><dd>{% if r.location %}{{ r.location.y|floatformat:5 }}, {{ r.location.x|floatformat:5 }} · <a href="{% url 'explore' %}?view=map&amp;q={{ r.name|urlencode }}">Show on map</a>{% else %}not mapped{% endif %}</dd>
+</dl>
+{% if events %}<h2>Events here</h2><ul class="pin-list">{% for e in events %}<li>{{ e.title }} — {{ e.start_at|date:"D j M, H:i" }}</li>{% endfor %}</ul>{% endif %}
+</section>
+<aside><h2>Evidence behind this listing</h2>
+{% if claims %}<table class="tbl"><thead><tr><th>Attribute</th><th>Type</th><th>Verified</th><th>Audit</th></tr></thead><tbody>{% for c in claims %}<tr><td>{{ c.attribute }}</td><td>{{ c.epistemic_type }}</td><td>{{ c.verified_at|date:"j M Y" }}</td><td><code>{{ c.audit_hash|slice:":10" }}</code></td></tr>{% endfor %}</tbody></table>{% else %}<p class="empty">No verified claims on record.</p>{% endif %}
+<h2>Published revisions</h2><ul class="pin-list">{% for h in history %}<li>Revision {{ h.pk }} — {{ h.created_at|date:"j M Y H:i" }}{% if h.user %} by {{ h.user.get_username }}{% endif %}</li>{% empty %}<li>No revisions yet.</li>{% endfor %}</ul>
+<h2>Suggest a correction</h2><p class="src">Corrections become unverified claims for an editor to check. Nothing changes publicly until it is verified and approved.</p></aside>
+</div>
+{% endblock %}

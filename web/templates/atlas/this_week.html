@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block title %}This week · Pleasant Crescent{% endblock %}
+{% block content %}
+<h1>This week</h1><p class="lede">Events in the next two weeks. Expired events drop off by clock time, whether or not anyone has checked them.</p>
+{% if upcoming %}<div class="cards">{% for e in upcoming %}<article class="card"><h3>{{ e.title }}</h3>
+<div class="meta"><span class="tag">{{ e.start_at|date:"l j F, H:i" }}{% if e.end_at %} to {{ e.end_at|date:"H:i" }}{% endif %}</span><span class="tag">Ages {{ e.min_age }} to {{ e.max_age }}</span>{% if e.cost_status == 'free' %}<span class="tag free">Free</span>{% else %}<span class="tag unknown">Cost {{ e.cost_status }}</span>{% endif %}{% if e.recurrence_rule %}<span class="tag">{{ e.recurrence_rule }}</span>{% endif %}{% if e.is_fictional %}<span class="tag fiction">Fictional demo</span>{% endif %}</div>
+{% if e.description %}<p class="src">{{ e.description }}</p>{% endif %}
+<div class="src">{% if e.resource %}At <a href="{% url 'resource_detail' e.resource.slug %}">{{ e.resource.name }}</a> · {% endif %}{% if e.source_url %}<a href="{{ e.source_url }}" rel="noopener">Source</a> · {% endif %}{% if e.last_verified_at %}verified {{ e.last_verified_at|timesince }} ago{% else %}not yet verified{% endif %}{% if e.location %} · <a href="https://www.openstreetmap.org/?mlat={{ e.location.y }}&amp;mlon={{ e.location.x }}#map=16/{{ e.location.y }}/{{ e.location.x }}" rel="noopener">Directions (opens OpenStreetMap)</a>{% endif %}</div></article>{% endfor %}</div>
+{% else %}<p class="empty">No published events in the next two weeks.</p>{% endif %}
+{% if expired %}<h2>Recently expired</h2><ul class="pin-list">{% for e in expired %}<li>{{ e.title }} — {{ e.start_at|date:"j M" }} (expired)</li>{% endfor %}</ul>{% endif %}
+{% endblock %}

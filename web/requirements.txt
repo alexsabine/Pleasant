@@ -1,0 +1,9 @@
+Django==6.1.2
+anthropic==1.13.0
+h3==4.5.0
+numpy==2.5.3
+pillow==12.3.0
+pmtiles==3.8.1
+pyshp==3.1.6
+scipy==1.18.1
+wagtail==8.0

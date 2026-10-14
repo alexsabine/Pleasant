@@ -429,9 +429,23 @@ def h3_checks() -> None:
     # E2: county-scale sizing: cells covering an APPROXIMATE Del Norte bounding polygon (not a legal boundary)
     bbox = [(41.38, -124.42), (41.38, -123.52), (42.01, -123.52), (42.01, -124.42)]
     sizes = {r: len(hx.cells_covering(bbox, r)) for r in (5, 6, 7, 8, 9)}
-    check("H3", "Approximate county bbox coverage sizes (storage/aggregate planning only; bbox is NOT the county boundary)",
-          sizes[8] > sizes[7] > sizes[6],
-          f"cells by res: {sizes} (res 8 ~ {sizes[8]} cells is trivial for PostGIS or a JSON cache)")
+    county_sizes, county_note = {}, "county polygon not on disk"
+    import json as _json, os as _os
+    cpath = _os.path.join(_os.path.dirname(__file__), "..", "..", "data", "boundaries", "county.geojson")
+    if _os.path.exists(cpath):
+        gj = _json.load(open(cpath))
+        geom = gj["features"][0]["geometry"]
+        polys = geom["coordinates"] if geom["type"] == "MultiPolygon" else [geom["coordinates"]]
+        for r in (5, 6, 7, 8, 9):
+            cells = set()
+            for poly in polys:
+                cells |= hx.cells_covering([(lat, lon) for lon, lat in poly[0]], r)
+            county_sizes[r] = len(cells)
+        area = sum(hx.cell_area_km2(c) for c in cells) if cells else 0
+        county_note = f"Census TIGER 2025 county polygon: cells by res {county_sizes}; res-9 cells sum to ~{area:.0f} km2 (county land+water ~3,000 km2)"
+    check("H3", "Coverage sizing: padded bbox vs the real Census county polygon (planning only; the polygon is the authoritative boundary)",
+          sizes[8] > sizes[7] > sizes[6] and (not county_sizes or county_sizes[8] < sizes[8]),
+          f"bbox cells by res: {sizes}; {county_note}. Res 7 (~5 km2) for public aggregates, res 8 for cache keys.")
 
     # E3: grid distance is not a geographic distance, let alone a travel time
     pts = [(lat0 + rng.uniform(-0.15, 0.15), lon0 + rng.uniform(-0.2, 0.2)) for _ in range(400)]
@@ -465,6 +479,101 @@ def h3_checks() -> None:
 
 
 # =============================================================================
+# [AGT] Crescent Compass: honesty and memory over time
+# =============================================================================
+def agt_checks() -> None:
+    import os as _os, sys as _sys, time as _time
+    web = _os.path.join(_os.path.dirname(__file__), "..", "..", "web")
+    if web not in _sys.path:
+        _sys.path.insert(0, web)
+    from compass import honesty, memory
+
+    # G1: show threshold is exactly p* = -u_false / (u_true - u_false) under the published utilities
+    u_true, u_false, u_abst = 1.0, -3.0, 0.0
+    p_star = (u_abst - u_false) / (u_true - u_false)
+    grid = [i / 1000 for i in range(1001)]
+    acts = [choose_binary_action(p, u_true, u_false, u_abst)[0] for p in grid]
+    first_show = next(p for p, a in zip(grid, acts) if a == "show")
+    monotone = all(a == "abstain" for p, a in zip(grid, acts) if p < p_star) and all(a == "show" for p, a in zip(grid, acts) if p > p_star + 1e-9)
+    check("AGT", "Recommendation threshold is a published number: show iff P(current) > p* = 0.75 under utilities (+1, -3, 0)",
+          monotone and abs(first_show - p_star) < 2e-3,
+          f"p* = {p_star:.3f}; first 'show' on a 0.001 grid at {first_show:.3f}; below p* always abstain, above always show. "
+          "A governance body changes behaviour by changing the three utilities, not the code.")
+
+    # G2: grounding validator drops every ungrounded or over-claiming sentence
+    allowed = {1: {"name": "Harbour Play Yard", "accessibility_status": "verified_yes"},
+               2: {"name": "Story Hour", "accessibility_status": "unknown"}}
+    sentences = [
+        {"text": "Harbour Play Yard is free and verified accessible.", "resource_ids": [1]},            # keep
+        {"text": "Story Hour is wheelchair accessible.", "resource_ids": [2]},                         # drop: unknown access
+        {"text": "There is also a trampoline park that is open late.", "resource_ids": [99]},           # drop: unknown record
+        {"text": "The beach cafe is free for under-5s.", "resource_ids": []},                           # drop: fact with no record
+        {"text": "Story Hour runs on Tuesdays.", "resource_ids": []},                                   # keep: name forces citation, no over-claim word
+        {"text": "Let me know if you want more ideas.", "resource_ids": []},                            # keep: no factual claim
+    ]
+    kept, dropped = honesty.validate_llm_sentences(sentences, allowed)
+    check("AGT", "Grounding validator: sentences citing unknown records, asserting unverified accessibility, or stating facts with no record are dropped",
+          len(kept) == 3 and len(dropped) == 3 and kept[0].startswith("Harbour"),
+          f"kept {len(kept)}: {[k[:30] for k in kept]}; dropped {len(dropped)}: {[d.split(':')[0] for d in dropped]}")
+
+    # G3: working memory is bounded, stores ids not facts, folds to preferences, invalidates on projection change
+    sess = {}
+    ctx = memory.load(sess, projection_version=1)
+    for i in range(20):
+        intent = {"age": 3 + (i % 4), "free_only": i % 2 == 0, "max_cost": None, "requires_accessibility": False, "community": None}
+        ctx = memory.remember(sess, ctx, f"question {i} about a place with hours 9-5", intent, [i, i + 1], "show")
+    bounded = len(ctx["turns"]) == memory.DEFAULTS["COMPASS_WORKING_CONTEXT_TURNS"]
+    no_facts = all(set(t.keys()) == {"q", "intent", "shown", "action", "t"} and all(isinstance(x, int) for x in t["shown"]) for t in ctx["turns"])
+    folded = "age" in ctx["prefs"] and ctx["prefs"]["age"]["value"] in (3, 4, 5, 6)
+    ctx2 = memory.load(sess, projection_version=2)
+    invalidated = ctx2["turns"] == [] and ctx2["invalidated_from"] == 1
+    memory.forget(sess)
+    check("AGT", "Working memory: bounded to N turns, holds record ids and parsed preferences only, folds older turns into preferences, "
+                 "and is rebuilt when the projection version changes",
+          bounded and no_facts and folded and invalidated and memory.KEY not in sess,
+          f"after 20 turns: {len(ctx['turns'])} kept, prefs={sorted(ctx['prefs'])}, invalidated on projection change={invalidated}, forget clears={memory.KEY not in sess}")
+
+    # G4: the system's trust in its own freshness estimates calibrates with evidence (synthetic)
+    rng = random.Random(21)
+    true_hazard = 0.02  # the world changes about every 50 days
+    prior = GammaRate(2.0, 400.0)  # prior believes ~every 200 days (wrong by 4x)
+    def brier_for(model: GammaRate, n: int = 3000) -> float:
+        tot = 0.0
+        for _ in range(n):
+            age = rng.uniform(1, 120)
+            still = rng.random() < exp(-true_hazard * age)
+            tot += (model.survival(age) - (1 if still else 0)) ** 2
+        return tot / n
+    b_prior = brier_for(prior)
+    # learn from verification outcomes: count changes over exposure
+    changes, exposure = 0, 0.0
+    for _ in range(300):
+        age = rng.uniform(1, 120)
+        exposure += age
+        if rng.random() >= exp(-true_hazard * age):
+            changes += 1
+    post = prior.update(changes, exposure)
+    b_post = brier_for(post)
+    check("AGT", "Trust calibrates over time: Brier score of P(current) improves as verification outcomes update the hazard posterior (synthetic world)",
+          b_post < b_prior and abs(post.mean_hazard - true_hazard) < abs(prior.mean_hazard - true_hazard),
+          f"prior mean hazard {prior.mean_hazard:.4f}/day -> posterior {post.mean_hazard:.4f}/day (true {true_hazard}); "
+          f"Brier {b_prior:.4f} -> {b_post:.4f} after 300 verification outcomes. Publish this score monthly.")
+
+    # G5: provenance record completeness is enforced (eleven fields) and chained
+    chain = AuditChain()
+    full = {k: "x" for k in ("request_id", "retrieval_sources", "source_versions", "policy_version", "assumptions", "confidence_type",
+                             "action_proposed", "user_approval", "action_result", "timestamp", "limitations")}
+    chain.append(full, require_decision_fields=True)
+    try:
+        chain.append({k: v for k, v in full.items() if k != "limitations"}, require_decision_fields=True)
+        strict = False
+    except ValueError:
+        strict = True
+    check("AGT", "Every Compass answer writes an eleven-field decision record into the hash chain; incomplete records are refused",
+          strict and chain.verify()[0], f"complete record accepted, record missing 'limitations' refused={strict}, chain valid={chain.verify()[0]}")
+
+
+# =============================================================================
 def write_report(path: str, elapsed: float) -> None:
     n_pass = sum(1 for r in RESULTS if r[2])
     lines = ["# Mathematical check report (generated)", "",
@@ -476,7 +585,7 @@ def write_report(path: str, elapsed: float) -> None:
         lines.append(f"| {par} | {name} | {'PASS' if ok else 'FAIL'} | {detail.replace('|', '/')} |")
     lines += ["", "Paradigm key: BDT = Bayesian decision theory; AIF = Active Inference / FEP; "
               "PHX = Phoenix / CRR information geometry; MEM = memory, governance and agent interface; "
-              "H3 = derived hexagonal index.", "",
+              "H3 = derived hexagonal index; AGT = Crescent Compass honesty and memory.", "",
               "See `research/04_mathematics_register.md` for the public sources and the interpretation of each row."]
     with open(path, "w", encoding="utf8") as fh:
         fh.write("\n".join(lines) + "\n")
@@ -493,6 +602,7 @@ def main(argv: list[str]) -> int:
     phx_checks()
     mem_checks()
     h3_checks()
+    agt_checks()
     elapsed = time.time() - t0
     n_pass = sum(1 for r in RESULTS if r[2])
     print(f"\n{n_pass}/{len(RESULTS)} checks passed in {elapsed:.1f}s")

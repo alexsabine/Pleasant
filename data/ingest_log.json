@@ -1,0 +1,92 @@
+[
+  {
+    "fetched_at": "2026-10-14T16:02:38Z",
+    "id": "TERRAIN_TILES_3DEP",
+    "source_url": "https://s3.amazonaws.com/elevation-tiles-prod/terrarium",
+    "product": "AWS Open Data Terrain Tiles (terrarium PNG); US content USGS 3DEP",
+    "licence": "Public domain (3DEP); Terrain Tiles attribution requested",
+    "attribution": "Mapzen/Tilezen Terrain Tiles; USGS 3DEP",
+    "bbox": {
+      "min_lon": -124.45,
+      "min_lat": 41.35,
+      "max_lon": -123.45,
+      "max_lat": 42.05
+    },
+    "zoom": [
+      7,
+      13
+    ],
+    "tiles": 716,
+    "output": "data/tiles/delnorte_terrain.pmtiles",
+    "bytes": 68033597,
+    "sha256": "43124b08df770fced46fe4f5c630e0c817e64bcd684113a527134463021b09fe",
+    "decision": "approved_with_attribution"
+  },
+  {
+    "fetched_at": "2026-10-14T16:02:45Z",
+    "id": "TIGER_COUNTY",
+    "source_url": "https://www2.census.gov/geo/tiger/TIGER2025/COUNTY/tl_2025_us_county.zip",
+    "product": "TIGER/Line 2025 tl_2025_us_county",
+    "licence": "US Government work (public domain)",
+    "attribution": "U.S. Census Bureau",
+    "source_bytes": 83989800,
+    "source_sha256": "9c6e9d9076abce2670d1de255de3710c35ecca00a7005d88e012dec52d95f763",
+    "features_kept": 1,
+    "output": "data/boundaries/county.geojson",
+    "decision": "approved_with_attribution",
+    "note": ""
+  },
+  {
+    "fetched_at": "2026-10-14T16:02:46Z",
+    "id": "TIGER_PLACES",
+    "source_url": "https://www2.census.gov/geo/tiger/TIGER2025/PLACE/tl_2025_06_place.zip",
+    "product": "TIGER/Line 2025 tl_2025_06_place",
+    "licence": "US Government work (public domain)",
+    "attribution": "U.S. Census Bureau",
+    "source_bytes": 9885068,
+    "source_sha256": "2b59dc5d54c69c7a451795401fc2a1c1c68b172f1d912d3486080e04a83e23e8",
+    "features_kept": 8,
+    "output": "data/boundaries/places.geojson",
+    "decision": "approved_with_attribution",
+    "note": ""
+  },
+  {
+    "fetched_at": "2026-10-14T16:02:47Z",
+    "id": "TIGER_AIANNH",
+    "source_url": "https://www2.census.gov/geo/tiger/TIGER2025/AIANNH/tl_2025_us_aiannh.zip",
+    "product": "TIGER/Line 2025 tl_2025_us_aiannh",
+    "licence": "US Government work (public domain)",
+    "attribution": "U.S. Census Bureau",
+    "source_bytes": 9179571,
+    "source_sha256": "214b97c1ecbc3f57a69d5c0c746e6e920dec79bb43be40cfdad529e9bb09aee4",
+    "features_kept": 8,
+    "output": "data/boundaries/aiannh.geojson",
+    "decision": "approved_with_attribution",
+    "note": "AIANNH boundaries are statistical, not legal land descriptions; names to be confirmed with each Nation."
+  },
+  {
+    "fetched_at": "2026-10-14T16:09:47Z",
+    "id": "OSM_PROTOMAPS_EXTRACT",
+    "source_url": "https://build.protomaps.com/20261013.pmtiles",
+    "product": "Protomaps daily build 20261013 (OpenStreetMap)",
+    "licence": "ODbL 1.0 (data); design CC0",
+    "attribution": "\u00a9 OpenStreetMap contributors",
+    "bbox": {
+      "min_lon": -124.45,
+      "min_lat": 41.35,
+      "max_lon": -123.45,
+      "max_lat": 42.05
+    },
+    "zoom": [
+      0,
+      14
+    ],
+    "tiles": 2749,
+    "output": "data/tiles/delnorte_basemap.pmtiles",
+    "bytes": 5754886,
+    "sha256": "b1fe4080436c20566d56595ee0ffc8c6695faabe1cfb825a0b8f8b6cadfeccf7",
+    "range_requests": 2131,
+    "decision": "approved_with_attribution",
+    "note": "Private-use first iteration; ODbL share-alike applies only to a publicly distributed derived database."
+  }
+]

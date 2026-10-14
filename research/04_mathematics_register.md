@@ -120,6 +120,18 @@ Everything else passed on the first run, including the identities that tie Phoen
 
 ---
 
+## 8b. Crescent Compass: what the checks verify about the running agent
+
+Five further checks (`[AGT]` in the report) run against the actual Compass modules in `web/compass/`:
+
+- The recommendation threshold is a published number, p* = 0.75 under the utilities (+1, −3, 0). A board changes behaviour by changing those three numbers in the admin.
+- The grounding validator drops any model-phrased sentence that cites a record not retrieved, asserts accessibility for a record not verified accessible, or states a fact with no record behind it.
+- Working memory is bounded to six turns, holds only record ids and parsed preferences, folds older turns into preferences, is rebuilt when the published projection changes, and is cleared on request.
+- Trust calibrates: on a synthetic world whose true change rate is four times the prior's, 300 verification outcomes move the posterior toward the truth and improve the Brier score of P(current) from 0.34 to 0.21. The site should publish this score monthly.
+- Every answer writes an eleven-field decision record into the hash chain; an incomplete record is refused.
+
+Twelve end-to-end Django tests (`web/compass/tests.py`) add the invariants that need a database: unknown access is never shown as accessible; unpublished, private and sensitive records never leave the server; stale matches are shown as low confidence rather than recommended; a true no-match is an honest unknown; expired events are never returned; memory carries preferences only until the projection changes or the user says "forget that"; the LLM is off by default and tools stay inside the allow-list; a `generated` claim can never be verified as evidence.
+
 ## 9. Other techniques considered
 
 | Technique | Verdict for this project |

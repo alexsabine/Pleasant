@@ -1,0 +1,44 @@
+{% load static %}<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{% block title %}Pleasant Crescent{% endblock %}</title>
+<meta name="description" content="A calm, verified atlas of things to do with children in Del Norte County.">
+<link rel="stylesheet" href="{% static 'vendor/maplibre-gl.css' %}">
+<link rel="stylesheet" href="{% static 'pc/app.css' %}">
+<style>
+:root{
+  --pc-bg:{{ tokens.ui.bg }};--pc-surface:{{ tokens.ui.surface }};--pc-ink:{{ tokens.ui.ink }};--pc-ink-2:{{ tokens.ui.ink_2 }};
+  --pc-accent:{{ tokens.ui.accent }};--pc-accent-2:{{ tokens.ui.accent_2 }};--pc-free:{{ tokens.ui.free }};--pc-unknown:{{ tokens.ui.unknown }};
+  --pc-verified:{{ tokens.ui.verified }};--pc-stale:{{ tokens.ui.stale }};--pc-sensitive:{{ tokens.ui.sensitive }};
+  --pc-radius:{{ tokens.ui.radius }};--pc-font-ui:{{ tokens.ui.font_ui|safe }};--pc-line:{{ tokens.map.road_casing }};
+}
+</style>
+{% block head %}{% endblock %}
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+{% if private_mode %}<div class="private-banner" role="status">Private preview. Listings marked <b>fictional demo</b> are placeholders and do not count toward verified records.</div>{% endif %}
+<header class="site-head">
+  <a class="brand" href="/" aria-label="Pleasant Crescent home"><span class="crescent" aria-hidden="true"></span>Pleasant Crescent</a>
+  <nav class="site-nav" aria-label="Main">
+    <a href="{% url 'explore' %}" {% if request.resolver_match.url_name == 'explore' %}aria-current="page"{% endif %}>Explore</a>
+    <a href="{% url 'this_week' %}" {% if request.resolver_match.url_name == 'this_week' %}aria-current="page"{% endif %}>This week</a>
+    <a href="{% url 'local_help' %}" {% if request.resolver_match.url_name == 'local_help' %}aria-current="page"{% endif %}>Local help</a>
+    <a href="{% url 'about' %}" {% if request.resolver_match.url_name == 'about' %}aria-current="page"{% endif %}>About</a>
+  </nav>
+  <button class="compass-toggle" type="button" aria-expanded="false" aria-controls="compass-drawer" id="compass-toggle">
+    <span class="compass-icon" aria-hidden="true"></span>Crescent Compass
+  </button>
+</header>
+<main id="main" class="site-main">{% block content %}{% endblock %}</main>
+<aside id="compass-drawer" class="compass-drawer" aria-label="Crescent Compass" hidden>{% include "compass/panel.html" %}</aside>
+<footer class="site-foot">
+  <p>Map data © OpenStreetMap contributors (ODbL) via Protomaps · Terrain: USGS 3DEP via Terrain Tiles · Boundaries: U.S. Census Bureau TIGER/Line 2025 · Fonts: Noto Sans (OFL). Dataset vintages on the <a href="{% url 'about' %}">About</a> page.</p>
+  <p>Directory guidance is not medical, legal or emergency advice. Verification dates are shown on every listing.</p>
+</footer>
+<script src="{% static 'pc/compass.js' %}" defer></script>
+{% block scripts %}{% endblock %}
+</body>
+</html>

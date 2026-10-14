@@ -1,0 +1,10 @@
+<div class="compass-head"><span class="compass-icon" aria-hidden="true"></span><h2>Crescent Compass</h2><button type="button" data-close aria-label="Close Compass">×</button></div>
+<p class="lede" style="padding:10px 16px 0;font-size:.85rem">I only answer from the verified directory. I show where each answer came from, and I say so when I don't know.</p>
+<div class="compass-log" role="log" aria-live="polite"></div>
+<div class="suggest" aria-label="Example questions">
+  <button type="button">Free rainy-day ideas for a 6-year-old?</button>
+  <button type="button">Where can we go with a wheelchair?</button>
+  <button type="button">What's on this week?</button>
+  <button type="button">forget that</button>
+</div>
+<form class="compass-form" data-url="{% url 'compass:ask' %}">{% csrf_token %}<label class="skip" for="compass-q">Your question</label><input id="compass-q" type="text" placeholder="Ask one thing, e.g. story time for a toddler" autocomplete="off" maxlength="1000"><button type="submit">Ask</button></form>

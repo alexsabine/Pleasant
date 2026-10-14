@@ -78,6 +78,10 @@ A CI test parses the MapLibre style and fails if any source URL is off-origin. A
 
 Separate staging and production; migrations and tests in GitHub Actions against a PostGIS service container; backups restored on a schedule and the restore logged; admin MFA; minimum-privilege database role; rate limits; log retention policy; monthly governance report generated from the audit chain (counts of publications, corrections, redactions, agent abstentions).
 
-## 10. Development environment note
+## 10. Status after the first iteration (14 October 2026)
+
+Built and tested: apps `atlas`, `compass`, `home` in `web/`; the four memory layers (evidence events live in `AuditEntry` and `Claim`, projection in `Resource`/`Event` with Wagtail drafts and revisions, working context in `compass/memory.py`); the publication workflow with Moderators approval; the freshness model and review priority on `Resource`; the Compass policy, honesty validator, memory and optional Claude adapter; PMTiles range serving; the H3 aggregate endpoint. Two guarantees were added after tests exposed leaks: `live` defaults to false until published, and sensitive places never leave the server individually. Not yet built: the map point picker on our own tiles, photo upload, the public correction form, PostGIS in CI.
+
+## 11. Development environment note
 
 The cloud sandbox used for this stage has no Docker daemon. The vertical slice will therefore run locally against SQLite + SpatiaLite for the fictional five records, with PostGIS exercised in CI and on staging. The `infrastructure/docker-compose.yml` remains the local developer path where Docker is available.

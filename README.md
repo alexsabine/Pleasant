@@ -19,6 +19,13 @@ This is a **code-and-design starter kit**, not a deployed website and **not a bu
 * `frontend/` — a MapLibre layer adapter outline for *your* locally hosted map tiles; not production client code.
 * `integrations/` — Daniel Friedman GIS compatibility questionnaire, export/import contracts, optional messaging strategy.
 
+### Added 14 October 2026, second pass: the first running platform
+
+* `web/` — Django 6 + Wagtail 8 + GeoDjango site with the Explore list and map, This week, Local help, About, resource pages, a read-only JSON API, PMTiles served with HTTP Range support, a Wagtail admin with drafts, revisions and a Moderators-approval workflow, a hash-chained audit log, per-category hazard settings, and the embedded **Crescent Compass** agent (`web/compass/`). Run instructions in `web/README.md`. Screenshots in `design/screenshots/platform/`.
+* `backend/ingest/` — logged, reproducible acquisition of the self-hosted basemap: Protomaps OSM build extracted by bounding box (ODbL), USGS 3DEP terrain via Terrain Tiles (public domain), Census TIGER 2025 boundaries (public domain). Tiles stay out of Git; `data/ingest_log.json` records URL, bytes, SHA-256, licence and attribution for every download.
+* `web/static/style/` — the basemap style is generated from `tokens.json` by `web/tools/build_style.js`; glyphs, sprites and the three JavaScript libraries are vendored so browsing makes zero off-origin requests (verified by the screenshot run).
+* `backend/examples/math_checks.py` now has 30 checks: a new `[AGT]` section for Compass (published recommendation threshold, grounding validator, bounded working memory, trust calibration over time, eleven-field decision records) and H3 sizing on the real Census county polygon.
+
 ### Added 14 October 2026 (stage one: audit, mathematics, system design)
 
 * `audit/gis_basemap_audit.md` — desk audit of 38 basemap sources for Del Norte County with licence findings, offline fit, rights gate and a recommended zero-external-call stack. `licenses/layer_rights_matrix.csv` and `data/layer_manifest.json` were extended to match.

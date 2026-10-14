@@ -20,3 +20,5 @@ gis_processed/
 *.gpkg
 *.osm
 *.zip
+web/staticfiles/
+web/db.sqlite3
