@@ -26,6 +26,8 @@ urlpatterns = [
     path("api/manifest.json", atlas_views.api_manifest, name="api_manifest"),
     path("api/boundaries/<slug:name>.geojson", atlas_views.api_boundary, name="api_boundary"),
     path("tiles/<slug:name>.pmtiles", atlas_views.serve_pmtiles, name="serve_pmtiles"),
+    path("accounts/", include("accounts.urls")),
+    path("contribute/", atlas_views.contribute, name="contribute"),
     path("compass/", include("compass.urls")),
     path("", include(wagtail_urls)),
 ]

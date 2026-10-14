@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block title %}Welcome · Pleasant Crescent{% endblock %}
+{% block content %}
+<section class="prose-page narrow">
+<p class="eyebrow">Step {{ step }} of {{ total }} · every step is optional</p>
+<h1>{{ title }}</h1>
+{% if step == 1 %}<p class="lede">Choose what kind of help you would welcome. This only shapes what is shown first; you can change it any time.</p>
+{% elif step == 2 %}<p class="lede">Age bands, budget and access needs are your choices, not a profile of a child. We never ask for names, schools or routes.</p>
+{% else %}<p class="lede">Quiet is a real choice. Nothing is sent to you unless you turn it on, and Compass only uses your settings if you let it.</p>{% endif %}
+<form method="post" class="form-stack">{% csrf_token %}
+{% for f in form %}<div class="field"><label for="{{ f.id_for_label }}">{{ f.label }}</label>{{ f }}{% if f.help_text %}<small>{{ f.help_text }}</small>{% endif %}{{ f.errors }}</div>{% endfor %}
+<div class="row"><button type="submit" class="btn">{% if step == total %}Finish{% else %}Continue{% endif %}</button><button type="submit" name="skip" value="1" class="btn secondary">Skip this step</button></div>
+</form>
+</section>
+{% endblock %}

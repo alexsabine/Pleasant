@@ -13,7 +13,7 @@ from django.shortcuts import get_object_or_404, render
 from django.utils import timezone
 from django.views.decorators.http import require_GET
 
-from .models import CATEGORIES, CATEGORY_GROUP, COMMUNITIES, GROUPS, Event, ProjectionVersion, Resource
+from .models import CATEGORIES, CATEGORY_GROUP, COMMUNITIES, GROUPS, Event, ProjectionVersion, Resource, Submission
 
 
 def _public_resources():
@@ -242,3 +242,31 @@ def serve_pmtiles(request, name):
     resp["Accept-Ranges"] = "bytes"
     resp["Cache-Control"] = "public, max-age=3600"
     return resp
+
+
+# ---- Public contribution form (Kim 3.3): suggestions are moderated, never auto-published ----
+def contribute(request):
+    from django import forms
+
+    class SuggestForm(forms.Form):
+        kind = forms.ChoiceField(choices=[("new", "Suggest a new place or programme"), ("correction", "Correct an existing listing")], widget=forms.RadioSelect, initial="new")
+        resource = forms.ModelChoiceField(queryset=_public_resources(), required=False, label="Listing to correct (if any)")
+        name = forms.CharField(max_length=160, required=False, label="Name of the place or programme")
+        details = forms.CharField(widget=forms.Textarea(attrs={"rows": 5}), label="What should we know? (hours, cost, ages, access, what changed)")
+        source_url = forms.URLField(required=False, label="Official website or source (helps us verify)")
+        contact = forms.EmailField(required=False, label="Your email (optional, only if you want a reply)")
+        honey = forms.CharField(required=False, widget=forms.HiddenInput)  # spam trap
+
+    form = SuggestForm(request.POST or None)
+    sent = False
+    if request.method == "POST" and form.is_valid() and not form.cleaned_data.get("honey"):
+        d = form.cleaned_data
+        Submission.objects.create(
+            target_resource=d.get("resource"), submitter=request.user if request.user.is_authenticated else None,
+            proposed_payload={"attribute": "suggestion" if d["kind"] == "new" else "correction", "kind": d["kind"], "name": d.get("name", ""),
+                              "details": d["details"], "source_url": d.get("source_url", ""), "contact": d.get("contact", "")})
+        sent = True
+        form = SuggestForm()
+    ctx = _common_ctx(request)
+    ctx.update({"form": form, "sent": sent})
+    return render(request, "atlas/contribute.html", ctx)

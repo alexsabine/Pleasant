@@ -19,6 +19,13 @@ This is a **code-and-design starter kit**, not a deployed website and **not a bu
 * `frontend/` — a MapLibre layer adapter outline for *your* locally hosted map tiles; not production client code.
 * `integrations/` — Daniel Friedman GIS compatibility questionnaire, export/import contracts, optional messaging strategy.
 
+### Added 14 October 2026, fourth pass: the front-facing site and gentle onboarding
+
+* **Site shell** informed by space-zero.org: warm paper ground, the living crescent as a centred emblem, self-hosted Cormorant Garamond for display type, quiet uppercase mono navigation, centred intro, nine numbered image placeholders for Kim's launch groups (`templates/includes/placeholder.html`, slots the owner fills in Wagtail), the three pillars (discover, coordinate, belong), a gentle three-step start, the core promise, and a footer with visit and contact placeholders. Pages still make zero off-origin requests.
+* **Onboarding** (`web/accounts/`): browse everything without an account; "Join gently" with an adult confirmation and no child fields; a skippable three-step welcome (what help, for my family as age bands and budget, how much and how quietly); My atlas with saved places, settings, suggestion status and the five participation stages shown as rights held, never a score; contributor rights by moderated request.
+* **Public contribution form** (`/contribute/`) and a Compass **prepare** tier: a signed-in person can say "suggest …" or "correct …" and Compass drafts a moderated submission; nothing ever publishes automatically. Compass uses saved preferences only with consent and says which it used; dosage (few, standard, all) bounds the answer.
+* `design/agent_system.md` cross-references the ten-page proposal, Kim's brief and the starter kit, and lists what is built, deferred and awaiting the owner's decision. 19 Django tests, 31 reference tests and 36 checks pass.
+
 ### Added 14 October 2026, third pass: real nodes, fine H3, palette v2, living crescent
 
 * **No fictional nodes.** 58 real listings (schools, early years, libraries, college, youth programmes, parks, beaches, playgrounds, museums, visitor centres, trails) summarised from official websites by two research sweeps, placed only from authoritative coordinates (state school directory, official page coordinates, named features in our own OSM tiles, or a logged address geocode) and published with the badge "Checked online". 16 candidates without an authoritative geolocation are held back in `data/verified/unplaced.json`. Method and caveats in `audit/verified_nodes.md`.

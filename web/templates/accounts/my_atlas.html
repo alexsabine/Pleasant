@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% block title %}My atlas · Pleasant Crescent{% endblock %}
+{% block content %}
+<section class="prose-page">
+<p class="eyebrow">My atlas</p>
+<h1>{% if prefs.display_name %}Hello, {{ prefs.display_name }}.{% else %}Your places and settings.{% endif %}</h1>
+{% if messages %}{% for m in messages %}<p class="notice-ok" role="status">{{ m }}</p>{% endfor %}{% endif %}
+<div class="stages" aria-label="Participation stages (choices available to you, not a score)">
+{% for s in stages %}<div class="stage {% if s.current %}current{% endif %}"><span class="num">0{{ forloop.counter }}</span><b>{{ s.label }}</b></div>{% endfor %}
+</div>
+<p class="src">Stages describe what you can do, in your own time: explore without an account; choose what matters; settle in with saved places and Compass; contribute suggestions for review; steward verified records if a moderator grants it. Nothing here is a score.</p>
+<div class="detail-grid">
+<section>
+<h2>Saved places</h2>
+{% if saved %}<div class="cards">{% for s in saved %}<article class="card"><h3><a href="{% url 'resource_detail' s.resource.slug %}">{{ s.resource.name }}</a></h3><div class="meta"><span class="tag group-{{ s.resource.group }}"><i class="sw" aria-hidden="true"></i>{{ s.resource.get_category_display }}</span>{% if s.resource.cost_status == 'free' %}<span class="tag free">Free</span>{% endif %}</div>
+<form method="post" action="{% url 'accounts:toggle_saved' s.resource.id %}" class="inline">{% csrf_token %}<button class="chip" type="submit">Remove</button></form></article>{% endfor %}</div>
+{% else %}<p class="empty">Nothing saved yet. Use "Save" on any listing in <a href="{% url 'explore' %}">Explore</a>.</p>{% endif %}
+<h2>Your suggestions</h2>
+{% if pending %}<ul class="pin-list">{% for p in pending %}<li>{{ p.submitted_at|date:"j M" }} · {{ p.proposed_payload.attribute }} · <b>{{ p.get_status_display }}</b></li>{% endfor %}</ul>{% else %}<p class="src">None yet. <a href="{% url 'contribute' %}">Suggest a place or correction</a>.</p>{% endif %}
+</section>
+<aside>
+<h2>Settings</h2>
+<dl class="kv">
+<dt>Help wanted</dt><dd>{{ prefs.help_kind_labels|join:", "|default:"not set" }}</dd>
+<dt>Age bands</dt><dd>{{ prefs.age_band_labels|join:", "|default:"any" }}</dd>
+<dt>Budget</dt><dd>{{ prefs.get_budget_display }}</dd>
+<dt>Step-free only</dt><dd>{{ prefs.step_free|yesno:"yes,no" }}</dd>
+<dt>Community</dt><dd>{{ prefs.community|default:"anywhere" }}</dd>
+<dt>How much</dt><dd>{{ prefs.get_dosage_display }}</dd>
+<dt>Compass may remember</dt><dd>{{ prefs.compass_may_remember|yesno:"yes,no" }}</dd>
+<dt>Email summaries</dt><dd>{{ prefs.notifications|yesno:"on,off" }}</dd>
+</dl>
+<p><a class="btn secondary" href="{% url 'accounts:welcome_step' 1 %}">Change settings</a></p>
+{% if prefs.stage == 'settle' or prefs.stage == 'choose' %}
+<h2>Want to contribute?</h2>
+<form method="post" action="{% url 'accounts:request_contributor' %}" class="form-stack">{% csrf_token %}
+<label for="note">Tell the stewards what you would like to help with (optional)</label><textarea id="note" name="note" rows="3" maxlength="300"></textarea>
+<button type="submit" class="btn secondary">Ask for contributor rights</button></form>
+{% endif %}
+<form method="post" action="{% url 'accounts:logout' %}" class="inline">{% csrf_token %}<button type="submit" class="chip">Sign out</button></form>
+</aside>
+</div>
+</section>
+{% endblock %}

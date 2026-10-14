@@ -643,9 +643,9 @@ def logo_checks() -> None:
           f"areas/disc: {[round(a / disc, 3) for a in areas]}")
     # L4: the SVG is self-contained, carries its numbers in the accessible name, and respects bounds
     svg = crescent_svg(CrescentState(p=0.7, path_c=5.0, changes_n=100, n_listings=12), {"disc": "#e4b572", "shadow": "#244d64", "ring": "#008582", "glow": "#b7f2ef"})
-    ok = svg.startswith("<svg") and "http" not in svg.replace("http://www.w3.org/2000/svg", "") and "0.70" in svg and svg.count("<line") == 24
+    ok = svg.startswith("<svg") and "http" not in svg.replace("http://www.w3.org/2000/svg", "") and "0.70" in svg and svg.count('r="0.9"') == 12
     check("LOGO", "SVG is self-contained (no external refs), states p/C/N in its accessible name, caps breathing and marks",
-          ok, f"length {len(svg)} chars; marks capped at 24 (requested 100); breathing amplitude capped at 0.35 rad")
+          ok, f"length {len(svg)} chars; marks capped at 12 (requested 100); breathing amplitude capped at 0.35 rad")
 
 
 # =============================================================================

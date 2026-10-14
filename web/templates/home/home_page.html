@@ -1,22 +1,69 @@
-{% extends "base.html" %}{% load wagtailcore_tags %}
+{% extends "base.html" %}{% load wagtailcore_tags wagtailimages_tags atlas_extras %}
+{% block bodyclass %}home{% endblock %}
 {% block content %}
-<section class="hero">
-  <div class="moon" aria-hidden="true">{{ logo_svg|safe|cut:'width="36"'|cut:'height="36"' }}</div>
-  <h1>{{ page.strapline }}</h1>
-  <div class="lede">{{ page.intro|richtext }}</div>
-  <div class="question"><span>{{ page.optional_question }}</span><a class="chip" href="{% url 'explore' %}?free=1">Free only</a><a class="chip" href="{% url 'explore' %}">Show all</a></div>
-  <div class="cta"><a href="{% url 'explore' %}">Explore the directory</a><a class="secondary" href="{% url 'explore' %}?view=map">Open the map</a><a class="secondary" href="{% url 'this_week' %}">This week</a></div>
+<section class="hero-sz">
+  <div class="emblem" aria-hidden="true">{{ logo_svg|safe|cut:'width="36"'|cut:'height="36"' }}</div>
+  <h1 class="display">{{ page.strapline }}</h1>
+  <p class="place-line">· Crescent City · California ·</p>
 </section>
-{% if featured %}<h2>Recently checked</h2>
-<div class="cards">{% for r in featured %}<article class="card"><h3><a href="{% url 'resource_detail' r.slug %}">{{ r.name }}</a></h3>
-<div class="meta"><span class="tag">{{ r.get_category_display }}</span><span class="tag">Ages {{ r.min_age }} to {{ r.max_age }}</span>{% if r.cost_status == 'free' %}<span class="tag free">Free</span>{% endif %}{% if r.is_fictional %}<span class="tag fiction">Fictional demo</span>{% elif r.verification_method == 'official_online' %}<span class="tag verified">Checked online</span>{% endif %}</div>
-<div class="fresh"><span class="dot {{ r.freshness_band }}"></span>{% if r.last_verified_at %}Checked {{ r.last_verified_at|timesince }} ago{% else %}Not yet verified{% endif %}</div></article>{% endfor %}</div>{% endif %}
-{% if upcoming %}<h2>Coming up</h2><div class="cards">{% for e in upcoming %}<article class="card"><h3>{{ e.title }}</h3><div class="meta"><span class="tag">{{ e.start_at|date:"D j M, H:i" }}</span>{% if e.cost_status == 'free' %}<span class="tag free">Free</span>{% endif %}{% if e.is_fictional %}<span class="tag fiction">Fictional demo</span>{% endif %}</div></article>{% endfor %}</div>{% endif %}
-<h2>One place for Del Norte families</h2>
-<div class="scope">
-  <div class="card"><h3>Atlas</h3><p class="soon">Verified directory, events and map. Live now.</p></div>
-  <div class="card"><h3>Crescent Compass</h3><p class="soon">A quiet guide that answers only from verified records. Live now, read-only.</p></div>
-  <div class="card"><h3>Local help</h3><p class="soon">Family services with sources. Growing as listings are verified.</p></div>
-  <div class="card"><h3>More resources</h3><p class="soon">Room for other community tools under the same roof, same accounts, same rules.</p></div>
-</div>
+
+<section class="intro-sz">
+  <div class="prose-center">{{ page.intro|richtext }}</div>
+  <div class="rule"></div>
+  <p class="motto">A living atlas for a connected community</p>
+</section>
+
+<section class="band">
+  <div class="band-inner">
+    <div class="rule short"></div>
+    <h2 class="display center">Nine ways to start</h2>
+    <p class="lede center">Kim's launch categories, each one a verified list and a map. Pick what your family needs today.</p>
+    <div class="cards-sz">
+      {% for k,v in groups %}
+      <a class="card-sz" href="{% url 'explore' %}?group={{ k }}">
+        {% include "includes/placeholder.html" with slot=k label=v group=k %}
+        <span class="num">0{{ forloop.counter }}</span>
+        <h3>· {{ v }}</h3>
+        <p>{{ group_blurbs|get_item:k }}</p>
+      </a>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<section class="intro-sz">
+  <h2 class="display center">What people can do</h2>
+  <div class="three">
+    <div class="pillar"><p class="eyebrow">Discover</p><p>Find schools, parks, libraries, clinics, trails, public events and local resources, each with its source and the date it was checked.</p></div>
+    <div class="pillar"><p class="eyebrow">Coordinate</p><p>Ask Compass for places, events and practical help. It answers only from verified records and shows you where every answer came from.</p></div>
+    <div class="pillar"><p class="eyebrow">Belong</p><p>Save useful places, share approved information, and join community life at your own pace. Quiet is always a choice.</p></div>
+  </div>
+</section>
+
+<section class="band alt">
+  <div class="band-inner">
+    <h2 class="display center">A gentle starting experience</h2>
+    <div class="three steps">
+      <div class="pillar"><span class="num">01</span><h3>Browse without an account</h3><p>The whole map and every listing are open. No sign-up, no location permission.</p><a class="btn secondary" href="{% url 'explore' %}">Explore</a></div>
+      <div class="pillar"><span class="num">02</span><h3>Choose what help you want</h3><p>Family support, local orientation, community events or practical guidance. Age bands and budget are your choices, never a child profile.</p><a class="btn" href="{% url 'accounts:signup' %}">Join gently</a></div>
+      <div class="pillar"><span class="num">03</span><h3>Keep control as you settle</h3><p>Save places, ask questions, suggest corrections for review. Permissions grow only by choice, and you can pause, simplify or leave at any time.</p><a class="btn secondary" href="{% url 'about' %}">How it works</a></div>
+    </div>
+  </div>
+</section>
+
+{% if upcoming %}
+<section class="intro-sz">
+  <h2 class="display center">This week</h2>
+  <div class="cards">{% for e in upcoming %}<article class="card"><h3>{{ e.title }}</h3><div class="meta"><span class="tag">{{ e.start_at|date:"D j M, H:i" }}</span>{% if e.cost_status == 'free' %}<span class="tag free">Free</span>{% endif %}</div></article>{% endfor %}</div>
+  <p class="center"><a class="btn secondary" href="{% url 'this_week' %}">All events</a></p>
+</section>
+{% endif %}
+
+<section class="promise">
+  <div class="band-inner">
+    <div class="emblem small" aria-hidden="true">{{ logo_svg|safe|cut:'width="36"'|cut:'height="36"' }}</div>
+    <p class="eyebrow">Core promise</p>
+    <p class="display">The map helps people notice and care for their shared surroundings. It must never claim to be a complete picture of a place, or of the people who live there.</p>
+  </div>
+</section>
 {% endblock %}

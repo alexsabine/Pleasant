@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block title %}Suggest a place · Pleasant Crescent{% endblock %}
+{% block content %}
+<section class="prose-page">
+<h1>Suggest a place or a correction</h1>
+<p class="lede">Anyone can suggest. An editor checks every suggestion against a source before anything appears publicly, and the audit log records the decision. Nothing publishes automatically.</p>
+{% if sent %}<p class="notice-ok" role="status">Thank you. Your suggestion is in the review queue.</p>{% endif %}
+<form method="post" class="form-stack">{% csrf_token %}
+{{ form.non_field_errors }}
+{% for f in form %}{% if f.name != 'honey' %}<div class="field"><label for="{{ f.id_for_label }}">{{ f.label }}</label>{{ f }}{% if f.help_text %}<small>{{ f.help_text }}</small>{% endif %}{{ f.errors }}</div>{% else %}{{ f }}{% endif %}{% endfor %}
+<button type="submit" class="btn">Send for review</button>
+</form>
+</section>
+{% endblock %}

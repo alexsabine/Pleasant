@@ -41,6 +41,7 @@
           {% if r.last_verified_at %}Checked {{ r.last_verified_at|timesince }} ago{% if r.freshness_band == 'needs_recheck' %} · needs re-check{% endif %}{% else %}Not yet verified{% endif %}
         </div>
         {% if r.description %}<p class="src">{{ r.description|truncatechars:160 }}</p>{% endif %}
+        {% if user.is_authenticated %}<form method="post" action="{% url 'accounts:toggle_saved' r.id %}" class="inline"><input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}"><button type="submit" class="chip save" aria-label="Save {{ r.name }}">♡ Save</button></form>{% endif %}
         <div class="src">Source: {% if r.public_source_url %}<a href="{{ r.public_source_url }}" rel="noopener">{{ r.public_source_url|truncatechars:50 }}</a>{% else %}{{ r.source_note|default:"on file" }}{% endif %}{% if view == 'map' and r.location %} · <button type="button" class="chip" style="min-height:32px;padding:4px 10px" data-fly="{{ r.location.x }},{{ r.location.y }}">Show on map</button>{% endif %}</div>
       </article>
       {% endfor %}

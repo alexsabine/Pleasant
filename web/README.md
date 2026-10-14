@@ -27,10 +27,14 @@ python web/tools/palette.py                                                # sol
 node web/tools/build_style.js                                              # regenerate the style from tokens.json
 ```
 
+## Accounts and onboarding
+
+`/accounts/join/` (adult confirmation, no child fields) → `/accounts/welcome/1..3/` (every step skippable) → `/accounts/my-atlas/`. Saved places, preferences (age bands, budget, step-free, community, dosage, consent for Compass, notifications off by default), contributor-rights request as a moderated submission. Public suggestions at `/contribute/`.
+
 ## Tests and checks
 
 ```bash
-cd web && python manage.py test compass atlas          # 12 end-to-end honesty and closure tests
+cd web && python manage.py test accounts compass atlas  # 19 end-to-end tests: onboarding, honesty, closure
 PYTHONPATH=backend python -m unittest discover -s backend/tests
 PYTHONPATH=backend python backend/examples/math_checks.py --report research/05_math_check_report.md   # 30 checks
 ```

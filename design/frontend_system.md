@@ -11,6 +11,10 @@ The owner supplies the aesthetics: palette, photography, crescent branding, typo
 5. **One optional question at a time.** No gates, no forced login, no location permission prompt on arrival.
 6. **Attribution is part of the layout**, not an afterthought: a persistent, legible credit strip with dataset vintages.
 
+## 2e. Site shell v3 and onboarding (space-zero-informed)
+
+Layout borrowed from space-zero.org's calm: a warm paper ground, a single centred emblem (our living crescent), a serif italic wordmark and display headlines (Cormorant Garamond, self-hosted, OFL), uppercase letter-spaced mono for navigation and eyebrows, centred short paragraphs, thin rules, numbered 2×2 or 3×3 image cards, generous whitespace, and a footer with visit and contact columns. Image slots are placeholders with named slots; the owner replaces them in Wagtail. The atlas (Explore, map, This week, Compass) is embedded inside this shell rather than being the shell. Onboarding follows the proposal's five voluntary stages and the kit's rules: browse without an account; join with an adult confirmation and no child fields; three skippable steps; quiet defaults; stages shown as rights held, never a score.
+
 ## 2a. Palette v2: river, redwoods, ocean (14 October 2026)
 
 The palette is generated, not hand-picked, by `web/tools/palette.py`. Hue and chroma anchors are fixed in OKLCH (river teal 192°, river emerald 160°, Pacific 236°, redwood bark 32°, redwood needle 145°, sand 80°, fog 215°, kelp 120°) and lightness is solved by bisection so that every text/background pair meets its WCAG 2.2 target: primary text 10.5:1, secondary 5.5:1, links and buttons 4.5:1 on white and white on the accent, map labels 4.5:1 on land. Map fills are checked for perceptual separation (ΔE_OK ≥ 0.04 between land, water, park and road), with water the only blue family and parks the only green family. A dark variant is solved the same way. The resulting contrast ratios are written into `tokens.json` so a reviewer can read them without running anything.

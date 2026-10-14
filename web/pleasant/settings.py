@@ -21,6 +21,7 @@ CSRF_TRUSTED_ORIGINS = [o for o in os.environ.get("CSRF_TRUSTED_ORIGINS", "").sp
 
 INSTALLED_APPS = [
     "home",
+    "accounts",
     "atlas",
     "compass",
     "wagtail.contrib.settings",
@@ -140,3 +141,7 @@ LOGGING = {
     "handlers": {"console": {"class": "logging.StreamHandler"}},
     "root": {"handlers": ["console"], "level": os.environ.get("DJANGO_LOG_LEVEL", "INFO")},
 }
+
+LOGIN_URL = "/accounts/sign-in/"
+LOGIN_REDIRECT_URL = "/accounts/my-atlas/"
+LOGOUT_REDIRECT_URL = "/"

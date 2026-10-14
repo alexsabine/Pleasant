@@ -32,9 +32,12 @@ class Intent:
     wants_events: bool = False
     text: str = ""
     source: str = "rules"  # or "llm"
+    age_span: tuple | None = None   # from saved age bands (adult choice), used only when no age is asked
 
     def as_dict(self):
-        return self.__dict__.copy()
+        d = self.__dict__.copy()
+        d["age_span"] = list(d["age_span"]) if d.get("age_span") else None
+        return d
 
 
 def parse_intent_rules(question: str) -> Intent:
@@ -93,7 +96,7 @@ def _structured(intent: Intent) -> bool:
                 intent.categories, intent.community])
 
 
-def decide(intent: Intent) -> Decision:
+def decide(intent: Intent, max_items: int = 4) -> Decision:
     u = settings.COMPASS_UTILITIES
     calls = []
     text = "" if _structured(intent) else intent.text
@@ -101,7 +104,7 @@ def decide(intent: Intent) -> Decision:
     events_only = intent.wants_events and not _structured(intent) and not leftover
     kwargs = dict(age=intent.age, free_only=intent.free_only, max_cost=intent.max_cost,
                   requires_accessibility=intent.requires_accessibility, categories=intent.categories or None,
-                  community=intent.community, text=text)
+                  community=intent.community, text=text, age_span=intent.age_span)
     if events_only:
         res = {"count": 0, "items": [], "projection_version": tools.ProjectionVersion.current()}
     else:
@@ -149,6 +152,6 @@ def decide(intent: Intent) -> Decision:
         action, reason = "show", f"{len(shown)} listing(s) pass the Bayes show test"
     if broadened and action == "show":
         reason += f"; no exact match, so {', '.join(broadened)} was relaxed"
-    return Decision(action=action, intent=intent, shown=shown[:4], withheld=withheld[:4], events=events[:4],
+    return Decision(action=action, intent=intent, shown=shown[:max_items], withheld=withheld[:max_items], events=events[:max_items],
                     question=question, reason=reason, tool_calls=calls, projection_version=res["projection_version"],
                     broadened=broadened)

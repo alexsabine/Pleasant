@@ -3,6 +3,7 @@ parse -> decide (tools over the projection) -> compose -> validate -> record."""
 from __future__ import annotations
 
 import json
+import re
 import uuid
 
 from django.conf import settings
@@ -11,7 +12,7 @@ from django.shortcuts import render
 from django.utils import timezone
 from django.views.decorators.http import require_GET, require_POST
 
-from atlas.models import AuditEntry, ProjectionVersion
+from atlas.models import AuditEntry, ProjectionVersion, Submission
 
 from . import adapter, honesty, memory, policy
 from .tools import ALLOW_LIST
@@ -64,9 +65,48 @@ def ask(request):
                 setattr(intent, k, v)
         intent.source = "llm+rules"
     used = memory.carry_forward(ctx, intent)
+    max_items = 4
+    if request.user.is_authenticated:
+        prefs = getattr(request.user, "family_prefs", None)
+        if prefs and prefs.compass_may_remember:
+            span = prefs.age_filter()
+            if intent.age is None and span:
+                intent.age_span = span
+                used.append("age bands from your saved settings")
+            if not intent.free_only and prefs.budget == "free":
+                intent.free_only = True
+                used.append("free-only from your saved settings")
+            if not intent.requires_accessibility and prefs.step_free:
+                intent.requires_accessibility = True
+                used.append("step-free from your saved settings")
+            if not intent.community and prefs.community:
+                intent.community = prefs.community
+                used.append("community from your saved settings")
+            max_items = prefs.max_items()
+
+    # PREPARE (proposal p.6): a signed-in person can ask Compass to draft a suggestion or
+    # correction. It becomes a pending Submission for a steward; it never publishes.
+    m_prep = re.match(r"^\s*(suggest|correct|report)\b[:\s]+(.{8,})$", question, re.I)
+    if m_prep and request.user.is_authenticated:
+        sub = Submission.objects.create(submitter=request.user, proposed_payload={"attribute": "correction" if m_prep.group(1).lower() != "suggest" else "suggestion",
+                                                                                 "details": m_prep.group(2)[:1000], "via": "compass"})
+        record = AuditEntry.append({
+            "request_id": request_id, "retrieval_sources": [], "source_versions": {"projection_version": pv}, "policy_version": POLICY_VERSION,
+            "assumptions": {"user": request.user.get_username()}, "confidence_type": "n/a (draft prepared, not asserted)",
+            "action_proposed": "prepare_submission", "user_approval": "explicit: user asked Compass to draft it",
+            "action_result": {"submission_id": sub.pk, "status": sub.status}, "timestamp": timezone.now().isoformat(),
+            "limitations": ["A steward must review before anything changes publicly."]}, require_decision_fields=True)
+        return JsonResponse({"request_id": request_id, "action": "prepare", "reason": "draft submission created for moderation",
+                             "text": f"Drafted and sent for review (submission #{sub.pk}). A steward checks it against a source before anything changes publicly. You can see its status in My atlas.",
+                             "items": [], "events": [], "provenance": {"policy_version": POLICY_VERSION, "audit_index": record.index, "audit_hash": record.hash,
+                                                                        "tools": [], "allow_list": ALLOW_LIST, "llm_used": False, "memory_used": [], "limitations": ["moderated; never auto-published"]}})
+    if m_prep:
+        return JsonResponse({"request_id": request_id, "action": "ask", "reason": "suggestions need an account so a steward can follow up",
+                             "text": "I can draft that as a suggestion for review once you are signed in (Join is free and asks nothing about children). Or use the public form under Suggest a place.",
+                             "items": [], "events": [], "provenance": {"policy_version": POLICY_VERSION, "tools": [], "allow_list": ALLOW_LIST, "llm_used": False, "memory_used": []}})
 
     # 2. decide over the projection with the allow-listed tools.
-    decision = policy.decide(intent)
+    decision = policy.decide(intent, max_items=max_items)
 
     # 3. compose deterministically; optionally let the model rephrase, then validate.
     answer = honesty.compose(decision, used)

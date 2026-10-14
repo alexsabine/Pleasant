@@ -45,10 +45,13 @@ def _public():
 
 def search_published_resources(*, age: int | None = None, free_only: bool = False, max_cost: float | None = None,
                                requires_accessibility: bool = False, categories: list[str] | None = None,
-                               community: str | None = None, text: str = "", limit: int = 20) -> dict:
+                               community: str | None = None, text: str = "", limit: int = 20, age_span=None) -> dict:
     qs = _public()
     if age is not None:
         qs = qs.filter(min_age__lte=age, max_age__gte=age)
+    elif age_span:
+        lo, hi = age_span
+        qs = qs.filter(min_age__lte=hi, max_age__gte=lo)  # overlaps any chosen band
     if free_only:
         qs = qs.filter(cost_status="free")
     if max_cost is not None:

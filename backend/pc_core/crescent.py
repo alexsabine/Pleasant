@@ -78,12 +78,11 @@ def crescent_svg(state: CrescentState, colours: dict, size: int = 36, animate: b
     lit_lo = terminator_path(max(0.0, theta - amp))
     lit_hi = terminator_path(min(pi, theta + amp))
     marks = ""
-    n = min(state.changes_n, 24)
+    n = min(state.changes_n, 12)   # one quiet dot per change this week, at most twelve
     for i in range(n):
-        a = -pi / 2 + 2 * pi * i / max(n, 1)
-        x1, y1 = 50 + 47 * cos(a), 50 + 47 * sin(a)
-        x2, y2 = 50 + 49.5 * cos(a), 50 + 49.5 * sin(a)
-        marks += f'<line x1="{x1:.1f}" y1="{y1:.1f}" x2="{x2:.1f}" y2="{y2:.1f}" stroke="{colours["ring"]}" stroke-width="1.2" stroke-linecap="round"/>'
+        a = -pi / 2 + 2 * pi * i / 12
+        x, y = 50 + 48.2 * cos(a), 50 + 48.2 * sin(a)
+        marks += f'<circle cx="{x:.1f}" cy="{y:.1f}" r="0.9" fill="{colours["ring"]}" opacity="0.8"/>'
     anim = ""
     if animate and amp > 0.005:
         anim = (f'<animate attributeName="d" dur="14s" repeatCount="indefinite" calcMode="spline" '

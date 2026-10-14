@@ -95,7 +95,7 @@ def solve_lightness(C, h, bg, target, darker=True):
 # ---- anchors ----------------------------------------------------------------------
 H = {"river": 192.0, "emerald": 160.0, "ocean": 236.0, "bark": 32.0, "needle": 145.0, "sand": 80.0, "fog": 215.0, "kelp": 120.0}
 
-light_bg = oklch_to_rgb(0.985, 0.006, H["fog"])        # fog-white page
+light_bg = oklch_to_rgb(0.962, 0.012, H["sand"])        # warm paper page (space-zero-informed)
 surface = (1.0, 1.0, 1.0)
 land = oklch_to_rgb(0.952, 0.014, H["sand"])            # warm sand-grey land
 dark_bg = oklch_to_rgb(0.21, 0.02, H["ocean"])          # night ocean
@@ -170,6 +170,7 @@ tokens = {
         "bg": hexstr(light_bg), "surface": hexstr(surface), "ink": hexstr(ink), "ink_2": hexstr(ink2),
         "accent": hexstr(accent), "accent_on": hexstr(accent_on), "accent_2": hexstr(bark), "free": hexstr(emerald), "verified": hexstr(emerald),
         "stale": hexstr(bark), "needle": hexstr(needle), "unknown": hexstr(unknown), "sensitive": hexstr(sensitive),
+        "paper": hexstr(light_bg),
         "radius": "14px", "font_ui": "system-ui, -apple-system, 'Segoe UI', Roboto, Inter, sans-serif",
     },
     "ui_dark": {

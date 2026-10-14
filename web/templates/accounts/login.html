@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block title %}Sign in · Pleasant Crescent{% endblock %}
+{% block content %}
+<section class="prose-page narrow">
+<p class="eyebrow">Welcome back</p>
+<h1>Sign in</h1>
+<form method="post" class="form-stack">{% csrf_token %}
+{{ form.non_field_errors }}
+{% for f in form %}<div class="field"><label for="{{ f.id_for_label }}">{{ f.label }}</label>{{ f }}{{ f.errors }}</div>{% endfor %}
+<input type="hidden" name="next" value="{{ next }}">
+<button type="submit" class="btn">Sign in</button>
+<p class="src">New here? <a href="{% url 'accounts:signup' %}">Join</a>. Or just <a href="{% url 'explore' %}">keep browsing</a>, no account needed.</p>
+</form>
+</section>
+{% endblock %}
