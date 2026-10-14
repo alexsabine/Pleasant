@@ -1,18 +1,23 @@
 {% extends "base.html" %}
 {% block title %}{{ r.name }} · Pleasant Crescent{% endblock %}
 {% block content %}
-<h1>{{ r.name }}{% if r.is_fictional %} <span class="tag fiction">Fictional demo</span>{% endif %}</h1>
+<h1>{{ r.name }}{% if r.is_fictional %} <span class="tag fiction">Fictional demo</span>{% elif r.verification_method == 'official_online' %} <span class="tag verified">Checked online</span>{% endif %}</h1>
 <div class="meta"><span class="tag">{{ r.get_category_display }}</span><span class="tag">Ages {{ r.min_age }} to {{ r.max_age }}</span>{% if r.cost_status == 'free' %}<span class="tag free">Free</span>{% elif r.cost_status == 'priced' %}<span class="tag">${{ r.cost_usd|floatformat:0 }}</span>{% else %}<span class="tag unknown">Cost {{ r.cost_status }}</span>{% endif %}{% if r.accessibility_status == 'verified_yes' %}<span class="tag">Access: verified yes</span>{% elif r.accessibility_status == 'verified_no' %}<span class="tag">Access: verified no</span>{% else %}<span class="tag unknown">Access: unknown</span>{% endif %}<span class="tag">{{ r.get_community_display }}</span></div>
-<div class="fresh" style="margin:8px 0 16px"><span class="dot {{ r.freshness_band }}"></span>{% if r.last_verified_at %}Verified {{ r.last_verified_at|timesince }} ago · model estimate that it is still current: {{ r.p_current|floatformat:2 }} ({{ r.freshness_band }}){% else %}Not yet verified{% endif %}</div>
+<div class="fresh" style="margin:8px 0 16px"><span class="dot {{ r.freshness_band }}"></span>{% if r.last_verified_at %}Checked {{ r.last_verified_at|timesince }} ago · model estimate that it is still current: {{ r.p_current|floatformat:2 }} ({{ r.freshness_band }}){% else %}Not yet verified{% endif %}</div>
 <div class="detail-grid">
 <section><p>{{ r.description }}</p>{% if r.access_notes %}<p class="src">Access notes: {{ r.access_notes }}</p>{% endif %}
 <dl class="kv">
+<dt>Address</dt><dd>{{ r.address|default:"none on file" }}</dd>
+<dt>Hours</dt><dd>{{ r.hours_note|default:"not stated on the official site" }}</dd>
+<dt>Cost</dt><dd>{{ r.get_cost_status_display }}{% if r.cost_note %} · {{ r.cost_note }}{% endif %}</dd>
 <dt>Website</dt><dd>{% if r.website_url %}<a href="{{ r.website_url }}" rel="noopener">{{ r.website_url }}</a>{% else %}none on file{% endif %}</dd>
 <dt>Phone</dt><dd>{{ r.phone_public|default:"none on file" }}</dd>
 <dt>Source</dt><dd>{% if r.public_source_url %}<a href="{{ r.public_source_url }}" rel="noopener">{{ r.public_source_url }}</a>{% endif %} {{ r.source_note }}</dd>
 <dt>Last verified</dt><dd>{{ r.last_verified_at|date:"j F Y"|default:"never" }}</dd>
 <dt>Last material change</dt><dd>{{ r.last_material_change_at|date:"j F Y"|default:"none recorded" }}</dd>
-<dt>Location</dt><dd>{% if r.location %}{{ r.location.y|floatformat:5 }}, {{ r.location.x|floatformat:5 }} · <a href="{% url 'explore' %}?view=map&amp;q={{ r.name|urlencode }}">Show on map</a>{% else %}not mapped{% endif %}</dd>
+<dt>Location</dt><dd>{% if r.location %}{{ r.location.y|floatformat:5 }}, {{ r.location.x|floatformat:5 }} ({{ r.geo_source|default:"source on file" }}) · <a href="{% url 'explore' %}?view=map&amp;q={{ r.name|urlencode }}">Show on map</a>{% else %}not mapped{% endif %}</dd>
+<dt>H3 cells</dt><dd>{% if r.h3_cells %}{% for res, cell in r.h3_cells.items %}<code>r{{ res }} {{ cell }}</code> {% endfor %}{% else %}none{% endif %}</dd>
+{% if r.trail_info %}<dt>Trail</dt><dd>{% if r.trail_info.length_miles %}{{ r.trail_info.length_miles }} miles · {% endif %}{{ r.trail_info.surface }} {{ r.trail_info.family_note }}{% if r.trail_info.warnings %} · <b>{{ r.trail_info.warnings }}</b>{% endif %}</dd>{% endif %}
 </dl>
 {% if events %}<h2>Events here</h2><ul class="pin-list">{% for e in events %}<li>{{ e.title }} — {{ e.start_at|date:"D j M, H:i" }}</li>{% endfor %}</ul>{% endif %}
 </section>

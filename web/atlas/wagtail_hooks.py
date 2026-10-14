@@ -12,14 +12,14 @@ from .models import AuditEntry, CategoryHazard, Claim, Event, Resource, Submissi
 class ResourceViewSet(SnippetViewSet):
     model = Resource
     icon = "site"
-    list_display = ["name", "category", "community", "cost_status", "accessibility_status", "live", "last_verified_at", "is_fictional"]
+    list_display = ["name", "category", "community", "cost_status", "accessibility_status", "live", "last_verified_at", "verification_method", "is_fictional"]
     list_filter = ["category", "community", "cost_status", "accessibility_status", "is_fictional"]
     search_fields = ["name", "description"]
     panels = [
-        MultiFieldPanel([FieldPanel("name"), FieldPanel("slug"), FieldPanel("description"), FieldPanel("is_fictional")], "Listing"),
+        MultiFieldPanel([FieldPanel("name"), FieldPanel("slug"), FieldPanel("description"), FieldPanel("address"), FieldPanel("hours_note"), FieldPanel("cost_note"), FieldPanel("verification_method"), FieldPanel("is_fictional")], "Listing"),
         MultiFieldPanel([FieldPanel("category"), FieldPanel("community"), FieldPanel("min_age"), FieldPanel("max_age"),
                          FieldPanel("cost_status"), FieldPanel("cost_usd"), FieldPanel("accessibility_status"), FieldPanel("access_notes")], "Facets"),
-        MultiFieldPanel([FieldPanel("location", widget=forms.TextInput(attrs={"placeholder": "POINT(-124.1865 41.7455)  (lon lat, WGS84)"}),
+        MultiFieldPanel([FieldPanel("geo_source"), FieldPanel("location", widget=forms.TextInput(attrs={"placeholder": "POINT(-124.1865 41.7455)  (lon lat, WGS84)"}),
                                     help_text="Enter WKT: POINT(lon lat). A picker on our own tiles replaces this in the next iteration; "
                                               "the default Django map widget is not used because it loads tiles from openstreetmap.org."),
                          FieldPanel("is_sensitive"), FieldPanel("visibility")], "Location (authoritative point; H3 derived on save)"),

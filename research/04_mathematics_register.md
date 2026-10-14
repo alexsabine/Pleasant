@@ -132,6 +132,15 @@ Five further checks (`[AGT]` in the report) run against the actual Compass modul
 
 Twelve end-to-end Django tests (`web/compass/tests.py`) add the invariants that need a database: unknown access is never shown as accessible; unpublished, private and sensitive records never leave the server; stale matches are shown as low confidence rather than recommended; a true no-match is an honest unknown; expired events are never returned; memory carries preferences only until the projection changes or the user says "forget that"; the LLM is off by default and tools stay inside the allow-list; a `generated` claim can never be verified as evidence.
 
+## 8c. Palette, logo and fine H3 (second iteration)
+
+| ID | Formula | Used for | Public source | Status | Check |
+|---|---|---|---|---|---|
+| F25 | OKLCH ↔ sRGB conversion; WCAG 2.2 contrast = (L1+0.05)/(L2+0.05); ΔE_OK Euclidean in OKLab | Palette solved for contrast targets by bisection on lightness | Ottosson 2020 (OKLab); W3C WCAG 2.2 §1.4.3/1.4.11 | source-verified fact | tokens.json `contrast_checks` |
+| F26 | Moon lit fraction (1 − cos θ)/2 with θ = 2·asin(√p) ⇒ lit fraction = p | The living crescent is a faithful gauge of the mean P(current) | Standard trigonometry; F11 | derived identity | LOGO-1..3 |
+| F27 | Breathing amplitude = FR path length over the window, capped at 0.35 rad; marks = min(N, 24) | Two clocks on the logo: belief movement C and change count N | F15 | design rule | LOGO-4 |
+| F28 | H3 parent/child nesting is approximate: P(parent(cell_r(x)) ≠ cell_{r−1}(x)) ≈ 0.07 | Store the exact containing cell at each resolution 8..12 | H3 docs (hierarchy approximation) | source-verified fact (measured) | H3-2b |
+
 ## 9. Other techniques considered
 
 | Technique | Verdict for this project |

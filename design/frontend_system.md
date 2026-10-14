@@ -11,6 +11,18 @@ The owner supplies the aesthetics: palette, photography, crescent branding, typo
 5. **One optional question at a time.** No gates, no forced login, no location permission prompt on arrival.
 6. **Attribution is part of the layout**, not an afterthought: a persistent, legible credit strip with dataset vintages.
 
+## 2a. Palette v2: river, redwoods, ocean (14 October 2026)
+
+The palette is generated, not hand-picked, by `web/tools/palette.py`. Hue and chroma anchors are fixed in OKLCH (river teal 192°, river emerald 160°, Pacific 236°, redwood bark 32°, redwood needle 145°, sand 80°, fog 215°, kelp 120°) and lightness is solved by bisection so that every text/background pair meets its WCAG 2.2 target: primary text 10.5:1, secondary 5.5:1, links and buttons 4.5:1 on white and white on the accent, map labels 4.5:1 on land. Map fills are checked for perceptual separation (ΔE_OK ≥ 0.04 between land, water, park and road), with water the only blue family and parks the only green family. A dark variant is solved the same way. The resulting contrast ratios are written into `tokens.json` so a reviewer can read them without running anything.
+
+## 2b. The living crescent
+
+The logo is a gauge. Its lit fraction is the directory's mean estimate that listings are still current; the terminator sits at the Fisher–Rao coordinate θ = 2·asin(√p) of that belief (the angle Phoenix/CRR integrates on the Bernoulli family), so the arc between two states is the information distance between them. A gentle 14-second breathing animation spans the distance the belief moved over the last week; small marks on the ring count publications and verifications in that week. It is rendered server-side as inline SVG (`backend/pc_core/crescent.py`, cached ten minutes), respects reduced-motion, carries its three numbers in its accessible name, and is available at `/logo.svg`. Checks LOGO-1..4 verify it is faithful (lit fraction equals p to 1e-16, area monotone, no external references).
+
+## 2c. H3 venue mapping
+
+Every public venue stores its exact containing H3 cell at resolutions 8 to 12 (about 460 m, 175 m, 65 m, 25 m and 9 m across). H3 hexagons are only approximately nested, and about 7% of points have a resolution-11 cell whose parent is not the point's own resolution-10 cell, so each resolution is stored independently rather than derived. The map draws the exact cell at the chosen resolution with a one-step halo; a selector switches resolution live. Sensitive places and anything about people never get fine cells; they appear only in the coarse k-anonymous aggregate.
+
 ## 2. Design tokens (the owner changes values, not structure)
 
 ```

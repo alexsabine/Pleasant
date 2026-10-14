@@ -19,6 +19,15 @@ This is a **code-and-design starter kit**, not a deployed website and **not a bu
 * `frontend/` — a MapLibre layer adapter outline for *your* locally hosted map tiles; not production client code.
 * `integrations/` — Daniel Friedman GIS compatibility questionnaire, export/import contracts, optional messaging strategy.
 
+### Added 14 October 2026, third pass: real nodes, fine H3, palette v2, living crescent
+
+* **No fictional nodes.** 57 real listings (schools, early years, libraries, college, youth programmes, parks, beaches, playgrounds, museums, visitor centres, trails) summarised from official websites by two research sweeps, placed only from authoritative coordinates (state school directory, official page coordinates, named features in our own OSM tiles, or a logged address geocode) and published with the badge "Checked online". 17 candidates without an authoritative geolocation are held back in `data/verified/unplaced.json`. Method and caveats in `audit/verified_nodes.md`.
+* **Fine H3.** Every public venue stores its exact containing cell at resolutions 8 to 12; the map draws the cell at a selectable resolution with a one-step halo. H3 nesting is only approximate (about 7% of points have a mismatched parent), so each resolution is stored, not derived. People-related and sensitive data remain coarse and k-anonymous.
+* **Palette v2** (`web/tools/palette.py`): river, redwood and ocean hues fixed in OKLCH, lightness solved for WCAG 2.2 contrast targets, map fills checked for perceptual separation, light and dark variants, contrast ratios written into `tokens.json`.
+* **Living crescent** (`backend/pc_core/crescent.py`): the logo's lit fraction is the mean P(current) of the directory; its terminator sits at the Fisher–Rao coordinate of that belief; breathing amplitude is the week's belief path length; ring marks count the week's changes. Explained on the About page; checks LOGO-1..4.
+* Offline geocoder from our own tiles (`backend/ingest/geocode_local.py`), validated against the state school directory (median offset 121 m); zoom-15 tiles for the whole county.
+* 36 mathematical checks and 31 reference unit tests pass; 12 Django tests pass.
+
 ### Added 14 October 2026, second pass: the first running platform
 
 * `web/` — Django 6 + Wagtail 8 + GeoDjango site with the Explore list and map, This week, Local help, About, resource pages, a read-only JSON API, PMTiles served with HTTP Range support, a Wagtail admin with drafts, revisions and a Moderators-approval workflow, a hash-chained audit log, per-category hazard settings, and the embedded **Crescent Compass** agent (`web/compass/`). Run instructions in `web/README.md`. Screenshots in `design/screenshots/platform/`.

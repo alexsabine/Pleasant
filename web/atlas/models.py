@@ -21,10 +21,17 @@ from pc_core.audit_chain import GENESIS, REQUIRED_DECISION_FIELDS, entry_hash
 from pc_core.freshness import GammaRate, prob_current, review_priority
 
 CATEGORIES = [
-    ("playground", "Playground or park"), ("indoor_play", "Indoor play"), ("library", "Library and story time"),
-    ("trail", "Trail or beach"), ("class", "Class or club"), ("sport", "Sport and swim"),
-    ("arts", "Arts and museums"), ("family_service", "Family service"), ("health", "Health and wellbeing"),
-    ("food", "Food help"), ("childcare", "Childcare and early years"), ("event_venue", "Event venue"),
+    ("school", "School"), ("preschool", "Preschool and early learning"), ("childcare", "Childcare"), ("college", "College"),
+    ("after_school", "After-school and youth"), ("library", "Library and story time"), ("class", "Class or club"),
+    ("playground", "Playground"), ("park", "Park"), ("beach", "Beach"), ("trail", "Trail"), ("sport", "Sport and swim"),
+    ("attraction", "Attraction"), ("museum", "Museum"), ("visitor_center", "Visitor centre"), ("arts", "Arts"),
+    ("indoor_play", "Indoor play"), ("family_service", "Family service"), ("health", "Health and wellbeing"),
+    ("food", "Food help"), ("event_venue", "Event venue"),
+]
+VERIFICATION_METHOD = [
+    ("official_online", "Checked against official website (not visited)"),
+    ("human_site", "Human site visit"),
+    ("none", "Not verified"),
 ]
 COMMUNITIES = [
     ("crescent_city", "Crescent City"), ("smith_river", "Smith River"), ("gasquet", "Gasquet"),
@@ -83,7 +90,14 @@ class Resource(WorkflowMixin, DraftStateMixin, LockableMixin, RevisionMixin, ind
     accessibility_status = models.CharField(max_length=16, choices=ACCESS_STATUS, default="unknown")
     access_notes = models.CharField(max_length=300, blank=True)
     location = gis.PointField(srid=4326, null=True, blank=True, help_text="Authoritative point; H3 is derived")
+    geo_source = models.CharField(max_length=200, blank=True, help_text="Where the coordinates came from (e.g. CDE directory, NPS page, OSM feature)")
     h3_res_8 = models.CharField(max_length=16, blank=True, editable=False)
+    h3_cells = models.JSONField(default=dict, blank=True, editable=False, help_text="Exact containing cells, res 8..12 (public venues only)")
+    verification_method = models.CharField(max_length=24, choices=VERIFICATION_METHOD, default="none")
+    hours_note = models.CharField(max_length=300, blank=True)
+    cost_note = models.CharField(max_length=300, blank=True)
+    address = models.CharField(max_length=300, blank=True)
+    trail_info = models.JSONField(null=True, blank=True, help_text="length_miles, surface, family_note, warnings")
     website_url = models.URLField(blank=True)
     phone_public = models.CharField(max_length=40, blank=True)
     public_source_url = models.URLField(blank=True)
@@ -112,10 +126,15 @@ class Resource(WorkflowMixin, DraftStateMixin, LockableMixin, RevisionMixin, ind
             self.slug = slugify(self.name)[:160]
         if self.location is not None:
             try:
-                from pc_core.h3_index import cell_for
+                from pc_core.h3_index import cell_for, venue_cells
                 self.h3_res_8 = cell_for(self.location.y, self.location.x, 8)
+                # exact fine cells only for non-sensitive public venues
+                self.h3_cells = {} if self.is_sensitive else {str(r): c for r, c in venue_cells(self.location.y, self.location.x).items()}
             except Exception:
                 self.h3_res_8 = ""
+                self.h3_cells = {}
+        else:
+            self.h3_cells = {}
         super().save(*args, **kwargs)
 
     # ---- freshness (declared model, see research/04) ----
@@ -168,6 +187,9 @@ class Resource(WorkflowMixin, DraftStateMixin, LockableMixin, RevisionMixin, ind
             "age_days": round(self.age_days, 1) if self.age_days is not None else None,
             "p_current": round(self.p_current, 3) if self.p_current is not None else None,
             "freshness_band": self.freshness_band, "is_fictional": self.is_fictional,
+            "verification_method": self.verification_method, "verification_label": self.get_verification_method_display(),
+            "address": self.address, "hours_note": self.hours_note, "cost_note": self.cost_note, "geo_source": self.geo_source,
+            "h3_res_8": self.h3_res_8, "h3_res_11": self.h3_cells.get("11", ""), "trail_info": self.trail_info,
             "verified_claim_count": self.verified_claims().count(),
         }
 

@@ -65,6 +65,7 @@ TEMPLATES = [{
         "django.contrib.messages.context_processors.messages",
         "wagtail.contrib.settings.context_processors.settings",
         "atlas.context_processors.site_tokens",
+        "atlas.context_processors.living_logo",
     ]},
 }]
 WSGI_APPLICATION = "pleasant.wsgi.application"

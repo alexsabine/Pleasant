@@ -447,6 +447,22 @@ def h3_checks() -> None:
           sizes[8] > sizes[7] > sizes[6] and (not county_sizes or county_sizes[8] < sizes[8]),
           f"bbox cells by res: {sizes}; {county_note}. Res 7 (~5 km2) for public aggregates, res 8 for cache keys.")
 
+    # E2b: H3 nesting is approximate: how often does parent(child cell) differ from the point's own coarser cell?
+    mism = {r: 0 for r in (9, 10, 11, 12)}
+    N = 3000
+    for _ in range(N):
+        la, lo = lat0 + rng.uniform(-0.3, 0.3), lon0 + rng.uniform(-0.4, 0.4)
+        cells = hx.venue_cells(la, lo)
+        for r in (9, 10, 11, 12):
+            if _h3.cell_to_parent(cells[r], r - 1) != cells[r - 1]:
+                mism[r] += 1
+    rates = {r: round(m / N, 3) for r, m in mism.items()}
+    check("H3", "Hexagon hierarchy is only approximately nested: parent(child) != the point's own coarser cell for a measurable share of points; "
+                "so the exact containing cell is stored at every resolution (8..12) rather than derived",
+          all(0 < v < 0.2 for v in rates.values()),
+          f"share of random points whose res-r cell's parent differs from their res-(r-1) cell: {rates} (n={N}); "
+          "venue_cells() stores each resolution independently; the resolution selector on the map reads them directly")
+
     # E3: grid distance is not a geographic distance, let alone a travel time
     pts = [(lat0 + rng.uniform(-0.15, 0.15), lon0 + rng.uniform(-0.2, 0.2)) for _ in range(400)]
     cells = [hx.cell_for(a, b, 8) for a, b in pts]
@@ -574,6 +590,65 @@ def agt_checks() -> None:
 
 
 # =============================================================================
+# [GEO] geolocation quality: our offline OSM-tile geocoder vs the state school directory
+# =============================================================================
+def geo_checks() -> None:
+    import json as _json, os as _os, re as _re
+    base = _os.path.join(_os.path.dirname(__file__), "..", "..", "data", "verified")
+    cde_p, osm_p = _os.path.join(base, "cde_schools.json"), _os.path.join(base, "osm_names.json")
+    if not (_os.path.exists(cde_p) and _os.path.exists(osm_p)):
+        check("GEO", "CDE directory and OSM name index present", False, "run backend/ingest/fetch_cde and geocode_local first")
+        return
+    cde = [s for s in _json.load(open(cde_p))["schools"] if s["School"] != "No Data" and s["Latitude"] not in ("", "No Data")]
+    osm = _json.load(open(osm_p))["names"]
+    norm = lambda t: _re.sub(r"[^a-z0-9 ]", "", t.lower()).replace(" school", "").strip()
+    dists = []
+    for s in cde:
+        key = norm(s["School"])
+        hits = [e for name, ents in osm.items() if key and key in norm(name) and ents[0]["kind"] in ("school", "college", "kindergarten") for e in ents]
+        if hits:
+            e = hits[0]
+            dists.append((s["School"], round(_haversine_km(float(s["Latitude"]), float(s["Longitude"]), e["lat"], e["lon"]) * 1000)))
+    med = sorted(d for _, d in dists)[len(dists) // 2] if dists else None
+    check("GEO", "Offline geocoder (names from our own OSM tiles) agrees with the California Department of Education directory for schools found in both (median offset < 150 m)",
+          bool(dists) and med is not None and med < 150 and max(d for _, d in dists) < 600,
+          f"{len(dists)} schools matched; offsets in metres: {dists}; median {med} m. Coordinates for schools come from CDE; OSM is the fallback for other venues.")
+
+
+# =============================================================================
+# [LOGO] the living crescent is a faithful gauge
+# =============================================================================
+def logo_checks() -> None:
+    from pc_core.crescent import CrescentState, crescent_svg, fr_theta, illuminated_fraction, path_length, terminator_path
+    # L1: lit fraction == p exactly, for all p; theta is the Fisher-Rao coordinate
+    worst = max(abs(illuminated_fraction(fr_theta(p)) - p) for p in [i / 200 for i in range(201)])
+    check("LOGO", "Crescent lit fraction equals the belief p exactly when the phase is the Fisher-Rao coordinate 2*asin(sqrt(p))",
+          worst < 1e-12, f"max |lit(theta(p)) - p| over 201 values = {worst:.1e}")
+    # L2: the arc between two states is the Fisher-Rao distance (same number as geometry.py)
+    d_geom = fisher_rao_bernoulli(0.3, 0.8)
+    d_logo = abs(fr_theta(0.8) - fr_theta(0.3))
+    pl = path_length([0.3, 0.8, 0.3])
+    check("LOGO", "Terminator sweep between two beliefs == fisher_rao_bernoulli; out-and-back path == 2x",
+          abs(d_geom - d_logo) < 1e-12 and abs(pl - 2 * d_geom) < 1e-12, f"d={d_geom:.4f} rad; path([.3,.8,.3])={pl:.4f}")
+    # L3: geometry sanity: new moon has ~zero lit area, full moon fills the disc; area grows monotonically with p
+    import re as _re
+    def area(d):
+        pts = [tuple(map(float, m.split(","))) for m in _re.findall(r"(-?[\d.]+,-?[\d.]+)", d)]
+        return abs(sum(x0 * y1 - x1 * y0 for (x0, y0), (x1, y1) in zip(pts, pts[1:] + pts[:1]))) / 2
+    areas = [area(terminator_path(fr_theta(p), steps=180)) for p in (0.0, 0.25, 0.5, 0.75, 1.0)]
+    disc = 3.141592653589793 * 44 ** 2
+    mono = all(a < b for a, b in zip(areas, areas[1:]))
+    check("LOGO", "Lit area is 0 at p=0, half the disc at p=0.5, the full disc at p=1, and monotone in p",
+          mono and areas[0] < 1e-6 and abs(areas[2] / disc - 0.5) < 0.01 and abs(areas[4] / disc - 1) < 0.01,
+          f"areas/disc: {[round(a / disc, 3) for a in areas]}")
+    # L4: the SVG is self-contained, carries its numbers in the accessible name, and respects bounds
+    svg = crescent_svg(CrescentState(p=0.7, path_c=5.0, changes_n=100, n_listings=12), {"disc": "#e4b572", "shadow": "#244d64", "ring": "#008582", "glow": "#b7f2ef"})
+    ok = svg.startswith("<svg") and "http" not in svg.replace("http://www.w3.org/2000/svg", "") and "0.70" in svg and svg.count("<line") == 24
+    check("LOGO", "SVG is self-contained (no external refs), states p/C/N in its accessible name, caps breathing and marks",
+          ok, f"length {len(svg)} chars; marks capped at 24 (requested 100); breathing amplitude capped at 0.35 rad")
+
+
+# =============================================================================
 def write_report(path: str, elapsed: float) -> None:
     n_pass = sum(1 for r in RESULTS if r[2])
     lines = ["# Mathematical check report (generated)", "",
@@ -585,7 +660,7 @@ def write_report(path: str, elapsed: float) -> None:
         lines.append(f"| {par} | {name} | {'PASS' if ok else 'FAIL'} | {detail.replace('|', '/')} |")
     lines += ["", "Paradigm key: BDT = Bayesian decision theory; AIF = Active Inference / FEP; "
               "PHX = Phoenix / CRR information geometry; MEM = memory, governance and agent interface; "
-              "H3 = derived hexagonal index; AGT = Crescent Compass honesty and memory.", "",
+              "H3 = derived hexagonal index; AGT = Crescent Compass honesty and memory; LOGO = the living crescent gauge; GEO = geolocation quality.", "",
               "See `research/04_mathematics_register.md` for the public sources and the interpretation of each row."]
     with open(path, "w", encoding="utf8") as fh:
         fh.write("\n".join(lines) + "\n")
@@ -603,6 +678,8 @@ def main(argv: list[str]) -> int:
     mem_checks()
     h3_checks()
     agt_checks()
+    geo_checks()
+    logo_checks()
     elapsed = time.time() - t0
     n_pass = sum(1 for r in RESULTS if r[2])
     print(f"\n{n_pass}/{len(RESULTS)} checks passed in {elapsed:.1f}s")

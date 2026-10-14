@@ -9,7 +9,8 @@ Django 6 + Wagtail 8 + GeoDjango, MapLibre GL + PMTiles served from this origin 
 pip install -r web/requirements.txt
 cd web
 python manage.py migrate
-python manage.py load_demo            # five FICTIONAL listings, events, claims, audit chain, demo users
+python manage.py load_demo            # demo users, workflow, home page (and five FICTIONAL listings for tests)
+python manage.py load_verified --replace-fictional   # 57 real listings from data/verified/*.json, placed from authoritative sources
 python manage.py runserver
 ```
 
@@ -21,6 +22,8 @@ Map tiles are not in Git. Build them once (authorised downloads of public-domain
 python backend/ingest/extract_protomaps.py --build 20261013 --maxzoom 14   # OSM basemap bbox extract, ~6 MB
 python backend/ingest/fetch_terrain.py --minzoom 7 --maxzoom 13           # 3DEP terrain tiles, ~68 MB
 python backend/ingest/fetch_tiger.py                                       # Census boundaries (committed, small)
+python backend/ingest/geocode_local.py                                     # name index from our own tiles (offline geocoder)
+python web/tools/palette.py                                                # solve the palette for contrast -> tokens.json
 node web/tools/build_style.js                                              # regenerate the style from tokens.json
 ```
 

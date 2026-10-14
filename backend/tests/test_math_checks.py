@@ -114,6 +114,30 @@ class TestGovernance(unittest.TestCase):
         self.assertLess(loop.final_stale_fraction, 0.4)
 
 
+class TestCrescent(unittest.TestCase):
+    def test_phase_is_belief(self):
+        from pc_core.crescent import fr_theta, illuminated_fraction
+        for p in (0.0, 0.2, 0.5, 0.9, 1.0):
+            self.assertAlmostEqual(illuminated_fraction(fr_theta(p)), p, places=12)
+
+    def test_venue_cells_hierarchy(self):
+        try:
+            from pc_core import h3_index as hx
+            import h3
+        except Exception:
+            self.skipTest("h3 not installed")
+        lat, lon = 41.7455, -124.1865
+        cells = hx.venue_cells(lat, lon)
+        self.assertEqual(sorted(cells), [8, 9, 10, 11, 12])
+        # Each stored cell is the EXACT containing cell at that resolution. H3 parent
+        # chains are only approximately nested (hexagons cannot tile hexagons), so the
+        # parent of the res-11 cell is not guaranteed to be the point's res-10 cell;
+        # that is precisely why every resolution is stored, not derived.
+        for r, c in cells.items():
+            self.assertEqual(c, h3.latlng_to_cell(lat, lon, r))
+        self.assertEqual(len(hx.cell_polygon(cells[11])), 7)
+
+
 class TestH3Optional(unittest.TestCase):
     def test_guards(self):
         try:

@@ -34,10 +34,10 @@
           {% if r.cost_status == 'free' %}<span class="tag free">Free</span>{% elif r.cost_status == 'priced' %}<span class="tag">${{ r.cost_usd|floatformat:0 }}</span>{% else %}<span class="tag unknown">Cost {{ r.cost_status }}</span>{% endif %}
           {% if r.accessibility_status == 'verified_yes' %}<span class="tag">Access: verified yes</span>{% elif r.accessibility_status == 'verified_no' %}<span class="tag">Access: verified no</span>{% else %}<span class="tag unknown">Access: unknown</span>{% endif %}
           <span class="tag">{{ r.get_community_display }}</span>
-          {% if r.is_fictional %}<span class="tag fiction">Fictional demo</span>{% endif %}
+          {% if r.is_fictional %}<span class="tag fiction">Fictional demo</span>{% elif r.verification_method == 'official_online' %}<span class="tag verified">Checked online</span>{% elif r.verification_method == 'human_site' %}<span class="tag verified">Visited</span>{% endif %}
         </div>
         <div class="fresh"><span class="dot {{ r.freshness_band }}"></span>
-          {% if r.last_verified_at %}Verified {{ r.last_verified_at|timesince }} ago{% if r.freshness_band == 'needs_recheck' %} · needs re-check{% endif %}{% else %}Not yet verified{% endif %}
+          {% if r.last_verified_at %}Checked {{ r.last_verified_at|timesince }} ago{% if r.freshness_band == 'needs_recheck' %} · needs re-check{% endif %}{% else %}Not yet verified{% endif %}
         </div>
         {% if r.description %}<p class="src">{{ r.description|truncatechars:160 }}</p>{% endif %}
         <div class="src">Source: {% if r.public_source_url %}<a href="{{ r.public_source_url }}" rel="noopener">{{ r.public_source_url|truncatechars:50 }}</a>{% else %}{{ r.source_note|default:"on file" }}{% endif %}{% if view == 'map' and r.location %} · <button type="button" class="chip" style="min-height:32px;padding:4px 10px" data-fly="{{ r.location.x }},{{ r.location.y }}">Show on map</button>{% endif %}</div>
@@ -49,9 +49,10 @@
   {% if view == 'map' %}
   <section aria-label="Map of results">
     <div class="map-wrap">
-      <div id="map" data-config='{"styleUrl":"{% static 'style/basemap.json' %}","center":{{ map_center }},"zoom":{{ map_zoom }},"api":{"pins":"{% url 'api_resources_geojson' %}?{{ request.GET.urlencode }}","county":"{% url 'api_boundary' 'county' %}","places":"{% url 'api_boundary' 'places' %}","aiannh":"{% url 'api_boundary' 'aiannh' %}","h3":"{% url 'api_h3' %}?res=7&amp;k=2"},"colors":{"accent":"{{ tokens.ui.accent }}","ink":"{{ tokens.ui.ink }}","ink2":"{{ tokens.ui.ink_2 }}","boundary":"{{ tokens.map.boundary }}","sensitive":"{{ tokens.ui.sensitive }}"}}' role="application" aria-label="Interactive map; the list beside it has the same results"></div>
+      <div id="map" data-config='{"styleUrl":"{% static 'style/basemap.json' %}","center":{{ map_center }},"zoom":{{ map_zoom }},"api":{"pins":"{% url 'api_resources_geojson' %}?{{ request.GET.urlencode }}","county":"{% url 'api_boundary' 'county' %}","places":"{% url 'api_boundary' 'places' %}","aiannh":"{% url 'api_boundary' 'aiannh' %}","h3":"{% url 'api_h3' %}?res=7&amp;k=2","venues":"{% url 'api_h3_venues' %}?{{ request.GET.urlencode }}"},"venueRes":11,"colors":{"accent":"{{ tokens.ui.accent }}","ink":"{{ tokens.ui.ink }}","ink2":"{{ tokens.ui.ink_2 }}","boundary":"{{ tokens.map.boundary }}","sensitive":"{{ tokens.ui.sensitive }}","hex":"{{ tokens.map.hex_venue }}","hexFill":"{{ tokens.map.hex_venue_fill }}"}}' role="application" aria-label="Interactive map; the list beside it has the same results"></div>
       <fieldset class="layer-switch"><legend>Layers</legend>
-        <label><input type="checkbox" data-layer="pins" checked> Family listings</label>
+        <label><input type="checkbox" data-layer="venues" checked> Venue cells (H3) <select data-res aria-label="H3 resolution"><option value="9">res 9 · 175 m</option><option value="10">res 10 · 65 m</option><option value="11" selected>res 11 · 25 m</option><option value="12">res 12 · 9 m</option></select></label><small>Exact containing cell of each verified place, with a one-step halo</small>
+        <label><input type="checkbox" data-layer="pins" checked> Names and points</label>
         <label><input type="checkbox" data-layer="terrain" checked> Terrain shading</label><small>USGS 3DEP</small>
         <label><input type="checkbox" data-layer="boundaries" checked> County and city limits</label><small>Census TIGER 2025</small>
         <label><input type="checkbox" data-layer="tribal"> Tribal land boundaries</label><small>Census AIANNH, statistical only; names pending confirmation with each Nation</small>
@@ -59,7 +60,7 @@
       </fieldset>
       <div class="map-credit">© OpenStreetMap contributors (ODbL) · Protomaps build 2026-10-13 · Terrain USGS 3DEP · U.S. Census Bureau · served from this site only</div>
     </div>
-    <ol class="pin-list" aria-label="Pins on the map">{% for r in items %}{% if r.location %}<li>{{ forloop.counter }}. {{ r.name }} — {{ r.get_cost_status_display|lower }}, {% if r.last_verified_at %}verified {{ r.last_verified_at|timesince }} ago{% else %}not yet verified{% endif %}</li>{% endif %}{% endfor %}</ol>
+    <ol class="pin-list" aria-label="Pins on the map">{% for r in items %}{% if r.location %}<li>{{ forloop.counter }}. {{ r.name }} — {{ r.get_cost_status_display|lower }}, {% if r.last_verified_at %}checked {{ r.last_verified_at|timesince }} ago{% else %}not yet verified{% endif %}{% if r.h3_cells %} · H3 {{ r.h3_cells.11 }}{% endif %}</li>{% endif %}{% endfor %}</ol>
   </section>
   {% endif %}
 </div>

@@ -139,6 +139,43 @@ def api_h3_aggregate(request):
 
 
 @require_GET
+def api_h3_venues(request):
+    """Exact H3 cells of public venues (res 8..12) with a 1-ring halo at the chosen res.
+    Public places only; sensitive records are excluded at model level (h3_cells empty)."""
+    try:
+        from pc_core import h3_index as hx
+    except Exception:
+        return JsonResponse({"type": "FeatureCollection", "features": []})
+    res = max(8, min(12, int(request.GET.get("res", 11))))
+    halo = request.GET.get("halo", "1") == "1"
+    feats = []
+    for r in _apply_filters(_public_resources(), request.GET):
+        cell = (r.h3_cells or {}).get(str(res))
+        if not cell:
+            continue
+        feats.append({"type": "Feature", "geometry": {"type": "Polygon", "coordinates": [hx.cell_polygon(cell)]},
+                      "properties": {"id": r.pk, "slug": r.slug, "name": r.name, "cell": cell, "res": res, "role": "venue",
+                                     "category": r.category, "freshness_band": r.freshness_band}})
+        if halo:
+            for nb in hx.venue_neighbourhood(cell, 1):
+                if nb != cell:
+                    feats.append({"type": "Feature", "geometry": {"type": "Polygon", "coordinates": [hx.cell_polygon(nb)]},
+                                  "properties": {"id": r.pk, "cell": nb, "res": res, "role": "halo"}})
+    return JsonResponse({"type": "FeatureCollection", "res": res, "features": feats,
+                         "note": "Exact containing cells for public venues; a halo is one grid step, not a distance."})
+
+
+@require_GET
+def logo_svg(request):
+    from .context_processors import living_logo
+    size = max(16, min(512, int(request.GET.get("size", 128))))
+    svg = living_logo(request, size=size, animate=request.GET.get("static") != "1")["logo_svg"]
+    resp = HttpResponse(svg, content_type="image/svg+xml")
+    resp["Cache-Control"] = "public, max-age=600"
+    return resp
+
+
+@require_GET
 def api_manifest(request):
     layers = json.loads(settings.LAYER_MANIFEST.read_text()) if settings.LAYER_MANIFEST.exists() else []
     ingest = json.loads(settings.INGEST_LOG.read_text()) if settings.INGEST_LOG.exists() else []

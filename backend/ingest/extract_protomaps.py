@@ -79,7 +79,12 @@ def main(argv):
     ap.add_argument("--maxzoom", type=int, default=14)
     ap.add_argument("--out", default=str(ROOT / "data" / "tiles" / "delnorte_basemap.pmtiles"))
     ap.add_argument("--workers", type=int, default=8)
+    ap.add_argument("--bbox", default=None, help="min_lon,min_lat,max_lon,max_lat (default: county bbox)")
     args = ap.parse_args(argv)
+    bbox = BBOX
+    if args.bbox:
+        a, b, c, d = (float(x) for x in args.bbox.split(","))
+        bbox = {"min_lon": a, "min_lat": b, "max_lon": c, "max_lat": d}
 
     url = f"https://build.protomaps.com/{args.build}.pmtiles"
     src = RangeSource(url)
@@ -89,7 +94,7 @@ def main(argv):
     print("source header:", {k: header[k] for k in ("tile_type", "tile_compression", "min_zoom", "max_zoom")})
     print("source metadata name/attribution:", metadata.get("name"), "|", metadata.get("attribution"))
 
-    todo = list(tiles_in_bbox(BBOX, args.minzoom, min(args.maxzoom, header["max_zoom"])))
+    todo = list(tiles_in_bbox(bbox, args.minzoom, min(args.maxzoom, header["max_zoom"])))
     print(f"{len(todo)} candidate tiles in bbox z{args.minzoom}-{args.maxzoom}")
 
     def fetch(zxy):
@@ -112,19 +117,19 @@ def main(argv):
             n_written += 1
         h = dict(header)
         h.update({"min_zoom": args.minzoom, "max_zoom": min(args.maxzoom, header["max_zoom"]),
-                  "min_lon_e7": int(BBOX["min_lon"] * 1e7), "min_lat_e7": int(BBOX["min_lat"] * 1e7),
-                  "max_lon_e7": int(BBOX["max_lon"] * 1e7), "max_lat_e7": int(BBOX["max_lat"] * 1e7),
+                  "min_lon_e7": int(bbox["min_lon"] * 1e7), "min_lat_e7": int(bbox["min_lat"] * 1e7),
+                  "max_lon_e7": int(bbox["max_lon"] * 1e7), "max_lat_e7": int(bbox["max_lat"] * 1e7),
                   "center_zoom": 10, "center_lon_e7": int(-124.2 * 1e7), "center_lat_e7": int(41.75 * 1e7)})
         md = dict(metadata)
         md["name"] = f"Pleasant Crescent basemap extract (Protomaps build {args.build}, Del Norte bbox)"
         md["attribution"] = metadata.get("attribution") or '<a href="https://openstreetmap.org">© OpenStreetMap contributors</a>'
-        md["pleasant_crescent_extract"] = {"source_url": url, "bbox": BBOX, "extracted_at": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())}
+        md["pleasant_crescent_extract"] = {"source_url": url, "bbox": bbox, "extracted_at": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())}
         w.finalize(h, md)
     dt = time.time() - t0
     print(f"wrote {n_written} tiles to {out} ({out.stat().st_size/1e6:.1f} MB) in {dt:.0f}s with {src.requests} range requests")
     record({"id": "OSM_PROTOMAPS_EXTRACT", "source_url": url, "product": f"Protomaps daily build {args.build} (OpenStreetMap)",
             "licence": "ODbL 1.0 (data); design CC0", "attribution": "© OpenStreetMap contributors",
-            "bbox": BBOX, "zoom": [args.minzoom, args.maxzoom], "tiles": n_written,
+            "bbox": bbox, "zoom": [args.minzoom, args.maxzoom], "tiles": n_written,
             "output": str(out.relative_to(ROOT)), "bytes": out.stat().st_size, "sha256": sha256_of(out),
             "range_requests": src.requests, "decision": "approved_with_attribution",
             "note": "Private-use first iteration; ODbL share-alike applies only to a publicly distributed derived database."})

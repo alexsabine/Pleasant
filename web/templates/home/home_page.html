@@ -1,15 +1,16 @@
 {% extends "base.html" %}{% load wagtailcore_tags %}
 {% block content %}
 <section class="hero">
+  <div class="moon" aria-hidden="true">{{ logo_svg|safe|cut:'width="36"'|cut:'height="36"' }}</div>
   <h1>{{ page.strapline }}</h1>
   <div class="lede">{{ page.intro|richtext }}</div>
   <div class="question"><span>{{ page.optional_question }}</span><a class="chip" href="{% url 'explore' %}?free=1">Free only</a><a class="chip" href="{% url 'explore' %}">Show all</a></div>
   <div class="cta"><a href="{% url 'explore' %}">Explore the directory</a><a class="secondary" href="{% url 'explore' %}?view=map">Open the map</a><a class="secondary" href="{% url 'this_week' %}">This week</a></div>
 </section>
-{% if featured %}<h2>Recently verified</h2>
+{% if featured %}<h2>Recently checked</h2>
 <div class="cards">{% for r in featured %}<article class="card"><h3><a href="{% url 'resource_detail' r.slug %}">{{ r.name }}</a></h3>
-<div class="meta"><span class="tag">{{ r.get_category_display }}</span><span class="tag">Ages {{ r.min_age }} to {{ r.max_age }}</span>{% if r.cost_status == 'free' %}<span class="tag free">Free</span>{% endif %}{% if r.is_fictional %}<span class="tag fiction">Fictional demo</span>{% endif %}</div>
-<div class="fresh"><span class="dot {{ r.freshness_band }}"></span>{% if r.last_verified_at %}Verified {{ r.last_verified_at|timesince }} ago{% else %}Not yet verified{% endif %}</div></article>{% endfor %}</div>{% endif %}
+<div class="meta"><span class="tag">{{ r.get_category_display }}</span><span class="tag">Ages {{ r.min_age }} to {{ r.max_age }}</span>{% if r.cost_status == 'free' %}<span class="tag free">Free</span>{% endif %}{% if r.is_fictional %}<span class="tag fiction">Fictional demo</span>{% elif r.verification_method == 'official_online' %}<span class="tag verified">Checked online</span>{% endif %}</div>
+<div class="fresh"><span class="dot {{ r.freshness_band }}"></span>{% if r.last_verified_at %}Checked {{ r.last_verified_at|timesince }} ago{% else %}Not yet verified{% endif %}</div></article>{% endfor %}</div>{% endif %}
 {% if upcoming %}<h2>Coming up</h2><div class="cards">{% for e in upcoming %}<article class="card"><h3>{{ e.title }}</h3><div class="meta"><span class="tag">{{ e.start_at|date:"D j M, H:i" }}</span>{% if e.cost_status == 'free' %}<span class="tag free">Free</span>{% endif %}{% if e.is_fictional %}<span class="tag fiction">Fictional demo</span>{% endif %}</div></article>{% endfor %}</div>{% endif %}
 <h2>One place for Del Norte families</h2>
 <div class="scope">

@@ -91,3 +91,39 @@ def cells_covering(polygon_latlon: list[tuple[float, float]], res: int) -> set[s
 
 def parent(cell: str, res: int) -> str:
     return _require().cell_to_parent(cell, res)
+
+
+# ---- Public venues: exact fine cells ------------------------------------------
+# Schools, parks, museums and trailheads are public places, not people, so the
+# k-anonymity rule does not apply to them. They are mapped at fine resolution
+# (res 8..12) so a cell sits precisely on the venue: res 12 cells are ~20 m
+# across, res 11 ~55 m, res 10 ~150 m. Sensitive places and anything about a
+# person still go through public_aggregate() only.
+VENUE_RESOLUTIONS = (8, 9, 10, 11, 12)
+
+
+def venue_cells(lat: float, lon: float) -> dict[int, str]:
+    """Hierarchy of exact cells containing a public venue point (res 8..12)."""
+    return {r: cell_for(lat, lon, r) for r in VENUE_RESOLUTIONS}
+
+
+def cell_polygon(cell: str) -> list[list[float]]:
+    """Closed ring [[lon, lat], ...] of a cell boundary."""
+    h3 = _require()
+    ring = [[lng, lat] for lat, lng in h3.cell_to_boundary(cell)]
+    ring.append(ring[0])
+    return ring
+
+
+def venue_neighbourhood(cell: str, k: int = 1) -> list[str]:
+    """Cells within k steps (for drawing a soft halo around a venue). Not a distance."""
+    return list(_require().grid_disk(cell, k))
+
+
+def cell_centre(cell: str) -> tuple[float, float]:
+    lat, lng = _require().cell_to_latlng(cell)
+    return lat, lng
+
+
+def cell_resolution(cell: str) -> int:
+    return _require().get_resolution(cell)

@@ -10,18 +10,25 @@
 <style>
 :root{
   --pc-bg:{{ tokens.ui.bg }};--pc-surface:{{ tokens.ui.surface }};--pc-ink:{{ tokens.ui.ink }};--pc-ink-2:{{ tokens.ui.ink_2 }};
-  --pc-accent:{{ tokens.ui.accent }};--pc-accent-2:{{ tokens.ui.accent_2 }};--pc-free:{{ tokens.ui.free }};--pc-unknown:{{ tokens.ui.unknown }};
+  --pc-accent:{{ tokens.ui.accent }};--pc-accent-on:{{ tokens.ui.accent_on }};--pc-accent-2:{{ tokens.ui.accent_2 }};--pc-free:{{ tokens.ui.free }};--pc-unknown:{{ tokens.ui.unknown }};
   --pc-verified:{{ tokens.ui.verified }};--pc-stale:{{ tokens.ui.stale }};--pc-sensitive:{{ tokens.ui.sensitive }};
   --pc-radius:{{ tokens.ui.radius }};--pc-font-ui:{{ tokens.ui.font_ui|safe }};--pc-line:{{ tokens.map.road_casing }};
 }
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){
+  --pc-bg:{{ tokens.ui_dark.bg }};--pc-surface:{{ tokens.ui_dark.surface }};--pc-ink:{{ tokens.ui_dark.ink }};--pc-ink-2:{{ tokens.ui_dark.ink_2 }};
+  --pc-accent:{{ tokens.ui_dark.accent }};--pc-accent-on:{{ tokens.ui_dark.accent_on }};--pc-accent-2:{{ tokens.ui_dark.accent_2 }};--pc-free:{{ tokens.ui_dark.free }};
+  --pc-unknown:{{ tokens.ui_dark.unknown }};--pc-verified:{{ tokens.ui_dark.verified }};--pc-stale:{{ tokens.ui_dark.stale }};--pc-sensitive:{{ tokens.ui_dark.sensitive }};
+  --pc-line:#2b3940;
+}}
+body{background:var(--pc-bg)}
 </style>
 {% block head %}{% endblock %}
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
-{% if private_mode %}<div class="private-banner" role="status">Private preview. Listings marked <b>fictional demo</b> are placeholders and do not count toward verified records.</div>{% endif %}
+{% if private_mode %}<div class="private-banner" role="status">Private preview. Listings are summarised from official websites and checked online, not yet visited in person.</div>{% endif %}
 <header class="site-head">
-  <a class="brand" href="/" aria-label="Pleasant Crescent home"><span class="crescent" aria-hidden="true"></span>Pleasant Crescent</a>
+  <a class="brand" href="/" aria-label="Pleasant Crescent home">{{ logo_svg|safe }}<span class="wordmark">Pleasant Crescent<small>Del Norte family atlas</small></span></a>
   <nav class="site-nav" aria-label="Main">
     <a href="{% url 'explore' %}" {% if request.resolver_match.url_name == 'explore' %}aria-current="page"{% endif %}>Explore</a>
     <a href="{% url 'this_week' %}" {% if request.resolver_match.url_name == 'this_week' %}aria-current="page"{% endif %}>This week</a>

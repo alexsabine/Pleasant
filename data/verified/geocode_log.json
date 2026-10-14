@@ -1,0 +1,454 @@
+[
+ {
+  "name": "Bess Maxwell Elementary School",
+  "lon": -124.20925,
+  "lat": 41.766385,
+  "source": "California Department of Education school directory (CDS 08618206005375)"
+ },
+ {
+  "name": "Joe Hamilton Elementary School",
+  "lon": -124.20526,
+  "lat": 41.755632,
+  "source": "California Department of Education school directory (CDS 08618206005391)"
+ },
+ {
+  "name": "Mary Peacock Elementary School",
+  "lon": -124.21124,
+  "lat": 41.77713,
+  "source": "California Department of Education school directory (CDS 08618206113013)"
+ },
+ {
+  "name": "Pine Grove Elementary School",
+  "lon": -124.19502,
+  "lat": 41.784926,
+  "source": "California Department of Education school directory (CDS 08618206005433)"
+ },
+ {
+  "name": "Redwood Elementary School",
+  "lon": -124.14932,
+  "lat": 41.868014,
+  "source": "California Department of Education school directory (CDS 08618206005441)"
+ },
+ {
+  "name": "Crescent Elk Middle School",
+  "lon": -124.20323,
+  "lat": 41.756316,
+  "source": "California Department of Education school directory (CDS 08618206005383)"
+ },
+ {
+  "name": "Del Norte High School",
+  "lon": -124.20913,
+  "lat": 41.767313,
+  "source": "California Department of Education school directory (CDS 08618200833004)"
+ },
+ {
+  "name": "Sunset High School",
+  "lon": -124.15409,
+  "lat": 41.809252,
+  "source": "California Department of Education school directory (CDS 08618200836205)"
+ },
+ {
+  "name": "Castle Rock Charter School",
+  "lon": -124.21144,
+  "lat": 41.767856,
+  "source": "California Department of Education school directory (CDS 08100820830059)"
+ },
+ {
+  "name": "Del Norte Community School",
+  "lon": -124.20745,
+  "lat": 41.767783,
+  "source": "California Department of Education school directory (CDS 08100820830042)"
+ },
+ {
+  "name": "Uncharted Shores Academy",
+  "lon": -124.20101,
+  "lat": 41.75082,
+  "source": "California Department of Education school directory (CDS 08618200137729)"
+ },
+ {
+  "name": "DNUSD Early Childhood Education - California State Preschool Program",
+  "lon": -124.200468,
+  "lat": 41.767457,
+  "source": "OSM Nominatim geocode of the official street address '1200 Marshall Street, Crescent City' (place), logged at ingest"
+ },
+ {
+  "name": "Sunset Early Head Start Center (DNUSD)",
+  "lon": null,
+  "lat": null,
+  "source": "unplaced"
+ },
+ {
+  "name": "Northcoast Children's Services Infant Toddler Center / Early Head Start",
+  "lon": null,
+  "lat": null,
+  "source": "unplaced"
+ },
+ {
+  "name": "Del Norte Child Care Council",
+  "lon": -124.19478,
+  "lat": 41.7530614,
+  "source": "OSM Nominatim geocode of the official street address '212 K Street, Crescent City' (place), logged at ingest"
+ },
+ {
+  "name": "Mary Peacock After School Center (Del Norte Child Care Council)",
+  "note": "address and named-feature candidates 3050 m apart; chose named feature"
+ },
+ {
+  "name": "Mary Peacock After School Center (Del Norte Child Care Council)",
+  "lon": -124.211828,
+  "lat": 41.777369,
+  "source": "OpenStreetMap feature 'Mary Peacock School' (school) in our basemap tiles"
+ },
+ {
+  "name": "The Wonder Bus (Del Norte Child Care Council)",
+  "lon": -124.19478,
+  "lat": 41.7530614,
+  "source": "OSM Nominatim geocode of the official street address '212 K Street, Crescent City' (place), logged at ingest"
+ },
+ {
+  "name": "Family Resource Center of the Redwoods",
+  "lon": -124.2079641,
+  "lat": 41.758308,
+  "source": "OSM Nominatim geocode of the official street address '494 Pacific Avenue, Crescent City' (place), logged at ingest"
+ },
+ {
+  "name": "FRC Little Neighbors Playgroup at Gasquet Mountain School",
+  "lon": -123.96271,
+  "lat": 41.846192,
+  "source": "OpenStreetMap feature 'Mountain School' (school) in our basemap tiles"
+ },
+ {
+  "name": "Del Norte County Library (Main Library)",
+  "lon": -124.20259,
+  "lat": 41.75575,
+  "source": "official page: California State Library LocalLibraryLocations.csv (library.ca.gov)"
+ },
+ {
+  "name": "Del Norte County Library - Smith River Branch",
+  "lon": -124.14821,
+  "lat": 41.92632,
+  "source": "official page: California State Library LocalLibraryLocations.csv (library.ca.gov)"
+ },
+ {
+  "name": "Elk Valley Rancheria Library",
+  "lon": -124.1582893,
+  "lat": 41.7586439,
+  "source": "OSM Nominatim geocode of the official street address '2332 Howland Hill Rd, Crescent City' (building), logged at ingest"
+ },
+ {
+  "name": "College of the Redwoods - Del Norte Campus",
+  "lon": -124.2099517,
+  "lat": 41.7726685,
+  "source": "OSM Nominatim geocode of the official street address '883 W. Washington Blvd., Crescent City' (place), logged at ingest"
+ },
+ {
+  "name": "Del Norte County Recreation Department",
+  "lon": -124.2023664,
+  "lat": 41.7570207,
+  "source": "OSM Nominatim geocode of the official street address '1005 H Street, Crescent City' (place), logged at ingest"
+ },
+ {
+  "name": "Del Norte County 4-H Program (UC Cooperative Extension)",
+  "lon": -124.2006045,
+  "lat": 41.7535113,
+  "source": "OSM Nominatim geocode of the official street address '586 G Street, Crescent City' (place), logged at ingest"
+ },
+ {
+  "name": "Two Trees Student Support Center / Expanded Learning (DNCOE)",
+  "lon": -124.206071,
+  "lat": 41.772676,
+  "source": "OSM Nominatim geocode of the official street address '301 W. Washington Blvd., Crescent City' (place), logged at ingest"
+ },
+ {
+  "name": "E3 Summer Youth Program (DNCOE / SMART Workforce Center)",
+  "lon": -124.1984718,
+  "lat": 41.7537862,
+  "source": "OSM Nominatim geocode of the official street address '875 5th Street, Crescent City' (place), logged at ingest"
+ },
+ {
+  "name": "Harmony & Me Music Outreach - Music Together classes (Crescent City)",
+  "lon": null,
+  "lat": null,
+  "source": "unplaced"
+ },
+ {
+  "name": "Smith River Elementary School",
+  "lon": -124.1524,
+  "lat": 41.926832,
+  "source": "California Department of Education school directory (CDS 08618206005458)"
+ },
+ {
+  "name": "Xaa-wan'-k'wvt (Howonquet) Early Learning Program - Tolowa Dee-ni' Nation Head Start",
+  "lon": null,
+  "lat": null,
+  "source": "unplaced"
+ },
+ {
+  "name": "Mountain Elementary School (Gasquet)",
+  "lon": -123.96239,
+  "lat": 41.84656,
+  "source": "California Department of Education school directory (CDS 08618206005425)"
+ },
+ {
+  "name": "'O Me-nok Learning Center (Klamath)",
+  "lon": -124.05263,
+  "lat": 41.55584,
+  "source": "California Department of Education school directory (CDS 08618206005417)"
+ },
+ {
+  "name": "Yurok Tribe Head Start / Early Head Start - Klamath Site",
+  "lon": null,
+  "lat": null,
+  "source": "unplaced"
+ },
+ {
+  "name": "Battery Point Lighthouse",
+  "lon": -124.203079,
+  "lat": 41.74423,
+  "source": "OpenStreetMap feature 'Battery Point Lighthouse' (memorial) in our basemap tiles"
+ },
+ {
+  "name": "Del Norte County Historical Society Main Museum",
+  "note": "address and named-feature candidates 1171 m apart; chose named feature"
+ },
+ {
+  "name": "Del Norte County Historical Society Main Museum",
+  "lon": -124.19934,
+  "lat": 41.754234,
+  "source": "OpenStreetMap feature 'Del Norte County Historical Society Museum' (museum) in our basemap tiles"
+ },
+ {
+  "name": "Ocean World",
+  "lon": -124.188316,
+  "lat": 41.752001,
+  "source": "OpenStreetMap feature 'Ocean World' (aquarium) in our basemap tiles"
+ },
+ {
+  "name": "Beachfront Park and Kid's Town (KidTown) playground",
+  "lon": -124.1952786,
+  "lat": 41.7503712,
+  "source": "official page: Google Maps link for Kid's Town on https://www.crescentcity.org/BeachfrontPark-1"
+ },
+ {
+  "name": "Fred Endert Municipal Pool",
+  "lon": -124.1941463,
+  "lat": 41.7506883,
+  "source": "official page: Google Maps link for Fred Endert Pool on https://www.crescentcity.org/BeachfrontPark-1"
+ },
+ {
+  "name": "B Street Pier",
+  "lon": -124.196459,
+  "lat": 41.743512,
+  "source": "OpenStreetMap feature 'B Street Pier' (recreation_ground) in our basemap tiles"
+ },
+ {
+  "name": "Fraser Park playground",
+  "lon": null,
+  "lat": null,
+  "source": "unplaced"
+ },
+ {
+  "name": "Peterson Park skate park and sports fields",
+  "lon": null,
+  "lat": null,
+  "source": "unplaced"
+ },
+ {
+  "name": "Brother Jonathan Park and Overlook",
+  "lon": -124.210326,
+  "lat": 41.751108,
+  "source": "OpenStreetMap feature 'Brother Jonathan Park' (park) in our basemap tiles"
+ },
+ {
+  "name": "Pyke Field playground and softball fields",
+  "lon": -124.202486,
+  "lat": 41.756785,
+  "source": "official page: Directions link on https://www.co.del-norte.ca.us/maps/location/PykeField"
+ },
+ {
+  "name": "Northcoast Marine Mammal Center",
+  "lon": -124.1987425,
+  "lat": 41.747818,
+  "source": "OSM Nominatim geocode of the official street address '424 Howe Dr., Crescent City' (amenity), logged at ingest"
+ },
+ {
+  "name": "Crescent City Information Center (Redwood National and State Parks headquarters bookstore)",
+  "lon": -124.19419,
+  "lat": 41.752845,
+  "source": "OpenStreetMap feature 'Crescent City Information Center' (information) in our basemap tiles"
+ },
+ {
+  "name": "Hiouchi Visitor Center",
+  "lon": -124.08188,
+  "lat": 41.796752,
+  "source": "OpenStreetMap feature 'Hiouchi Visitor Center' (information) in our basemap tiles"
+ },
+ {
+  "name": "Jedediah Smith Visitor Center (seasonal)",
+  "lon": -124.086647,
+  "lat": 41.795714,
+  "source": "OpenStreetMap feature 'Jedediah Smith Redwood State Park' (information) in our basemap tiles"
+ },
+ {
+  "name": "Jedediah Smith Redwoods State Park - campground day-use area and river beach",
+  "lon": -124.083,
+  "lat": 41.797,
+  "source": "official page: Google Maps directions link on https://www.parks.ca.gov/?page_id=413"
+ },
+ {
+  "name": "Crescent Beach Day Use Area",
+  "lon": -124.169873,
+  "lat": 41.742031,
+  "source": "OpenStreetMap feature 'Crescent Beach' (beach) in our basemap tiles"
+ },
+ {
+  "name": "Crescent Beach Overlook",
+  "lon": -124.143743,
+  "lat": 41.70715,
+  "source": "OpenStreetMap feature 'Crescent Beach Overlook' (viewpoint) in our basemap tiles"
+ },
+ {
+  "name": "Tolowa Dunes State Park",
+  "lon": -124.216927,
+  "lat": 41.79877,
+  "source": "official page: Google Maps directions link on https://www.parks.ca.gov/?page_id=430"
+ },
+ {
+  "name": "Lake Earl Wildlife Area",
+  "lon": null,
+  "lat": null,
+  "source": "unplaced"
+ },
+ {
+  "name": "Pelican State Beach",
+  "lon": -124.208449,
+  "lat": 41.991347,
+  "source": "official page: Google Maps directions link on https://www.parks.ca.gov/?page_id=412"
+ },
+ {
+  "name": "Clifford Kamph Memorial Park",
+  "lon": -124.204178,
+  "lat": 41.97087,
+  "source": "OpenStreetMap feature 'Clifford Kamph Memorial Park' (park) in our basemap tiles"
+ },
+ {
+  "name": "Florence Keller Regional Park",
+  "lon": null,
+  "lat": null,
+  "source": "unplaced"
+ },
+ {
+  "name": "Ruby Van Deventer County Park",
+  "lon": null,
+  "lat": null,
+  "source": "unplaced"
+ },
+ {
+  "name": "Forks River Access and Boat Ramp (Smith River NRA)",
+  "lon": -124.0551,
+  "lat": 41.79725,
+  "source": "official page: Latitude/longitude on https://www.fs.usda.gov/r05/sixrivers/recreation/forks-river-access-and-boat-ramp"
+ },
+ {
+  "name": "Panther Flat Picnic Area and swimming holes (Smith River NRA)",
+  "lon": -123.9288889,
+  "lat": 41.84305556,
+  "source": "official page: Latitude/longitude on https://www.fs.usda.gov/r05/sixrivers/recreation/panther-flat-campground"
+ },
+ {
+  "name": "Smith River National Recreation Area Visitor Center (Gasquet Ranger Station)",
+  "lon": -123.9662658,
+  "lat": 41.8452385,
+  "source": "OSM Nominatim geocode of the official street address '10600 Highway 199, Gasquet' (amenity), logged at ingest"
+ },
+ {
+  "name": "Trees of Mystery",
+  "lon": -124.085281,
+  "lat": 41.584369,
+  "source": "OpenStreetMap feature 'Trees of Mystery' (garden) in our basemap tiles"
+ },
+ {
+  "name": "Klamath River Overlook",
+  "lon": null,
+  "lat": null,
+  "source": "unplaced"
+ },
+ {
+  "name": "Lagoon Creek Day Use Area",
+  "lon": null,
+  "lat": null,
+  "source": "unplaced"
+ },
+ {
+  "name": "False Klamath Cove beach (Wilson Beach)",
+  "lon": null,
+  "lat": null,
+  "source": "unplaced"
+ },
+ {
+  "name": "Howland Hill Road scenic drive",
+  "lon": null,
+  "lat": null,
+  "source": "unplaced"
+ },
+ {
+  "name": "Stout Memorial Grove Trail",
+  "lon": null,
+  "lat": null,
+  "source": "unplaced"
+ },
+ {
+  "name": "Simpson-Reed Trail",
+  "lon": -124.10711,
+  "lat": 41.813116,
+  "source": "OpenStreetMap feature 'Simpson-Reed Grove Trail' (path) in our basemap tiles"
+ },
+ {
+  "name": "Grove of Titans Trail",
+  "lon": -124.101319,
+  "lat": 41.778696,
+  "source": "OpenStreetMap feature 'Grove of Titans' (path) in our basemap tiles"
+ },
+ {
+  "name": "Boy Scout Tree Trail",
+  "lon": -124.119882,
+  "lat": 41.774472,
+  "source": "OpenStreetMap feature 'Boy Scout Tree Trail' (path) in our basemap tiles"
+ },
+ {
+  "name": "Nature River Trail (Jedediah Smith day-use area)",
+  "lon": -124.083,
+  "lat": 41.797,
+  "source": "official page: Google Maps directions link on https://www.parks.ca.gov/?page_id=413 (park entrance)"
+ },
+ {
+  "name": "Enderts Beach via Coastal Trail (Last Chance section, north end)",
+  "lon": null,
+  "lat": null,
+  "source": "unplaced"
+ },
+ {
+  "name": "Coastal Trail - Crescent Beach section",
+  "lon": null,
+  "lat": null,
+  "source": "unplaced"
+ },
+ {
+  "name": "Yurok Loop Trail",
+  "lon": -124.101655,
+  "lat": 41.594568,
+  "source": "OpenStreetMap feature 'Yurok Loop Trail' (path) in our basemap tiles"
+ },
+ {
+  "name": "Mill Creek Campground Trail (Del Norte Coast Redwoods SP)",
+  "lon": -124.098,
+  "lat": 41.7028,
+  "source": "official page: Google Maps directions link on https://www.parks.ca.gov/?page_id=414 (park/campground)"
+ },
+ {
+  "name": "Darlingtonia Trail (Smith River NRA)",
+  "lon": -123.908057,
+  "lat": 41.850491,
+  "source": "OpenStreetMap feature 'Darlingtonia Trail' (path) in our basemap tiles"
+ }
+]
