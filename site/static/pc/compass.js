@@ -9,10 +9,26 @@
   const closeBtn = drawer.querySelector("[data-close]");
 
   const guide = JSON.parse(log.dataset.guide || "{}");
+  // Phone keyboards: Android (with interactive-widget=resizes-content) shrinks the layout viewport,
+  // iOS does not. Size the drawer to the *visual* viewport so the question box always sits above
+  // the keyboard on both.
+  const vv = window.visualViewport;
+  function fit() {
+    if (drawer.hidden) return;
+    if (vv && window.matchMedia("(max-width: 640px)").matches) {
+      drawer.style.height = Math.round(vv.height) + "px";
+      drawer.style.top = Math.round(vv.offsetTop) + "px";
+    } else { drawer.style.height = ""; drawer.style.top = ""; }
+    log.scrollTop = log.scrollHeight;
+  }
+  if (vv) { vv.addEventListener("resize", fit); vv.addEventListener("scroll", fit); }
+  window.addEventListener("resize", fit);
+  input.addEventListener("focus", () => { setTimeout(fit, 250); setTimeout(fit, 600); });
   let guideStep = -1, guideAnswers = [];
   function open(v) {
     drawer.hidden = !v; toggle.setAttribute("aria-expanded", String(v));
     document.body.classList.toggle("compass-open", v);
+    if (v) fit(); else { drawer.style.height = ""; drawer.style.top = ""; }
     if (v && !log.children.length && guide.intro) add("bot", guide.intro);
     if (v) input.focus(); else toggle.focus();
   }

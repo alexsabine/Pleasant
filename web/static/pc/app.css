@@ -285,3 +285,12 @@ code{overflow-wrap:anywhere}
   .compass-form{padding:10px 12px}
   body.compass-open{overflow:hidden}
 }
+
+/* keyboard-safe drawer: height from the viewport (dvh), refined by visualViewport in compass.js */
+.compass-drawer{bottom:auto;height:100vh;height:100dvh}
+.compass-form{padding-bottom:calc(12px + env(safe-area-inset-bottom,0px))}
+@media (max-width:640px){
+  .compass-drawer{padding-bottom:0}
+  .compass-form{padding-bottom:calc(10px + env(safe-area-inset-bottom,0px))}
+  body.compass-open{position:fixed;width:100%}
+}
