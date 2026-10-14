@@ -63,7 +63,7 @@ def parse_intent_rules(question: str) -> Intent:
     if re.search(r"wheelchair|accessible|pushchair|stroller|step-free|mobility", q):
         it.requires_accessibility = True
     for cat, words in tools.KEYWORDS.items():
-        if any(w in q for w in words):
+        if any(re.search(r"\b" + re.escape(w) + r"s?\b", q) for w in words):
             it.categories.append(cat)
     for key, label in (("smith_river", "smith river"), ("gasquet", "gasquet"), ("klamath", "klamath"), ("fort_dick", "fort dick"), ("hiouchi", "hiouchi"), ("crescent_city", "crescent city")):
         if label in q:

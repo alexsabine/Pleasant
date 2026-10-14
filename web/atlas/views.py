@@ -27,7 +27,7 @@ def _apply_filters(qs, params):
         qs = qs.filter(category=cat)
     com = params.get("community")
     if com:
-        qs = qs.filter(community=com)
+        qs = qs.filter(community__in=[com, "countywide"])
     if params.get("free") in ("1", "true", "on"):
         qs = qs.filter(cost_status="free")
     if params.get("access") in ("1", "true", "on"):

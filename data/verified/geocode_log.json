@@ -369,9 +369,9 @@
  },
  {
   "name": "Klamath River Overlook",
-  "lon": null,
-  "lat": null,
-  "source": "unplaced"
+  "lon": -124.08662,
+  "lat": 41.554399,
+  "source": "OpenStreetMap feature 'Klamath River Overlook' (viewpoint) in our basemap tiles"
  },
  {
   "name": "Lagoon Creek Day Use Area",

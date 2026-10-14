@@ -31,11 +31,11 @@ KEYWORDS = {
     "school": ["school", "elementary", "middle school", "high school", "charter", "academy"],
     "college": ["college", "community college"],
     "after_school": ["after school", "after-school", "youth program", "4-h", "summer program"],
-    "museum": ["museum", "history", "lighthouse"],
+    "museum": ["museum", "history", "historical"],
     "beach": ["beach", "tidepool", "tide pool", "sand"],
     "park": ["park", "picnic", "campground", "day use"],
     "visitor_center": ["visitor center", "visitor centre", "information center", "ranger"],
-    "attraction": ["aquarium", "sea lion", "seal", "pier", "attraction", "trees of mystery", "overlook"],
+    "attraction": ["aquarium", "sea lion", "seal", "pier", "attraction", "trees of mystery", "overlook", "lighthouse"],
 }
 
 
@@ -58,7 +58,7 @@ def search_published_resources(*, age: int | None = None, free_only: bool = Fals
     if categories:
         qs = qs.filter(category__in=categories)
     if community:
-        qs = qs.filter(community=community)
+        qs = qs.filter(community__in=[community, "countywide"])  # countywide services serve every community
     if text:
         # token search over name/description, stopwords removed; never the whole question
         toks = [t for t in re.findall(r"[a-z]{4,}", text.lower()) if t not in STOPWORDS]

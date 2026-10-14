@@ -169,8 +169,8 @@ class Placer:
             tn = tokens(name)
             if nn == q:
                 score = 100
-            elif q and (q in nn or nn in q) and len(nn) >= 8:
-                score = 85
+            elif q and (q in nn or nn in q) and len(nn) >= 8 and tn and tn[0] in tq:
+                score = 85   # containment only counts when the feature name has a distinctive token the query shares
             elif tq and tn and tq[0] in tn and len(set(tq) & set(tn)) / len(set(tq)) >= 0.6:
                 score = 70   # the most distinctive (first) token must match and most tokens must overlap
             else:

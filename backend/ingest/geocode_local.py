@@ -24,7 +24,7 @@ from pmtiles.tile import tileid_to_zxy
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from ingest_log import ROOT  # noqa: E402
 
-TILES = [ROOT / "data" / "tiles" / "delnorte_basemap.pmtiles", ROOT / "data" / "tiles" / "crescent_city_z15.pmtiles"]
+TILES = [ROOT / "data" / "tiles" / "delnorte_basemap.pmtiles", ROOT / "data" / "tiles" / "crescent_city_z15.pmtiles", ROOT / "data" / "tiles" / "corridor_z15.pmtiles"]
 OUT = ROOT / "data" / "verified" / "osm_names.json"
 LAYERS = {"pois", "places", "landuse", "natural", "water", "buildings", "physical_point", "roads"}
 EXTENT = 4096

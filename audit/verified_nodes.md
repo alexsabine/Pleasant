@@ -6,6 +6,7 @@
 
 - **Educational providers** (`data/verified/education.json`): 36 entries researched from dnusd.org, school sites, tolowa.gov, yuroktribe.org, Del Norte Child Care Council, Family Resource Center of the Redwoods, UC Cooperative Extension, College of the Redwoods, the California State Library's library-location file. 12 candidates were dropped for lack of an official page (for example the SDA and Foursquare Christian schools, Del Norte Reads, First 5 Del Norte whose site returns 404). There is no Boys & Girls Club in the county.
 - **Attractions and trails** (`data/verified/attractions.json`): 41 entries from nps.gov, parks.ca.gov, fs.usda.gov, wildlife.ca.gov, co.del-norte.ca.us, crescentcity.org, delnortehistory.org, oceanworldonline.com, treesofmystery.net, northcoastmmc.org and ccharbor.com. 11 dropped (no official page, or covered by another entry).
+- **Zoom-15 tiles** were extracted for the Crescent City to Hiouchi and Klamath corridor so that more named parks, viewpoints and trails could be matched offline (Klamath River Overlook was placed this way).
 - **Coordinates**: the California Department of Education public school directory (`data/verified/cde_schools.json`, 15 active Del Norte schools with coordinates), official page coordinates where the researcher found them (State Parks map links, Forest Service, City of Crescent City), and named features in our own OpenStreetMap-derived basemap tiles (`data/verified/osm_names.json`, built by `backend/ingest/geocode_local.py`).
 
 ## Placement rules (`backend/ingest/placer.py`)
@@ -16,13 +17,13 @@ The offline geocoder was validated against the state directory: for the six scho
 
 ## Result
 
-57 listings published and mapped with exact H3 cells at resolutions 8 to 12; 17 unplaced, written to `data/verified/unplaced.json` and **not** shown on the map:
+58 listings published and mapped with exact H3 cells at resolutions 8 to 12; 16 unplaced, written to `data/verified/unplaced.json` and **not** shown on the map:
 
 | Unplaced | Why |
 |---|---|
 | Sunset Early Head Start Center; Northcoast Children's Services Infant Toddler Center; Harmony & Me (Wonder Forge); Tolowa Dee-ni' Howonquet Early Learning; Yurok Head Start (Klamath) | Street address did not resolve to a building in OpenStreetMap; needs a human to confirm the point |
-| Fraser Park; Peterson Park skate park; Florence Keller Regional Park; Ruby Van Deventer County Park; Lake Earl Wildlife Area | Not named in our tiles and no official coordinates; county pages give only cross-streets or directions |
-| Klamath River Overlook; Lagoon Creek; False Klamath Cove; Howland Hill Road; Stout Memorial Grove Trail; Enderts Beach / Coastal Trail sections | NPS pages give directions, not coordinates; the trail or feature is not named in our tiles at the zoom extracted |
+| Fraser Park; Peterson Park skate park; Florence Keller Regional Park; Ruby Van Deventer County Park; Lake Earl Wildlife Area | Not named in our tiles and no official coordinates; county pages give only cross-streets or directions. (Ruby Van Deventer matched a feature named only "County park" and was rejected by the distinctive-token rule.) |
+| Lagoon Creek; False Klamath Cove; Howland Hill Road; Stout Memorial Grove Trail; Enderts Beach / Coastal Trail sections | NPS pages give directions, not coordinates; the trail or feature is not named in our tiles even at zoom 15 (Stout Grove appears only as a service road, which the trail rule does not accept) |
 
 These are the first candidates for a human verifier with a phone: standing at the entrance and recording the point takes a minute each and upgrades the listing to "Visited".
 
@@ -37,4 +38,4 @@ These are the first candidates for a human verifier with a phone: standing at th
 
 ## What a human verifier does next
 
-For each listing: open the official page linked on the listing, confirm the facts shown, visit or phone, and mark the claims verified in the admin (Atlas → Claims). The verification method then changes to "Visited" and the listing counts toward the 40 human-verified records in the contract. None of the 57 online-checked listings counts yet.
+For each listing: open the official page linked on the listing, confirm the facts shown, visit or phone, and mark the claims verified in the admin (Atlas → Claims). The verification method then changes to "Visited" and the listing counts toward the 40 human-verified records in the contract. None of the 58 online-checked listings counts yet.

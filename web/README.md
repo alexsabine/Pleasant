@@ -10,7 +10,7 @@ pip install -r web/requirements.txt
 cd web
 python manage.py migrate
 python manage.py load_demo            # demo users, workflow, home page (and five FICTIONAL listings for tests)
-python manage.py load_verified --replace-fictional   # 57 real listings from data/verified/*.json, placed from authoritative sources
+python manage.py load_verified --replace-fictional   # 58 real listings from data/verified/*.json, placed from authoritative sources
 python manage.py runserver
 ```
 

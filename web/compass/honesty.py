@@ -22,7 +22,7 @@ def verified_ago(iso: str | None) -> str:
         return "not yet verified"
     dt = datetime.fromisoformat(iso)
     days = int((datetime.now(dt_tz.utc) - dt).total_seconds() // 86400)
-    return "verified today" if days == 0 else f"verified {days} day{'s' if days != 1 else ''} ago"
+    return "checked today" if days == 0 else f"checked {days} day{'s' if days != 1 else ''} ago"
 
 
 def item_line(d: dict) -> str:
@@ -48,7 +48,7 @@ def compose(decision, memory_notes: list[str]) -> dict:
         if decision.broadened:
             lines.append("Nothing matched exactly, so I relaxed the " + " and ".join(decision.broadened) + " and kept your other requirements.")
         if decision.shown:
-            lines.append(f"Here {'is' if len(decision.shown) == 1 else 'are'} {len(decision.shown)} recently verified option{'s' if len(decision.shown) != 1 else ''} from the published directory:")
+            lines.append(f"Here {'is' if len(decision.shown) == 1 else 'are'} {len(decision.shown)} recently checked option{'s' if len(decision.shown) != 1 else ''} from the published directory:")
             for d in decision.shown:
                 lines.append("• " + item_line(d))
         if decision.events:

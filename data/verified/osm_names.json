@@ -1,7 +1,7 @@
 {
 "source": "data/tiles/delnorte_basemap.pmtiles (OpenStreetMap via Protomaps, ODbL)",
-"built_from_tiles": 2456,
-"features": 5103,
+"built_from_tiles": 4031,
+"features": 6773,
 "names": {
 "waldo": [
 {
@@ -884,6 +884,330 @@
 "lat": 41.813656,
 "z": 15,
 "tile": "15/5089/12186"
+},
+{
+"name": "Smith River",
+"layer": "water",
+"kind": "river",
+"lon": -124.125511,
+"lat": 41.874444,
+"z": 15,
+"tile": "15/5085/12179"
+},
+{
+"name": "Smith River",
+"layer": "water",
+"kind": "river",
+"lon": -124.13184,
+"lat": 41.8782,
+"z": 15,
+"tile": "15/5085/12178"
+},
+{
+"name": "Smith River",
+"layer": "water",
+"kind": "river",
+"lon": -124.141393,
+"lat": 41.881639,
+"z": 15,
+"tile": "15/5084/12178"
+},
+{
+"name": "Smith River",
+"layer": "water",
+"kind": "river",
+"lon": -124.120973,
+"lat": 41.865632,
+"z": 15,
+"tile": "15/5086/12180"
+},
+{
+"name": "Smith River",
+"layer": "water",
+"kind": "river",
+"lon": -124.121794,
+"lat": 41.856463,
+"z": 15,
+"tile": "15/5086/12181"
+},
+{
+"name": "Smith River",
+"layer": "water",
+"kind": "river",
+"lon": -124.120579,
+"lat": 41.848507,
+"z": 15,
+"tile": "15/5086/12182"
+},
+{
+"name": "Smith River",
+"layer": "water",
+"kind": "river",
+"lon": -124.116971,
+"lat": 41.841131,
+"z": 15,
+"tile": "15/5086/12183"
+},
+{
+"name": "Smith River",
+"layer": "water",
+"kind": "river",
+"lon": -124.119524,
+"lat": 41.844407,
+"z": 15,
+"tile": "15/5086/12183"
+},
+{
+"name": "Smith River",
+"layer": "water",
+"kind": "river",
+"lon": -124.115472,
+"lat": 41.832655,
+"z": 15,
+"tile": "15/5086/12184"
+},
+{
+"name": "Smith River",
+"layer": "water",
+"kind": "river",
+"lon": -124.115959,
+"lat": 41.834847,
+"z": 15,
+"tile": "15/5086/12184"
+},
+{
+"name": "Smith River",
+"layer": "water",
+"kind": "river",
+"lon": -124.105303,
+"lat": 41.820997,
+"z": 15,
+"tile": "15/5087/12185"
+},
+{
+"name": "Smith River",
+"layer": "water",
+"kind": "river",
+"lon": -124.114799,
+"lat": 41.825847,
+"z": 15,
+"tile": "15/5086/12185"
+},
+{
+"name": "Smith River",
+"layer": "water",
+"kind": "river",
+"lon": -124.054485,
+"lat": 41.800775,
+"z": 15,
+"tile": "15/5092/12188"
+},
+{
+"name": "Smith River",
+"layer": "water",
+"kind": "river",
+"lon": -124.056821,
+"lat": 41.790162,
+"z": 15,
+"tile": "15/5092/12189"
+},
+{
+"name": "Smith River",
+"layer": "water",
+"kind": "river",
+"lon": -124.057408,
+"lat": 41.787766,
+"z": 15,
+"tile": "15/5092/12190"
+},
+{
+"name": "Smith River",
+"layer": "water",
+"kind": "river",
+"lon": -124.058274,
+"lat": 41.787761,
+"z": 15,
+"tile": "15/5091/12190"
+},
+{
+"name": "Smith River",
+"layer": "water",
+"kind": "river",
+"lon": -124.074001,
+"lat": 41.790534,
+"z": 15,
+"tile": "15/5090/12189"
+},
+{
+"name": "Smith River",
+"layer": "water",
+"kind": "river",
+"lon": -124.061123,
+"lat": 41.79075,
+"z": 15,
+"tile": "15/5091/12189"
+},
+{
+"name": "Smith River",
+"layer": "water",
+"kind": "river",
+"lon": -124.057964,
+"lat": 41.796554,
+"z": 15,
+"tile": "15/5091/12188"
+},
+{
+"name": "Smith River",
+"layer": "water",
+"kind": "river",
+"lon": -124.035677,
+"lat": 41.835485,
+"z": 15,
+"tile": "15/5093/12184"
+},
+{
+"name": "Smith River",
+"layer": "water",
+"kind": "river",
+"lon": -124.035569,
+"lat": 41.820587,
+"z": 15,
+"tile": "15/5093/12185"
+},
+{
+"name": "Smith River",
+"layer": "water",
+"kind": "river",
+"lon": -124.049776,
+"lat": 41.807521,
+"z": 15,
+"tile": "15/5092/12187"
+},
+{
+"name": "Smith River",
+"layer": "water",
+"kind": "river",
+"lon": -124.044704,
+"lat": 41.809666,
+"z": 15,
+"tile": "15/5093/12187"
+},
+{
+"name": "Smith River",
+"layer": "water",
+"kind": "river",
+"lon": -124.039965,
+"lat": 41.815948,
+"z": 15,
+"tile": "15/5093/12186"
+},
+{
+"name": "Smith River",
+"layer": "water",
+"kind": "river",
+"lon": -124.041213,
+"lat": 41.814965,
+"z": 15,
+"tile": "15/5093/12186"
+},
+{
+"name": "Smith River",
+"layer": "water",
+"kind": "river",
+"lon": -124.0357,
+"lat": 41.820309,
+"z": 15,
+"tile": "15/5094/12186"
+},
+{
+"name": "Smith River",
+"layer": "water",
+"kind": "river",
+"lon": -124.031584,
+"lat": 41.823825,
+"z": 15,
+"tile": "15/5094/12185"
+},
+{
+"name": "Smith River",
+"layer": "water",
+"kind": "river",
+"lon": -124.031149,
+"lat": 41.832559,
+"z": 15,
+"tile": "15/5094/12184"
+},
+{
+"name": "Smith River",
+"layer": "water",
+"kind": "river",
+"lon": -124.020126,
+"lat": 41.84145,
+"z": 15,
+"tile": "15/5095/12183"
+},
+{
+"name": "Smith River",
+"layer": "water",
+"kind": "river",
+"lon": -124.031441,
+"lat": 41.838464,
+"z": 15,
+"tile": "15/5094/12183"
+},
+{
+"name": "Smith River",
+"layer": "water",
+"kind": "river",
+"lon": -124.008233,
+"lat": 41.843641,
+"z": 15,
+"tile": "15/5096/12183"
+},
+{
+"name": "Smith River",
+"layer": "water",
+"kind": "river",
+"lon": -123.998066,
+"lat": 41.843412,
+"z": 15,
+"tile": "15/5097/12183"
+},
+{
+"name": "Smith River",
+"layer": "water",
+"kind": "river",
+"lon": -123.993219,
+"lat": 41.846446,
+"z": 15,
+"tile": "15/5097/12182"
+},
+{
+"name": "Smith River",
+"layer": "water",
+"kind": "river",
+"lon": -123.986328,
+"lat": 41.848193,
+"z": 15,
+"tile": "15/5098/12182"
+},
+{
+"name": "Smith River",
+"layer": "water",
+"kind": "river",
+"lon": -123.976072,
+"lat": 41.848348,
+"z": 15,
+"tile": "15/5099/12182"
+},
+{
+"name": "Smith River",
+"layer": "water",
+"kind": "river",
+"lon": -123.969582,
+"lat": 41.847701,
+"z": 15,
+"tile": "15/5100/12182"
 }
 ],
 "yontocket": [
@@ -1533,6 +1857,177 @@
 "lat": 42.064535,
 "z": 14,
 "tile": "14/2553/6078"
+},
+{
+"name": "Rock Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -123.986617,
+"lat": 41.732599,
+"z": 15,
+"tile": "15/5098/12196"
+},
+{
+"name": "Rock Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -123.991117,
+"lat": 41.72973,
+"z": 15,
+"tile": "15/5098/12197"
+},
+{
+"name": "Rock Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -123.993124,
+"lat": 41.725599,
+"z": 15,
+"tile": "15/5097/12197"
+},
+{
+"name": "Rock Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -123.994264,
+"lat": 41.717607,
+"z": 15,
+"tile": "15/5097/12198"
+},
+{
+"name": "Rock Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -123.999029,
+"lat": 41.709693,
+"z": 15,
+"tile": "15/5097/12199"
+},
+{
+"name": "Rock Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -123.99988,
+"lat": 41.701419,
+"z": 15,
+"tile": "15/5097/12200"
+},
+{
+"name": "Rock Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -123.999053,
+"lat": 41.693931,
+"z": 15,
+"tile": "15/5097/12201"
+},
+{
+"name": "Rock Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -124.003968,
+"lat": 41.682141,
+"z": 15,
+"tile": "15/5096/12202"
+},
+{
+"name": "Rock Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -124.006213,
+"lat": 41.677457,
+"z": 15,
+"tile": "15/5096/12203"
+},
+{
+"name": "Rock Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -123.9999,
+"lat": 41.68604,
+"z": 15,
+"tile": "15/5097/12202"
+},
+{
+"name": "Rock Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -123.994888,
+"lat": 41.660376,
+"z": 15,
+"tile": "15/5097/12205"
+},
+{
+"name": "Rock Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -123.999912,
+"lat": 41.667533,
+"z": 15,
+"tile": "15/5097/12204"
+},
+{
+"name": "Rock Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -124.003233,
+"lat": 41.67158,
+"z": 15,
+"tile": "15/5096/12204"
+},
+{
+"name": "Rock Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -124.00481,
+"lat": 41.651085,
+"z": 15,
+"tile": "15/5096/12206"
+},
+{
+"name": "Rock Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -123.99772,
+"lat": 41.654406,
+"z": 15,
+"tile": "15/5097/12206"
+},
+{
+"name": "Rock Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -124.07502,
+"lat": 41.817053,
+"z": 15,
+"tile": "15/5090/12186"
+},
+{
+"name": "Rock Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -124.077565,
+"lat": 41.810956,
+"z": 15,
+"tile": "15/5090/12187"
+},
+{
+"name": "Rock Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -124.073049,
+"lat": 41.833205,
+"z": 15,
+"tile": "15/5090/12184"
+},
+{
+"name": "Rock Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -124.073482,
+"lat": 41.82415,
+"z": 15,
+"tile": "15/5090/12185"
 }
 ],
 "elk creek": [
@@ -11380,6 +11875,105 @@
 "lat": 41.920971,
 "z": 14,
 "tile": "14/2559/6086"
+},
+{
+"name": "Middle Fork Smith River",
+"layer": "water",
+"kind": "river",
+"lon": -123.899035,
+"lat": 41.851934,
+"z": 15,
+"tile": "15/5106/12182"
+},
+{
+"name": "Middle Fork Smith River",
+"layer": "water",
+"kind": "river",
+"lon": -123.910725,
+"lat": 41.84837,
+"z": 15,
+"tile": "15/5105/12182"
+},
+{
+"name": "Middle Fork Smith River",
+"layer": "water",
+"kind": "river",
+"lon": -123.920297,
+"lat": 41.845633,
+"z": 15,
+"tile": "15/5104/12182"
+},
+{
+"name": "Middle Fork Smith River",
+"layer": "water",
+"kind": "river",
+"lon": -123.921409,
+"lat": 41.844867,
+"z": 15,
+"tile": "15/5104/12183"
+},
+{
+"name": "Middle Fork Smith River",
+"layer": "water",
+"kind": "river",
+"lon": -123.940561,
+"lat": 41.836945,
+"z": 15,
+"tile": "15/5102/12184"
+},
+{
+"name": "Middle Fork Smith River",
+"layer": "water",
+"kind": "river",
+"lon": -123.966925,
+"lat": 41.846864,
+"z": 15,
+"tile": "15/5100/12182"
+},
+{
+"name": "Middle Fork Smith River",
+"layer": "water",
+"kind": "river",
+"lon": -123.960577,
+"lat": 41.843569,
+"z": 15,
+"tile": "15/5100/12183"
+},
+{
+"name": "Middle Fork Smith River",
+"layer": "water",
+"kind": "river",
+"lon": -123.953018,
+"lat": 41.841087,
+"z": 15,
+"tile": "15/5101/12183"
+},
+{
+"name": "Middle Fork Smith River",
+"layer": "water",
+"kind": "river",
+"lon": -123.941449,
+"lat": 41.838602,
+"z": 15,
+"tile": "15/5102/12183"
+},
+{
+"name": "Middle Fork Smith River",
+"layer": "water",
+"kind": "river",
+"lon": -123.932583,
+"lat": 41.841985,
+"z": 15,
+"tile": "15/5103/12183"
+},
+{
+"name": "Middle Fork Smith River",
+"layer": "water",
+"kind": "river",
+"lon": -123.925648,
+"lat": 41.844902,
+"z": 15,
+"tile": "15/5103/12182"
 }
 ],
 "haystack": [
@@ -12726,6 +13320,60 @@
 "lat": 41.997735,
 "z": 14,
 "tile": "14/2550/6082"
+},
+{
+"name": "Cedar Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -124.068885,
+"lat": 41.770017,
+"z": 15,
+"tile": "15/5090/12192"
+},
+{
+"name": "Cedar Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -124.066846,
+"lat": 41.766929,
+"z": 15,
+"tile": "15/5091/12192"
+},
+{
+"name": "Cedar Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -124.062331,
+"lat": 41.761808,
+"z": 15,
+"tile": "15/5091/12193"
+},
+{
+"name": "Cedar Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -124.075787,
+"lat": 41.784237,
+"z": 15,
+"tile": "15/5090/12190"
+},
+{
+"name": "Cedar Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -124.072404,
+"lat": 41.775534,
+"z": 15,
+"tile": "15/5090/12191"
+},
+{
+"name": "Cedar Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -124.077605,
+"lat": 41.789386,
+"z": 15,
+"tile": "15/5090/12189"
 }
 ],
 "south fork smith river": [
@@ -13115,6 +13763,312 @@
 "lat": 41.795592,
 "z": 14,
 "tile": "14/2545/6094"
+},
+{
+"name": "South Fork Smith River",
+"layer": "water",
+"kind": "river",
+"lon": -124.006414,
+"lat": 41.767935,
+"z": 15,
+"tile": "15/5096/12192"
+},
+{
+"name": "South Fork Smith River",
+"layer": "water",
+"kind": "river",
+"lon": -124.000408,
+"lat": 41.767414,
+"z": 15,
+"tile": "15/5097/12192"
+},
+{
+"name": "South Fork Smith River",
+"layer": "water",
+"kind": "river",
+"lon": -123.998275,
+"lat": 41.755883,
+"z": 15,
+"tile": "15/5097/12193"
+},
+{
+"name": "South Fork Smith River",
+"layer": "water",
+"kind": "river",
+"lon": -124.003045,
+"lat": 41.759984,
+"z": 15,
+"tile": "15/5096/12193"
+},
+{
+"name": "South Fork Smith River",
+"layer": "water",
+"kind": "river",
+"lon": -123.992485,
+"lat": 41.746265,
+"z": 15,
+"tile": "15/5097/12195"
+},
+{
+"name": "South Fork Smith River",
+"layer": "water",
+"kind": "river",
+"lon": -123.995038,
+"lat": 41.751764,
+"z": 15,
+"tile": "15/5097/12194"
+},
+{
+"name": "South Fork Smith River",
+"layer": "water",
+"kind": "river",
+"lon": -123.991098,
+"lat": 41.75219,
+"z": 15,
+"tile": "15/5098/12194"
+},
+{
+"name": "South Fork Smith River",
+"layer": "water",
+"kind": "river",
+"lon": -123.984977,
+"lat": 41.743538,
+"z": 15,
+"tile": "15/5098/12195"
+},
+{
+"name": "South Fork Smith River",
+"layer": "water",
+"kind": "river",
+"lon": -123.979658,
+"lat": 41.742691,
+"z": 15,
+"tile": "15/5099/12195"
+},
+{
+"name": "South Fork Smith River",
+"layer": "water",
+"kind": "river",
+"lon": -123.963258,
+"lat": 41.727306,
+"z": 15,
+"tile": "15/5100/12197"
+},
+{
+"name": "South Fork Smith River",
+"layer": "water",
+"kind": "river",
+"lon": -123.952996,
+"lat": 41.725474,
+"z": 15,
+"tile": "15/5101/12197"
+},
+{
+"name": "South Fork Smith River",
+"layer": "water",
+"kind": "river",
+"lon": -123.944222,
+"lat": 41.718268,
+"z": 15,
+"tile": "15/5102/12198"
+},
+{
+"name": "South Fork Smith River",
+"layer": "water",
+"kind": "river",
+"lon": -123.94028,
+"lat": 41.709266,
+"z": 15,
+"tile": "15/5102/12199"
+},
+{
+"name": "South Fork Smith River",
+"layer": "water",
+"kind": "river",
+"lon": -123.975129,
+"lat": 41.726975,
+"z": 15,
+"tile": "15/5099/12197"
+},
+{
+"name": "South Fork Smith River",
+"layer": "water",
+"kind": "river",
+"lon": -123.977007,
+"lat": 41.73291,
+"z": 15,
+"tile": "15/5099/12196"
+},
+{
+"name": "South Fork Smith River",
+"layer": "water",
+"kind": "river",
+"lon": -123.982638,
+"lat": 41.73616,
+"z": 15,
+"tile": "15/5098/12196"
+},
+{
+"name": "South Fork Smith River",
+"layer": "water",
+"kind": "river",
+"lon": -123.937637,
+"lat": 41.705222,
+"z": 15,
+"tile": "15/5102/12200"
+},
+{
+"name": "South Fork Smith River",
+"layer": "water",
+"kind": "river",
+"lon": -123.932365,
+"lat": 41.701289,
+"z": 15,
+"tile": "15/5103/12200"
+},
+{
+"name": "South Fork Smith River",
+"layer": "water",
+"kind": "river",
+"lon": -123.929917,
+"lat": 41.692989,
+"z": 15,
+"tile": "15/5103/12201"
+},
+{
+"name": "South Fork Smith River",
+"layer": "water",
+"kind": "river",
+"lon": -123.926939,
+"lat": 41.688291,
+"z": 15,
+"tile": "15/5103/12202"
+},
+{
+"name": "South Fork Smith River",
+"layer": "water",
+"kind": "river",
+"lon": -123.895659,
+"lat": 41.68208,
+"z": 15,
+"tile": "15/5106/12202"
+},
+{
+"name": "South Fork Smith River",
+"layer": "water",
+"kind": "river",
+"lon": -123.900632,
+"lat": 41.680046,
+"z": 15,
+"tile": "15/5106/12203"
+},
+{
+"name": "South Fork Smith River",
+"layer": "water",
+"kind": "river",
+"lon": -123.907236,
+"lat": 41.679455,
+"z": 15,
+"tile": "15/5105/12203"
+},
+{
+"name": "South Fork Smith River",
+"layer": "water",
+"kind": "river",
+"lon": -123.921493,
+"lat": 41.685216,
+"z": 15,
+"tile": "15/5104/12202"
+},
+{
+"name": "South Fork Smith River",
+"layer": "water",
+"kind": "river",
+"lon": -123.912605,
+"lat": 41.682738,
+"z": 15,
+"tile": "15/5105/12202"
+},
+{
+"name": "South Fork Smith River",
+"layer": "water",
+"kind": "river",
+"lon": -124.013493,
+"lat": 41.779668,
+"z": 15,
+"tile": "15/5096/12190"
+},
+{
+"name": "South Fork Smith River",
+"layer": "water",
+"kind": "river",
+"lon": -124.014046,
+"lat": 41.773471,
+"z": 15,
+"tile": "15/5095/12191"
+},
+{
+"name": "South Fork Smith River",
+"layer": "water",
+"kind": "river",
+"lon": -124.025418,
+"lat": 41.787089,
+"z": 15,
+"tile": "15/5094/12190"
+},
+{
+"name": "South Fork Smith River",
+"layer": "water",
+"kind": "river",
+"lon": -124.019854,
+"lat": 41.782715,
+"z": 15,
+"tile": "15/5095/12190"
+},
+{
+"name": "South Fork Smith River",
+"layer": "water",
+"kind": "river",
+"lon": -124.029666,
+"lat": 41.792423,
+"z": 15,
+"tile": "15/5094/12189"
+},
+{
+"name": "South Fork Smith River",
+"layer": "water",
+"kind": "river",
+"lon": -124.041389,
+"lat": 41.795321,
+"z": 15,
+"tile": "15/5093/12189"
+},
+{
+"name": "South Fork Smith River",
+"layer": "water",
+"kind": "river",
+"lon": -124.053579,
+"lat": 41.796877,
+"z": 15,
+"tile": "15/5092/12188"
+},
+{
+"name": "South Fork Smith River",
+"layer": "water",
+"kind": "river",
+"lon": -124.051454,
+"lat": 41.795496,
+"z": 15,
+"tile": "15/5092/12189"
+},
+{
+"name": "South Fork Smith River",
+"layer": "water",
+"kind": "river",
+"lon": -124.057599,
+"lat": 41.795506,
+"z": 15,
+"tile": "15/5091/12189"
 }
 ],
 "devil's punchbowl": [
@@ -13392,6 +14346,69 @@
 "lat": 41.771216,
 "z": 14,
 "tile": "14/2554/6095"
+},
+{
+"name": "Hurdygurdy Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -123.906461,
+"lat": 41.693417,
+"z": 15,
+"tile": "15/5105/12201"
+},
+{
+"name": "Hurdygurdy Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -123.904099,
+"lat": 41.697673,
+"z": 15,
+"tile": "15/5105/12200"
+},
+{
+"name": "Hurdygurdy Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -123.902192,
+"lat": 41.702019,
+"z": 15,
+"tile": "15/5106/12200"
+},
+{
+"name": "Hurdygurdy Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -123.903415,
+"lat": 41.696029,
+"z": 15,
+"tile": "15/5106/12201"
+},
+{
+"name": "Hurdygurdy Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -123.898155,
+"lat": 41.718341,
+"z": 15,
+"tile": "15/5106/12198"
+},
+{
+"name": "Hurdygurdy Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -123.901432,
+"lat": 41.709831,
+"z": 15,
+"tile": "15/5106/12199"
+},
+{
+"name": "Hurdygurdy Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -123.894146,
+"lat": 41.72439,
+"z": 15,
+"tile": "15/5106/12197"
 }
 ],
 "bear meadow road": [
@@ -16538,6 +17555,186 @@
 "lat": 41.771742,
 "z": 14,
 "tile": "14/2551/6095"
+},
+{
+"name": "Coon Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -123.994527,
+"lat": 41.765351,
+"z": 15,
+"tile": "15/5097/12192"
+},
+{
+"name": "Coon Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -123.992175,
+"lat": 41.761584,
+"z": 15,
+"tile": "15/5097/12193"
+},
+{
+"name": "Coon Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -123.977492,
+"lat": 41.75617,
+"z": 15,
+"tile": "15/5099/12193"
+},
+{
+"name": "Coon Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -123.986603,
+"lat": 41.759192,
+"z": 15,
+"tile": "15/5098/12193"
+},
+{
+"name": "Coon Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -123.947691,
+"lat": 41.754826,
+"z": 15,
+"tile": "15/5101/12193"
+},
+{
+"name": "Coon Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -123.930239,
+"lat": 41.767057,
+"z": 15,
+"tile": "15/5103/12192"
+},
+{
+"name": "Coon Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -123.934572,
+"lat": 41.760436,
+"z": 15,
+"tile": "15/5103/12193"
+},
+{
+"name": "Coon Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -123.942914,
+"lat": 41.756832,
+"z": 15,
+"tile": "15/5102/12193"
+},
+{
+"name": "Coon Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -123.946701,
+"lat": 41.754863,
+"z": 15,
+"tile": "15/5102/12194"
+},
+{
+"name": "Coon Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -123.952439,
+"lat": 41.752296,
+"z": 15,
+"tile": "15/5101/12194"
+},
+{
+"name": "Coon Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -123.963535,
+"lat": 41.750565,
+"z": 15,
+"tile": "15/5100/12194"
+},
+{
+"name": "Coon Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -123.895334,
+"lat": 41.8148,
+"z": 15,
+"tile": "15/5106/12186"
+},
+{
+"name": "Coon Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -123.899718,
+"lat": 41.808498,
+"z": 15,
+"tile": "15/5106/12187"
+},
+{
+"name": "Coon Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -123.900989,
+"lat": 41.799793,
+"z": 15,
+"tile": "15/5106/12188"
+},
+{
+"name": "Coon Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -123.902616,
+"lat": 41.792743,
+"z": 15,
+"tile": "15/5106/12189"
+},
+{
+"name": "Coon Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -123.905093,
+"lat": 41.789136,
+"z": 15,
+"tile": "15/5105/12189"
+},
+{
+"name": "Coon Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -123.917329,
+"lat": 41.781847,
+"z": 15,
+"tile": "15/5104/12190"
+},
+{
+"name": "Coon Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -123.910458,
+"lat": 41.78597,
+"z": 15,
+"tile": "15/5105/12190"
+},
+{
+"name": "Coon Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -123.923006,
+"lat": 41.776193,
+"z": 15,
+"tile": "15/5104/12191"
+},
+{
+"name": "Coon Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -123.92643,
+"lat": 41.771694,
+"z": 15,
+"tile": "15/5103/12191"
 }
 ],
 "racoon road": [
@@ -20940,6 +22137,123 @@
 "lat": 41.676313,
 "z": 14,
 "tile": "14/2547/6101"
+},
+{
+"name": "Rock Road",
+"layer": "roads",
+"kind": "path",
+"lon": -124.003085,
+"lat": 41.677531,
+"z": 15,
+"tile": "15/5096/12203"
+},
+{
+"name": "Rock Road",
+"layer": "roads",
+"kind": "path",
+"lon": -123.998558,
+"lat": 41.675839,
+"z": 15,
+"tile": "15/5097/12203"
+},
+{
+"name": "Rock Road",
+"layer": "roads",
+"kind": "path",
+"lon": -123.996619,
+"lat": 41.685375,
+"z": 15,
+"tile": "15/5097/12202"
+},
+{
+"name": "Rock Road",
+"layer": "roads",
+"kind": "path",
+"lon": -123.989292,
+"lat": 41.66463,
+"z": 15,
+"tile": "15/5098/12204"
+},
+{
+"name": "Rock Road",
+"layer": "roads",
+"kind": "path",
+"lon": -123.988579,
+"lat": 41.664503,
+"z": 15,
+"tile": "15/5098/12205"
+},
+{
+"name": "Rock Road",
+"layer": "roads",
+"kind": "path",
+"lon": -123.999395,
+"lat": 41.663544,
+"z": 15,
+"tile": "15/5097/12205"
+},
+{
+"name": "Rock Road",
+"layer": "roads",
+"kind": "path",
+"lon": -123.996977,
+"lat": 41.668146,
+"z": 15,
+"tile": "15/5097/12204"
+},
+{
+"name": "Rock Road",
+"layer": "roads",
+"kind": "path",
+"lon": -124.003473,
+"lat": 41.665057,
+"z": 15,
+"tile": "15/5096/12204"
+},
+{
+"name": "Rock Road",
+"layer": "roads",
+"kind": "path",
+"lon": -124.006701,
+"lat": 41.661324,
+"z": 15,
+"tile": "15/5096/12205"
+},
+{
+"name": "Rock Road",
+"layer": "roads",
+"kind": "path",
+"lon": -124.017972,
+"lat": 41.662225,
+"z": 15,
+"tile": "15/5095/12205"
+},
+{
+"name": "Rock Road",
+"layer": "roads",
+"kind": "path",
+"lon": -124.020163,
+"lat": 41.668613,
+"z": 15,
+"tile": "15/5095/12204"
+},
+{
+"name": "Rock Road",
+"layer": "roads",
+"kind": "path",
+"lon": -124.023512,
+"lat": 41.674669,
+"z": 15,
+"tile": "15/5095/12203"
+},
+{
+"name": "Rock Road",
+"layer": "roads",
+"kind": "path",
+"lon": -124.028123,
+"lat": 41.677077,
+"z": 15,
+"tile": "15/5094/12203"
 }
 ],
 "fish creek road": [
@@ -21836,6 +23150,186 @@
 "lat": 41.605696,
 "z": 14,
 "tile": "14/2544/6106"
+},
+{
+"name": "Wilson Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -124.101613,
+"lat": 41.604283,
+"z": 15,
+"tile": "15/5087/12212"
+},
+{
+"name": "Wilson Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -124.042229,
+"lat": 41.681036,
+"z": 15,
+"tile": "15/5093/12202"
+},
+{
+"name": "Wilson Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -124.044879,
+"lat": 41.678799,
+"z": 15,
+"tile": "15/5093/12203"
+},
+{
+"name": "Wilson Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -124.052275,
+"lat": 41.675983,
+"z": 15,
+"tile": "15/5092/12203"
+},
+{
+"name": "Wilson Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -124.058971,
+"lat": 41.673774,
+"z": 15,
+"tile": "15/5091/12203"
+},
+{
+"name": "Wilson Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -124.091113,
+"lat": 41.665393,
+"z": 15,
+"tile": "15/5088/12204"
+},
+{
+"name": "Wilson Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -124.094408,
+"lat": 41.661009,
+"z": 15,
+"tile": "15/5088/12205"
+},
+{
+"name": "Wilson Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -124.085263,
+"lat": 41.668118,
+"z": 15,
+"tile": "15/5089/12204"
+},
+{
+"name": "Wilson Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -124.073787,
+"lat": 41.668807,
+"z": 15,
+"tile": "15/5090/12204"
+},
+{
+"name": "Wilson Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -124.063119,
+"lat": 41.670984,
+"z": 15,
+"tile": "15/5091/12204"
+},
+{
+"name": "Wilson Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -124.083227,
+"lat": 41.643694,
+"z": 15,
+"tile": "15/5089/12207"
+},
+{
+"name": "Wilson Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -124.08912,
+"lat": 41.64887,
+"z": 15,
+"tile": "15/5089/12206"
+},
+{
+"name": "Wilson Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -124.092741,
+"lat": 41.652236,
+"z": 15,
+"tile": "15/5088/12206"
+},
+{
+"name": "Wilson Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -124.081538,
+"lat": 41.636294,
+"z": 15,
+"tile": "15/5089/12208"
+},
+{
+"name": "Wilson Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -124.081002,
+"lat": 41.627251,
+"z": 15,
+"tile": "15/5089/12209"
+},
+{
+"name": "Wilson Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -124.09118,
+"lat": 41.61562,
+"z": 15,
+"tile": "15/5088/12210"
+},
+{
+"name": "Wilson Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -124.095199,
+"lat": 41.611422,
+"z": 15,
+"tile": "15/5088/12211"
+},
+{
+"name": "Wilson Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -124.08605,
+"lat": 41.620302,
+"z": 15,
+"tile": "15/5089/12210"
+},
+{
+"name": "Wilson Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -124.079574,
+"lat": 41.629464,
+"z": 15,
+"tile": "15/5090/12209"
+},
+{
+"name": "Wilson Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -124.079379,
+"lat": 41.632257,
+"z": 15,
+"tile": "15/5090/12208"
 }
 ],
 "balhorn road spur d": [
@@ -23234,6 +24728,105 @@
 "lat": 41.510835,
 "z": 14,
 "tile": "14/2550/6111"
+},
+{
+"name": "Klamath River / Hehlkeek 'We-Roy",
+"layer": "water",
+"kind": "river",
+"lon": -124.063269,
+"lat": 41.544809,
+"z": 15,
+"tile": "15/5091/12219"
+},
+{
+"name": "Klamath River / Hehlkeek 'We-Roy",
+"layer": "water",
+"kind": "river",
+"lon": -124.072196,
+"lat": 41.54336,
+"z": 15,
+"tile": "15/5090/12219"
+},
+{
+"name": "Klamath River / Hehlkeek 'We-Roy",
+"layer": "water",
+"kind": "river",
+"lon": -124.08015,
+"lat": 41.535641,
+"z": 15,
+"tile": "15/5089/12220"
+},
+{
+"name": "Klamath River / Hehlkeek 'We-Roy",
+"layer": "water",
+"kind": "river",
+"lon": -124.050938,
+"lat": 41.538263,
+"z": 15,
+"tile": "15/5092/12220"
+},
+{
+"name": "Klamath River / Hehlkeek 'We-Roy",
+"layer": "water",
+"kind": "river",
+"lon": -124.046419,
+"lat": 41.533706,
+"z": 15,
+"tile": "15/5093/12220"
+},
+{
+"name": "Klamath River / Hehlkeek 'We-Roy",
+"layer": "water",
+"kind": "river",
+"lon": -124.044512,
+"lat": 41.528613,
+"z": 15,
+"tile": "15/5093/12221"
+},
+{
+"name": "Klamath River / Hehlkeek 'We-Roy",
+"layer": "water",
+"kind": "river",
+"lon": -124.039984,
+"lat": 41.520144,
+"z": 15,
+"tile": "15/5093/12222"
+},
+{
+"name": "Klamath River / Hehlkeek 'We-Roy",
+"layer": "water",
+"kind": "river",
+"lon": -124.02955,
+"lat": 41.517646,
+"z": 15,
+"tile": "15/5094/12222"
+},
+{
+"name": "Klamath River / Hehlkeek 'We-Roy",
+"layer": "water",
+"kind": "river",
+"lon": -124.017521,
+"lat": 41.521513,
+"z": 15,
+"tile": "15/5095/12222"
+},
+{
+"name": "Klamath River / Hehlkeek 'We-Roy",
+"layer": "water",
+"kind": "river",
+"lon": -124.006924,
+"lat": 41.522852,
+"z": 15,
+"tile": "15/5096/12222"
+},
+{
+"name": "Klamath River / Hehlkeek 'We-Roy",
+"layer": "water",
+"kind": "river",
+"lon": -124.002004,
+"lat": 41.51885,
+"z": 15,
+"tile": "15/5097/12222"
 }
 ],
 "halagow creek": [
@@ -24156,6 +25749,15 @@
 "lat": 41.514461,
 "z": 14,
 "tile": "14/2552/6111"
+},
+{
+"name": "Potato Patch Road",
+"layer": "roads",
+"kind": "path",
+"lon": -123.920817,
+"lat": 41.519438,
+"z": 15,
+"tile": "15/5104/12222"
 }
 ],
 "pularvasar creek": [
@@ -25473,6 +27075,15 @@
 "lat": 41.515868,
 "z": 14,
 "tile": "14/2547/6111"
+},
+{
+"name": "Saugep Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -124.036,
+"lat": 41.516947,
+"z": 15,
+"tile": "15/5093/12222"
 }
 ],
 "california coastal trail tey-wo-lew section": [
@@ -25747,6 +27358,96 @@
 "lat": 41.730943,
 "z": 15,
 "tile": "15/5083/12196"
+},
+{
+"name": "California Coastal Trail",
+"layer": "roads",
+"kind": "path",
+"lon": -124.101773,
+"lat": 41.606635,
+"z": 15,
+"tile": "15/5087/12212"
+},
+{
+"name": "California Coastal Trail",
+"layer": "roads",
+"kind": "path",
+"lon": -124.102649,
+"lat": 41.611563,
+"z": 15,
+"tile": "15/5087/12211"
+},
+{
+"name": "California Coastal Trail",
+"layer": "roads",
+"kind": "path",
+"lon": -124.105777,
+"lat": 41.619221,
+"z": 15,
+"tile": "15/5087/12210"
+},
+{
+"name": "California Coastal Trail",
+"layer": "roads",
+"kind": "path",
+"lon": -124.108807,
+"lat": 41.628039,
+"z": 15,
+"tile": "15/5087/12209"
+},
+{
+"name": "California Coastal Trail",
+"layer": "roads",
+"kind": "path",
+"lon": -124.113123,
+"lat": 41.638584,
+"z": 15,
+"tile": "15/5086/12208"
+},
+{
+"name": "California Coastal Trail",
+"layer": "roads",
+"kind": "path",
+"lon": -124.110627,
+"lat": 41.635519,
+"z": 15,
+"tile": "15/5087/12208"
+},
+{
+"name": "California Coastal Trail",
+"layer": "roads",
+"kind": "path",
+"lon": -124.112079,
+"lat": 41.641234,
+"z": 15,
+"tile": "15/5087/12207"
+},
+{
+"name": "California Coastal Trail",
+"layer": "roads",
+"kind": "path",
+"lon": -124.11394,
+"lat": 41.642367,
+"z": 15,
+"tile": "15/5086/12207"
+},
+{
+"name": "California Coastal Trail",
+"layer": "roads",
+"kind": "path",
+"lon": -124.101203,
+"lat": 41.609189,
+"z": 15,
+"tile": "15/5088/12211"
+},
+{
+"name": "California Coastal Trail",
+"layer": "roads",
+"kind": "path",
+"lon": -124.100732,
+"lat": 41.606759,
+"z": 15,
+"tile": "15/5088/12212"
 }
 ],
 "davison trail": [
@@ -27400,6 +29101,60 @@
 "lat": 42.033687,
 "z": 14,
 "tile": "14/2542/6079"
+},
+{
+"name": "Deer Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -123.980657,
+"lat": 41.739236,
+"z": 15,
+"tile": "15/5098/12195"
+},
+{
+"name": "Deer Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -123.975044,
+"lat": 41.739494,
+"z": 15,
+"tile": "15/5099/12195"
+},
+{
+"name": "Deer Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -123.943304,
+"lat": 41.747222,
+"z": 15,
+"tile": "15/5102/12194"
+},
+{
+"name": "Deer Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -123.947365,
+"lat": 41.746452,
+"z": 15,
+"tile": "15/5102/12195"
+},
+{
+"name": "Deer Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -123.953786,
+"lat": 41.744412,
+"z": 15,
+"tile": "15/5101/12195"
+},
+{
+"name": "Deer Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -123.964468,
+"lat": 41.740294,
+"z": 15,
+"tile": "15/5100/12195"
 }
 ],
 "forest road 050": [
@@ -28421,6 +30176,24 @@
 "lat": 41.82023,
 "z": 15,
 "tile": "15/5077/12186"
+},
+{
+"name": "Peninsula Trail",
+"layer": "roads",
+"kind": "path",
+"lon": -124.205978,
+"lat": 41.83259,
+"z": 15,
+"tile": "15/5078/12184"
+},
+{
+"name": "Peninsula Trail",
+"layer": "roads",
+"kind": "path",
+"lon": -124.209444,
+"lat": 41.82529,
+"z": 15,
+"tile": "15/5078/12185"
 }
 ],
 "lake earl": [
@@ -28461,6 +30234,33 @@
 "lat": 41.870126,
 "z": 14,
 "tile": "14/2539/6089"
+},
+{
+"name": "Talawa Slough",
+"layer": "water",
+"kind": "stream",
+"lon": -124.193808,
+"lat": 41.858925,
+"z": 15,
+"tile": "15/5079/12181"
+},
+{
+"name": "Talawa Slough",
+"layer": "water",
+"kind": "stream",
+"lon": -124.19467,
+"lat": 41.864729,
+"z": 15,
+"tile": "15/5079/12180"
+},
+{
+"name": "Talawa Slough",
+"layer": "water",
+"kind": "stream",
+"lon": -124.195445,
+"lat": 41.870151,
+"z": 15,
+"tile": "15/5079/12179"
 }
 ],
 "tolowa dunes state park": [
@@ -28510,6 +30310,51 @@
 "lat": 41.871849,
 "z": 14,
 "tile": "14/2542/6089"
+},
+{
+"name": "Tryon Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -124.169967,
+"lat": 41.883999,
+"z": 15,
+"tile": "15/5081/12178"
+},
+{
+"name": "Tryon Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -124.161915,
+"lat": 41.880951,
+"z": 15,
+"tile": "15/5082/12178"
+},
+{
+"name": "Tryon Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -124.158331,
+"lat": 41.87625,
+"z": 15,
+"tile": "15/5082/12179"
+},
+{
+"name": "Tryon Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -124.150842,
+"lat": 41.874109,
+"z": 15,
+"tile": "15/5083/12179"
+},
+{
+"name": "Tryon Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -124.142729,
+"lat": 41.871874,
+"z": 15,
+"tile": "15/5084/12179"
 }
 ],
 "redwood elementary school": [
@@ -28550,6 +30395,24 @@
 "lat": 41.881114,
 "z": 14,
 "tile": "14/2542/6089"
+},
+{
+"name": "Hutsinpillar Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -124.120047,
+"lat": 41.88353,
+"z": 15,
+"tile": "15/5086/12178"
+},
+{
+"name": "Hutsinpillar Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -124.128141,
+"lat": 41.881195,
+"z": 15,
+"tile": "15/5085/12178"
 }
 ],
 "little mill creek": [
@@ -28588,6 +30451,78 @@
 "lat": 41.875937,
 "z": 14,
 "tile": "14/2544/6089"
+},
+{
+"name": "Little Mill Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -124.106693,
+"lat": 41.874958,
+"z": 15,
+"tile": "15/5087/12179"
+},
+{
+"name": "Little Mill Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -124.117674,
+"lat": 41.874254,
+"z": 15,
+"tile": "15/5086/12179"
+},
+{
+"name": "Little Mill Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -124.067662,
+"lat": 41.878558,
+"z": 15,
+"tile": "15/5091/12178"
+},
+{
+"name": "Little Mill Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -124.06963,
+"lat": 41.878142,
+"z": 15,
+"tile": "15/5090/12178"
+},
+{
+"name": "Little Mill Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -124.075581,
+"lat": 41.87604,
+"z": 15,
+"tile": "15/5090/12179"
+},
+{
+"name": "Little Mill Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -124.085323,
+"lat": 41.874758,
+"z": 15,
+"tile": "15/5089/12179"
+},
+{
+"name": "Little Mill Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -124.096546,
+"lat": 41.876544,
+"z": 15,
+"tile": "15/5088/12179"
+},
+{
+"name": "Little Mill Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -124.096328,
+"lat": 41.877967,
+"z": 15,
+"tile": "15/5088/12178"
 }
 ],
 "sultan creek": [
@@ -28617,6 +30552,60 @@
 "lat": 41.865418,
 "z": 14,
 "tile": "14/2545/6090"
+},
+{
+"name": "Sultan Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -124.106302,
+"lat": 41.85574,
+"z": 15,
+"tile": "15/5087/12181"
+},
+{
+"name": "Sultan Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -124.117196,
+"lat": 41.858068,
+"z": 15,
+"tile": "15/5086/12181"
+},
+{
+"name": "Sultan Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -124.097039,
+"lat": 41.85854,
+"z": 15,
+"tile": "15/5088/12181"
+},
+{
+"name": "Sultan Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -124.092185,
+"lat": 41.86287,
+"z": 15,
+"tile": "15/5088/12180"
+},
+{
+"name": "Sultan Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -124.085366,
+"lat": 41.864838,
+"z": 15,
+"tile": "15/5089/12180"
+},
+{
+"name": "Sultan Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -124.077497,
+"lat": 41.865429,
+"z": 15,
+"tile": "15/5090/12180"
 }
 ],
 "kelsey trail": [
@@ -28637,6 +30626,33 @@
 "lat": 41.84309,
 "z": 14,
 "tile": "14/2544/6091"
+},
+{
+"name": "Kelsey Trail",
+"layer": "roads",
+"kind": "path",
+"lon": -124.108378,
+"lat": 41.846393,
+"z": 15,
+"tile": "15/5087/12182"
+},
+{
+"name": "Kelsey Trail",
+"layer": "roads",
+"kind": "path",
+"lon": -124.105909,
+"lat": 41.844299,
+"z": 15,
+"tile": "15/5087/12183"
+},
+{
+"name": "Kelsey Trail",
+"layer": "roads",
+"kind": "path",
+"lon": -124.101584,
+"lat": 41.843034,
+"z": 15,
+"tile": "15/5088/12183"
 }
 ],
 "pelican bay state prison": [
@@ -28648,6 +30664,15 @@
 "lat": 41.854899,
 "z": 14,
 "tile": "14/2541/6090"
+},
+{
+"name": "Pelican Bay State Prison",
+"layer": "pois",
+"kind": "prison",
+"lon": -124.155274,
+"lat": 41.855508,
+"z": 15,
+"tile": "15/5083/12181"
 }
 ],
 "fort dick market": [
@@ -28670,6 +30695,15 @@
 "lat": 41.865922,
 "z": 14,
 "tile": "14/2541/6090"
+},
+{
+"name": "Fort Dick Bible Church",
+"layer": "pois",
+"kind": "place_of_worship",
+"lon": -124.149802,
+"lat": 41.866225,
+"z": 15,
+"tile": "15/5083/12180"
 }
 ],
 "lakeside loop": [
@@ -28954,6 +30988,15 @@
 "lat": 41.832541,
 "z": 14,
 "tile": "14/2543/6092"
+},
+{
+"name": "Walker Road",
+"layer": "roads",
+"kind": "path",
+"lon": -124.11586,
+"lat": 41.832557,
+"z": 15,
+"tile": "15/5086/12184"
 }
 ],
 "leiffer loop trail": [
@@ -29010,6 +31053,15 @@
 "lat": 41.816916,
 "z": 15,
 "tile": "15/5087/12186"
+},
+{
+"name": "Leiffer Loop Trail",
+"layer": "roads",
+"kind": "path",
+"lon": -124.117939,
+"lat": 41.822057,
+"z": 15,
+"tile": "15/5086/12185"
 }
 ],
 "peacock creek": [
@@ -29057,6 +31109,96 @@
 "lat": 41.853111,
 "z": 14,
 "tile": "14/2545/6090"
+},
+{
+"name": "Peacock Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -124.113246,
+"lat": 41.832176,
+"z": 15,
+"tile": "15/5086/12184"
+},
+{
+"name": "Peacock Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -124.109511,
+"lat": 41.830018,
+"z": 15,
+"tile": "15/5087/12184"
+},
+{
+"name": "Peacock Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -124.104207,
+"lat": 41.827698,
+"z": 15,
+"tile": "15/5087/12185"
+},
+{
+"name": "Peacock Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -124.098392,
+"lat": 41.827106,
+"z": 15,
+"tile": "15/5088/12185"
+},
+{
+"name": "Peacock Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -124.092659,
+"lat": 41.830876,
+"z": 15,
+"tile": "15/5088/12184"
+},
+{
+"name": "Peacock Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -124.088851,
+"lat": 41.834093,
+"z": 15,
+"tile": "15/5089/12184"
+},
+{
+"name": "Peacock Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -124.07871,
+"lat": 41.849478,
+"z": 15,
+"tile": "15/5090/12182"
+},
+{
+"name": "Peacock Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -124.083028,
+"lat": 41.841219,
+"z": 15,
+"tile": "15/5089/12183"
+},
+{
+"name": "Peacock Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -124.079936,
+"lat": 41.845812,
+"z": 15,
+"tile": "15/5089/12182"
+},
+{
+"name": "Peacock Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -124.077321,
+"lat": 41.853174,
+"z": 15,
+"tile": "15/5090/12181"
 }
 ],
 "hatton loop trail": [
@@ -30270,6 +32412,33 @@
 "lat": 41.590899,
 "z": 14,
 "tile": "14/2544/6107"
+},
+{
+"name": "Yurok Loop Trail",
+"layer": "roads",
+"kind": "path",
+"lon": -124.10175,
+"lat": 41.594539,
+"z": 15,
+"tile": "15/5087/12213"
+},
+{
+"name": "Yurok Loop Trail",
+"layer": "roads",
+"kind": "path",
+"lon": -124.099882,
+"lat": 41.593664,
+"z": 15,
+"tile": "15/5088/12213"
+},
+{
+"name": "Yurok Loop Trail",
+"layer": "roads",
+"kind": "path",
+"lon": -124.099873,
+"lat": 41.590775,
+"z": 15,
+"tile": "15/5088/12214"
 }
 ],
 "coastal trail": [
@@ -30425,6 +32594,177 @@
 "lat": 41.705655,
 "z": 15,
 "tile": "15/5084/12199"
+},
+{
+"name": "Coastal Trail",
+"layer": "roads",
+"kind": "path",
+"lon": -124.102657,
+"lat": 41.593882,
+"z": 15,
+"tile": "15/5087/12213"
+},
+{
+"name": "Coastal Trail",
+"layer": "roads",
+"kind": "path",
+"lon": -124.10166,
+"lat": 41.605186,
+"z": 15,
+"tile": "15/5087/12212"
+},
+{
+"name": "Coastal Trail",
+"layer": "roads",
+"kind": "path",
+"lon": -124.119631,
+"lat": 41.651274,
+"z": 15,
+"tile": "15/5086/12206"
+},
+{
+"name": "Coastal Trail",
+"layer": "roads",
+"kind": "path",
+"lon": -124.117603,
+"lat": 41.645689,
+"z": 15,
+"tile": "15/5086/12207"
+},
+{
+"name": "Coastal Trail",
+"layer": "roads",
+"kind": "path",
+"lon": -124.129172,
+"lat": 41.670611,
+"z": 15,
+"tile": "15/5085/12204"
+},
+{
+"name": "Coastal Trail",
+"layer": "roads",
+"kind": "path",
+"lon": -124.116671,
+"lat": 41.668654,
+"z": 15,
+"tile": "15/5086/12204"
+},
+{
+"name": "Coastal Trail",
+"layer": "roads",
+"kind": "path",
+"lon": -124.117232,
+"lat": 41.660299,
+"z": 15,
+"tile": "15/5086/12205"
+},
+{
+"name": "Coastal Trail",
+"layer": "roads",
+"kind": "path",
+"lon": -124.120453,
+"lat": 41.674838,
+"z": 15,
+"tile": "15/5086/12203"
+},
+{
+"name": "Coastal Trail",
+"layer": "roads",
+"kind": "path",
+"lon": -124.135598,
+"lat": 41.685036,
+"z": 15,
+"tile": "15/5084/12202"
+},
+{
+"name": "Coastal Trail",
+"layer": "roads",
+"kind": "path",
+"lon": -124.127315,
+"lat": 41.673473,
+"z": 15,
+"tile": "15/5085/12203"
+},
+{
+"name": "Coastal Trail",
+"layer": "roads",
+"kind": "path",
+"lon": -124.135211,
+"lat": 41.676865,
+"z": 15,
+"tile": "15/5084/12203"
+},
+{
+"name": "Coastal Trail",
+"layer": "roads",
+"kind": "path",
+"lon": -124.100628,
+"lat": 41.602446,
+"z": 15,
+"tile": "15/5088/12212"
+},
+{
+"name": "Coastal Trail",
+"layer": "roads",
+"kind": "path",
+"lon": -124.100885,
+"lat": 41.594367,
+"z": 15,
+"tile": "15/5088/12213"
+},
+{
+"name": "Coastal Trail",
+"layer": "roads",
+"kind": "path",
+"lon": -124.098034,
+"lat": 41.587131,
+"z": 15,
+"tile": "15/5088/12214"
+},
+{
+"name": "Coastal Trail",
+"layer": "roads",
+"kind": "path",
+"lon": -124.097892,
+"lat": 41.578039,
+"z": 15,
+"tile": "15/5088/12215"
+},
+{
+"name": "Coastal Trail",
+"layer": "roads",
+"kind": "path",
+"lon": -124.097837,
+"lat": 41.569682,
+"z": 15,
+"tile": "15/5088/12216"
+},
+{
+"name": "Coastal Trail",
+"layer": "roads",
+"kind": "path",
+"lon": -124.092945,
+"lat": 41.560702,
+"z": 15,
+"tile": "15/5088/12217"
+},
+{
+"name": "Coastal Trail",
+"layer": "roads",
+"kind": "path",
+"lon": -124.088927,
+"lat": 41.55571,
+"z": 15,
+"tile": "15/5089/12218"
+},
+{
+"name": "Coastal Trail",
+"layer": "roads",
+"kind": "path",
+"lon": -124.090812,
+"lat": 41.557714,
+"z": 15,
+"tile": "15/5088/12218"
 }
 ],
 "footsteps rocks": [
@@ -30474,6 +32814,51 @@
 "lat": 41.67574,
 "z": 14,
 "tile": "14/2543/6101"
+},
+{
+"name": "Damnation Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -124.127544,
+"lat": 41.654244,
+"z": 15,
+"tile": "15/5085/12206"
+},
+{
+"name": "Damnation Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -124.125174,
+"lat": 41.65949,
+"z": 15,
+"tile": "15/5085/12205"
+},
+{
+"name": "Damnation Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -124.121246,
+"lat": 41.669016,
+"z": 15,
+"tile": "15/5086/12204"
+},
+{
+"name": "Damnation Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -124.122919,
+"lat": 41.663541,
+"z": 15,
+"tile": "15/5086/12205"
+},
+{
+"name": "Damnation Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -124.118523,
+"lat": 41.675802,
+"z": 15,
+"tile": "15/5086/12203"
 }
 ],
 "hobbs wall": [
@@ -30788,6 +33173,78 @@
 "lat": 41.693912,
 "z": 15,
 "tile": "15/5088/12201"
+},
+{
+"name": "West Branch Mill Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -124.043534,
+"lat": 41.690541,
+"z": 15,
+"tile": "15/5093/12201"
+},
+{
+"name": "West Branch Mill Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -124.049306,
+"lat": 41.69043,
+"z": 15,
+"tile": "15/5092/12201"
+},
+{
+"name": "West Branch Mill Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -124.053866,
+"lat": 41.686822,
+"z": 15,
+"tile": "15/5092/12202"
+},
+{
+"name": "West Branch Mill Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -124.039379,
+"lat": 41.687878,
+"z": 15,
+"tile": "15/5093/12202"
+},
+{
+"name": "West Branch Mill Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -124.074324,
+"lat": 41.685927,
+"z": 15,
+"tile": "15/5090/12202"
+},
+{
+"name": "West Branch Mill Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -124.063408,
+"lat": 41.685917,
+"z": 15,
+"tile": "15/5091/12202"
+},
+{
+"name": "West Branch Mill Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -124.090692,
+"lat": 41.688452,
+"z": 15,
+"tile": "15/5088/12202"
+},
+{
+"name": "West Branch Mill Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -124.08554,
+"lat": 41.68649,
+"z": 15,
+"tile": "15/5089/12202"
 }
 ],
 "enderts beach road": [
@@ -32999,6 +35456,33 @@
 "lat": 41.751758,
 "z": 15,
 "tile": "15/5089/12194"
+},
+{
+"name": "Baldhill-Spur Road",
+"layer": "roads",
+"kind": "path",
+"lon": -124.073848,
+"lat": 41.756559,
+"z": 15,
+"tile": "15/5090/12193"
+},
+{
+"name": "Baldhill-Spur Road",
+"layer": "roads",
+"kind": "path",
+"lon": -124.072487,
+"lat": 41.753466,
+"z": 15,
+"tile": "15/5090/12194"
+},
+{
+"name": "Baldhill-Spur Road",
+"layer": "roads",
+"kind": "path",
+"lon": -124.067592,
+"lat": 41.753018,
+"z": 15,
+"tile": "15/5091/12194"
 }
 ],
 "little bald hills trail": [
@@ -33073,6 +35557,150 @@
 "lat": 41.78814,
 "z": 14,
 "tile": "14/2545/6094"
+},
+{
+"name": "Little Bald Hills Trail",
+"layer": "roads",
+"kind": "path",
+"lon": -124.016868,
+"lat": 41.751852,
+"z": 15,
+"tile": "15/5095/12194"
+},
+{
+"name": "Little Bald Hills Trail",
+"layer": "roads",
+"kind": "path",
+"lon": -124.035584,
+"lat": 41.763048,
+"z": 15,
+"tile": "15/5093/12193"
+},
+{
+"name": "Little Bald Hills Trail",
+"layer": "roads",
+"kind": "path",
+"lon": -124.052893,
+"lat": 41.769991,
+"z": 15,
+"tile": "15/5092/12192"
+},
+{
+"name": "Little Bald Hills Trail",
+"layer": "roads",
+"kind": "path",
+"lon": -124.039965,
+"lat": 41.767322,
+"z": 15,
+"tile": "15/5093/12192"
+},
+{
+"name": "Little Bald Hills Trail",
+"layer": "roads",
+"kind": "path",
+"lon": -124.035534,
+"lat": 41.765216,
+"z": 15,
+"tile": "15/5094/12192"
+},
+{
+"name": "Little Bald Hills Trail",
+"layer": "roads",
+"kind": "path",
+"lon": -124.030896,
+"lat": 41.760705,
+"z": 15,
+"tile": "15/5094/12193"
+},
+{
+"name": "Little Bald Hills Trail",
+"layer": "roads",
+"kind": "path",
+"lon": -124.021625,
+"lat": 41.757006,
+"z": 15,
+"tile": "15/5095/12193"
+},
+{
+"name": "Little Bald Hills Trail",
+"layer": "roads",
+"kind": "path",
+"lon": -124.009038,
+"lat": 41.748858,
+"z": 15,
+"tile": "15/5096/12194"
+},
+{
+"name": "Little Bald Hills Trail",
+"layer": "roads",
+"kind": "path",
+"lon": -123.996353,
+"lat": 41.742752,
+"z": 15,
+"tile": "15/5097/12195"
+},
+{
+"name": "Little Bald Hills Trail",
+"layer": "roads",
+"kind": "path",
+"lon": -124.00023,
+"lat": 41.748634,
+"z": 15,
+"tile": "15/5097/12194"
+},
+{
+"name": "Little Bald Hills Trail",
+"layer": "roads",
+"kind": "path",
+"lon": -123.985414,
+"lat": 41.741667,
+"z": 15,
+"tile": "15/5098/12195"
+},
+{
+"name": "Little Bald Hills Trail",
+"layer": "roads",
+"kind": "path",
+"lon": -124.063999,
+"lat": 41.7747,
+"z": 15,
+"tile": "15/5091/12191"
+},
+{
+"name": "Little Bald Hills Trail",
+"layer": "roads",
+"kind": "path",
+"lon": -124.068743,
+"lat": 41.779394,
+"z": 15,
+"tile": "15/5091/12190"
+},
+{
+"name": "Little Bald Hills Trail",
+"layer": "roads",
+"kind": "path",
+"lon": -124.071815,
+"lat": 41.783191,
+"z": 15,
+"tile": "15/5090/12190"
+},
+{
+"name": "Little Bald Hills Trail",
+"layer": "roads",
+"kind": "path",
+"lon": -124.070049,
+"lat": 41.778976,
+"z": 15,
+"tile": "15/5090/12191"
+},
+{
+"name": "Little Bald Hills Trail",
+"layer": "roads",
+"kind": "path",
+"lon": -124.073484,
+"lat": 41.788154,
+"z": 15,
+"tile": "15/5090/12189"
 }
 ],
 "smokehouse road": [
@@ -33120,6 +35748,96 @@
 "lat": 41.756361,
 "z": 14,
 "tile": "14/2546/6096"
+},
+{
+"name": "Smokehouse Road",
+"layer": "roads",
+"kind": "path",
+"lon": -124.06041,
+"lat": 41.741749,
+"z": 15,
+"tile": "15/5091/12195"
+},
+{
+"name": "Smokehouse Road",
+"layer": "roads",
+"kind": "path",
+"lon": -124.065666,
+"lat": 41.729082,
+"z": 15,
+"tile": "15/5091/12197"
+},
+{
+"name": "Smokehouse Road",
+"layer": "roads",
+"kind": "path",
+"lon": -124.065247,
+"lat": 41.734724,
+"z": 15,
+"tile": "15/5091/12196"
+},
+{
+"name": "Smokehouse Road",
+"layer": "roads",
+"kind": "path",
+"lon": -124.033524,
+"lat": 41.744024,
+"z": 15,
+"tile": "15/5094/12195"
+},
+{
+"name": "Smokehouse Road",
+"layer": "roads",
+"kind": "path",
+"lon": -124.041004,
+"lat": 41.743547,
+"z": 15,
+"tile": "15/5093/12195"
+},
+{
+"name": "Smokehouse Road",
+"layer": "roads",
+"kind": "path",
+"lon": -124.053927,
+"lat": 41.744795,
+"z": 15,
+"tile": "15/5092/12195"
+},
+{
+"name": "Smokehouse Road",
+"layer": "roads",
+"kind": "path",
+"lon": -124.051031,
+"lat": 41.751308,
+"z": 15,
+"tile": "15/5092/12194"
+},
+{
+"name": "Smokehouse Road",
+"layer": "roads",
+"kind": "path",
+"lon": -124.041644,
+"lat": 41.751301,
+"z": 15,
+"tile": "15/5093/12194"
+},
+{
+"name": "Smokehouse Road",
+"layer": "roads",
+"kind": "path",
+"lon": -124.04603,
+"lat": 41.755989,
+"z": 15,
+"tile": "15/5093/12193"
+},
+{
+"name": "Smokehouse Road",
+"layer": "roads",
+"kind": "path",
+"lon": -124.04989,
+"lat": 41.756539,
+"z": 15,
+"tile": "15/5092/12193"
 }
 ],
 "upper first-gulch": [
@@ -33158,6 +35876,33 @@
 "lat": 41.735486,
 "z": 15,
 "tile": "15/5089/12196"
+},
+{
+"name": "Upper First-Gulch",
+"layer": "roads",
+"kind": "path",
+"lon": -124.066029,
+"lat": 41.747728,
+"z": 15,
+"tile": "15/5091/12194"
+},
+{
+"name": "Upper First-Gulch",
+"layer": "roads",
+"kind": "path",
+"lon": -124.068088,
+"lat": 41.746307,
+"z": 15,
+"tile": "15/5091/12195"
+},
+{
+"name": "Upper First-Gulch",
+"layer": "roads",
+"kind": "path",
+"lon": -124.074474,
+"lat": 41.744039,
+"z": 15,
+"tile": "15/5090/12195"
 }
 ],
 "powderhouse road": [
@@ -33196,6 +35941,42 @@
 "lat": 41.728091,
 "z": 15,
 "tile": "15/5089/12197"
+},
+{
+"name": "Powderhouse Road",
+"layer": "roads",
+"kind": "path",
+"lon": -124.063759,
+"lat": 41.740072,
+"z": 15,
+"tile": "15/5091/12195"
+},
+{
+"name": "Powderhouse Road",
+"layer": "roads",
+"kind": "path",
+"lon": -124.074475,
+"lat": 41.728566,
+"z": 15,
+"tile": "15/5090/12197"
+},
+{
+"name": "Powderhouse Road",
+"layer": "roads",
+"kind": "path",
+"lon": -124.069299,
+"lat": 41.732997,
+"z": 15,
+"tile": "15/5090/12196"
+},
+{
+"name": "Powderhouse Road",
+"layer": "roads",
+"kind": "path",
+"lon": -124.067757,
+"lat": 41.734764,
+"z": 15,
+"tile": "15/5091/12196"
 }
 ],
 "bense trail": [
@@ -33225,6 +36006,42 @@
 "lat": 41.735094,
 "z": 14,
 "tile": "14/2545/6098"
+},
+{
+"name": "Bense Trail",
+"layer": "roads",
+"kind": "path",
+"lon": -124.064534,
+"lat": 41.748036,
+"z": 15,
+"tile": "15/5091/12194"
+},
+{
+"name": "Bense Trail",
+"layer": "roads",
+"kind": "path",
+"lon": -124.066803,
+"lat": 41.744995,
+"z": 15,
+"tile": "15/5091/12195"
+},
+{
+"name": "Bense Trail",
+"layer": "roads",
+"kind": "path",
+"lon": -124.073072,
+"lat": 41.742295,
+"z": 15,
+"tile": "15/5090/12195"
+},
+{
+"name": "Bense Trail",
+"layer": "roads",
+"kind": "path",
+"lon": -124.07632,
+"lat": 41.735118,
+"z": 15,
+"tile": "15/5090/12196"
 }
 ],
 "teran road": [
@@ -33272,6 +36089,51 @@
 "lat": 41.748662,
 "z": 15,
 "tile": "15/5089/12194"
+},
+{
+"name": "Teran Road",
+"layer": "roads",
+"kind": "path",
+"lon": -124.074896,
+"lat": 41.751198,
+"z": 15,
+"tile": "15/5090/12194"
+},
+{
+"name": "Teran Road",
+"layer": "roads",
+"kind": "path",
+"lon": -124.064065,
+"lat": 41.750074,
+"z": 15,
+"tile": "15/5091/12194"
+},
+{
+"name": "Teran Road",
+"layer": "roads",
+"kind": "path",
+"lon": -124.059284,
+"lat": 41.746502,
+"z": 15,
+"tile": "15/5091/12195"
+},
+{
+"name": "Teran Road",
+"layer": "roads",
+"kind": "path",
+"lon": -124.055697,
+"lat": 41.746388,
+"z": 15,
+"tile": "15/5092/12195"
+},
+{
+"name": "Teran Road",
+"layer": "roads",
+"kind": "path",
+"lon": -124.052818,
+"lat": 41.747839,
+"z": 15,
+"tile": "15/5092/12194"
 }
 ],
 "first-gulch road": [
@@ -33319,6 +36181,24 @@
 "lat": 41.735565,
 "z": 15,
 "tile": "15/5089/12196"
+},
+{
+"name": "First-Gulch Road",
+"layer": "roads",
+"kind": "path",
+"lon": -124.076123,
+"lat": 41.747795,
+"z": 15,
+"tile": "15/5090/12194"
+},
+{
+"name": "First-Gulch Road",
+"layer": "roads",
+"kind": "path",
+"lon": -124.078304,
+"lat": 41.746254,
+"z": 15,
+"tile": "15/5090/12195"
 }
 ],
 "paragon-spur": [
@@ -33411,6 +36291,168 @@
 "lat": 41.720888,
 "z": 14,
 "tile": "14/2548/6099"
+},
+{
+"name": "Paragon-Spur",
+"layer": "roads",
+"kind": "path",
+"lon": -124.057616,
+"lat": 41.738611,
+"z": 15,
+"tile": "15/5091/12195"
+},
+{
+"name": "Paragon-Spur",
+"layer": "roads",
+"kind": "path",
+"lon": -124.064423,
+"lat": 41.728936,
+"z": 15,
+"tile": "15/5091/12197"
+},
+{
+"name": "Paragon-Spur",
+"layer": "roads",
+"kind": "path",
+"lon": -124.060513,
+"lat": 41.735472,
+"z": 15,
+"tile": "15/5091/12196"
+},
+{
+"name": "Paragon-Spur",
+"layer": "roads",
+"kind": "path",
+"lon": -124.057646,
+"lat": 41.738515,
+"z": 15,
+"tile": "15/5092/12196"
+},
+{
+"name": "Paragon-Spur",
+"layer": "roads",
+"kind": "path",
+"lon": -124.041155,
+"lat": 41.737123,
+"z": 15,
+"tile": "15/5093/12196"
+},
+{
+"name": "Paragon-Spur",
+"layer": "roads",
+"kind": "path",
+"lon": -124.026432,
+"lat": 41.716256,
+"z": 15,
+"tile": "15/5094/12198"
+},
+{
+"name": "Paragon-Spur",
+"layer": "roads",
+"kind": "path",
+"lon": -124.027178,
+"lat": 41.712618,
+"z": 15,
+"tile": "15/5094/12199"
+},
+{
+"name": "Paragon-Spur",
+"layer": "roads",
+"kind": "path",
+"lon": -124.018659,
+"lat": 41.717987,
+"z": 15,
+"tile": "15/5095/12198"
+},
+{
+"name": "Paragon-Spur",
+"layer": "roads",
+"kind": "path",
+"lon": -124.029391,
+"lat": 41.737887,
+"z": 15,
+"tile": "15/5094/12196"
+},
+{
+"name": "Paragon-Spur",
+"layer": "roads",
+"kind": "path",
+"lon": -124.013863,
+"lat": 41.73849,
+"z": 15,
+"tile": "15/5095/12196"
+},
+{
+"name": "Paragon-Spur",
+"layer": "roads",
+"kind": "path",
+"lon": -124.01865,
+"lat": 41.739517,
+"z": 15,
+"tile": "15/5095/12195"
+},
+{
+"name": "Paragon-Spur",
+"layer": "roads",
+"kind": "path",
+"lon": -124.026339,
+"lat": 41.73929,
+"z": 15,
+"tile": "15/5094/12195"
+},
+{
+"name": "Paragon-Spur",
+"layer": "roads",
+"kind": "path",
+"lon": -124.045595,
+"lat": 41.739217,
+"z": 15,
+"tile": "15/5093/12195"
+},
+{
+"name": "Paragon-Spur",
+"layer": "roads",
+"kind": "path",
+"lon": -124.052129,
+"lat": 41.74058,
+"z": 15,
+"tile": "15/5092/12195"
+},
+{
+"name": "Paragon-Spur",
+"layer": "roads",
+"kind": "path",
+"lon": -124.013771,
+"lat": 41.73844,
+"z": 15,
+"tile": "15/5096/12195"
+},
+{
+"name": "Paragon-Spur",
+"layer": "roads",
+"kind": "path",
+"lon": -124.007791,
+"lat": 41.734754,
+"z": 15,
+"tile": "15/5096/12196"
+},
+{
+"name": "Paragon-Spur",
+"layer": "roads",
+"kind": "path",
+"lon": -124.007484,
+"lat": 41.725758,
+"z": 15,
+"tile": "15/5096/12197"
+},
+{
+"name": "Paragon-Spur",
+"layer": "roads",
+"kind": "path",
+"lon": -124.012458,
+"lat": 41.720771,
+"z": 15,
+"tile": "15/5096/12198"
 }
 ],
 "bummer lake creek": [
@@ -33476,6 +36518,87 @@
 "lat": 41.73958,
 "z": 14,
 "tile": "14/2548/6097"
+},
+{
+"name": "Bummer Lake Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -124.058622,
+"lat": 41.73995,
+"z": 15,
+"tile": "15/5091/12195"
+},
+{
+"name": "Bummer Lake Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -124.066082,
+"lat": 41.728572,
+"z": 15,
+"tile": "15/5091/12197"
+},
+{
+"name": "Bummer Lake Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -124.062483,
+"lat": 41.735064,
+"z": 15,
+"tile": "15/5091/12196"
+},
+{
+"name": "Bummer Lake Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -124.039202,
+"lat": 41.738461,
+"z": 15,
+"tile": "15/5093/12196"
+},
+{
+"name": "Bummer Lake Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -124.018857,
+"lat": 41.74173,
+"z": 15,
+"tile": "15/5095/12195"
+},
+{
+"name": "Bummer Lake Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -124.029901,
+"lat": 41.739787,
+"z": 15,
+"tile": "15/5094/12195"
+},
+{
+"name": "Bummer Lake Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -124.04126,
+"lat": 41.739559,
+"z": 15,
+"tile": "15/5093/12195"
+},
+{
+"name": "Bummer Lake Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -124.051999,
+"lat": 41.742736,
+"z": 15,
+"tile": "15/5092/12195"
+},
+{
+"name": "Bummer Lake Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -124.011364,
+"lat": 41.739585,
+"z": 15,
+"tile": "15/5096/12195"
 }
 ],
 "couger road": [
@@ -33626,6 +36749,51 @@
 "lat": 41.728795,
 "z": 15,
 "tile": "15/5089/12197"
+},
+{
+"name": "Hamilton Road",
+"layer": "roads",
+"kind": "path",
+"lon": -124.063062,
+"lat": 41.726571,
+"z": 15,
+"tile": "15/5091/12197"
+},
+{
+"name": "Hamilton Road",
+"layer": "roads",
+"kind": "path",
+"lon": -124.073843,
+"lat": 41.726901,
+"z": 15,
+"tile": "15/5090/12197"
+},
+{
+"name": "Hamilton Road",
+"layer": "roads",
+"kind": "path",
+"lon": -124.04139,
+"lat": 41.723125,
+"z": 15,
+"tile": "15/5093/12197"
+},
+{
+"name": "Hamilton Road",
+"layer": "roads",
+"kind": "path",
+"lon": -124.052463,
+"lat": 41.723358,
+"z": 15,
+"tile": "15/5092/12197"
+},
+{
+"name": "Hamilton Road",
+"layer": "roads",
+"kind": "path",
+"lon": -124.049885,
+"lat": 41.721916,
+"z": 15,
+"tile": "15/5092/12198"
 }
 ],
 "east fork mill creek": [
@@ -33718,6 +36886,87 @@
 "lat": 41.72967,
 "z": 15,
 "tile": "15/5088/12197"
+},
+{
+"name": "East Fork Mill Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -124.062869,
+"lat": 41.72593,
+"z": 15,
+"tile": "15/5091/12197"
+},
+{
+"name": "East Fork Mill Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -124.074684,
+"lat": 41.725507,
+"z": 15,
+"tile": "15/5090/12197"
+},
+{
+"name": "East Fork Mill Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -124.040803,
+"lat": 41.725313,
+"z": 15,
+"tile": "15/5093/12197"
+},
+{
+"name": "East Fork Mill Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -124.053124,
+"lat": 41.72321,
+"z": 15,
+"tile": "15/5092/12197"
+},
+{
+"name": "East Fork Mill Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -124.052413,
+"lat": 41.722229,
+"z": 15,
+"tile": "15/5092/12198"
+},
+{
+"name": "East Fork Mill Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -124.018333,
+"lat": 41.728523,
+"z": 15,
+"tile": "15/5095/12197"
+},
+{
+"name": "East Fork Mill Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -124.029903,
+"lat": 41.726406,
+"z": 15,
+"tile": "15/5094/12197"
+},
+{
+"name": "East Fork Mill Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -124.011036,
+"lat": 41.732961,
+"z": 15,
+"tile": "15/5096/12196"
+},
+{
+"name": "East Fork Mill Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -124.012843,
+"lat": 41.729541,
+"z": 15,
+"tile": "15/5096/12197"
 }
 ],
 "westbranch road": [
@@ -33801,6 +37050,69 @@
 "lat": 41.689759,
 "z": 15,
 "tile": "15/5088/12201"
+},
+{
+"name": "Westbranch Road",
+"layer": "roads",
+"kind": "path",
+"lon": -124.077391,
+"lat": 41.719229,
+"z": 15,
+"tile": "15/5090/12198"
+},
+{
+"name": "Westbranch Road",
+"layer": "roads",
+"kind": "path",
+"lon": -124.078845,
+"lat": 41.70628,
+"z": 15,
+"tile": "15/5090/12199"
+},
+{
+"name": "Westbranch Road",
+"layer": "roads",
+"kind": "path",
+"lon": -124.077412,
+"lat": 41.704099,
+"z": 15,
+"tile": "15/5090/12200"
+},
+{
+"name": "Westbranch Road",
+"layer": "roads",
+"kind": "path",
+"lon": -124.094842,
+"lat": 41.68612,
+"z": 15,
+"tile": "15/5088/12202"
+},
+{
+"name": "Westbranch Road",
+"layer": "roads",
+"kind": "path",
+"lon": -124.086244,
+"lat": 41.682069,
+"z": 15,
+"tile": "15/5089/12202"
+},
+{
+"name": "Westbranch Road",
+"layer": "roads",
+"kind": "path",
+"lon": -124.085223,
+"lat": 41.6806,
+"z": 15,
+"tile": "15/5089/12203"
+},
+{
+"name": "Westbranch Road",
+"layer": "roads",
+"kind": "path",
+"lon": -124.094589,
+"lat": 41.680523,
+"z": 15,
+"tile": "15/5088/12203"
 }
 ],
 "park-spur": [
@@ -33866,6 +37178,24 @@
 "lat": 41.701244,
 "z": 15,
 "tile": "15/5089/12200"
+},
+{
+"name": "Park-Spur",
+"layer": "roads",
+"kind": "path",
+"lon": -124.077811,
+"lat": 41.699496,
+"z": 15,
+"tile": "15/5090/12200"
+},
+{
+"name": "Park-Spur",
+"layer": "roads",
+"kind": "path",
+"lon": -124.077179,
+"lat": 41.697478,
+"z": 15,
+"tile": "15/5090/12201"
 }
 ],
 "cull spur": [
@@ -33877,6 +37207,15 @@
 "lat": 41.717547,
 "z": 14,
 "tile": "14/2545/6099"
+},
+{
+"name": "Cull Spur",
+"layer": "roads",
+"kind": "path",
+"lon": -124.068568,
+"lat": 41.716724,
+"z": 15,
+"tile": "15/5090/12198"
 }
 ],
 "lower-spur": [
@@ -33915,6 +37254,51 @@
 "lat": 41.717842,
 "z": 14,
 "tile": "14/2546/6099"
+},
+{
+"name": "Lower-Spur",
+"layer": "roads",
+"kind": "path",
+"lon": -124.059012,
+"lat": 41.722046,
+"z": 15,
+"tile": "15/5091/12198"
+},
+{
+"name": "Lower-Spur",
+"layer": "roads",
+"kind": "path",
+"lon": -124.061636,
+"lat": 41.723204,
+"z": 15,
+"tile": "15/5091/12197"
+},
+{
+"name": "Lower-Spur",
+"layer": "roads",
+"kind": "path",
+"lon": -124.057134,
+"lat": 41.722357,
+"z": 15,
+"tile": "15/5092/12197"
+},
+{
+"name": "Lower-Spur",
+"layer": "roads",
+"kind": "path",
+"lon": -124.054721,
+"lat": 41.717981,
+"z": 15,
+"tile": "15/5092/12198"
+},
+{
+"name": "Lower-Spur",
+"layer": "roads",
+"kind": "path",
+"lon": -124.055763,
+"lat": 41.713849,
+"z": 15,
+"tile": "15/5092/12199"
 }
 ],
 "rock creek road": [
@@ -33944,6 +37328,60 @@
 "lat": 41.703668,
 "z": 14,
 "tile": "14/2545/6100"
+},
+{
+"name": "Rock Creek Road",
+"layer": "roads",
+"kind": "path",
+"lon": -124.063234,
+"lat": 41.710373,
+"z": 15,
+"tile": "15/5091/12199"
+},
+{
+"name": "Rock Creek Road",
+"layer": "roads",
+"kind": "path",
+"lon": -124.061011,
+"lat": 41.715282,
+"z": 15,
+"tile": "15/5091/12198"
+},
+{
+"name": "Rock Creek Road",
+"layer": "roads",
+"kind": "path",
+"lon": -124.042398,
+"lat": 41.697023,
+"z": 15,
+"tile": "15/5093/12201"
+},
+{
+"name": "Rock Creek Road",
+"layer": "roads",
+"kind": "path",
+"lon": -124.044445,
+"lat": 41.698255,
+"z": 15,
+"tile": "15/5093/12200"
+},
+{
+"name": "Rock Creek Road",
+"layer": "roads",
+"kind": "path",
+"lon": -124.05223,
+"lat": 41.70049,
+"z": 15,
+"tile": "15/5092/12200"
+},
+{
+"name": "Rock Creek Road",
+"layer": "roads",
+"kind": "path",
+"lon": -124.060786,
+"lat": 41.703645,
+"z": 15,
+"tile": "15/5091/12200"
 }
 ],
 "westside-spur": [
@@ -33964,6 +37402,42 @@
 "lat": 41.723632,
 "z": 14,
 "tile": "14/2545/6098"
+},
+{
+"name": "Westside-Spur",
+"layer": "roads",
+"kind": "path",
+"lon": -124.073649,
+"lat": 41.717395,
+"z": 15,
+"tile": "15/5090/12198"
+},
+{
+"name": "Westside-Spur",
+"layer": "roads",
+"kind": "path",
+"lon": -124.072826,
+"lat": 41.712197,
+"z": 15,
+"tile": "15/5090/12199"
+},
+{
+"name": "Westside-Spur",
+"layer": "roads",
+"kind": "path",
+"lon": -124.068507,
+"lat": 41.711068,
+"z": 15,
+"tile": "15/5091/12199"
+},
+{
+"name": "Westside-Spur",
+"layer": "roads",
+"kind": "path",
+"lon": -124.071024,
+"lat": 41.723681,
+"z": 15,
+"tile": "15/5090/12197"
 }
 ],
 "cabin-spur": [
@@ -33993,6 +37467,42 @@
 "lat": 41.707591,
 "z": 14,
 "tile": "14/2546/6099"
+},
+{
+"name": "Cabin-Spur",
+"layer": "roads",
+"kind": "path",
+"lon": -124.059054,
+"lat": 41.71038,
+"z": 15,
+"tile": "15/5091/12199"
+},
+{
+"name": "Cabin-Spur",
+"layer": "roads",
+"kind": "path",
+"lon": -124.06067,
+"lat": 41.717478,
+"z": 15,
+"tile": "15/5091/12198"
+},
+{
+"name": "Cabin-Spur",
+"layer": "roads",
+"kind": "path",
+"lon": -124.065611,
+"lat": 41.722731,
+"z": 15,
+"tile": "15/5091/12197"
+},
+{
+"name": "Cabin-Spur",
+"layer": "roads",
+"kind": "path",
+"lon": -124.056561,
+"lat": 41.707333,
+"z": 15,
+"tile": "15/5092/12199"
 }
 ],
 "b&b-spur": [
@@ -34013,6 +37523,51 @@
 "lat": 41.728151,
 "z": 14,
 "tile": "14/2546/6098"
+},
+{
+"name": "B&B-Spur",
+"layer": "roads",
+"kind": "path",
+"lon": -124.058864,
+"lat": 41.729501,
+"z": 15,
+"tile": "15/5091/12197"
+},
+{
+"name": "B&B-Spur",
+"layer": "roads",
+"kind": "path",
+"lon": -124.059497,
+"lat": 41.733652,
+"z": 15,
+"tile": "15/5091/12196"
+},
+{
+"name": "B&B-Spur",
+"layer": "roads",
+"kind": "path",
+"lon": -124.042511,
+"lat": 41.730262,
+"z": 15,
+"tile": "15/5093/12196"
+},
+{
+"name": "B&B-Spur",
+"layer": "roads",
+"kind": "path",
+"lon": -124.044401,
+"lat": 41.728801,
+"z": 15,
+"tile": "15/5093/12197"
+},
+{
+"name": "B&B-Spur",
+"layer": "roads",
+"kind": "path",
+"lon": -124.052479,
+"lat": 41.727825,
+"z": 15,
+"tile": "15/5092/12197"
 }
 ],
 "p j -spur": [
@@ -34033,6 +37588,42 @@
 "lat": 41.739556,
 "z": 14,
 "tile": "14/2546/6097"
+},
+{
+"name": "P J -Spur",
+"layer": "roads",
+"kind": "path",
+"lon": -124.054022,
+"lat": 41.733208,
+"z": 15,
+"tile": "15/5092/12196"
+},
+{
+"name": "P J -Spur",
+"layer": "roads",
+"kind": "path",
+"lon": -124.04101,
+"lat": 41.73317,
+"z": 15,
+"tile": "15/5093/12196"
+},
+{
+"name": "P J -Spur",
+"layer": "roads",
+"kind": "path",
+"lon": -124.051176,
+"lat": 41.729615,
+"z": 15,
+"tile": "15/5092/12197"
+},
+{
+"name": "P J -Spur",
+"layer": "roads",
+"kind": "path",
+"lon": -124.054224,
+"lat": 41.739532,
+"z": 15,
+"tile": "15/5092/12195"
 }
 ],
 "childs-hill": [
@@ -34089,6 +37680,105 @@
 "lat": 41.699809,
 "z": 14,
 "tile": "14/2547/6100"
+},
+{
+"name": "Childs-Hill",
+"layer": "roads",
+"kind": "path",
+"lon": -124.035822,
+"lat": 41.723731,
+"z": 15,
+"tile": "15/5093/12197"
+},
+{
+"name": "Childs-Hill",
+"layer": "roads",
+"kind": "path",
+"lon": -124.033787,
+"lat": 41.716718,
+"z": 15,
+"tile": "15/5094/12198"
+},
+{
+"name": "Childs-Hill",
+"layer": "roads",
+"kind": "path",
+"lon": -124.029812,
+"lat": 41.711037,
+"z": 15,
+"tile": "15/5094/12199"
+},
+{
+"name": "Childs-Hill",
+"layer": "roads",
+"kind": "path",
+"lon": -124.021257,
+"lat": 41.708637,
+"z": 15,
+"tile": "15/5095/12199"
+},
+{
+"name": "Childs-Hill",
+"layer": "roads",
+"kind": "path",
+"lon": -124.033877,
+"lat": 41.723424,
+"z": 15,
+"tile": "15/5094/12197"
+},
+{
+"name": "Childs-Hill",
+"layer": "roads",
+"kind": "path",
+"lon": -124.001123,
+"lat": 41.689851,
+"z": 15,
+"tile": "15/5097/12201"
+},
+{
+"name": "Childs-Hill",
+"layer": "roads",
+"kind": "path",
+"lon": -124.009122,
+"lat": 41.691701,
+"z": 15,
+"tile": "15/5096/12201"
+},
+{
+"name": "Childs-Hill",
+"layer": "roads",
+"kind": "path",
+"lon": -124.005072,
+"lat": 41.687345,
+"z": 15,
+"tile": "15/5096/12202"
+},
+{
+"name": "Childs-Hill",
+"layer": "roads",
+"kind": "path",
+"lon": -124.001096,
+"lat": 41.687915,
+"z": 15,
+"tile": "15/5097/12202"
+},
+{
+"name": "Childs-Hill",
+"layer": "roads",
+"kind": "path",
+"lon": -124.014602,
+"lat": 41.695464,
+"z": 15,
+"tile": "15/5095/12201"
+},
+{
+"name": "Childs-Hill",
+"layer": "roads",
+"kind": "path",
+"lon": -124.018463,
+"lat": 41.701486,
+"z": 15,
+"tile": "15/5095/12200"
 }
 ],
 "cross over road": [
@@ -34118,6 +37808,42 @@
 "lat": 41.701082,
 "z": 14,
 "tile": "14/2546/6100"
+},
+{
+"name": "Cross Over Road",
+"layer": "roads",
+"kind": "path",
+"lon": -124.038383,
+"lat": 41.708819,
+"z": 15,
+"tile": "15/5093/12199"
+},
+{
+"name": "Cross Over Road",
+"layer": "roads",
+"kind": "path",
+"lon": -124.033466,
+"lat": 41.703178,
+"z": 15,
+"tile": "15/5094/12200"
+},
+{
+"name": "Cross Over Road",
+"layer": "roads",
+"kind": "path",
+"lon": -124.040674,
+"lat": 41.696687,
+"z": 15,
+"tile": "15/5093/12201"
+},
+{
+"name": "Cross Over Road",
+"layer": "roads",
+"kind": "path",
+"lon": -124.038386,
+"lat": 41.701678,
+"z": 15,
+"tile": "15/5093/12200"
 }
 ],
 "seal-spur": [
@@ -34138,6 +37864,33 @@
 "lat": 41.709141,
 "z": 14,
 "tile": "14/2548/6099"
+},
+{
+"name": "Seal-Spur",
+"layer": "roads",
+"kind": "path",
+"lon": -124.018016,
+"lat": 41.711658,
+"z": 15,
+"tile": "15/5095/12199"
+},
+{
+"name": "Seal-Spur",
+"layer": "roads",
+"kind": "path",
+"lon": -124.019384,
+"lat": 41.714334,
+"z": 15,
+"tile": "15/5095/12198"
+},
+{
+"name": "Seal-Spur",
+"layer": "roads",
+"kind": "path",
+"lon": -124.010634,
+"lat": 41.709143,
+"z": 15,
+"tile": "15/5096/12199"
 }
 ],
 "bald hill": [
@@ -34171,6 +37924,15 @@
 "lat": 41.74025,
 "z": 14,
 "tile": "14/2548/6097"
+},
+{
+"name": "Bummer Lake",
+"layer": "water",
+"kind": "water",
+"lon": -124.006296,
+"lat": 41.740252,
+"z": 15,
+"tile": "15/5096/12195"
 }
 ],
 "gordon creek": [
@@ -34245,6 +38007,132 @@
 "lat": 41.772141,
 "z": 14,
 "tile": "14/2552/6095"
+},
+{
+"name": "Gordon Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -123.927063,
+"lat": 41.739973,
+"z": 15,
+"tile": "15/5103/12195"
+},
+{
+"name": "Gordon Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -123.948399,
+"lat": 41.724522,
+"z": 15,
+"tile": "15/5101/12197"
+},
+{
+"name": "Gordon Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -123.939267,
+"lat": 41.732871,
+"z": 15,
+"tile": "15/5102/12196"
+},
+{
+"name": "Gordon Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -123.932951,
+"lat": 41.736654,
+"z": 15,
+"tile": "15/5103/12196"
+},
+{
+"name": "Gordon Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -123.944789,
+"lat": 41.727882,
+"z": 15,
+"tile": "15/5102/12197"
+},
+{
+"name": "Gordon Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -123.923342,
+"lat": 41.743083,
+"z": 15,
+"tile": "15/5104/12195"
+},
+{
+"name": "Gordon Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -123.916019,
+"lat": 41.749992,
+"z": 15,
+"tile": "15/5104/12194"
+},
+{
+"name": "Gordon Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -123.914742,
+"lat": 41.75049,
+"z": 15,
+"tile": "15/5105/12194"
+},
+{
+"name": "Gordon Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -123.914603,
+"lat": 41.758309,
+"z": 15,
+"tile": "15/5105/12193"
+},
+{
+"name": "Gordon Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -123.915664,
+"lat": 41.758579,
+"z": 15,
+"tile": "15/5104/12193"
+},
+{
+"name": "Gordon Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -123.91159,
+"lat": 41.767902,
+"z": 15,
+"tile": "15/5105/12192"
+},
+{
+"name": "Gordon Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -123.900623,
+"lat": 41.775719,
+"z": 15,
+"tile": "15/5106/12191"
+},
+{
+"name": "Gordon Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -123.896388,
+"lat": 41.781644,
+"z": 15,
+"tile": "15/5106/12190"
+},
+{
+"name": "Gordon Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -123.905278,
+"lat": 41.772155,
+"z": 15,
+"tile": "15/5105/12191"
 }
 ],
 "15n02": [
@@ -34355,6 +38243,195 @@
 "lat": 41.667083,
 "z": 14,
 "tile": "14/2552/6102"
+},
+{
+"name": "15N02",
+"layer": "roads",
+"kind": "path",
+"lon": -123.958079,
+"lat": 41.722634,
+"z": 15,
+"tile": "15/5101/12197"
+},
+{
+"name": "15N02",
+"layer": "roads",
+"kind": "path",
+"lon": -123.953139,
+"lat": 41.708983,
+"z": 15,
+"tile": "15/5101/12199"
+},
+{
+"name": "15N02",
+"layer": "roads",
+"kind": "path",
+"lon": -123.956191,
+"lat": 41.717955,
+"z": 15,
+"tile": "15/5101/12198"
+},
+{
+"name": "15N02",
+"layer": "roads",
+"kind": "path",
+"lon": -123.959197,
+"lat": 41.720692,
+"z": 15,
+"tile": "15/5100/12198"
+},
+{
+"name": "15N02",
+"layer": "roads",
+"kind": "path",
+"lon": -123.947883,
+"lat": 41.697392,
+"z": 15,
+"tile": "15/5101/12201"
+},
+{
+"name": "15N02",
+"layer": "roads",
+"kind": "path",
+"lon": -123.950791,
+"lat": 41.702188,
+"z": 15,
+"tile": "15/5101/12200"
+},
+{
+"name": "15N02",
+"layer": "roads",
+"kind": "path",
+"lon": -123.945241,
+"lat": 41.693356,
+"z": 15,
+"tile": "15/5102/12201"
+},
+{
+"name": "15N02",
+"layer": "roads",
+"kind": "path",
+"lon": -123.940538,
+"lat": 41.684363,
+"z": 15,
+"tile": "15/5102/12202"
+},
+{
+"name": "15N02",
+"layer": "roads",
+"kind": "path",
+"lon": -123.941179,
+"lat": 41.67646,
+"z": 15,
+"tile": "15/5102/12203"
+},
+{
+"name": "15N02",
+"layer": "roads",
+"kind": "path",
+"lon": -123.954094,
+"lat": 41.67443,
+"z": 15,
+"tile": "15/5101/12203"
+},
+{
+"name": "15N02",
+"layer": "roads",
+"kind": "path",
+"lon": -123.958991,
+"lat": 41.673613,
+"z": 15,
+"tile": "15/5100/12203"
+},
+{
+"name": "15N02",
+"layer": "roads",
+"kind": "path",
+"lon": -123.962682,
+"lat": 41.667724,
+"z": 15,
+"tile": "15/5100/12204"
+},
+{
+"name": "15N02",
+"layer": "roads",
+"kind": "path",
+"lon": -123.966504,
+"lat": 41.661261,
+"z": 15,
+"tile": "15/5100/12205"
+},
+{
+"name": "15N02",
+"layer": "roads",
+"kind": "path",
+"lon": -123.940334,
+"lat": 41.671594,
+"z": 15,
+"tile": "15/5102/12204"
+},
+{
+"name": "15N02",
+"layer": "roads",
+"kind": "path",
+"lon": -123.932001,
+"lat": 41.669573,
+"z": 15,
+"tile": "15/5103/12204"
+},
+{
+"name": "15N02",
+"layer": "roads",
+"kind": "path",
+"lon": -123.966591,
+"lat": 41.651051,
+"z": 15,
+"tile": "15/5100/12206"
+},
+{
+"name": "15N02",
+"layer": "roads",
+"kind": "path",
+"lon": -123.965092,
+"lat": 41.644755,
+"z": 15,
+"tile": "15/5100/12207"
+},
+{
+"name": "15N02",
+"layer": "roads",
+"kind": "path",
+"lon": -123.969796,
+"lat": 41.628454,
+"z": 15,
+"tile": "15/5099/12209"
+},
+{
+"name": "15N02",
+"layer": "roads",
+"kind": "path",
+"lon": -123.964727,
+"lat": 41.63521,
+"z": 15,
+"tile": "15/5100/12208"
+},
+{
+"name": "15N02",
+"layer": "roads",
+"kind": "path",
+"lon": -123.966818,
+"lat": 41.630132,
+"z": 15,
+"tile": "15/5100/12209"
+},
+{
+"name": "15N02",
+"layer": "roads",
+"kind": "path",
+"lon": -123.924725,
+"lat": 41.667097,
+"z": 15,
+"tile": "15/5104/12204"
 }
 ],
 "canthook mountain": [
@@ -34395,6 +38472,69 @@
 "lat": 41.724524,
 "z": 14,
 "tile": "14/2552/6098"
+},
+{
+"name": "Canthook Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -123.940085,
+"lat": 41.716929,
+"z": 15,
+"tile": "15/5102/12198"
+},
+{
+"name": "Canthook Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -123.935626,
+"lat": 41.715067,
+"z": 15,
+"tile": "15/5103/12198"
+},
+{
+"name": "Canthook Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -123.930338,
+"lat": 41.712179,
+"z": 15,
+"tile": "15/5103/12199"
+},
+{
+"name": "Canthook Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -123.9197,
+"lat": 41.711765,
+"z": 15,
+"tile": "15/5104/12199"
+},
+{
+"name": "Canthook Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -123.914941,
+"lat": 41.714182,
+"z": 15,
+"tile": "15/5104/12198"
+},
+{
+"name": "Canthook Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -123.910744,
+"lat": 41.717128,
+"z": 15,
+"tile": "15/5105/12198"
+},
+{
+"name": "Canthook Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -123.911082,
+"lat": 41.724409,
+"z": 15,
+"tile": "15/5105/12197"
 }
 ],
 "boulder creek": [
@@ -34460,6 +38600,51 @@
 "lat": 41.903237,
 "z": 14,
 "tile": "14/2554/6087"
+},
+{
+"name": "Boulder Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -123.971837,
+"lat": 41.710837,
+"z": 15,
+"tile": "15/5099/12199"
+},
+{
+"name": "Boulder Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -123.975199,
+"lat": 41.717882,
+"z": 15,
+"tile": "15/5099/12198"
+},
+{
+"name": "Boulder Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -123.973889,
+"lat": 41.72331,
+"z": 15,
+"tile": "15/5099/12197"
+},
+{
+"name": "Boulder Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -123.968417,
+"lat": 41.701644,
+"z": 15,
+"tile": "15/5100/12200"
+},
+{
+"name": "Boulder Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -123.965811,
+"lat": 41.697365,
+"z": 15,
+"tile": "15/5100/12201"
 }
 ],
 "16n23": [
@@ -34507,6 +38692,96 @@
 "lat": 41.68404,
 "z": 14,
 "tile": "14/2550/6101"
+},
+{
+"name": "16N23",
+"layer": "roads",
+"kind": "path",
+"lon": -123.979593,
+"lat": 41.708803,
+"z": 15,
+"tile": "15/5099/12199"
+},
+{
+"name": "16N23",
+"layer": "roads",
+"kind": "path",
+"lon": -123.981168,
+"lat": 41.710569,
+"z": 15,
+"tile": "15/5098/12199"
+},
+{
+"name": "16N23",
+"layer": "roads",
+"kind": "path",
+"lon": -123.983686,
+"lat": 41.71881,
+"z": 15,
+"tile": "15/5098/12198"
+},
+{
+"name": "16N23",
+"layer": "roads",
+"kind": "path",
+"lon": -123.971515,
+"lat": 41.694707,
+"z": 15,
+"tile": "15/5099/12201"
+},
+{
+"name": "16N23",
+"layer": "roads",
+"kind": "path",
+"lon": -123.975275,
+"lat": 41.702174,
+"z": 15,
+"tile": "15/5099/12200"
+},
+{
+"name": "16N23",
+"layer": "roads",
+"kind": "path",
+"lon": -123.966464,
+"lat": 41.690614,
+"z": 15,
+"tile": "15/5100/12201"
+},
+{
+"name": "16N23",
+"layer": "roads",
+"kind": "path",
+"lon": -123.95759,
+"lat": 41.675686,
+"z": 15,
+"tile": "15/5101/12203"
+},
+{
+"name": "16N23",
+"layer": "roads",
+"kind": "path",
+"lon": -123.958746,
+"lat": 41.687511,
+"z": 15,
+"tile": "15/5101/12202"
+},
+{
+"name": "16N23",
+"layer": "roads",
+"kind": "path",
+"lon": -123.961425,
+"lat": 41.68637,
+"z": 15,
+"tile": "15/5100/12202"
+},
+{
+"name": "16N23",
+"layer": "roads",
+"kind": "path",
+"lon": -123.959781,
+"lat": 41.67864,
+"z": 15,
+"tile": "15/5100/12203"
 }
 ],
 "jitnal road": [
@@ -34536,6 +38811,33 @@
 "lat": 41.663812,
 "z": 14,
 "tile": "14/2547/6102"
+},
+{
+"name": "Jitnal Road",
+"layer": "roads",
+"kind": "path",
+"lon": -124.00805,
+"lat": 41.668358,
+"z": 15,
+"tile": "15/5096/12204"
+},
+{
+"name": "Jitnal Road",
+"layer": "roads",
+"kind": "path",
+"lon": -124.012327,
+"lat": 41.664073,
+"z": 15,
+"tile": "15/5096/12205"
+},
+{
+"name": "Jitnal Road",
+"layer": "roads",
+"kind": "path",
+"lon": -124.014856,
+"lat": 41.663823,
+"z": 15,
+"tile": "15/5095/12205"
 }
 ],
 "del norte county": [
@@ -34558,6 +38860,15 @@
 "lat": 41.700838,
 "z": 14,
 "tile": "14/2550/6100"
+},
+{
+"name": "Rattlesnake Lake",
+"layer": "water",
+"kind": "water",
+"lon": -123.949216,
+"lat": 41.70084,
+"z": 15,
+"tile": "15/5101/12201"
 }
 ],
 "goose creek": [
@@ -34686,6 +38997,285 @@
 "lat": 41.679109,
 "z": 14,
 "tile": "14/2552/6101"
+},
+{
+"name": "Goose Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -123.92633,
+"lat": 41.68134,
+"z": 15,
+"tile": "15/5103/12202"
+},
+{
+"name": "Goose Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -123.926402,
+"lat": 41.677974,
+"z": 15,
+"tile": "15/5103/12203"
+},
+{
+"name": "Goose Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -123.911161,
+"lat": 41.636614,
+"z": 15,
+"tile": "15/5105/12208"
+},
+{
+"name": "Goose Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -123.913532,
+"lat": 41.627761,
+"z": 15,
+"tile": "15/5105/12209"
+},
+{
+"name": "Goose Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -123.915205,
+"lat": 41.628096,
+"z": 15,
+"tile": "15/5104/12209"
+},
+{
+"name": "Goose Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -123.91955,
+"lat": 41.611486,
+"z": 15,
+"tile": "15/5104/12211"
+},
+{
+"name": "Goose Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -123.914486,
+"lat": 41.615165,
+"z": 15,
+"tile": "15/5105/12211"
+},
+{
+"name": "Goose Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -123.910229,
+"lat": 41.619834,
+"z": 15,
+"tile": "15/5105/12210"
+},
+{
+"name": "Goose Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -123.923037,
+"lat": 41.602798,
+"z": 15,
+"tile": "15/5104/12212"
+},
+{
+"name": "Goose Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -123.920646,
+"lat": 41.594632,
+"z": 15,
+"tile": "15/5104/12213"
+},
+{
+"name": "Goose Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -123.915779,
+"lat": 41.588392,
+"z": 15,
+"tile": "15/5104/12214"
+},
+{
+"name": "Goose Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -123.913472,
+"lat": 41.585179,
+"z": 15,
+"tile": "15/5105/12214"
+},
+{
+"name": "Goose Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -123.91227,
+"lat": 41.580358,
+"z": 15,
+"tile": "15/5105/12215"
+},
+{
+"name": "Goose Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -123.917537,
+"lat": 41.577603,
+"z": 15,
+"tile": "15/5104/12215"
+},
+{
+"name": "Goose Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -123.917377,
+"lat": 41.571826,
+"z": 15,
+"tile": "15/5104/12216"
+},
+{
+"name": "Goose Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -123.906346,
+"lat": 41.563749,
+"z": 15,
+"tile": "15/5105/12217"
+},
+{
+"name": "Goose Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -123.91244,
+"lat": 41.567847,
+"z": 15,
+"tile": "15/5105/12216"
+},
+{
+"name": "Goose Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -123.903522,
+"lat": 41.5601,
+"z": 15,
+"tile": "15/5106/12217"
+},
+{
+"name": "Goose Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -123.899212,
+"lat": 41.552802,
+"z": 15,
+"tile": "15/5106/12218"
+},
+{
+"name": "Goose Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -123.89316,
+"lat": 41.54579,
+"z": 15,
+"tile": "15/5106/12219"
+},
+{
+"name": "Goose Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -123.904424,
+"lat": 41.554995,
+"z": 15,
+"tile": "15/5105/12218"
+},
+{
+"name": "Goose Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -123.895996,
+"lat": 41.51984,
+"z": 15,
+"tile": "15/5106/12222"
+},
+{
+"name": "Goose Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -123.893409,
+"lat": 41.540931,
+"z": 15,
+"tile": "15/5106/12220"
+},
+{
+"name": "Goose Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -123.906814,
+"lat": 41.644274,
+"z": 15,
+"tile": "15/5105/12207"
+},
+{
+"name": "Goose Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -123.915271,
+"lat": 41.655297,
+"z": 15,
+"tile": "15/5104/12206"
+},
+{
+"name": "Goose Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -123.911402,
+"lat": 41.6526,
+"z": 15,
+"tile": "15/5105/12206"
+},
+{
+"name": "Goose Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -123.910783,
+"lat": 41.658861,
+"z": 15,
+"tile": "15/5105/12205"
+},
+{
+"name": "Goose Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -123.917151,
+"lat": 41.66215,
+"z": 15,
+"tile": "15/5104/12205"
+},
+{
+"name": "Goose Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -123.918892,
+"lat": 41.669888,
+"z": 15,
+"tile": "15/5104/12204"
+},
+{
+"name": "Goose Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -123.925189,
+"lat": 41.675585,
+"z": 15,
+"tile": "15/5104/12203"
+},
+{
+"name": "Goose Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -123.923797,
+"lat": 41.683445,
+"z": 15,
+"tile": "15/5104/12202"
 }
 ],
 "little rattlesnake mountain": [
@@ -34746,6 +39336,42 @@
 "lat": 41.657239,
 "z": 14,
 "tile": "14/2547/6102"
+},
+{
+"name": "Airport-Spur",
+"layer": "roads",
+"kind": "path",
+"lon": -124.00167,
+"lat": 41.659445,
+"z": 15,
+"tile": "15/5097/12205"
+},
+{
+"name": "Airport-Spur",
+"layer": "roads",
+"kind": "path",
+"lon": -124.00762,
+"lat": 41.658449,
+"z": 15,
+"tile": "15/5096/12205"
+},
+{
+"name": "Airport-Spur",
+"layer": "roads",
+"kind": "path",
+"lon": -124.017467,
+"lat": 41.655652,
+"z": 15,
+"tile": "15/5095/12206"
+},
+{
+"name": "Airport-Spur",
+"layer": "roads",
+"kind": "path",
+"lon": -124.016386,
+"lat": 41.657313,
+"z": 15,
+"tile": "15/5095/12205"
 }
 ],
 "airport": [
@@ -34766,6 +39392,15 @@
 "lat": 41.660179,
 "z": 14,
 "tile": "14/2547/6102"
+},
+{
+"name": "Airport",
+"layer": "roads",
+"kind": "path",
+"lon": -124.020014,
+"lat": 41.660133,
+"z": 15,
+"tile": "15/5095/12205"
 }
 ],
 "west fork hunter creek": [
@@ -34858,6 +39493,159 @@
 "lat": 41.594221,
 "z": 14,
 "tile": "14/2547/6106"
+},
+{
+"name": "West Fork Hunter Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -124.035603,
+"lat": 41.640218,
+"z": 15,
+"tile": "15/5094/12207"
+},
+{
+"name": "West Fork Hunter Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -124.03906,
+"lat": 41.644862,
+"z": 15,
+"tile": "15/5093/12207"
+},
+{
+"name": "West Fork Hunter Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -124.051637,
+"lat": 41.651011,
+"z": 15,
+"tile": "15/5092/12206"
+},
+{
+"name": "West Fork Hunter Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -124.04504,
+"lat": 41.648878,
+"z": 15,
+"tile": "15/5093/12206"
+},
+{
+"name": "West Fork Hunter Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -124.063973,
+"lat": 41.658002,
+"z": 15,
+"tile": "15/5091/12205"
+},
+{
+"name": "West Fork Hunter Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -124.070269,
+"lat": 41.657385,
+"z": 15,
+"tile": "15/5090/12205"
+},
+{
+"name": "West Fork Hunter Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -124.071504,
+"lat": 41.655482,
+"z": 15,
+"tile": "15/5090/12206"
+},
+{
+"name": "West Fork Hunter Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -124.059943,
+"lat": 41.654953,
+"z": 15,
+"tile": "15/5091/12206"
+},
+{
+"name": "West Fork Hunter Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -124.029836,
+"lat": 41.637963,
+"z": 15,
+"tile": "15/5094/12208"
+},
+{
+"name": "West Fork Hunter Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -124.023309,
+"lat": 41.634041,
+"z": 15,
+"tile": "15/5095/12208"
+},
+{
+"name": "West Fork Hunter Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -124.022566,
+"lat": 41.627816,
+"z": 15,
+"tile": "15/5095/12209"
+},
+{
+"name": "West Fork Hunter Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -124.026784,
+"lat": 41.617365,
+"z": 15,
+"tile": "15/5094/12210"
+},
+{
+"name": "West Fork Hunter Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -124.023505,
+"lat": 41.621789,
+"z": 15,
+"tile": "15/5095/12210"
+},
+{
+"name": "West Fork Hunter Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -124.03292,
+"lat": 41.614273,
+"z": 15,
+"tile": "15/5094/12211"
+},
+{
+"name": "West Fork Hunter Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -124.036451,
+"lat": 41.610106,
+"z": 15,
+"tile": "15/5093/12211"
+},
+{
+"name": "West Fork Hunter Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -124.036777,
+"lat": 41.596202,
+"z": 15,
+"tile": "15/5093/12213"
+},
+{
+"name": "West Fork Hunter Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -124.03755,
+"lat": 41.60281,
+"z": 15,
+"tile": "15/5093/12212"
 }
 ],
 "timber-line road": [
@@ -34878,6 +39666,33 @@
 "lat": 41.681396,
 "z": 14,
 "tile": "14/2546/6101"
+},
+{
+"name": "Timber-Line Road",
+"layer": "roads",
+"kind": "path",
+"lon": -124.040082,
+"lat": 41.671061,
+"z": 15,
+"tile": "15/5093/12204"
+},
+{
+"name": "Timber-Line Road",
+"layer": "roads",
+"kind": "path",
+"lon": -124.043091,
+"lat": 41.684278,
+"z": 15,
+"tile": "15/5093/12202"
+},
+{
+"name": "Timber-Line Road",
+"layer": "roads",
+"kind": "path",
+"lon": -124.038408,
+"lat": 41.677037,
+"z": 15,
+"tile": "15/5093/12203"
 }
 ],
 "wilbur-spur": [
@@ -34918,6 +39733,33 @@
 "lat": 41.687117,
 "z": 14,
 "tile": "14/2546/6101"
+},
+{
+"name": "Howard-Spur Road",
+"layer": "roads",
+"kind": "path",
+"lon": -124.031429,
+"lat": 41.679455,
+"z": 15,
+"tile": "15/5094/12203"
+},
+{
+"name": "Howard-Spur Road",
+"layer": "roads",
+"kind": "path",
+"lon": -124.03129,
+"lat": 41.684706,
+"z": 15,
+"tile": "15/5094/12202"
+},
+{
+"name": "Howard-Spur Road",
+"layer": "roads",
+"kind": "path",
+"lon": -124.035959,
+"lat": 41.687132,
+"z": 15,
+"tile": "15/5093/12202"
 }
 ],
 "childs hill": [
@@ -34940,6 +39782,33 @@
 "lat": 41.698964,
 "z": 14,
 "tile": "14/2547/6100"
+},
+{
+"name": "Howard-Spur",
+"layer": "roads",
+"kind": "path",
+"lon": -124.021837,
+"lat": 41.699801,
+"z": 15,
+"tile": "15/5095/12200"
+},
+{
+"name": "Howard-Spur",
+"layer": "roads",
+"kind": "path",
+"lon": -124.028352,
+"lat": 41.698568,
+"z": 15,
+"tile": "15/5094/12200"
+},
+{
+"name": "Howard-Spur",
+"layer": "roads",
+"kind": "path",
+"lon": -124.030874,
+"lat": 41.696935,
+"z": 15,
+"tile": "15/5094/12201"
 }
 ],
 "cedar road": [
@@ -34960,6 +39829,24 @@
 "lat": 41.687734,
 "z": 14,
 "tile": "14/2546/6101"
+},
+{
+"name": "Cedar Road",
+"layer": "roads",
+"kind": "path",
+"lon": -124.047913,
+"lat": 41.687146,
+"z": 15,
+"tile": "15/5092/12202"
+},
+{
+"name": "Cedar Road",
+"layer": "roads",
+"kind": "path",
+"lon": -124.043793,
+"lat": 41.688204,
+"z": 15,
+"tile": "15/5093/12202"
 }
 ],
 "visser-spur road": [
@@ -34998,6 +39885,51 @@
 "lat": 41.694579,
 "z": 14,
 "tile": "14/2545/6100"
+},
+{
+"name": "Visser-Spur Road",
+"layer": "roads",
+"kind": "path",
+"lon": -124.05748,
+"lat": 41.701105,
+"z": 15,
+"tile": "15/5092/12200"
+},
+{
+"name": "Visser-Spur Road",
+"layer": "roads",
+"kind": "path",
+"lon": -124.052469,
+"lat": 41.692129,
+"z": 15,
+"tile": "15/5092/12201"
+},
+{
+"name": "Visser-Spur Road",
+"layer": "roads",
+"kind": "path",
+"lon": -124.059277,
+"lat": 41.68871,
+"z": 15,
+"tile": "15/5091/12202"
+},
+{
+"name": "Visser-Spur Road",
+"layer": "roads",
+"kind": "path",
+"lon": -124.060706,
+"lat": 41.692697,
+"z": 15,
+"tile": "15/5091/12201"
+},
+{
+"name": "Visser-Spur Road",
+"layer": "roads",
+"kind": "path",
+"lon": -124.059061,
+"lat": 41.699861,
+"z": 15,
+"tile": "15/5091/12200"
 }
 ],
 "marten-spur road": [
@@ -35018,6 +39950,51 @@
 "lat": 41.68339,
 "z": 14,
 "tile": "14/2545/6101"
+},
+{
+"name": "Marten-Spur Road",
+"layer": "roads",
+"kind": "path",
+"lon": -124.050627,
+"lat": 41.683933,
+"z": 15,
+"tile": "15/5092/12202"
+},
+{
+"name": "Marten-Spur Road",
+"layer": "roads",
+"kind": "path",
+"lon": -124.046668,
+"lat": 41.683795,
+"z": 15,
+"tile": "15/5093/12202"
+},
+{
+"name": "Marten-Spur Road",
+"layer": "roads",
+"kind": "path",
+"lon": -124.050031,
+"lat": 41.680366,
+"z": 15,
+"tile": "15/5092/12203"
+},
+{
+"name": "Marten-Spur Road",
+"layer": "roads",
+"kind": "path",
+"lon": -124.069929,
+"lat": 41.684213,
+"z": 15,
+"tile": "15/5090/12202"
+},
+{
+"name": "Marten-Spur Road",
+"layer": "roads",
+"kind": "path",
+"lon": -124.063879,
+"lat": 41.683259,
+"z": 15,
+"tile": "15/5091/12202"
 }
 ],
 "del norte coast redwoods state park": [
@@ -35067,6 +40044,15 @@
 "lat": 41.689478,
 "z": 15,
 "tile": "15/5089/12201"
+},
+{
+"name": "Flashlite Spur",
+"layer": "roads",
+"kind": "path",
+"lon": -124.08229,
+"lat": 41.68898,
+"z": 15,
+"tile": "15/5089/12202"
 }
 ],
 "porcupine road": [
@@ -35087,6 +40073,42 @@
 "lat": 41.692364,
 "z": 14,
 "tile": "14/2545/6100"
+},
+{
+"name": "Porcupine Road",
+"layer": "roads",
+"kind": "path",
+"lon": -124.070751,
+"lat": 41.687278,
+"z": 15,
+"tile": "15/5090/12202"
+},
+{
+"name": "Porcupine Road",
+"layer": "roads",
+"kind": "path",
+"lon": -124.067573,
+"lat": 41.686231,
+"z": 15,
+"tile": "15/5091/12202"
+},
+{
+"name": "Porcupine Road",
+"layer": "roads",
+"kind": "path",
+"lon": -124.067828,
+"lat": 41.694303,
+"z": 15,
+"tile": "15/5091/12201"
+},
+{
+"name": "Porcupine Road",
+"layer": "roads",
+"kind": "path",
+"lon": -124.070922,
+"lat": 41.69155,
+"z": 15,
+"tile": "15/5090/12201"
 }
 ],
 "bear-spur": [
@@ -35098,6 +40120,15 @@
 "lat": 41.704452,
 "z": 14,
 "tile": "14/2545/6100"
+},
+{
+"name": "Bear-Spur",
+"layer": "roads",
+"kind": "path",
+"lon": -124.071568,
+"lat": 41.704435,
+"z": 15,
+"tile": "15/5090/12200"
 }
 ],
 "mill creek campground": [
@@ -35189,6 +40220,78 @@
 "lat": 41.654251,
 "z": 14,
 "tile": "14/2544/6103"
+},
+{
+"name": "Wilson Creek Road",
+"layer": "roads",
+"kind": "path",
+"lon": -124.086542,
+"lat": 41.681543,
+"z": 15,
+"tile": "15/5089/12202"
+},
+{
+"name": "Wilson Creek Road",
+"layer": "roads",
+"kind": "path",
+"lon": -124.089243,
+"lat": 41.678045,
+"z": 15,
+"tile": "15/5089/12203"
+},
+{
+"name": "Wilson Creek Road",
+"layer": "roads",
+"kind": "path",
+"lon": -124.09091,
+"lat": 41.675642,
+"z": 15,
+"tile": "15/5088/12203"
+},
+{
+"name": "Wilson Creek Road",
+"layer": "roads",
+"kind": "path",
+"lon": -124.092241,
+"lat": 41.671559,
+"z": 15,
+"tile": "15/5088/12204"
+},
+{
+"name": "Wilson Creek Road",
+"layer": "roads",
+"kind": "path",
+"lon": -124.094298,
+"lat": 41.661265,
+"z": 15,
+"tile": "15/5088/12205"
+},
+{
+"name": "Wilson Creek Road",
+"layer": "roads",
+"kind": "path",
+"lon": -124.090585,
+"lat": 41.664552,
+"z": 15,
+"tile": "15/5089/12205"
+},
+{
+"name": "Wilson Creek Road",
+"layer": "roads",
+"kind": "path",
+"lon": -124.087779,
+"lat": 41.669757,
+"z": 15,
+"tile": "15/5089/12204"
+},
+{
+"name": "Wilson Creek Road",
+"layer": "roads",
+"kind": "path",
+"lon": -124.093841,
+"lat": 41.65424,
+"z": 15,
+"tile": "15/5088/12206"
 }
 ],
 "high prairie creek": [
@@ -35236,6 +40339,105 @@
 "lat": 41.570258,
 "z": 14,
 "tile": "14/2545/6108"
+},
+{
+"name": "High Prairie Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -124.061549,
+"lat": 41.609623,
+"z": 15,
+"tile": "15/5091/12211"
+},
+{
+"name": "High Prairie Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -124.056149,
+"lat": 41.60194,
+"z": 15,
+"tile": "15/5092/12212"
+},
+{
+"name": "High Prairie Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -124.064773,
+"lat": 41.578848,
+"z": 15,
+"tile": "15/5091/12215"
+},
+{
+"name": "High Prairie Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -124.07006,
+"lat": 41.588808,
+"z": 15,
+"tile": "15/5090/12214"
+},
+{
+"name": "High Prairie Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -124.06604,
+"lat": 41.584583,
+"z": 15,
+"tile": "15/5091/12214"
+},
+{
+"name": "High Prairie Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -124.062908,
+"lat": 41.598374,
+"z": 15,
+"tile": "15/5091/12213"
+},
+{
+"name": "High Prairie Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -124.06026,
+"lat": 41.603279,
+"z": 15,
+"tile": "15/5091/12212"
+},
+{
+"name": "High Prairie Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -124.07072,
+"lat": 41.599231,
+"z": 15,
+"tile": "15/5090/12212"
+},
+{
+"name": "High Prairie Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -124.072301,
+"lat": 41.595082,
+"z": 15,
+"tile": "15/5090/12213"
+},
+{
+"name": "High Prairie Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -124.070304,
+"lat": 41.568055,
+"z": 15,
+"tile": "15/5090/12216"
+},
+{
+"name": "High Prairie Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -124.067084,
+"lat": 41.571246,
+"z": 15,
+"tile": "15/5091/12216"
 }
 ],
 "hunter creek": [
@@ -35337,6 +40539,177 @@
 "lat": 41.591404,
 "z": 14,
 "tile": "14/2548/6106"
+},
+{
+"name": "Hunter Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -124.035706,
+"lat": 41.592101,
+"z": 15,
+"tile": "15/5093/12213"
+},
+{
+"name": "Hunter Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -124.0189,
+"lat": 41.595731,
+"z": 15,
+"tile": "15/5095/12213"
+},
+{
+"name": "Hunter Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -124.031083,
+"lat": 41.594116,
+"z": 15,
+"tile": "15/5094/12213"
+},
+{
+"name": "Hunter Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -124.035396,
+"lat": 41.589533,
+"z": 15,
+"tile": "15/5094/12214"
+},
+{
+"name": "Hunter Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -124.041412,
+"lat": 41.579333,
+"z": 15,
+"tile": "15/5093/12215"
+},
+{
+"name": "Hunter Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -124.038158,
+"lat": 41.585428,
+"z": 15,
+"tile": "15/5093/12214"
+},
+{
+"name": "Hunter Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -124.058496,
+"lat": 41.566288,
+"z": 15,
+"tile": "15/5091/12216"
+},
+{
+"name": "Hunter Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -124.059462,
+"lat": 41.561476,
+"z": 15,
+"tile": "15/5091/12217"
+},
+{
+"name": "Hunter Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -124.058325,
+"lat": 41.554701,
+"z": 15,
+"tile": "15/5091/12218"
+},
+{
+"name": "Hunter Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -124.058203,
+"lat": 41.548132,
+"z": 15,
+"tile": "15/5091/12219"
+},
+{
+"name": "Hunter Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -124.057653,
+"lat": 41.549009,
+"z": 15,
+"tile": "15/5092/12219"
+},
+{
+"name": "Hunter Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -124.057353,
+"lat": 41.552066,
+"z": 15,
+"tile": "15/5092/12218"
+},
+{
+"name": "Hunter Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -124.051153,
+"lat": 41.571022,
+"z": 15,
+"tile": "15/5092/12216"
+},
+{
+"name": "Hunter Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -124.045742,
+"lat": 41.573561,
+"z": 15,
+"tile": "15/5093/12216"
+},
+{
+"name": "Hunter Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -124.00294,
+"lat": 41.573435,
+"z": 15,
+"tile": "15/5096/12216"
+},
+{
+"name": "Hunter Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -124.002378,
+"lat": 41.571882,
+"z": 15,
+"tile": "15/5097/12216"
+},
+{
+"name": "Hunter Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -124.005944,
+"lat": 41.578687,
+"z": 15,
+"tile": "15/5096/12215"
+},
+{
+"name": "Hunter Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -124.009968,
+"lat": 41.586783,
+"z": 15,
+"tile": "15/5096/12214"
+},
+{
+"name": "Hunter Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -124.013017,
+"lat": 41.591236,
+"z": 15,
+"tile": "15/5096/12213"
 }
 ],
 "sanders road": [
@@ -35357,6 +40730,42 @@
 "lat": 41.593067,
 "z": 14,
 "tile": "14/2545/6106"
+},
+{
+"name": "Sanders Road",
+"layer": "roads",
+"kind": "path",
+"lon": -124.06443,
+"lat": 41.582429,
+"z": 15,
+"tile": "15/5091/12215"
+},
+{
+"name": "Sanders Road",
+"layer": "roads",
+"kind": "path",
+"lon": -124.070901,
+"lat": 41.587857,
+"z": 15,
+"tile": "15/5090/12214"
+},
+{
+"name": "Sanders Road",
+"layer": "roads",
+"kind": "path",
+"lon": -124.066349,
+"lat": 41.583928,
+"z": 15,
+"tile": "15/5091/12214"
+},
+{
+"name": "Sanders Road",
+"layer": "roads",
+"kind": "path",
+"lon": -124.072922,
+"lat": 41.593248,
+"z": 15,
+"tile": "15/5090/12213"
 }
 ],
 "wilderness trail": [
@@ -35388,6 +40797,15 @@
 "lat": 41.59186,
 "z": 14,
 "tile": "14/2544/6106"
+},
+{
+"name": "Lagoon Pond",
+"layer": "water",
+"kind": "water",
+"lon": -124.097646,
+"lat": 41.59186,
+"z": 15,
+"tile": "15/5087/12214"
 }
 ],
 "hidden beach": [
@@ -35454,6 +40872,15 @@
 "lat": 41.584369,
 "z": 14,
 "tile": "14/2544/6107"
+},
+{
+"name": "Trees of Mystery",
+"layer": "pois",
+"kind": "attraction",
+"lon": -124.08588,
+"lat": 41.584784,
+"z": 15,
+"tile": "15/5089/12214"
 }
 ],
 "hidden beach trail": [
@@ -35474,6 +40901,24 @@
 "lat": 41.584167,
 "z": 14,
 "tile": "14/2544/6107"
+},
+{
+"name": "Hidden Beach Trail",
+"layer": "roads",
+"kind": "path",
+"lon": -124.093386,
+"lat": 41.583859,
+"z": 15,
+"tile": "15/5088/12214"
+},
+{
+"name": "Hidden Beach Trail",
+"layer": "roads",
+"kind": "path",
+"lon": -124.089347,
+"lat": 41.583599,
+"z": 15,
+"tile": "15/5089/12214"
 }
 ],
 "the kingdom of trees trail": [
@@ -35496,6 +40941,15 @@
 "lat": 41.585148,
 "z": 14,
 "tile": "14/2544/6107"
+},
+{
+"name": "Trail of Tall tales",
+"layer": "roads",
+"kind": "path",
+"lon": -124.084614,
+"lat": 41.585163,
+"z": 15,
+"tile": "15/5089/12214"
 }
 ],
 "forest experience trail": [
@@ -35547,6 +41001,69 @@
 "lat": 41.552341,
 "z": 14,
 "tile": "14/2545/6109"
+},
+{
+"name": "Salt Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -124.092517,
+"lat": 41.568466,
+"z": 15,
+"tile": "15/5088/12216"
+},
+{
+"name": "Salt Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -124.084942,
+"lat": 41.568529,
+"z": 15,
+"tile": "15/5089/12216"
+},
+{
+"name": "Salt Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -124.073901,
+"lat": 41.569564,
+"z": 15,
+"tile": "15/5090/12216"
+},
+{
+"name": "Salt Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -124.067395,
+"lat": 41.560065,
+"z": 15,
+"tile": "15/5091/12217"
+},
+{
+"name": "Salt Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -124.07053,
+"lat": 41.563488,
+"z": 15,
+"tile": "15/5090/12217"
+},
+{
+"name": "Salt Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -124.061941,
+"lat": 41.553824,
+"z": 15,
+"tile": "15/5091/12218"
+},
+{
+"name": "Salt Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -124.06019,
+"lat": 41.548423,
+"z": 15,
+"tile": "15/5091/12219"
 }
 ],
 "the historic requa inn": [
@@ -35596,6 +41113,33 @@
 "lat": 41.546117,
 "z": 14,
 "tile": "14/2546/6109"
+},
+{
+"name": "Spruce Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -124.046906,
+"lat": 41.54133,
+"z": 15,
+"tile": "15/5092/12220"
+},
+{
+"name": "Spruce Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -124.042052,
+"lat": 41.540153,
+"z": 15,
+"tile": "15/5093/12220"
+},
+{
+"name": "Spruce Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -124.052226,
+"lat": 41.5463,
+"z": 15,
+"tile": "15/5092/12219"
 }
 ],
 "california coastal trail klamath section": [
@@ -35667,6 +41211,69 @@
 "lat": 41.524365,
 "z": 14,
 "tile": "14/2546/6111"
+},
+{
+"name": "California Coastal Trail Flint Ridge",
+"layer": "roads",
+"kind": "path",
+"lon": -124.073963,
+"lat": 41.523353,
+"z": 15,
+"tile": "15/5090/12222"
+},
+{
+"name": "California Coastal Trail Flint Ridge",
+"layer": "roads",
+"kind": "path",
+"lon": -124.065915,
+"lat": 41.524221,
+"z": 15,
+"tile": "15/5091/12222"
+},
+{
+"name": "California Coastal Trail Flint Ridge",
+"layer": "roads",
+"kind": "path",
+"lon": -124.061145,
+"lat": 41.52566,
+"z": 15,
+"tile": "15/5091/12221"
+},
+{
+"name": "California Coastal Trail Flint Ridge",
+"layer": "roads",
+"kind": "path",
+"lon": -124.078791,
+"lat": 41.526173,
+"z": 15,
+"tile": "15/5090/12221"
+},
+{
+"name": "California Coastal Trail Flint Ridge",
+"layer": "roads",
+"kind": "path",
+"lon": -124.054428,
+"lat": 41.525848,
+"z": 15,
+"tile": "15/5092/12221"
+},
+{
+"name": "California Coastal Trail Flint Ridge",
+"layer": "roads",
+"kind": "path",
+"lon": -124.05211,
+"lat": 41.524314,
+"z": 15,
+"tile": "15/5092/12222"
+},
+{
+"name": "California Coastal Trail Flint Ridge",
+"layer": "roads",
+"kind": "path",
+"lon": -124.046384,
+"lat": 41.524045,
+"z": 15,
+"tile": "15/5093/12222"
 }
 ],
 "flint ridge campground": [
@@ -35678,6 +41285,15 @@
 "lat": 41.524961,
 "z": 14,
 "tile": "14/2545/6111"
+},
+{
+"name": "Flint Ridge Campground",
+"layer": "pois",
+"kind": "camp_site",
+"lon": -124.07827,
+"lat": 41.525064,
+"z": 15,
+"tile": "15/5090/12222"
 }
 ],
 "richardson creek": [
@@ -35707,6 +41323,33 @@
 "lat": 41.522642,
 "z": 14,
 "tile": "14/2546/6111"
+},
+{
+"name": "Richardson Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -124.04401,
+"lat": 41.525056,
+"z": 15,
+"tile": "15/5093/12221"
+},
+{
+"name": "Richardson Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -124.052694,
+"lat": 41.522153,
+"z": 15,
+"tile": "15/5092/12222"
+},
+{
+"name": "Richardson Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -124.045761,
+"lat": 41.524452,
+"z": 15,
+"tile": "15/5093/12222"
 }
 ],
 "golden bear rv park": [
@@ -35882,6 +41525,105 @@
 "lat": 41.53429,
 "z": 14,
 "tile": "14/2548/6110"
+},
+{
+"name": "Hoppaw Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -124.03862,
+"lat": 41.525024,
+"z": 15,
+"tile": "15/5093/12221"
+},
+{
+"name": "Hoppaw Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -124.039055,
+"lat": 41.524669,
+"z": 15,
+"tile": "15/5093/12222"
+},
+{
+"name": "Hoppaw Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -124.031055,
+"lat": 41.523511,
+"z": 15,
+"tile": "15/5094/12222"
+},
+{
+"name": "Hoppaw Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -124.019223,
+"lat": 41.527854,
+"z": 15,
+"tile": "15/5095/12221"
+},
+{
+"name": "Hoppaw Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -124.026282,
+"lat": 41.526615,
+"z": 15,
+"tile": "15/5094/12221"
+},
+{
+"name": "Hoppaw Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -123.996134,
+"lat": 41.561642,
+"z": 15,
+"tile": "15/5097/12217"
+},
+{
+"name": "Hoppaw Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -123.997318,
+"lat": 41.545178,
+"z": 15,
+"tile": "15/5097/12219"
+},
+{
+"name": "Hoppaw Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -123.996117,
+"lat": 41.553749,
+"z": 15,
+"tile": "15/5097/12218"
+},
+{
+"name": "Hoppaw Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -124.005877,
+"lat": 41.535725,
+"z": 15,
+"tile": "15/5096/12220"
+},
+{
+"name": "Hoppaw Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -124.001177,
+"lat": 41.539828,
+"z": 15,
+"tile": "15/5097/12220"
+},
+{
+"name": "Hoppaw Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -124.009962,
+"lat": 41.530596,
+"z": 15,
+"tile": "15/5096/12221"
 }
 ],
 "klamath camper corral": [
@@ -35893,6 +41635,15 @@
 "lat": 41.521624,
 "z": 14,
 "tile": "14/2546/6111"
+},
+{
+"name": "Klamath Camper Corral",
+"layer": "pois",
+"kind": "camp_site",
+"lon": -124.035052,
+"lat": 41.521622,
+"z": 15,
+"tile": "15/5094/12222"
 }
 ],
 "alder camp road": [
@@ -35984,6 +41735,78 @@
 "lat": 41.563536,
 "z": 14,
 "tile": "14/2548/6108"
+},
+{
+"name": "Mynot Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -124.052081,
+"lat": 41.555006,
+"z": 15,
+"tile": "15/5092/12218"
+},
+{
+"name": "Mynot Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -124.04424,
+"lat": 41.557034,
+"z": 15,
+"tile": "15/5093/12218"
+},
+{
+"name": "Mynot Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -124.039124,
+"lat": 41.560064,
+"z": 15,
+"tile": "15/5093/12217"
+},
+{
+"name": "Mynot Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -124.025944,
+"lat": 41.566704,
+"z": 15,
+"tile": "15/5094/12216"
+},
+{
+"name": "Mynot Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -124.031317,
+"lat": 41.563348,
+"z": 15,
+"tile": "15/5094/12217"
+},
+{
+"name": "Mynot Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -124.016271,
+"lat": 41.565289,
+"z": 15,
+"tile": "15/5095/12217"
+},
+{
+"name": "Mynot Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -124.021443,
+"lat": 41.566878,
+"z": 15,
+"tile": "15/5095/12216"
+},
+{
+"name": "Mynot Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -124.01007,
+"lat": 41.563557,
+"z": 15,
+"tile": "15/5096/12217"
 }
 ],
 "tractor skid road, overgrown": [
@@ -36004,6 +41827,15 @@
 "lat": 41.559462,
 "z": 14,
 "tile": "14/2550/6108"
+},
+{
+"name": "tractor skid road, overgrown",
+"layer": "roads",
+"kind": "path",
+"lon": -123.965619,
+"lat": 41.559475,
+"z": 15,
+"tile": "15/5100/12217"
 }
 ],
 "turwar creek": [
@@ -36150,6 +41982,285 @@
 "lat": 41.623047,
 "z": 14,
 "tile": "14/2550/6105"
+},
+{
+"name": "Turwar Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -123.971498,
+"lat": 41.569955,
+"z": 15,
+"tile": "15/5099/12216"
+},
+{
+"name": "Turwar Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -123.974087,
+"lat": 41.561557,
+"z": 15,
+"tile": "15/5099/12217"
+},
+{
+"name": "Turwar Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -123.971105,
+"lat": 41.553971,
+"z": 15,
+"tile": "15/5099/12218"
+},
+{
+"name": "Turwar Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -123.970898,
+"lat": 41.54553,
+"z": 15,
+"tile": "15/5099/12219"
+},
+{
+"name": "Turwar Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -123.987307,
+"lat": 41.528803,
+"z": 15,
+"tile": "15/5098/12221"
+},
+{
+"name": "Turwar Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -123.983622,
+"lat": 41.534005,
+"z": 15,
+"tile": "15/5098/12220"
+},
+{
+"name": "Turwar Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -123.975088,
+"lat": 41.537878,
+"z": 15,
+"tile": "15/5099/12220"
+},
+{
+"name": "Turwar Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -123.96919,
+"lat": 41.547618,
+"z": 15,
+"tile": "15/5100/12219"
+},
+{
+"name": "Turwar Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -123.96952,
+"lat": 41.552549,
+"z": 15,
+"tile": "15/5100/12218"
+},
+{
+"name": "Turwar Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -123.96967,
+"lat": 41.558412,
+"z": 15,
+"tile": "15/5100/12217"
+},
+{
+"name": "Turwar Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -123.96855,
+"lat": 41.572727,
+"z": 15,
+"tile": "15/5100/12216"
+},
+{
+"name": "Turwar Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -123.958153,
+"lat": 41.591566,
+"z": 15,
+"tile": "15/5101/12213"
+},
+{
+"name": "Turwar Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -123.966805,
+"lat": 41.601796,
+"z": 15,
+"tile": "15/5100/12212"
+},
+{
+"name": "Turwar Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -123.96271,
+"lat": 41.595241,
+"z": 15,
+"tile": "15/5100/12213"
+},
+{
+"name": "Turwar Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -123.956673,
+"lat": 41.586388,
+"z": 15,
+"tile": "15/5101/12214"
+},
+{
+"name": "Turwar Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -123.957856,
+"lat": 41.581699,
+"z": 15,
+"tile": "15/5101/12215"
+},
+{
+"name": "Turwar Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -123.961941,
+"lat": 41.578333,
+"z": 15,
+"tile": "15/5100/12215"
+},
+{
+"name": "Turwar Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -123.980564,
+"lat": 41.607342,
+"z": 15,
+"tile": "15/5098/12212"
+},
+{
+"name": "Turwar Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -123.974264,
+"lat": 41.605231,
+"z": 15,
+"tile": "15/5099/12212"
+},
+{
+"name": "Turwar Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -123.980657,
+"lat": 41.607759,
+"z": 15,
+"tile": "15/5099/12211"
+},
+{
+"name": "Turwar Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -123.98921,
+"lat": 41.61903,
+"z": 15,
+"tile": "15/5098/12210"
+},
+{
+"name": "Turwar Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -123.984306,
+"lat": 41.61106,
+"z": 15,
+"tile": "15/5098/12211"
+},
+{
+"name": "Turwar Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -123.992508,
+"lat": 41.627902,
+"z": 15,
+"tile": "15/5097/12209"
+},
+{
+"name": "Turwar Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -123.993125,
+"lat": 41.634223,
+"z": 15,
+"tile": "15/5097/12208"
+},
+{
+"name": "Turwar Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -123.98668,
+"lat": 41.637747,
+"z": 15,
+"tile": "15/5098/12208"
+},
+{
+"name": "Turwar Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -123.990839,
+"lat": 41.624542,
+"z": 15,
+"tile": "15/5098/12209"
+},
+{
+"name": "Turwar Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -123.971881,
+"lat": 41.629163,
+"z": 15,
+"tile": "15/5099/12209"
+},
+{
+"name": "Turwar Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -123.976801,
+"lat": 41.635816,
+"z": 15,
+"tile": "15/5099/12208"
+},
+{
+"name": "Turwar Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -123.966741,
+"lat": 41.624943,
+"z": 15,
+"tile": "15/5100/12209"
+},
+{
+"name": "Turwar Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -123.962038,
+"lat": 41.623175,
+"z": 15,
+"tile": "15/5100/12210"
+},
+{
+"name": "Turwar Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -123.957586,
+"lat": 41.622586,
+"z": 15,
+"tile": "15/5101/12210"
 }
 ],
 "andy mcbeth airport": [
@@ -36212,6 +42323,15 @@
 "lat": 41.537371,
 "z": 14,
 "tile": "14/2552/6110"
+},
+{
+"name": "Red Mountain Road Spur D",
+"layer": "roads",
+"kind": "path",
+"lon": -123.919559,
+"lat": 41.542776,
+"z": 15,
+"tile": "15/5104/12219"
 }
 ],
 "u600": [
@@ -36223,6 +42343,33 @@
 "lat": 41.549209,
 "z": 14,
 "tile": "14/2550/6109"
+},
+{
+"name": "U600",
+"layer": "roads",
+"kind": "path",
+"lon": -123.96335,
+"lat": 41.547863,
+"z": 15,
+"tile": "15/5100/12219"
+},
+{
+"name": "U600",
+"layer": "roads",
+"kind": "path",
+"lon": -123.961004,
+"lat": 41.550232,
+"z": 15,
+"tile": "15/5100/12218"
+},
+{
+"name": "U600",
+"layer": "roads",
+"kind": "path",
+"lon": -123.955257,
+"lat": 41.551191,
+"z": 15,
+"tile": "15/5101/12218"
 }
 ],
 "goose creek road": [
@@ -36297,6 +42444,114 @@
 "lat": 41.554287,
 "z": 14,
 "tile": "14/2552/6109"
+},
+{
+"name": "Goose Creek Road",
+"layer": "roads",
+"kind": "path",
+"lon": -123.926733,
+"lat": 41.573817,
+"z": 15,
+"tile": "15/5103/12216"
+},
+{
+"name": "Goose Creek Road",
+"layer": "roads",
+"kind": "path",
+"lon": -123.927277,
+"lat": 41.5754,
+"z": 15,
+"tile": "15/5103/12215"
+},
+{
+"name": "Goose Creek Road",
+"layer": "roads",
+"kind": "path",
+"lon": -123.927794,
+"lat": 41.593352,
+"z": 15,
+"tile": "15/5103/12213"
+},
+{
+"name": "Goose Creek Road",
+"layer": "roads",
+"kind": "path",
+"lon": -123.918457,
+"lat": 41.588451,
+"z": 15,
+"tile": "15/5104/12214"
+},
+{
+"name": "Goose Creek Road",
+"layer": "roads",
+"kind": "path",
+"lon": -123.920059,
+"lat": 41.585653,
+"z": 15,
+"tile": "15/5104/12214"
+},
+{
+"name": "Goose Creek Road",
+"layer": "roads",
+"kind": "path",
+"lon": -123.912871,
+"lat": 41.583393,
+"z": 15,
+"tile": "15/5105/12214"
+},
+{
+"name": "Goose Creek Road",
+"layer": "roads",
+"kind": "path",
+"lon": -123.910246,
+"lat": 41.581964,
+"z": 15,
+"tile": "15/5105/12215"
+},
+{
+"name": "Goose Creek Road",
+"layer": "roads",
+"kind": "path",
+"lon": -123.92204,
+"lat": 41.579417,
+"z": 15,
+"tile": "15/5104/12215"
+},
+{
+"name": "Goose Creek Road",
+"layer": "roads",
+"kind": "path",
+"lon": -123.922795,
+"lat": 41.569887,
+"z": 15,
+"tile": "15/5104/12216"
+},
+{
+"name": "Goose Creek Road",
+"layer": "roads",
+"kind": "path",
+"lon": -123.917414,
+"lat": 41.563654,
+"z": 15,
+"tile": "15/5104/12217"
+},
+{
+"name": "Goose Creek Road",
+"layer": "roads",
+"kind": "path",
+"lon": -123.912752,
+"lat": 41.560332,
+"z": 15,
+"tile": "15/5105/12217"
+},
+{
+"name": "Goose Creek Road",
+"layer": "roads",
+"kind": "path",
+"lon": -123.912262,
+"lat": 41.554147,
+"z": 15,
+"tile": "15/5105/12218"
 }
 ],
 "rattlesnake mountain bdy trail": [
@@ -36326,6 +42581,60 @@
 "lat": 41.613875,
 "z": 14,
 "tile": "14/2551/6105"
+},
+{
+"name": "Rattlesnake Mountain Bdy Trail",
+"layer": "roads",
+"kind": "path",
+"lon": -123.932155,
+"lat": 41.587489,
+"z": 15,
+"tile": "15/5103/12214"
+},
+{
+"name": "Rattlesnake Mountain Bdy Trail",
+"layer": "roads",
+"kind": "path",
+"lon": -123.935133,
+"lat": 41.594856,
+"z": 15,
+"tile": "15/5103/12213"
+},
+{
+"name": "Rattlesnake Mountain Bdy Trail",
+"layer": "roads",
+"kind": "path",
+"lon": -123.936319,
+"lat": 41.600285,
+"z": 15,
+"tile": "15/5103/12212"
+},
+{
+"name": "Rattlesnake Mountain Bdy Trail",
+"layer": "roads",
+"kind": "path",
+"lon": -123.938998,
+"lat": 41.605158,
+"z": 15,
+"tile": "15/5102/12212"
+},
+{
+"name": "Rattlesnake Mountain Bdy Trail",
+"layer": "roads",
+"kind": "path",
+"lon": -123.944243,
+"lat": 41.618506,
+"z": 15,
+"tile": "15/5102/12210"
+},
+{
+"name": "Rattlesnake Mountain Bdy Trail",
+"layer": "roads",
+"kind": "path",
+"lon": -123.942667,
+"lat": 41.610727,
+"z": 15,
+"tile": "15/5102/12211"
 }
 ],
 "rattlesnake mountain": [
@@ -36632,6 +42941,33 @@
 "lat": 41.567051,
 "z": 14,
 "tile": "14/2554/6108"
+},
+{
+"name": "East Fork Goose Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -123.897689,
+"lat": 41.581187,
+"z": 15,
+"tile": "15/5106/12215"
+},
+{
+"name": "East Fork Goose Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -123.900842,
+"lat": 41.582821,
+"z": 15,
+"tile": "15/5106/12214"
+},
+{
+"name": "East Fork Goose Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -123.906255,
+"lat": 41.580675,
+"z": 15,
+"tile": "15/5105/12215"
 }
 ],
 "rocky road": [
@@ -36679,6 +43015,78 @@
 "lat": 41.549968,
 "z": 14,
 "tile": "14/2552/6109"
+},
+{
+"name": "Rocky Road",
+"layer": "roads",
+"kind": "path",
+"lon": -123.903813,
+"lat": 41.563181,
+"z": 15,
+"tile": "15/5105/12217"
+},
+{
+"name": "Rocky Road",
+"layer": "roads",
+"kind": "path",
+"lon": -123.902865,
+"lat": 41.560574,
+"z": 15,
+"tile": "15/5106/12217"
+},
+{
+"name": "Rocky Road",
+"layer": "roads",
+"kind": "path",
+"lon": -123.898924,
+"lat": 41.552587,
+"z": 15,
+"tile": "15/5106/12218"
+},
+{
+"name": "Rocky Road",
+"layer": "roads",
+"kind": "path",
+"lon": -123.896535,
+"lat": 41.546618,
+"z": 15,
+"tile": "15/5106/12219"
+},
+{
+"name": "Rocky Road",
+"layer": "roads",
+"kind": "path",
+"lon": -123.908532,
+"lat": 41.548398,
+"z": 15,
+"tile": "15/5105/12219"
+},
+{
+"name": "Rocky Road",
+"layer": "roads",
+"kind": "path",
+"lon": -123.905047,
+"lat": 41.547155,
+"z": 15,
+"tile": "15/5105/12219"
+},
+{
+"name": "Rocky Road",
+"layer": "roads",
+"kind": "path",
+"lon": -123.911734,
+"lat": 41.550427,
+"z": 15,
+"tile": "15/5105/12218"
+},
+{
+"name": "Rocky Road",
+"layer": "roads",
+"kind": "path",
+"lon": -123.903792,
+"lat": 41.555142,
+"z": 15,
+"tile": "15/5105/12218"
 }
 ],
 "meadow road spur m": [
@@ -37976,6 +44384,24 @@
 "lat": 41.764724,
 "z": 14,
 "tile": "14/2558/6096"
+},
+{
+"name": "Jones Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -123.893228,
+"lat": 41.686586,
+"z": 15,
+"tile": "15/5106/12202"
+},
+{
+"name": "Jones Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -123.892948,
+"lat": 41.689375,
+"z": 15,
+"tile": "15/5106/12201"
 }
 ],
 "big flat campground": [
@@ -38016,6 +44442,33 @@
 "lat": 41.699811,
 "z": 14,
 "tile": "14/2553/6100"
+},
+{
+"name": "Old South Kelsey Trail",
+"layer": "roads",
+"kind": "path",
+"lon": -123.905087,
+"lat": 41.692189,
+"z": 15,
+"tile": "15/5105/12201"
+},
+{
+"name": "Old South Kelsey Trail",
+"layer": "roads",
+"kind": "path",
+"lon": -123.900157,
+"lat": 41.701901,
+"z": 15,
+"tile": "15/5106/12200"
+},
+{
+"name": "Old South Kelsey Trail",
+"layer": "roads",
+"kind": "path",
+"lon": -123.902228,
+"lat": 41.695879,
+"z": 15,
+"tile": "15/5106/12201"
 }
 ],
 "hardin mountain": [
@@ -38166,6 +44619,15 @@
 "lat": 41.788475,
 "z": 14,
 "tile": "14/2557/6094"
+},
+{
+"name": "Fox Ridge Road",
+"layer": "roads",
+"kind": "path",
+"lon": -123.895243,
+"lat": 41.701894,
+"z": 15,
+"tile": "15/5106/12200"
 }
 ],
 "ship mountain road spur p": [
@@ -38508,6 +44970,78 @@
 "lat": 41.755434,
 "z": 14,
 "tile": "14/2553/6096"
+},
+{
+"name": "Forest Route 16N21",
+"layer": "roads",
+"kind": "path",
+"lon": -123.915556,
+"lat": 41.721412,
+"z": 15,
+"tile": "15/5104/12198"
+},
+{
+"name": "Forest Route 16N21",
+"layer": "roads",
+"kind": "path",
+"lon": -123.914446,
+"lat": 41.720285,
+"z": 15,
+"tile": "15/5105/12198"
+},
+{
+"name": "Forest Route 16N21",
+"layer": "roads",
+"kind": "path",
+"lon": -123.911944,
+"lat": 41.726605,
+"z": 15,
+"tile": "15/5105/12197"
+},
+{
+"name": "Forest Route 16N21",
+"layer": "roads",
+"kind": "path",
+"lon": -123.915817,
+"lat": 41.723138,
+"z": 15,
+"tile": "15/5104/12197"
+},
+{
+"name": "Forest Route 16N21",
+"layer": "roads",
+"kind": "path",
+"lon": -123.906325,
+"lat": 41.734135,
+"z": 15,
+"tile": "15/5105/12196"
+},
+{
+"name": "Forest Route 16N21",
+"layer": "roads",
+"kind": "path",
+"lon": -123.897947,
+"lat": 41.748362,
+"z": 15,
+"tile": "15/5106/12194"
+},
+{
+"name": "Forest Route 16N21",
+"layer": "roads",
+"kind": "path",
+"lon": -123.902673,
+"lat": 41.743808,
+"z": 15,
+"tile": "15/5106/12195"
+},
+{
+"name": "Forest Route 16N21",
+"layer": "roads",
+"kind": "path",
+"lon": -123.904812,
+"lat": 41.740537,
+"z": 15,
+"tile": "15/5105/12195"
 }
 ],
 "forest route 16n20": [
@@ -38537,6 +45071,60 @@
 "lat": 41.777821,
 "z": 14,
 "tile": "14/2551/6095"
+},
+{
+"name": "Forest Route 16N20",
+"layer": "roads",
+"kind": "path",
+"lon": -123.9239,
+"lat": 41.761339,
+"z": 15,
+"tile": "15/5104/12193"
+},
+{
+"name": "Forest Route 16N20",
+"layer": "roads",
+"kind": "path",
+"lon": -123.922016,
+"lat": 41.766908,
+"z": 15,
+"tile": "15/5104/12192"
+},
+{
+"name": "Forest Route 16N20",
+"layer": "roads",
+"kind": "path",
+"lon": -123.917702,
+"lat": 41.781738,
+"z": 15,
+"tile": "15/5104/12190"
+},
+{
+"name": "Forest Route 16N20",
+"layer": "roads",
+"kind": "path",
+"lon": -123.914192,
+"lat": 41.782267,
+"z": 15,
+"tile": "15/5105/12190"
+},
+{
+"name": "Forest Route 16N20",
+"layer": "roads",
+"kind": "path",
+"lon": -123.918601,
+"lat": 41.776601,
+"z": 15,
+"tile": "15/5104/12191"
+},
+{
+"name": "Forest Route 16N20",
+"layer": "roads",
+"kind": "path",
+"lon": -123.928828,
+"lat": 41.779605,
+"z": 15,
+"tile": "15/5103/12190"
 }
 ],
 "smith river national recreation area": [
@@ -39674,6 +46262,69 @@
 "lat": 41.849756,
 "z": 14,
 "tile": "14/2552/6091"
+},
+{
+"name": "Eighteenmile Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -123.900008,
+"lat": 41.874318,
+"z": 15,
+"tile": "15/5106/12179"
+},
+{
+"name": "Eighteenmile Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -123.896605,
+"lat": 41.881385,
+"z": 15,
+"tile": "15/5106/12178"
+},
+{
+"name": "Eighteenmile Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -123.916621,
+"lat": 41.853675,
+"z": 15,
+"tile": "15/5104/12181"
+},
+{
+"name": "Eighteenmile Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -123.911961,
+"lat": 41.857364,
+"z": 15,
+"tile": "15/5105/12181"
+},
+{
+"name": "Eighteenmile Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -123.907283,
+"lat": 41.864101,
+"z": 15,
+"tile": "15/5105/12180"
+},
+{
+"name": "Eighteenmile Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -123.902391,
+"lat": 41.867774,
+"z": 15,
+"tile": "15/5106/12180"
+},
+{
+"name": "Eighteenmile Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -123.919746,
+"lat": 41.849526,
+"z": 15,
+"tile": "15/5104/12182"
 }
 ],
 "cold spring mountain": [
@@ -39759,6 +46410,78 @@
 "lat": 41.92117,
 "z": 14,
 "tile": "14/2553/6086"
+},
+{
+"name": "Stony Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -123.924051,
+"lat": 41.881789,
+"z": 15,
+"tile": "15/5104/12178"
+},
+{
+"name": "Stony Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -123.925453,
+"lat": 41.877126,
+"z": 15,
+"tile": "15/5104/12179"
+},
+{
+"name": "Stony Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -123.961055,
+"lat": 41.86179,
+"z": 15,
+"tile": "15/5100/12180"
+},
+{
+"name": "Stony Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -123.952892,
+"lat": 41.861945,
+"z": 15,
+"tile": "15/5101/12180"
+},
+{
+"name": "Stony Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -123.962986,
+"lat": 41.861393,
+"z": 15,
+"tile": "15/5100/12181"
+},
+{
+"name": "Stony Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -123.9417,
+"lat": 41.862753,
+"z": 15,
+"tile": "15/5102/12180"
+},
+{
+"name": "Stony Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -123.932792,
+"lat": 41.86608,
+"z": 15,
+"tile": "15/5103/12180"
+},
+{
+"name": "Stony Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -123.928231,
+"lat": 41.873243,
+"z": 15,
+"tile": "15/5103/12179"
 }
 ],
 "grassy flat campground": [
@@ -39801,6 +46524,15 @@
 "lat": 41.850505,
 "z": 14,
 "tile": "14/2552/6091"
+},
+{
+"name": "Darlingtonia Trail",
+"layer": "roads",
+"kind": "path",
+"lon": -123.90816,
+"lat": 41.850496,
+"z": 15,
+"tile": "15/5105/12182"
 }
 ],
 "craigs creek": [
@@ -39884,6 +46616,204 @@
 "lat": 41.790699,
 "z": 14,
 "tile": "14/2547/6094"
+},
+{
+"name": "Craigs Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -123.906066,
+"lat": 41.82861,
+"z": 15,
+"tile": "15/5105/12184"
+},
+{
+"name": "Craigs Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -123.909175,
+"lat": 41.82753,
+"z": 15,
+"tile": "15/5105/12185"
+},
+{
+"name": "Craigs Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -123.91748,
+"lat": 41.823052,
+"z": 15,
+"tile": "15/5104/12185"
+},
+{
+"name": "Craigs Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -123.9211,
+"lat": 41.815861,
+"z": 15,
+"tile": "15/5104/12186"
+},
+{
+"name": "Craigs Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -123.924695,
+"lat": 41.811243,
+"z": 15,
+"tile": "15/5104/12187"
+},
+{
+"name": "Craigs Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -123.899018,
+"lat": 41.825996,
+"z": 15,
+"tile": "15/5106/12185"
+},
+{
+"name": "Craigs Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -123.903703,
+"lat": 41.828619,
+"z": 15,
+"tile": "15/5106/12184"
+},
+{
+"name": "Craigs Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -123.954116,
+"lat": 41.794769,
+"z": 15,
+"tile": "15/5101/12189"
+},
+{
+"name": "Craigs Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -123.961152,
+"lat": 41.795037,
+"z": 15,
+"tile": "15/5100/12189"
+},
+{
+"name": "Craigs Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -123.966645,
+"lat": 41.79757,
+"z": 15,
+"tile": "15/5100/12188"
+},
+{
+"name": "Craigs Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -123.947657,
+"lat": 41.79576,
+"z": 15,
+"tile": "15/5101/12188"
+},
+{
+"name": "Craigs Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -123.942241,
+"lat": 41.798436,
+"z": 15,
+"tile": "15/5102/12188"
+},
+{
+"name": "Craigs Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -123.946866,
+"lat": 41.795821,
+"z": 15,
+"tile": "15/5102/12189"
+},
+{
+"name": "Craigs Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -123.93419,
+"lat": 41.802101,
+"z": 15,
+"tile": "15/5103/12188"
+},
+{
+"name": "Craigs Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -123.928762,
+"lat": 41.807707,
+"z": 15,
+"tile": "15/5103/12187"
+},
+{
+"name": "Craigs Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -124.005719,
+"lat": 41.798113,
+"z": 15,
+"tile": "15/5096/12188"
+},
+{
+"name": "Craigs Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -124.010176,
+"lat": 41.794129,
+"z": 15,
+"tile": "15/5096/12189"
+},
+{
+"name": "Craigs Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -123.996853,
+"lat": 41.799191,
+"z": 15,
+"tile": "15/5097/12188"
+},
+{
+"name": "Craigs Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -123.98655,
+"lat": 41.799311,
+"z": 15,
+"tile": "15/5098/12188"
+},
+{
+"name": "Craigs Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -123.974738,
+"lat": 41.800673,
+"z": 15,
+"tile": "15/5099/12188"
+},
+{
+"name": "Craigs Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -124.01984,
+"lat": 41.790722,
+"z": 15,
+"tile": "15/5095/12189"
+},
+{
+"name": "Craigs Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -124.025146,
+"lat": 41.789589,
+"z": 15,
+"tile": "15/5094/12189"
 }
 ],
 "forest route 17n07": [
@@ -39967,6 +46897,159 @@
 "lat": 41.782518,
 "z": 14,
 "tile": "14/2549/6095"
+},
+{
+"name": "Forest Route 17N07",
+"layer": "roads",
+"kind": "path",
+"lon": -123.90603,
+"lat": 41.808412,
+"z": 15,
+"tile": "15/5105/12187"
+},
+{
+"name": "Forest Route 17N07",
+"layer": "roads",
+"kind": "path",
+"lon": -123.904647,
+"lat": 41.813026,
+"z": 15,
+"tile": "15/5105/12186"
+},
+{
+"name": "Forest Route 17N07",
+"layer": "roads",
+"kind": "path",
+"lon": -123.898185,
+"lat": 41.817161,
+"z": 15,
+"tile": "15/5106/12186"
+},
+{
+"name": "Forest Route 17N07",
+"layer": "roads",
+"kind": "path",
+"lon": -123.893371,
+"lat": 41.821313,
+"z": 15,
+"tile": "15/5106/12185"
+},
+{
+"name": "Forest Route 17N07",
+"layer": "roads",
+"kind": "path",
+"lon": -123.910783,
+"lat": 41.791725,
+"z": 15,
+"tile": "15/5105/12189"
+},
+{
+"name": "Forest Route 17N07",
+"layer": "roads",
+"kind": "path",
+"lon": -123.907725,
+"lat": 41.799281,
+"z": 15,
+"tile": "15/5105/12188"
+},
+{
+"name": "Forest Route 17N07",
+"layer": "roads",
+"kind": "path",
+"lon": -123.918136,
+"lat": 41.789124,
+"z": 15,
+"tile": "15/5104/12189"
+},
+{
+"name": "Forest Route 17N07",
+"layer": "roads",
+"kind": "path",
+"lon": -123.931784,
+"lat": 41.782456,
+"z": 15,
+"tile": "15/5103/12190"
+},
+{
+"name": "Forest Route 17N07",
+"layer": "roads",
+"kind": "path",
+"lon": -123.941895,
+"lat": 41.782502,
+"z": 15,
+"tile": "15/5102/12190"
+},
+{
+"name": "Forest Route 17N07",
+"layer": "roads",
+"kind": "path",
+"lon": -123.954144,
+"lat": 41.775819,
+"z": 15,
+"tile": "15/5101/12191"
+},
+{
+"name": "Forest Route 17N07",
+"layer": "roads",
+"kind": "path",
+"lon": -123.965128,
+"lat": 41.777465,
+"z": 15,
+"tile": "15/5100/12191"
+},
+{
+"name": "Forest Route 17N07",
+"layer": "roads",
+"kind": "path",
+"lon": -123.968987,
+"lat": 41.780501,
+"z": 15,
+"tile": "15/5100/12190"
+},
+{
+"name": "Forest Route 17N07",
+"layer": "roads",
+"kind": "path",
+"lon": -123.948916,
+"lat": 41.78027,
+"z": 15,
+"tile": "15/5101/12190"
+},
+{
+"name": "Forest Route 17N07",
+"layer": "roads",
+"kind": "path",
+"lon": -123.978127,
+"lat": 41.794286,
+"z": 15,
+"tile": "15/5099/12189"
+},
+{
+"name": "Forest Route 17N07",
+"layer": "roads",
+"kind": "path",
+"lon": -123.982253,
+"lat": 41.791318,
+"z": 15,
+"tile": "15/5098/12189"
+},
+{
+"name": "Forest Route 17N07",
+"layer": "roads",
+"kind": "path",
+"lon": -123.983416,
+"lat": 41.784372,
+"z": 15,
+"tile": "15/5098/12190"
+},
+{
+"name": "Forest Route 17N07",
+"layer": "roads",
+"kind": "path",
+"lon": -123.975504,
+"lat": 41.781472,
+"z": 15,
+"tile": "15/5099/12190"
 }
 ],
 "upper coon mountain": [
@@ -40038,6 +47121,51 @@
 "lat": 41.802617,
 "z": 14,
 "tile": "14/2549/6094"
+},
+{
+"name": "Redwood Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -123.967751,
+"lat": 41.824335,
+"z": 15,
+"tile": "15/5100/12185"
+},
+{
+"name": "Redwood Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -123.974471,
+"lat": 41.808115,
+"z": 15,
+"tile": "15/5099/12187"
+},
+{
+"name": "Redwood Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -123.974121,
+"lat": 41.816789,
+"z": 15,
+"tile": "15/5099/12186"
+},
+{
+"name": "Redwood Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -123.97255,
+"lat": 41.821772,
+"z": 15,
+"tile": "15/5099/12185"
+},
+{
+"name": "Redwood Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -123.972726,
+"lat": 41.802627,
+"z": 15,
+"tile": "15/5099/12188"
 }
 ],
 "tyson mine road": [
@@ -40058,6 +47186,42 @@
 "lat": 41.812202,
 "z": 14,
 "tile": "14/2548/6093"
+},
+{
+"name": "Tyson Mine Road",
+"layer": "roads",
+"kind": "path",
+"lon": -123.989955,
+"lat": 41.812348,
+"z": 15,
+"tile": "15/5098/12187"
+},
+{
+"name": "Tyson Mine Road",
+"layer": "roads",
+"kind": "path",
+"lon": -123.988314,
+"lat": 41.813692,
+"z": 15,
+"tile": "15/5098/12186"
+},
+{
+"name": "Tyson Mine Road",
+"layer": "roads",
+"kind": "path",
+"lon": -123.992072,
+"lat": 41.812327,
+"z": 15,
+"tile": "15/5097/12186"
+},
+{
+"name": "Tyson Mine Road",
+"layer": "roads",
+"kind": "path",
+"lon": -123.992628,
+"lat": 41.812086,
+"z": 15,
+"tile": "15/5097/12187"
 }
 ],
 "17n41": [
@@ -40078,6 +47242,24 @@
 "lat": 41.822204,
 "z": 14,
 "tile": "14/2549/6092"
+},
+{
+"name": "17N41",
+"layer": "roads",
+"kind": "path",
+"lon": -123.988655,
+"lat": 41.819365,
+"z": 15,
+"tile": "15/5098/12186"
+},
+{
+"name": "17N41",
+"layer": "roads",
+"kind": "path",
+"lon": -123.985892,
+"lat": 41.822253,
+"z": 15,
+"tile": "15/5098/12185"
 }
 ],
 "french hill trail": [
@@ -40107,6 +47289,42 @@
 "lat": 41.84125,
 "z": 14,
 "tile": "14/2550/6091"
+},
+{
+"name": "French Hill Trail",
+"layer": "roads",
+"kind": "path",
+"lon": -123.972761,
+"lat": 41.828565,
+"z": 15,
+"tile": "15/5099/12185"
+},
+{
+"name": "French Hill Trail",
+"layer": "roads",
+"kind": "path",
+"lon": -123.972507,
+"lat": 41.833333,
+"z": 15,
+"tile": "15/5099/12184"
+},
+{
+"name": "French Hill Trail",
+"layer": "roads",
+"kind": "path",
+"lon": -123.972007,
+"lat": 41.837397,
+"z": 15,
+"tile": "15/5099/12183"
+},
+{
+"name": "French Hill Trail",
+"layer": "roads",
+"kind": "path",
+"lon": -123.966994,
+"lat": 41.841384,
+"z": 15,
+"tile": "15/5100/12183"
 }
 ],
 "17w26a": [
@@ -40127,6 +47345,33 @@
 "lat": 41.820301,
 "z": 14,
 "tile": "14/2548/6093"
+},
+{
+"name": "17W26A",
+"layer": "roads",
+"kind": "path",
+"lon": -124.002372,
+"lat": 41.825454,
+"z": 15,
+"tile": "15/5097/12185"
+},
+{
+"name": "17W26A",
+"layer": "roads",
+"kind": "path",
+"lon": -124.003523,
+"lat": 41.823264,
+"z": 15,
+"tile": "15/5096/12185"
+},
+{
+"name": "17W26A",
+"layer": "roads",
+"kind": "path",
+"lon": -124.003049,
+"lat": 41.820225,
+"z": 15,
+"tile": "15/5096/12186"
 }
 ],
 "craigs creek trail": [
@@ -40156,6 +47401,60 @@
 "lat": 41.797279,
 "z": 14,
 "tile": "14/2546/6094"
+},
+{
+"name": "Craigs Creek Trail",
+"layer": "roads",
+"kind": "path",
+"lon": -124.012297,
+"lat": 41.793933,
+"z": 15,
+"tile": "15/5096/12189"
+},
+{
+"name": "Craigs Creek Trail",
+"layer": "roads",
+"kind": "path",
+"lon": -124.019787,
+"lat": 41.792185,
+"z": 15,
+"tile": "15/5095/12189"
+},
+{
+"name": "Craigs Creek Trail",
+"layer": "roads",
+"kind": "path",
+"lon": -124.034613,
+"lat": 41.796156,
+"z": 15,
+"tile": "15/5094/12188"
+},
+{
+"name": "Craigs Creek Trail",
+"layer": "roads",
+"kind": "path",
+"lon": -124.028596,
+"lat": 41.79404,
+"z": 15,
+"tile": "15/5094/12189"
+},
+{
+"name": "Craigs Creek Trail",
+"layer": "roads",
+"kind": "path",
+"lon": -124.041181,
+"lat": 41.796937,
+"z": 15,
+"tile": "15/5093/12188"
+},
+{
+"name": "Craigs Creek Trail",
+"layer": "roads",
+"kind": "path",
+"lon": -124.051349,
+"lat": 41.797709,
+"z": 15,
+"tile": "15/5092/12188"
 }
 ],
 "forest route 16n36": [
@@ -40176,6 +47475,33 @@
 "lat": 41.785224,
 "z": 14,
 "tile": "14/2548/6095"
+},
+{
+"name": "Forest Route 16N36",
+"layer": "roads",
+"kind": "path",
+"lon": -123.98553,
+"lat": 41.782121,
+"z": 15,
+"tile": "15/5098/12190"
+},
+{
+"name": "Forest Route 16N36",
+"layer": "roads",
+"kind": "path",
+"lon": -123.980492,
+"lat": 41.780661,
+"z": 15,
+"tile": "15/5099/12190"
+},
+{
+"name": "Forest Route 16N36",
+"layer": "roads",
+"kind": "path",
+"lon": -123.996048,
+"lat": 41.785205,
+"z": 15,
+"tile": "15/5097/12190"
 }
 ],
 "craigs creek mountain": [
@@ -40252,6 +47578,60 @@
 "lat": 41.803858,
 "z": 14,
 "tile": "14/2546/6093"
+},
+{
+"name": "Myrtle Creek Trail",
+"layer": "roads",
+"kind": "path",
+"lon": -124.056978,
+"lat": 41.801314,
+"z": 15,
+"tile": "15/5092/12188"
+},
+{
+"name": "Myrtle Creek Trail",
+"layer": "roads",
+"kind": "path",
+"lon": -124.057785,
+"lat": 41.803796,
+"z": 15,
+"tile": "15/5091/12188"
+},
+{
+"name": "Myrtle Creek Trail",
+"layer": "roads",
+"kind": "path",
+"lon": -124.058818,
+"lat": 41.802739,
+"z": 15,
+"tile": "15/5091/12188"
+},
+{
+"name": "Myrtle Creek Trail",
+"layer": "roads",
+"kind": "path",
+"lon": -124.058115,
+"lat": 41.803987,
+"z": 15,
+"tile": "15/5091/12187"
+},
+{
+"name": "Myrtle Creek Trail",
+"layer": "roads",
+"kind": "path",
+"lon": -124.062539,
+"lat": 41.807066,
+"z": 15,
+"tile": "15/5091/12187"
+},
+{
+"name": "Myrtle Creek Trail",
+"layer": "roads",
+"kind": "path",
+"lon": -124.064894,
+"lat": 41.812361,
+"z": 15,
+"tile": "15/5091/12186"
 }
 ],
 "myrtle creek": [
@@ -40335,6 +47715,123 @@
 "lat": 41.870028,
 "z": 14,
 "tile": "14/2546/6089"
+},
+{
+"name": "Myrtle Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -124.061819,
+"lat": 41.807863,
+"z": 15,
+"tile": "15/5091/12187"
+},
+{
+"name": "Myrtle Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -124.063377,
+"lat": 41.815811,
+"z": 15,
+"tile": "15/5091/12186"
+},
+{
+"name": "Myrtle Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -124.061437,
+"lat": 41.824893,
+"z": 15,
+"tile": "15/5091/12185"
+},
+{
+"name": "Myrtle Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -124.060954,
+"lat": 41.832496,
+"z": 15,
+"tile": "15/5091/12184"
+},
+{
+"name": "Myrtle Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -124.057345,
+"lat": 41.86788,
+"z": 15,
+"tile": "15/5092/12180"
+},
+{
+"name": "Myrtle Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -124.064497,
+"lat": 41.84185,
+"z": 15,
+"tile": "15/5091/12183"
+},
+{
+"name": "Myrtle Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -124.0636,
+"lat": 41.848892,
+"z": 15,
+"tile": "15/5091/12182"
+},
+{
+"name": "Myrtle Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -124.068719,
+"lat": 41.856073,
+"z": 15,
+"tile": "15/5090/12181"
+},
+{
+"name": "Myrtle Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -124.066624,
+"lat": 41.85747,
+"z": 15,
+"tile": "15/5091/12181"
+},
+{
+"name": "Myrtle Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -124.06008,
+"lat": 41.864342,
+"z": 15,
+"tile": "15/5091/12180"
+},
+{
+"name": "Myrtle Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -124.059356,
+"lat": 41.874075,
+"z": 15,
+"tile": "15/5091/12179"
+},
+{
+"name": "Myrtle Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -124.059589,
+"lat": 41.878768,
+"z": 15,
+"tile": "15/5091/12178"
+},
+{
+"name": "Myrtle Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -124.057368,
+"lat": 41.870164,
+"z": 15,
+"tile": "15/5092/12179"
 }
 ],
 "sheep pen creek": [
@@ -40355,6 +47852,42 @@
 "lat": 41.778901,
 "z": 14,
 "tile": "14/2546/6095"
+},
+{
+"name": "Sheep Pen Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -124.05518,
+"lat": 41.788011,
+"z": 15,
+"tile": "15/5092/12189"
+},
+{
+"name": "Sheep Pen Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -124.053705,
+"lat": 41.783863,
+"z": 15,
+"tile": "15/5092/12190"
+},
+{
+"name": "Sheep Pen Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -124.041343,
+"lat": 41.773411,
+"z": 15,
+"tile": "15/5093/12191"
+},
+{
+"name": "Sheep Pen Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -124.048944,
+"lat": 41.776748,
+"z": 15,
+"tile": "15/5092/12191"
 }
 ],
 "jedediah smith redwoods state park": [
@@ -40486,6 +48019,15 @@
 "lat": 41.792947,
 "z": 15,
 "tile": "15/5089/12189"
+},
+{
+"name": "River Trail",
+"layer": "roads",
+"kind": "path",
+"lon": -124.076034,
+"lat": 41.790232,
+"z": 15,
+"tile": "15/5090/12189"
 }
 ],
 "summer foot bridge": [
@@ -40656,6 +48198,15 @@
 "lat": 41.804937,
 "z": 15,
 "tile": "15/5089/12187"
+},
+{
+"name": "Hiouchi Trail",
+"layer": "roads",
+"kind": "path",
+"lon": -124.076508,
+"lat": 41.792704,
+"z": 15,
+"tile": "15/5090/12189"
 }
 ],
 "wellman trail": [
@@ -40703,6 +48254,24 @@
 "lat": 41.801378,
 "z": 15,
 "tile": "15/5089/12188"
+},
+{
+"name": "Wellman Trail",
+"layer": "roads",
+"kind": "path",
+"lon": -124.079606,
+"lat": 41.802466,
+"z": 15,
+"tile": "15/5090/12188"
+},
+{
+"name": "Wellman Trail",
+"layer": "roads",
+"kind": "path",
+"lon": -124.079707,
+"lat": 41.804617,
+"z": 15,
+"tile": "15/5090/12187"
 }
 ],
 "river trail;stout grove trail": [
@@ -40861,6 +48430,87 @@
 "lat": 41.90659,
 "z": 14,
 "tile": "14/2547/6087"
+},
+{
+"name": "Hardscrabble Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -124.027083,
+"lat": 41.841742,
+"z": 15,
+"tile": "15/5094/12183"
+},
+{
+"name": "Hardscrabble Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -124.026824,
+"lat": 41.846311,
+"z": 15,
+"tile": "15/5094/12182"
+},
+{
+"name": "Hardscrabble Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -124.020971,
+"lat": 41.8497,
+"z": 15,
+"tile": "15/5095/12182"
+},
+{
+"name": "Hardscrabble Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -124.017017,
+"lat": 41.857173,
+"z": 15,
+"tile": "15/5095/12181"
+},
+{
+"name": "Hardscrabble Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -124.02977,
+"lat": 41.883143,
+"z": 15,
+"tile": "15/5094/12178"
+},
+{
+"name": "Hardscrabble Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -124.01662,
+"lat": 41.875698,
+"z": 15,
+"tile": "15/5095/12179"
+},
+{
+"name": "Hardscrabble Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -124.020744,
+"lat": 41.879249,
+"z": 15,
+"tile": "15/5095/12178"
+},
+{
+"name": "Hardscrabble Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -124.011025,
+"lat": 41.864932,
+"z": 15,
+"tile": "15/5096/12180"
+},
+{
+"name": "Hardscrabble Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -124.012885,
+"lat": 41.860861,
+"z": 15,
+"tile": "15/5096/12181"
 }
 ],
 "coldwater creek": [
@@ -40899,6 +48549,33 @@
 "lat": 41.85335,
 "z": 14,
 "tile": "14/2546/6091"
+},
+{
+"name": "Coldwater Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -124.032036,
+"lat": 41.848599,
+"z": 15,
+"tile": "15/5094/12182"
+},
+{
+"name": "Coldwater Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -124.039129,
+"lat": 41.857417,
+"z": 15,
+"tile": "15/5093/12181"
+},
+{
+"name": "Coldwater Creek",
+"layer": "water",
+"kind": "stream",
+"lon": -124.041346,
+"lat": 41.864454,
+"z": 15,
+"tile": "15/5093/12180"
 }
 ],
 "forest route 17n21": [
@@ -40937,6 +48614,69 @@
 "lat": 41.872073,
 "z": 14,
 "tile": "14/2547/6089"
+},
+{
+"name": "Forest Route 17N21",
+"layer": "roads",
+"kind": "path",
+"lon": -124.024915,
+"lat": 41.869486,
+"z": 15,
+"tile": "15/5094/12180"
+},
+{
+"name": "Forest Route 17N21",
+"layer": "roads",
+"kind": "path",
+"lon": -124.060236,
+"lat": 41.880941,
+"z": 15,
+"tile": "15/5091/12178"
+},
+{
+"name": "Forest Route 17N21",
+"layer": "roads",
+"kind": "path",
+"lon": -124.057322,
+"lat": 41.878958,
+"z": 15,
+"tile": "15/5092/12178"
+},
+{
+"name": "Forest Route 17N21",
+"layer": "roads",
+"kind": "path",
+"lon": -124.052142,
+"lat": 41.873741,
+"z": 15,
+"tile": "15/5092/12179"
+},
+{
+"name": "Forest Route 17N21",
+"layer": "roads",
+"kind": "path",
+"lon": -124.040113,
+"lat": 41.871932,
+"z": 15,
+"tile": "15/5093/12179"
+},
+{
+"name": "Forest Route 17N21",
+"layer": "roads",
+"kind": "path",
+"lon": -124.027756,
+"lat": 41.872133,
+"z": 15,
+"tile": "15/5094/12179"
+},
+{
+"name": "Forest Route 17N21",
+"layer": "roads",
+"kind": "path",
+"lon": -124.0244,
+"lat": 41.872406,
+"z": 15,
+"tile": "15/5095/12179"
 }
 ],
 "forest route 17n22": [
@@ -40966,6 +48706,69 @@
 "lat": 41.870667,
 "z": 14,
 "tile": "14/2546/6089"
+},
+{
+"name": "Forest Route 17N22",
+"layer": "roads",
+"kind": "path",
+"lon": -124.046187,
+"lat": 41.866782,
+"z": 15,
+"tile": "15/5093/12180"
+},
+{
+"name": "Forest Route 17N22",
+"layer": "roads",
+"kind": "path",
+"lon": -124.047659,
+"lat": 41.863941,
+"z": 15,
+"tile": "15/5092/12180"
+},
+{
+"name": "Forest Route 17N22",
+"layer": "roads",
+"kind": "path",
+"lon": -124.050757,
+"lat": 41.857667,
+"z": 15,
+"tile": "15/5092/12181"
+},
+{
+"name": "Forest Route 17N22",
+"layer": "roads",
+"kind": "path",
+"lon": -124.051014,
+"lat": 41.850285,
+"z": 15,
+"tile": "15/5092/12182"
+},
+{
+"name": "Forest Route 17N22",
+"layer": "roads",
+"kind": "path",
+"lon": -124.044585,
+"lat": 41.848072,
+"z": 15,
+"tile": "15/5093/12182"
+},
+{
+"name": "Forest Route 17N22",
+"layer": "roads",
+"kind": "path",
+"lon": -124.048152,
+"lat": 41.870755,
+"z": 15,
+"tile": "15/5092/12179"
+},
+{
+"name": "Forest Route 17N22",
+"layer": "roads",
+"kind": "path",
+"lon": -124.046527,
+"lat": 41.869641,
+"z": 15,
+"tile": "15/5093/12179"
 }
 ],
 "feather canyon road": [
@@ -41004,6 +48807,51 @@
 "lat": 41.872192,
 "z": 14,
 "tile": "14/2546/6089"
+},
+{
+"name": "Feather Canyon Road",
+"layer": "roads",
+"kind": "path",
+"lon": -124.056573,
+"lat": 41.86555,
+"z": 15,
+"tile": "15/5092/12180"
+},
+{
+"name": "Feather Canyon Road",
+"layer": "roads",
+"kind": "path",
+"lon": -124.053834,
+"lat": 41.86022,
+"z": 15,
+"tile": "15/5092/12181"
+},
+{
+"name": "Feather Canyon Road",
+"layer": "roads",
+"kind": "path",
+"lon": -124.057899,
+"lat": 41.86357,
+"z": 15,
+"tile": "15/5091/12180"
+},
+{
+"name": "Feather Canyon Road",
+"layer": "roads",
+"kind": "path",
+"lon": -124.057559,
+"lat": 41.873764,
+"z": 15,
+"tile": "15/5091/12179"
+},
+{
+"name": "Feather Canyon Road",
+"layer": "roads",
+"kind": "path",
+"lon": -124.056586,
+"lat": 41.872333,
+"z": 15,
+"tile": "15/5092/12179"
 }
 ],
 "ruiz canyon drive": [
@@ -41024,6 +48872,51 @@
 "lat": 41.859871,
 "z": 14,
 "tile": "14/2545/6090"
+},
+{
+"name": "Ruiz Canyon Drive",
+"layer": "roads",
+"kind": "path",
+"lon": -124.057157,
+"lat": 41.861602,
+"z": 15,
+"tile": "15/5092/12180"
+},
+{
+"name": "Ruiz Canyon Drive",
+"layer": "roads",
+"kind": "path",
+"lon": -124.055464,
+"lat": 41.860974,
+"z": 15,
+"tile": "15/5092/12181"
+},
+{
+"name": "Ruiz Canyon Drive",
+"layer": "roads",
+"kind": "path",
+"lon": -124.069604,
+"lat": 41.857487,
+"z": 15,
+"tile": "15/5090/12181"
+},
+{
+"name": "Ruiz Canyon Drive",
+"layer": "roads",
+"kind": "path",
+"lon": -124.066102,
+"lat": 41.85967,
+"z": 15,
+"tile": "15/5091/12181"
+},
+{
+"name": "Ruiz Canyon Drive",
+"layer": "roads",
+"kind": "path",
+"lon": -124.061621,
+"lat": 41.862422,
+"z": 15,
+"tile": "15/5091/12180"
 }
 ],
 "signal peak": [
@@ -41084,6 +48977,15 @@
 "lat": 41.888485,
 "z": 14,
 "tile": "14/2545/6088"
+},
+{
+"name": "Sultan Creek Road",
+"layer": "roads",
+"kind": "path",
+"lon": -124.068537,
+"lat": 41.883754,
+"z": 15,
+"tile": "15/5091/12178"
 }
 ],
 "north fork smith river": [
@@ -41275,6 +49177,60 @@
 "lat": 42.0577,
 "z": 14,
 "tile": "14/2549/6078"
+},
+{
+"name": "North Fork Smith River",
+"layer": "water",
+"kind": "river",
+"lon": -123.970535,
+"lat": 41.854227,
+"z": 15,
+"tile": "15/5099/12181"
+},
+{
+"name": "North Fork Smith River",
+"layer": "water",
+"kind": "river",
+"lon": -123.964026,
+"lat": 41.864695,
+"z": 15,
+"tile": "15/5100/12180"
+},
+{
+"name": "North Fork Smith River",
+"layer": "water",
+"kind": "river",
+"lon": -123.966074,
+"lat": 41.859142,
+"z": 15,
+"tile": "15/5100/12181"
+},
+{
+"name": "North Fork Smith River",
+"layer": "water",
+"kind": "river",
+"lon": -123.968844,
+"lat": 41.849513,
+"z": 15,
+"tile": "15/5100/12182"
+},
+{
+"name": "North Fork Smith River",
+"layer": "water",
+"kind": "river",
+"lon": -123.963488,
+"lat": 41.874164,
+"z": 15,
+"tile": "15/5100/12179"
+},
+{
+"name": "North Fork Smith River",
+"layer": "water",
+"kind": "river",
+"lon": -123.96238,
+"lat": 41.882438,
+"z": 15,
+"tile": "15/5100/12178"
 }
 ],
 "peridotite canyon": [
@@ -45710,6 +53666,15 @@
 "lat": 41.752595,
 "z": 15,
 "tile": "15/5080/12194"
+},
+{
+"name": "Chevron",
+"layer": "pois",
+"kind": "fuel",
+"lon": -124.071535,
+"lat": 41.793111,
+"z": 15,
+"tile": "15/5090/12189"
 }
 ],
 "t-mobile": [
@@ -45983,6 +53948,682 @@
 "lat": 41.791773,
 "z": 15,
 "tile": "15/5089/12189"
+}
+],
+"kellogg road beach": [
+{
+"name": "Kellogg Road Beach",
+"layer": "pois",
+"kind": "beach",
+"lon": -124.212584,
+"lat": 41.869279,
+"z": 15,
+"tile": "15/5077/12180"
+}
+],
+"county park": [
+{
+"name": "County park",
+"layer": "pois",
+"kind": "camp_site",
+"lon": -124.121526,
+"lat": 41.853364,
+"z": 15,
+"tile": "15/5086/12181"
+}
+],
+"united stated postal service - fort dick": [
+{
+"name": "United Stated Postal Service - Fort Dick",
+"layer": "pois",
+"kind": "post_depot",
+"lon": -124.150974,
+"lat": 41.86543,
+"z": 15,
+"tile": "15/5083/12180"
+}
+],
+"sea west": [
+{
+"name": "Sea West",
+"layer": "pois",
+"kind": "restaurant",
+"lon": -124.150749,
+"lat": 41.864721,
+"z": 15,
+"tile": "15/5083/12180"
+}
+],
+"pelican bay": [
+{
+"name": "Pelican Bay",
+"layer": "pois",
+"kind": "bay",
+"lon": -124.230917,
+"lat": 41.835113,
+"z": 15,
+"tile": "15/5076/12184"
+},
+{
+"name": "Pelican Bay",
+"layer": "water",
+"kind": "bay",
+"lon": -124.230917,
+"lat": 41.835113,
+"z": 15,
+"tile": "15/5076/12184"
+}
+],
+"false klamath rock": [
+{
+"name": "False Klamath Rock",
+"layer": "pois",
+"kind": "coastline",
+"lon": -124.111674,
+"lat": 41.593942,
+"z": 15,
+"tile": "15/5087/12213"
+}
+],
+"false klamath cove": [
+{
+"name": "False Klamath Cove",
+"layer": "pois",
+"kind": "bay",
+"lon": -124.101742,
+"lat": 41.600118,
+"z": 15,
+"tile": "15/5087/12212"
+},
+{
+"name": "False Klamath Cove",
+"layer": "water",
+"kind": "bay",
+"lon": -124.101742,
+"lat": 41.600118,
+"z": 15,
+"tile": "15/5087/12212"
+}
+],
+"demartin campground": [
+{
+"name": "DeMartin Campground",
+"layer": "pois",
+"kind": "camp_site",
+"lon": -124.106624,
+"lat": 41.625358,
+"z": 15,
+"tile": "15/5087/12209"
+}
+],
+"alfred anson": [
+{
+"name": "Alfred Anson",
+"layer": "pois",
+"kind": "memorial",
+"lon": -124.133947,
+"lat": 41.673513,
+"z": 15,
+"tile": "15/5085/12203"
+}
+],
+"little bald hills camp": [
+{
+"name": "Little Bald Hills Camp",
+"layer": "pois",
+"kind": "camp_site",
+"lon": -124.046196,
+"lat": 41.769909,
+"z": 15,
+"tile": "15/5093/12192"
+}
+],
+"fourth of july mine": [
+{
+"name": "Fourth of July Mine",
+"layer": "pois",
+"kind": "quarry",
+"lon": -123.975351,
+"lat": 41.750948,
+"z": 15,
+"tile": "15/5099/12194"
+}
+],
+"hawkins mine": [
+{
+"name": "Hawkins Mine",
+"layer": "pois",
+"kind": "quarry",
+"lon": -123.977296,
+"lat": 41.751224,
+"z": 15,
+"tile": "15/5099/12194"
+}
+],
+"chrome mine": [
+{
+"name": "Chrome Mine",
+"layer": "pois",
+"kind": "quarry",
+"lon": -123.934517,
+"lat": 41.672339,
+"z": 15,
+"tile": "15/5103/12204"
+}
+],
+"mystic forest rv park": [
+{
+"name": "Mystic Forest RV Park",
+"layer": "pois",
+"kind": "camp_site",
+"lon": -124.074719,
+"lat": 41.576131,
+"z": 15,
+"tile": "15/5090/12215"
+}
+],
+"renner petroleum": [
+{
+"name": "Renner Petroleum",
+"layer": "pois",
+"kind": "fuel",
+"lon": -124.074461,
+"lat": 41.578214,
+"z": 15,
+"tile": "15/5090/12215"
+}
+],
+"skytrail observation deck": [
+{
+"name": "SkyTrail Observation Deck",
+"layer": "pois",
+"kind": "viewpoint",
+"lon": -124.078147,
+"lat": 41.588632,
+"z": 15,
+"tile": "15/5090/12214"
+}
+],
+"yurok redwood experimental forest": [
+{
+"name": "Yurok Redwood Experimental Forest",
+"layer": "pois",
+"kind": "forest",
+"lon": -124.063963,
+"lat": 41.592341,
+"z": 15,
+"tile": "15/5091/12213"
+}
+],
+"wilson creek beach": [
+{
+"name": "Wilson Creek Beach",
+"layer": "pois",
+"kind": "beach",
+"lon": -124.100353,
+"lat": 41.602062,
+"z": 15,
+"tile": "15/5088/12212"
+}
+],
+"skytrail": [
+{
+"name": "SkyTrail",
+"layer": "pois",
+"kind": "attraction",
+"lon": -124.081867,
+"lat": 41.585731,
+"z": 15,
+"tile": "15/5089/12214"
+}
+],
+"towering inferno": [
+{
+"name": "Towering Inferno",
+"layer": "pois",
+"kind": "attraction",
+"lon": -124.08261,
+"lat": 41.586169,
+"z": 15,
+"tile": "15/5089/12214"
+}
+],
+"brotherhood tree": [
+{
+"name": "Brotherhood Tree",
+"layer": "pois",
+"kind": "attraction",
+"lon": -124.081859,
+"lat": 41.58528,
+"z": 15,
+"tile": "15/5089/12214"
+}
+],
+"cathedral tree": [
+{
+"name": "Cathedral Tree",
+"layer": "pois",
+"kind": "attraction",
+"lon": -124.08434,
+"lat": 41.585298,
+"z": 15,
+"tile": "15/5089/12214"
+}
+],
+"elephant tree": [
+{
+"name": "Elephant Tree",
+"layer": "pois",
+"kind": "attraction",
+"lon": -124.085378,
+"lat": 41.585184,
+"z": 15,
+"tile": "15/5089/12214"
+}
+],
+"paul bunyan and babe": [
+{
+"name": "Paul Bunyan and Babe",
+"layer": "pois",
+"kind": "artwork",
+"lon": -124.085805,
+"lat": 41.584584,
+"z": 15,
+"tile": "15/5089/12214"
+}
+],
+"klamath river overlook": [
+{
+"name": "Klamath River Overlook",
+"layer": "pois",
+"kind": "viewpoint",
+"lon": -124.08662,
+"lat": 41.554399,
+"z": 15,
+"tile": "15/5089/12218"
+}
+],
+"disguised to protect": [
+{
+"name": "Disguised to protect",
+"layer": "pois",
+"kind": "information",
+"lon": -124.078445,
+"lat": 41.521403,
+"z": 15,
+"tile": "15/5090/12222"
+}
+],
+"paul's famous smoked salmon jerky": [
+{
+"name": "Paul's Famous Smoked Salmon Jerky",
+"layer": "pois",
+"kind": "gift",
+"lon": -124.050638,
+"lat": 41.54147,
+"z": 15,
+"tile": "15/5092/12220"
+}
+],
+"klamath river cafe": [
+{
+"name": "Klamath River Cafe",
+"layer": "pois",
+"kind": "cafe",
+"lon": -124.039094,
+"lat": 41.530505,
+"z": 15,
+"tile": "15/5093/12221"
+}
+],
+"country club": [
+{
+"name": "Country Club",
+"layer": "pois",
+"kind": "bar",
+"lon": -124.039204,
+"lat": 41.530738,
+"z": 15,
+"tile": "15/5093/12221"
+}
+],
+"yurok tribe community center": [
+{
+"name": "Yurok Tribe Community Center",
+"layer": "pois",
+"kind": "community_centre",
+"lon": -124.037447,
+"lat": 41.529359,
+"z": 15,
+"tile": "15/5093/12221"
+}
+],
+"yurok country visitor center amphitheatre": [
+{
+"name": "Yurok Country Visitor Center Amphitheatre",
+"layer": "pois",
+"kind": "theatre",
+"lon": -124.039424,
+"lat": 41.530953,
+"z": 15,
+"tile": "15/5093/12221"
+}
+],
+"yurok village discovery park": [
+{
+"name": "Yurok Village Discovery Park",
+"layer": "pois",
+"kind": "park",
+"lon": -124.040392,
+"lat": 41.530742,
+"z": 15,
+"tile": "15/5093/12221"
+}
+],
+"kamp klamath rv campground": [
+{
+"name": "Kamp Klamath RV Campground",
+"layer": "pois",
+"kind": "caravan_site",
+"lon": -124.051853,
+"lat": 41.530692,
+"z": 15,
+"tile": "15/5092/12221"
+}
+],
+"old douglas memorial bridge": [
+{
+"name": "Old Douglas Memorial Bridge",
+"layer": "pois",
+"kind": "information",
+"lon": -124.045022,
+"lat": 41.524124,
+"z": 15,
+"tile": "15/5093/12222"
+}
+],
+"old douglas memorial bridge site": [
+{
+"name": "Old Douglas Memorial Bridge Site",
+"layer": "pois",
+"kind": "other",
+"lon": -124.045126,
+"lat": 41.524092,
+"z": 15,
+"tile": "15/5093/12222"
+}
+],
+"log cabin diner": [
+{
+"name": "Log Cabin Diner",
+"layer": "pois",
+"kind": "fast_food",
+"lon": -124.032758,
+"lat": 41.522282,
+"z": 15,
+"tile": "15/5094/12222"
+}
+],
+"klamath tour thru tree": [
+{
+"name": "Klamath Tour Thru Tree",
+"layer": "pois",
+"kind": "attraction",
+"lon": -124.03053,
+"lat": 41.522019,
+"z": 15,
+"tile": "15/5094/12222"
+}
+],
+"margaret keating elementary school": [
+{
+"name": "Margaret Keating Elementary School",
+"layer": "pois",
+"kind": "school",
+"lon": -124.052575,
+"lat": 41.55623,
+"z": 15,
+"tile": "15/5092/12218"
+}
+],
+"calfire terwer valley station": [
+{
+"name": "CalFire Terwer Valley Station",
+"layer": "pois",
+"kind": "fire_station",
+"lon": -123.99433,
+"lat": 41.524999,
+"z": 15,
+"tile": "15/5097/12221"
+}
+],
+"china mine": [
+{
+"name": "China Mine",
+"layer": "pois",
+"kind": "quarry",
+"lon": -123.897572,
+"lat": 41.71206,
+"z": 15,
+"tile": "15/5106/12199"
+}
+],
+"danger point": [
+{
+"name": "Danger Point",
+"layer": "pois",
+"kind": "cliff",
+"lon": -123.915353,
+"lat": 41.852613,
+"z": 15,
+"tile": "15/5104/12182"
+}
+],
+"zinc saddle mine": [
+{
+"name": "Zinc Saddle Mine",
+"layer": "pois",
+"kind": "quarry",
+"lon": -123.908406,
+"lat": 41.83428,
+"z": 15,
+"tile": "15/5105/12184"
+}
+],
+"coon creek number 1 mine": [
+{
+"name": "Coon Creek Number 1 Mine",
+"layer": "pois",
+"kind": "quarry",
+"lon": -123.90813,
+"lat": 41.795948,
+"z": 15,
+"tile": "15/5105/12189"
+}
+],
+"tyson chrome mine": [
+{
+"name": "Tyson Chrome Mine",
+"layer": "pois",
+"kind": "quarry",
+"lon": -123.989242,
+"lat": 41.807057,
+"z": 15,
+"tile": "15/5098/12187"
+}
+],
+"morrell placer mine": [
+{
+"name": "Morrell Placer Mine",
+"layer": "pois",
+"kind": "quarry",
+"lon": -123.982019,
+"lat": 41.815392,
+"z": 15,
+"tile": "15/5098/12186"
+}
+],
+"french hill placer mine": [
+{
+"name": "French Hill Placer Mine",
+"layer": "pois",
+"kind": "quarry",
+"lon": -123.973686,
+"lat": 41.824835,
+"z": 15,
+"tile": "15/5099/12185"
+}
+],
+"french hill trail (2e25)": [
+{
+"name": "French Hill Trail (2E25)",
+"layer": "pois",
+"kind": "trailhead",
+"lon": -123.972647,
+"lat": 41.828356,
+"z": 15,
+"tile": "15/5099/12185"
+},
+{
+"name": "French Hill Trail (2E25)",
+"layer": "pois",
+"kind": "trailhead",
+"lon": -123.965057,
+"lat": 41.844341,
+"z": 15,
+"tile": "15/5100/12183"
+}
+],
+"engine": [
+{
+"name": "Engine",
+"layer": "pois",
+"kind": "ruins",
+"lon": -124.025077,
+"lat": 41.789763,
+"z": 15,
+"tile": "15/5094/12189"
+}
+],
+"little bald hills trailhead": [
+{
+"name": "Little Bald Hills Trailhead",
+"layer": "pois",
+"kind": "parking",
+"lon": -124.073163,
+"lat": 41.788675,
+"z": 15,
+"tile": "15/5090/12189"
+}
+],
+"lind mine": [
+{
+"name": "Lind Mine",
+"layer": "pois",
+"kind": "quarry",
+"lon": -124.022022,
+"lat": 41.805948,
+"z": 15,
+"tile": "15/5095/12187"
+}
+],
+"fairview mine": [
+{
+"name": "Fairview Mine",
+"layer": "pois",
+"kind": "quarry",
+"lon": -123.993132,
+"lat": 41.839835,
+"z": 15,
+"tile": "15/5097/12183"
+}
+],
+"margy mine": [
+{
+"name": "Margy Mine",
+"layer": "pois",
+"kind": "quarry",
+"lon": -123.992297,
+"lat": 41.839002,
+"z": 15,
+"tile": "15/5097/12183"
+}
+],
+"gasquet bible church": [
+{
+"name": "Gasquet Bible Church",
+"layer": "pois",
+"kind": "place_of_worship",
+"lon": -123.979275,
+"lat": 41.847007,
+"z": 15,
+"tile": "15/5099/12182"
+}
+],
+"she she's": [
+{
+"name": "She she's",
+"layer": "pois",
+"kind": "cafe",
+"lon": -123.976513,
+"lat": 41.84568,
+"z": 15,
+"tile": "15/5099/12182"
+}
+],
+"gasquet market": [
+{
+"name": "Gasquet Market",
+"layer": "pois",
+"kind": "convenience",
+"lon": -123.969405,
+"lat": 41.845572,
+"z": 15,
+"tile": "15/5099/12182"
+}
+],
+"negrohead mine": [
+{
+"name": "Negrohead Mine",
+"layer": "pois",
+"kind": "quarry",
+"lon": -123.977575,
+"lat": 41.858447,
+"z": 15,
+"tile": "15/5099/12181"
+}
+],
+"black jack mine": [
+{
+"name": "Black Jack Mine",
+"layer": "pois",
+"kind": "quarry",
+"lon": -123.969796,
+"lat": 41.863724,
+"z": 15,
+"tile": "15/5099/12180"
+}
+],
+"angela mine": [
+{
+"name": "Angela Mine",
+"layer": "pois",
+"kind": "quarry",
+"lon": -123.973964,
+"lat": 41.868446,
+"z": 15,
+"tile": "15/5099/12180"
+}
+],
+"six rivers national recreation area headquarters": [
+{
+"name": "Six Rivers National Recreation Area Headquarters",
+"layer": "pois",
+"kind": "ranger_station",
+"lon": -123.965558,
+"lat": 41.844805,
+"z": 15,
+"tile": "15/5100/12182"
 }
 ]
 }
