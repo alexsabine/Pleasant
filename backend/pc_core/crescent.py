@@ -95,5 +95,7 @@ def crescent_svg(state: CrescentState, colours: dict, size: int = 36, animate: b
             f'<circle cx="50" cy="50" r="46" fill="{colours["glow"]}" opacity="0.35"/>'
             f'<circle cx="50" cy="50" r="44" fill="{colours["shadow"]}"/>'
             f'<path d="{lit}" fill="{colours["disc"]}">{anim}</path>'
+            f'<defs><radialGradient id="pc_limb" cx="0.42" cy="0.40" r="0.62"><stop offset="0.6" stop-color="#000" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity="0.22"/></radialGradient></defs>'
+            f'<circle cx="50" cy="50" r="44" fill="url(#pc_limb)"/>'
             f'<circle cx="50" cy="50" r="46" fill="none" stroke="{colours["ring"]}" stroke-width="1.5" opacity="0.8"/>'
             f'{marks}</svg>')
