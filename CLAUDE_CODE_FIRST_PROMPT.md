@@ -1,0 +1,15 @@
+# Ready-to-paste prompt for Claude Code
+
+I want you to help me implement **Pleasant Crescent** as a family resource website for caregivers of children aged 0–18 moving to or living in Crescent City and Del Norte County. Kim's eight-week, $10,000 scope is our contractual baseline. Please read every relevant file in this starter pack, beginning with `CLAUDE.md`, `docs/01_client_scope.md`, `licenses/RIGHTS_CHECKLIST.md`, `architecture/01_base_map.md`, and `phoenix_selected/SOURCE_INDEX.md`.
+
+I want a beautifully simple, mobile-friendly, externally accessible website with a curated resource directory, filtered events calendar, optional map layer switches, and a painless editorial workflow. I will provide the visual direction and approve aesthetics. Your job is to build the back end, ensure the map is legally self-hostable, integrate the CMS, and do technical tests and deployment work.
+
+First make a plan with all human approvals identified. Then establish a repeatable development environment using Django/Wagtail, PostgreSQL/PostGIS, MapLibre, and optional H3 indexing. Use existing stable libraries rather than building custom authentication or moderation systems from scratch. Create a working 5-record FICTIONAL demonstration, where an editor can change a resource location and an administrator can approve publication; the public map and accessible list update accordingly. Then expand to the 40 human-verified listings Kim requires. Do not make external GIS downloads or paid API calls without asking first.
+
+Make a layer inventory with original product downloads and licences. Publicly accessible county GIS is not automatically cleared to rehost. Prefer properly licensed USGS aerial/terrain, Geofabrik OSM vectors and CPAD. Keep source raster/tiles outside GitHub. Build the map so browsing Del Norte requires no live calls to the source GIS sites. Keep an optional Google View separate and online-only if needed later.
+
+Use the included Phoenix-derived **process grammar** for provenance, history, meaningful changes and accountable coordination. Apply Bayesian decision rules and optional Active Inference/FEP prototypes only as explicitly tested additions, not claimed universal Bayes-optimal intelligence. Do not reinterpret every family record as a circular rotor. Preserve original observations separately from summaries and from verified published state. Never infer child identity, precise home locations, sensitive species sites or user psychological traits.
+
+Plan a formal future integration discovery with Daniel Friedman's GIS system, but assume no system credentials, no redistribution rights and no agreement until confirmed. Include a CSV/GeoJSON-compatible fallback. Protect Kim's deliverables from speculative R&D.
+
+Run the included reference tests, tell me what passed, build a real end-to-end smoke test, and present a running site and screenshot before moving to the next slice. For every change, list decisions I must make, licensing/permissions awaiting written approval, true production blockers and clear next steps. Keep my involvement as light as possible without bypassing decisions that need human authority.

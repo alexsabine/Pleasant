@@ -1,0 +1,20 @@
+# Development database only. Production security/backups must be separately configured.
+services:
+  postgis:
+    image: postgis/postgis:16-3.4
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-pleasant_dev}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?Create an uncommitted .env with POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB:-pleasant_crescent}
+    ports:
+      - "127.0.0.1:5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-pleasant_dev} -d ${POSTGRES_DB:-pleasant_crescent}"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+volumes:
+  pgdata:

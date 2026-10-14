@@ -1,0 +1,249 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pleasant Crescent basemap examples</title>
+<meta name="description" content="Self-contained visual examples of how the Pleasant Crescent basemap and list-first interface can look. Synthetic geometry only; no external requests.">
+<style>
+  :root{
+    --pc-bg:#f7f5f1; --pc-surface:#ffffff; --pc-ink:#1f2a2e; --pc-ink-2:#51606a;
+    --pc-accent:#1f6f8b; --pc-free:#2e7d4f; --pc-unknown:#8a8f94; --pc-verified:#2e7d4f; --pc-stale:#b7791f;
+    --pc-map-land:#f3f1ec; --pc-map-water:#cfe3ea; --pc-map-park:#dcebd4; --pc-map-road:#ffffff; --pc-map-road-casing:#d9d4cb;
+    --pc-map-label:#3f4a50; --pc-map-hill-1:#e8e3d8; --pc-map-hill-2:#cfc7b6; --pc-map-contour:#b9b09a;
+    --pc-radius:14px; --pc-shadow:0 1px 2px rgba(0,0,0,.06),0 6px 18px rgba(0,0,0,.06);
+    --pc-font-ui:system-ui,-apple-system,"Segoe UI",Roboto,Inter,sans-serif;
+  }
+  @media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){
+    --pc-bg:#141a1d; --pc-surface:#1d2529; --pc-ink:#eef2f3; --pc-ink-2:#aab6bc;
+    --pc-accent:#7fc4dc; --pc-free:#7fd4a0; --pc-unknown:#8f989d; --pc-verified:#7fd4a0; --pc-stale:#e2b35c;
+    --pc-map-land:#23292d; --pc-map-water:#1a2f38; --pc-map-park:#243a2d; --pc-map-road:#3a4449; --pc-map-road-casing:#1b2124;
+    --pc-map-label:#d8dfe2; --pc-map-hill-1:#2a3034; --pc-map-hill-2:#353c41; --pc-map-contour:#4a545a;
+  }}
+  :root[data-theme="dark"]{
+    --pc-bg:#141a1d; --pc-surface:#1d2529; --pc-ink:#eef2f3; --pc-ink-2:#aab6bc;
+    --pc-accent:#7fc4dc; --pc-free:#7fd4a0; --pc-unknown:#8f989d; --pc-verified:#7fd4a0; --pc-stale:#e2b35c;
+    --pc-map-land:#23292d; --pc-map-water:#1a2f38; --pc-map-park:#243a2d; --pc-map-road:#3a4449; --pc-map-road-casing:#1b2124;
+    --pc-map-label:#d8dfe2; --pc-map-hill-1:#2a3034; --pc-map-hill-2:#353c41; --pc-map-contour:#4a545a;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--pc-bg);color:var(--pc-ink);font-family:var(--pc-font-ui);line-height:1.45}
+  main{max-width:1180px;margin:0 auto;padding:24px 16px 64px}
+  h1{font-size:1.6rem;margin:0 0 4px} h2{font-size:1.15rem;margin:36px 0 10px} p{margin:6px 0;color:var(--pc-ink-2);max-width:72ch}
+  .notice{border:1px solid var(--pc-map-road-casing);background:var(--pc-surface);border-radius:var(--pc-radius);padding:10px 14px;font-size:.9rem;margin:14px 0 8px}
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:18px}
+  .panel{background:var(--pc-surface);border-radius:var(--pc-radius);box-shadow:var(--pc-shadow);overflow:hidden}
+  .panel h3{font-size:1rem;margin:0;padding:12px 14px 2px} .panel p{font-size:.85rem;padding:0 14px 10px;margin:0}
+  .map{position:relative;aspect-ratio:4/3;background:var(--pc-map-land)}
+  .map svg{display:block;width:100%;height:100%}
+  .credit{position:absolute;left:0;right:0;bottom:0;font-size:.68rem;padding:3px 8px;background:color-mix(in srgb,var(--pc-surface) 85%,transparent);color:var(--pc-ink-2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .legend{position:absolute;top:8px;left:8px;background:color-mix(in srgb,var(--pc-surface) 92%,transparent);border-radius:10px;padding:6px 9px;font-size:.72rem;display:flex;flex-direction:column;gap:3px}
+  .legend span{display:inline-flex;align-items:center;gap:6px} .sw{width:12px;height:12px;border-radius:3px;display:inline-block}
+  .warn{position:absolute;top:8px;right:8px;background:#fff3cd;color:#5c4400;border:1px solid #e6c667;border-radius:8px;padding:5px 8px;font-size:.7rem;max-width:58%}
+  .tokens{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:10px}
+  .tok{background:var(--pc-surface);border-radius:10px;box-shadow:var(--pc-shadow);padding:8px;font-size:.72rem}
+  .tok i{display:block;height:34px;border-radius:7px;margin-bottom:6px;border:1px solid rgba(0,0,0,.08)}
+  .tok code{font-size:.68rem;color:var(--pc-ink-2)}
+  /* phone mock */
+  .phones{display:flex;gap:22px;flex-wrap:wrap}
+  .phone{width:340px;background:var(--pc-surface);border-radius:28px;box-shadow:var(--pc-shadow);border:6px solid #2a3135;overflow:hidden;flex:0 0 auto}
+  .ph-top{padding:14px 14px 8px} .ph-top h4{margin:0 0 6px;font-size:1.05rem}
+  .q{font-size:.85rem;color:var(--pc-ink-2);margin-bottom:8px}
+  .chips{display:flex;gap:6px;flex-wrap:wrap} .chip{border:1px solid var(--pc-map-road-casing);background:var(--pc-bg);border-radius:999px;padding:7px 12px;font-size:.8rem;min-height:32px}
+  .chip[aria-pressed="true"]{background:var(--pc-accent);color:#fff;border-color:var(--pc-accent)}
+  .toggle{display:flex;gap:0;margin:10px 14px 0;border:1px solid var(--pc-map-road-casing);border-radius:10px;overflow:hidden;font-size:.82rem}
+  .toggle button{flex:1;border:0;padding:10px;background:var(--pc-bg);color:var(--pc-ink);min-height:44px;font:inherit}
+  .toggle button[aria-pressed="true"]{background:var(--pc-surface);font-weight:600}
+  .cards{padding:10px 14px;display:flex;flex-direction:column;gap:10px}
+  .card{border:1px solid var(--pc-map-road-casing);border-radius:12px;padding:10px 12px}
+  .card b{font-size:.95rem} .meta{display:flex;gap:6px;flex-wrap:wrap;margin:6px 0 4px}
+  .tag{font-size:.72rem;padding:3px 8px;border-radius:999px;background:var(--pc-bg);border:1px solid var(--pc-map-road-casing)}
+  .tag.free{background:color-mix(in srgb,var(--pc-free) 15%,transparent);border-color:var(--pc-free);color:var(--pc-free)}
+  .tag.unknown{background:color-mix(in srgb,var(--pc-unknown) 15%,transparent);border-color:var(--pc-unknown);color:var(--pc-ink-2)}
+  .fresh{font-size:.74rem;display:flex;align-items:center;gap:6px;color:var(--pc-ink-2)}
+  .dot{width:9px;height:9px;border-radius:50%;display:inline-block}
+  .dot.ok{background:var(--pc-verified)} .dot.mid{background:var(--pc-stale)}
+  .src{font-size:.72rem;color:var(--pc-ink-2)}
+  .ph-credit{font-size:.66rem;color:var(--pc-ink-2);padding:6px 14px 12px;border-top:1px solid var(--pc-map-road-casing)}
+  .ph-map{position:relative;height:280px;background:var(--pc-map-land)}
+  .pinlist{padding:8px 14px;font-size:.82rem} .pinlist li{margin:4px 0}
+  .theme-row{display:flex;gap:10px;align-items:center;margin:8px 0 0;font-size:.85rem}
+  .theme-row button{font:inherit;border:1px solid var(--pc-map-road-casing);background:var(--pc-surface);color:var(--pc-ink);border-radius:8px;padding:6px 10px;min-height:36px}
+  @media (max-width:420px){ .phone{width:100%} }
+</style>
+</head>
+<body>
+<main>
+  <h1>Pleasant Crescent: how the basemap can look</h1>
+  <p>Six styles of the same synthetic coastline, rendered from one set of design tokens so the map and the interface always agree. The owner supplies palette, type and photographs; this page shows the system they plug into.</p>
+  <div class="notice"><b>Synthetic geometry.</b> Nothing on this page is real geography, a real listing or a real address. No tiles or data are fetched; the page makes zero network requests. Real basemaps come from the licensed sources in <code>audit/gis_basemap_audit.md</code>.</div>
+  <div class="theme-row"><span>Theme:</span><button type="button" data-set="light">Light</button><button type="button" data-set="dark">Dark</button><button type="button" data-set="">System</button></div>
+
+  <h2>1. Design tokens (the contract between brand and map)</h2>
+  <div class="tokens" id="tokens"></div>
+
+  <h2>2. Basemap styles</h2>
+  <div class="grid" id="styles"></div>
+
+  <h2>3. The list-first interface around the map</h2>
+  <p>Phone width. The list is the default view; the map is a toggle. Freshness, cost, age band and access state are the loudest elements on screen. Unknown is shown as unknown.</p>
+  <div class="phones">
+    <section class="phone" aria-label="Explore tab, list view">
+      <div class="ph-top">
+        <h4>Explore</h4>
+        <div class="q">Just show free things? <span class="chip" aria-pressed="true" role="button">Free only</span></div>
+        <div class="chips" role="group" aria-label="Filters">
+          <button class="chip" aria-pressed="true">Ages 5 to 8</button><button class="chip" aria-pressed="false">Indoors</button><button class="chip" aria-pressed="false">Wheelchair access</button><button class="chip" aria-pressed="false">Crescent City</button>
+        </div>
+      </div>
+      <div class="toggle" role="group" aria-label="View"><button aria-pressed="true">List</button><button aria-pressed="false">Map</button></div>
+      <div class="cards">
+        <article class="card"><b>Fictional Harbour Play Yard</b>
+          <div class="meta"><span class="tag">Playground</span><span class="tag">Ages 2 to 12</span><span class="tag free">Free</span><span class="tag">Access: verified yes</span></div>
+          <div class="fresh"><span class="dot ok"></span>Verified 12 days ago</div>
+          <div class="src">Source: demo fixture. Last material change: 2026-05-02</div></article>
+        <article class="card"><b>Fictional Rainy Day Library Hour</b>
+          <div class="meta"><span class="tag">Story time</span><span class="tag">Ages 0 to 6</span><span class="tag free">Free</span><span class="tag unknown">Access: unknown</span></div>
+          <div class="fresh"><span class="dot mid"></span>Verified this season. Needs re-check in 3 weeks</div>
+          <div class="src">Source: demo fixture. Recurring: Tuesdays 10:30</div></article>
+        <article class="card"><b>Fictional Dune Trail Loop</b>
+          <div class="meta"><span class="tag">Trail</span><span class="tag">All ages</span><span class="tag free">Free</span><span class="tag">Access: verified no</span></div>
+          <div class="fresh"><span class="dot ok"></span>Verified 30 days ago</div>
+          <div class="src">Source: demo fixture. Sand surface, 1.2 km</div></article>
+      </div>
+      <div class="ph-credit">Map data: synthetic demo. Real build: © OpenStreetMap contributors (ODbL), USGS 3DEP, CPAD. Vintages shown in About.</div>
+    </section>
+    <section class="phone" aria-label="Explore tab, map view">
+      <div class="ph-top"><h4>Explore</h4><div class="chips"><button class="chip" aria-pressed="true">Ages 5 to 8</button><button class="chip" aria-pressed="true">Free only</button></div></div>
+      <div class="toggle" role="group" aria-label="View"><button aria-pressed="false">List</button><button aria-pressed="true">Map</button></div>
+      <div class="ph-map" id="phone-map"></div>
+      <ul class="pinlist" aria-label="Pins on this map, keyboard reachable">
+        <li>1. Fictional Harbour Play Yard, free, verified 12 days ago</li>
+        <li>2. Fictional Rainy Day Library Hour, free, access unknown</li>
+        <li>3. Fictional Dune Trail Loop, free, verified 30 days ago</li>
+      </ul>
+      <div class="ph-credit">© OpenStreetMap contributors (demo geometry) · Terrain: USGS 3DEP · Parks: CPAD 2026a · Viewed offline: no</div>
+    </section>
+  </div>
+
+  <h2>4. What stays constant across any palette</h2>
+  <p>Roads are the lightest line on the map, water is the only blue, parks are the only green, and the brand accent is reserved for the user's own selections and pins. Labels never drop below 14 px on phones. Every panel carries its credit strip and vintage. Hazard layers carry their disclaimer on the map itself, not in a tooltip.</p>
+</main>
+
+<script>
+(function(){
+  // ---------- theme switch ----------
+  document.querySelectorAll('[data-set]').forEach(function(b){
+    b.addEventListener('click',function(){ var v=b.getAttribute('data-set'); if(v) document.documentElement.setAttribute('data-theme',v); else document.documentElement.removeAttribute('data-theme'); render(); });
+  });
+
+  // ---------- tokens ----------
+  var tokenNames=['--pc-bg','--pc-surface','--pc-ink','--pc-ink-2','--pc-accent','--pc-free','--pc-unknown','--pc-verified','--pc-stale','--pc-map-land','--pc-map-water','--pc-map-park','--pc-map-road','--pc-map-road-casing','--pc-map-label','--pc-map-hill-2'];
+  function cssv(n){ return getComputedStyle(document.documentElement).getPropertyValue(n).trim(); }
+  function renderTokens(){
+    var host=document.getElementById('tokens'); host.innerHTML='';
+    tokenNames.forEach(function(n){ var d=document.createElement('div'); d.className='tok'; d.innerHTML='<i style="background:'+cssv(n)+'"></i><code>'+n+'</code><br>'+cssv(n); host.appendChild(d); });
+  }
+
+  // ---------- one synthetic geometry (viewBox 0 0 400 300) ----------
+  var G={
+    sea:'M0,0 L0,300 L120,300 C150,250 110,210 140,170 C170,130 120,100 150,60 C165,35 150,15 160,0 Z',
+    river:'M400,70 C330,95 300,130 250,150 C210,165 190,180 160,172',
+    harbour:'M118,215 C135,205 150,220 142,235 C133,248 112,240 118,215 Z',
+    parks:[
+      'M250,40 L330,30 L360,80 L300,110 L250,90 Z',
+      'M180,230 L240,215 L270,250 L220,285 L175,270 Z',
+      'M150,120 L185,112 L200,140 L165,150 Z'
+    ],
+    dunes:'M120,300 C140,260 112,220 140,180',
+    roads:{
+      major:['M400,180 C330,190 280,200 240,210 C200,220 170,200 160,180 C150,160 170,130 200,120 C240,105 300,120 400,100',
+             'M240,210 C220,260 230,290 235,300'],
+      minor:['M200,120 L210,80 L250,40','M160,180 L120,160','M240,210 L300,230 L340,220','M280,200 L290,160 L330,150','M170,200 L190,250','M300,120 L310,160','M330,150 L360,120']
+    },
+    trails:['M250,40 C260,70 290,90 300,110','M180,230 C200,245 215,265 220,285','M150,120 L165,150'],
+    contours:['M190,0 C210,40 240,60 280,50 C330,40 370,60 400,40','M230,0 C240,30 260,45 300,35 C340,25 380,40 400,20','M400,230 C360,240 320,270 300,300','M400,260 C370,270 345,285 335,300'],
+    hazard:'M180,0 C170,15 185,35 172,60 C140,100 190,125 158,170 C125,210 165,250 130,300 L120,300 C150,250 110,210 140,170 C170,130 120,100 150,60 C165,35 150,15 160,0 Z',
+    pins:[{x:150,y:208,n:'1'},{x:262,y:150,n:'2'},{x:150,y:255,n:'3'}],
+    labels:[{x:230,y:200,t:'Fictional Town'},{x:300,y:72,t:'North Park'},{x:60,y:150,t:'Ocean'},{x:215,y:260,t:'Dune Park'}],
+    hexes:[] // computed
+  };
+  // hex grid for H3 panel
+  (function(){ var r=22, w=Math.sqrt(3)*r; for(var row=0;row<9;row++){ for(var col=0;col<12;col++){ var x=col*w+(row%2?w/2:0)-10, y=row*r*1.5-10; G.hexes.push({x:x,y:y,r:r,count:Math.max(0,Math.round(Math.sin(col*1.3+row)*3+Math.cos(row*0.7)*2+2))}); } } })();
+  function hexPath(x,y,r){ var p=[]; for(var i=0;i<6;i++){ var a=Math.PI/180*(60*i+30); p.push((x+r*Math.cos(a)).toFixed(1)+','+(y+r*Math.sin(a)).toFixed(1)); } return 'M'+p.join(' L')+' Z'; }
+
+  function pinsSvg(){
+    return G.pins.map(function(p){ return '<g><circle cx="'+p.x+'" cy="'+p.y+'" r="9" fill="'+cssv('--pc-accent')+'" stroke="'+cssv('--pc-surface')+'" stroke-width="2.5"/><text x="'+p.x+'" y="'+(p.y+3.5)+'" text-anchor="middle" font-size="9" font-weight="700" fill="#fff" font-family="system-ui,sans-serif">'+p.n+'</text></g>'; }).join('');
+  }
+  function labelsSvg(){
+    return G.labels.map(function(l){ return '<text x="'+l.x+'" y="'+l.y+'" font-size="9.5" fill="'+cssv('--pc-map-label')+'" font-family="system-ui,sans-serif" stroke="'+cssv('--pc-map-land')+'" stroke-width="3" paint-order="stroke" stroke-linejoin="round">'+l.t+'</text>'; }).join('');
+  }
+  function roadsSvg(opts){
+    opts=opts||{}; var casing=cssv('--pc-map-road-casing'), road=cssv('--pc-map-road');
+    var s='';
+    G.roads.major.concat(G.roads.minor).forEach(function(d,i){ var major=i<G.roads.major.length; s+='<path d="'+d+'" fill="none" stroke="'+casing+'" stroke-width="'+(major?5.5:3.5)+'" stroke-linecap="round"/>'; });
+    G.roads.major.concat(G.roads.minor).forEach(function(d,i){ var major=i<G.roads.major.length; s+='<path d="'+d+'" fill="none" stroke="'+(opts.roadOverride||road)+'" stroke-width="'+(major?3.5:2)+'" stroke-linecap="round"/>'; });
+    return s;
+  }
+  function base(extra){
+    var land=cssv('--pc-map-land'), water=cssv('--pc-map-water'), park=cssv('--pc-map-park');
+    var s='<rect width="400" height="300" fill="'+land+'"/>';
+    s+='<path d="'+G.sea+'" fill="'+water+'"/>';
+    s+='<path d="'+G.river+'" fill="none" stroke="'+water+'" stroke-width="5" stroke-linecap="round"/>';
+    s+='<path d="'+G.harbour+'" fill="'+water+'"/>';
+    if(extra && extra.beforeParks) s+=extra.beforeParks;
+    G.parks.forEach(function(d){ s+='<path d="'+d+'" fill="'+park+'"/>'; });
+    return s;
+  }
+
+  var STYLES=[
+    {id:'calm',title:'A. Calm streets (default)',desc:'OSM-derived roads and labels, desaturated land, soft water, pale parks. Pins and the accent colour are the brightest things on screen.',
+      draw:function(){ return base()+roadsSvg()+labelsSvg()+pinsSvg(); },
+      credit:'© OpenStreetMap contributors (ODbL) · Natural Earth · Built with Planetiler',legend:[['--pc-map-park','Park'],['--pc-map-water','Water'],['--pc-accent','Listing']]},
+    {id:'terrain',title:'B. Terrain and hillshade',desc:'USGS 3DEP hillshade and contours under the same road and label layer. Labels stay legible because roads keep their casing.',
+      draw:function(){ var h1=cssv('--pc-map-hill-1'),h2=cssv('--pc-map-hill-2'),c=cssv('--pc-map-contour');
+        var hills='<defs><linearGradient id="hs" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="'+h1+'"/><stop offset="1" stop-color="'+h2+'"/></linearGradient></defs><rect x="180" y="0" width="220" height="300" fill="url(#hs)"/><ellipse cx="320" cy="40" rx="90" ry="55" fill="'+h2+'" opacity=".6"/><ellipse cx="360" cy="250" rx="80" ry="60" fill="'+h2+'" opacity=".55"/>';
+        var ct=''; G.contours.forEach(function(d){ ct+='<path d="'+d+'" fill="none" stroke="'+c+'" stroke-width="1" stroke-dasharray="1 0"/>'; });
+        return base({beforeParks:hills+ct})+roadsSvg()+labelsSvg()+pinsSvg(); },
+      credit:'Terrain: USGS 3DEP (public domain), hillshade built locally · © OpenStreetMap contributors',legend:[['--pc-map-hill-2','Hillshade'],['--pc-map-contour','Contour']]},
+    {id:'aerial',title:'C. Aerial (optional, licensed NAIP)',desc:'Placeholder texture standing in for USDA NAIP 2022 orthophotos (60 cm). Shown with a visible acquisition date and only after storage is sized.',
+      draw:function(){ var s='<defs><pattern id="ae" width="14" height="14" patternUnits="userSpaceOnUse"><rect width="14" height="14" fill="#6f7a5a"/><rect x="3" y="4" width="6" height="5" fill="#5a6648"/><rect x="9" y="1" width="4" height="3" fill="#8a9470"/><circle cx="4" cy="11" r="2" fill="#4f5a40"/></pattern><pattern id="town" width="10" height="10" patternUnits="userSpaceOnUse"><rect width="10" height="10" fill="#8f8a7e"/><rect x="2" y="2" width="4" height="3" fill="#b9b3a4"/><rect x="6" y="6" width="3" height="3" fill="#6d685e"/></pattern></defs>';
+        s+='<rect width="400" height="300" fill="url(#ae)"/><rect x="140" y="140" width="130" height="110" fill="url(#town)" opacity=".9"/>';
+        s+='<path d="'+G.sea+'" fill="#3f6f86"/><path d="'+G.river+'" fill="none" stroke="#3f6f86" stroke-width="5" stroke-linecap="round"/><path d="'+G.harbour+'" fill="#3f6f86"/>';
+        s+=roadsSvg({roadOverride:'#e9e4d8'})+'<text x="8" y="292" font-size="9" fill="#fff" font-family="system-ui,sans-serif" stroke="#000" stroke-width="2" paint-order="stroke">Imagery: USDA NAIP, acquired 2022 (placeholder texture)</text>'+pinsSvg(); return s; },
+      credit:'Imagery: USDA-FSA NAIP 2022 (public domain), tiled locally · Roads © OpenStreetMap contributors',legend:[]},
+    {id:'parks',title:'D. Parks, trails and access',desc:'CPAD and NPS/USFS trails emphasised; dashed trails, access state on each pin. Access type is not permission to enter every site.',
+      draw:function(){ var park=cssv('--pc-map-park'), acc=cssv('--pc-free');
+        var extra=''; G.parks.forEach(function(d){ extra+='<path d="'+d+'" fill="none" stroke="'+acc+'" stroke-width="1.5" stroke-dasharray="4 3" opacity=".8"/>'; });
+        var tr=''; G.trails.forEach(function(d){ tr+='<path d="'+d+'" fill="none" stroke="'+acc+'" stroke-width="2" stroke-dasharray="5 4" stroke-linecap="round"/>'; });
+        tr+='<path d="'+G.dunes+'" fill="none" stroke="'+cssv('--pc-stale')+'" stroke-width="2" stroke-dasharray="5 4"/>';
+        return base()+extra+roadsSvg()+tr+labelsSvg()+pinsSvg(); },
+      credit:'Parks: CPAD 2026a (licence confirmation pending) · Trails: NPS, USDA Forest Service (public domain)',legend:[['--pc-free','Trail, verified'],['--pc-stale','Trail, needs re-check']]},
+    {id:'hazard',title:'E. Hazard overlay (off by default)',desc:'CGS tsunami planning zone drawn hatched with its disclaimer on the map. Links to official live alerts; never presented as current conditions.',
+      draw:function(){ var s='<defs><pattern id="hz" width="8" height="8" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="8" height="8" fill="none"/><rect width="3" height="8" fill="#c0392b" opacity=".35"/></pattern></defs>';
+        return base()+roadsSvg()+'<path d="'+G.hazard+'" fill="url(#hz)" stroke="#c0392b" stroke-width="1.5" stroke-dasharray="6 4"/>'+labelsSvg()+pinsSvg()+s; },
+      credit:'Tsunami hazard area: California Geological Survey / Cal OES, planning map, dated · Not an alert',legend:[],warn:'Planning map, dated 2022. Not a live alert. Follow official emergency sources.'},
+    {id:'h3',title:'F. H3 aggregate cells (debug and governance view)',desc:'Derived hexagonal index at one resolution, showing counts of published resources per cell. Cells below the k-anonymity threshold are shown suppressed. No distances, no travel times.',
+      draw:function(){ var acc=cssv('--pc-accent'), ink=cssv('--pc-ink-2'); var s=base()+roadsSvg({roadOverride:cssv('--pc-map-road')})+'<g opacity=".8">';
+        G.hexes.forEach(function(h){ var sup=h.count>0&&h.count<3; var fill=h.count>=3?acc:'none'; var op=h.count>=3?Math.min(.12+h.count*.07,.55):1;
+          s+='<path d="'+hexPath(h.x,h.y,h.r)+'" fill="'+fill+'" fill-opacity="'+op+'" stroke="'+ink+'" stroke-opacity=".35" stroke-width=".8"/>';
+          if(h.count>=3) s+='<text x="'+h.x+'" y="'+(h.y+3)+'" text-anchor="middle" font-size="8" fill="'+cssv('--pc-ink')+'" font-family="system-ui,sans-serif">'+h.count+'</text>';
+          else if(sup) s+='<text x="'+h.x+'" y="'+(h.y+3)+'" text-anchor="middle" font-size="7" fill="'+ink+'" font-family="system-ui,sans-serif">&lt;k</text>'; });
+        return s+'</g>'; },
+      credit:'H3 (Apache-2.0) derived index · counts of published resources · cells with fewer than k suppressed',legend:[['--pc-accent','Count per cell'],['--pc-unknown','Suppressed (< k)']]}
+  ];
+
+  function panel(st){
+    var leg=st.legend.map(function(l){ return '<span><i class="sw" style="background:'+cssv(l[0])+'"></i>'+l[1]+'</span>'; }).join('');
+    return '<section class="panel" id="style-'+st.id+'"><h3>'+st.title+'</h3><p>'+st.desc+'</p><div class="map"><svg viewBox="0 0 400 300" role="img" aria-label="'+st.title+', synthetic example">'+st.draw()+'</svg>'+(leg?'<div class="legend">'+leg+'</div>':'')+(st.warn?'<div class="warn">'+st.warn+'</div>':'')+'<div class="credit">'+st.credit+'</div></div></section>';
+  }
+  function render(){
+    renderTokens();
+    document.getElementById('styles').innerHTML=STYLES.map(panel).join('');
+    document.getElementById('phone-map').innerHTML='<svg viewBox="40 60 320 240" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Map view, synthetic">'+base()+roadsSvg()+labelsSvg()+pinsSvg()+'</svg>';
+  }
+  render();
+})();
+</script>
+</body>
+</html>
