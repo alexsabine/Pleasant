@@ -44,7 +44,7 @@ body{background:var(--pc-bg)}
     {% if user.is_authenticated %}<a href="{% url 'accounts:my_atlas' %}" {% if request.resolver_match.namespace == 'accounts' %}aria-current="page"{% endif %}>My atlas</a>{% else %}<a href="{% url 'accounts:signup' %}" class="join">Join</a>{% endif %}
   </nav>
   <button class="compass-toggle" type="button" aria-expanded="false" aria-controls="compass-drawer" id="compass-toggle">
-    <span class="compass-icon" aria-hidden="true"></span>Compass
+    {% include "compass/icon.html" with size=20 %}Compass
   </button>
 </header>
 <main id="main" class="site-main">{% block content %}{% endblock %}</main>

@@ -12,6 +12,7 @@
   let guideStep = -1, guideAnswers = [];
   function open(v) {
     drawer.hidden = !v; toggle.setAttribute("aria-expanded", String(v));
+    document.body.classList.toggle("compass-open", v);
     if (v && !log.children.length && guide.intro) add("bot", guide.intro);
     if (v) input.focus(); else toggle.focus();
   }

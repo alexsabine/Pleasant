@@ -262,3 +262,26 @@ code{overflow-wrap:anywhere}
   .layer-switch.open{display:flex}
 }
 .gauge p{overflow-wrap:anywhere}
+
+/* ---------- Compass mark and phone drawer ---------- */
+.cc-icon{display:block;flex:none}
+.cc-icon .cc-needle{transform-origin:12px 12px;transform:rotate(-40deg)}
+.compass-toggle:hover .cc-needle,.compass-toggle[aria-expanded="true"] .cc-needle,.compass-head .cc-needle{animation:cc-settle 1.4s cubic-bezier(.3,1.4,.4,1) both}
+@keyframes cc-settle{0%{transform:rotate(-70deg)}55%{transform:rotate(-30deg)}80%{transform:rotate(-44deg)}100%{transform:rotate(-40deg)}}
+.compass-head button .done{display:none;font:inherit;font-size:.9rem;color:var(--pc-accent);font-weight:600}
+.compass-form input{font-size:16px}
+.msg{max-width:92%;line-height:1.45}
+@media (max-width:640px){
+  .compass-drawer{width:100%;padding-bottom:env(safe-area-inset-bottom,0px)}
+  .compass-head{padding:10px 12px 10px 16px;padding-top:max(10px,env(safe-area-inset-top,0px))}
+  .compass-head h2{font-size:1.1rem;font-family:var(--pc-font-display);font-weight:600;font-size:1.3rem}
+  .compass-head button .done{display:inline}
+  .compass-head button .x{display:none}
+  .compass-lede{display:none}
+  .compass-log{padding:12px 14px}
+  .suggest{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;padding:6px 14px 8px;gap:8px;-webkit-overflow-scrolling:touch}
+  .suggest::-webkit-scrollbar{display:none}
+  .suggest button{white-space:nowrap;flex:none}
+  .compass-form{padding:10px 12px}
+  body.compass-open{overflow:hidden}
+}
