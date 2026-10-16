@@ -29,6 +29,8 @@ urlpatterns = [
     path("accounts/", include("accounts.urls")),
     path("contribute/", atlas_views.contribute, name="contribute"),
     path("review/", atlas_views.review, name="review"),
+    path("plan/", atlas_views.plan, name="plan"),
+    path("plan/<slug:tab>/", atlas_views.plan, name="plan_tab"),
     path("compass/", include("compass.urls")),
     path("", include(wagtail_urls)),
 ]

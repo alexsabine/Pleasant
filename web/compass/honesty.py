@@ -1,4 +1,4 @@
-"""Honesty layer: the only facts in a Compass answer are the records the policy
+"""Honesty layer: the only facts in a Lumen answer are the records the policy
 retrieved. The deterministic composer builds the answer from records. If an LLM
 phrasing is enabled, its output is a list of sentences each tagged with the
 record ids it relies on; any sentence citing an unknown id, or asserting

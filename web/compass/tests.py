@@ -137,7 +137,7 @@ class GuideFeedback(TestCase):
         from django.test import Client
         c = Client()
         panel = c.get("/compass/").content.decode()
-        self.assertIn("Help shape Compass", panel)
+        self.assertIn("Help shape Lumen", panel)
         self.assertIn("serve_first", panel)
         r = c.post("/compass/feedback", data=json.dumps({"answers": [{"key": "serve_first", "answer": "Newcomers first."}, {"key": "bogus", "answer": "x"}, {"key": "red_lines", "answer": ""}]}), content_type="application/json")
         self.assertEqual(r.json()["saved"], 1)

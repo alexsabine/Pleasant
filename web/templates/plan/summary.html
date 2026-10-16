@@ -1,0 +1,60 @@
+{% extends "plan/_base.html" %}
+{% block plan_title %}Crescent Compass, in one page{% endblock %}
+{% block plan_lede %}<p class="lede">Crescent Compass is a public map of verified places and activities for families in Del Norte County, with a guide called Lumen for members. People check everything before it goes public, and every change is recorded.</p>{% endblock %}
+{% block plan_content %}
+<div class="key-facts">
+  <div><span class="kf-n">Public</span><span class="kf-l">Anyone can see the map and every listing, with no account</span></div>
+  <div><span class="kf-n">Lumen</span><span class="kf-l">Members ask in their own words and get answers drawn only from verified listings</span></div>
+  <div><span class="kf-n">Stewards</span><span class="kf-l">Two named people approve everything new, once a month or sooner</span></div>
+  <div><span class="kf-n">${{ cost_rows.1.total|floatformat:0 }}</span><span class="kf-l">Estimated running cost a year at typical use for {{ members }} members, within the $1,500 ceiling</span></div>
+</div>
+
+<h2>What each part does</h2>
+<div class="tbl-wrap"><table class="tbl">
+  <thead><tr><th>Part</th><th>What it does, in plain words</th></tr></thead>
+  <tbody>
+    <tr><td><b>Public map and listings</b></td><td>Shows verified places on a map and as a list, with filters for age, cost, access and community. Each listing shows its source and when it was last checked.</td></tr>
+    <tr><td><b>Lumen</b></td><td>The guide for members. It reads a question, looks up published listings, decides what it can recommend, writes a short answer and shows its sources. It cannot publish anything.</td></tr>
+    <tr><td><b>Joining</b></td><td>An optional account with an adult confirmation. Members choose age bands, budget and access needs, or skip. Nothing is asked about children.</td></tr>
+    <tr><td><b>Pending</b></td><td>A waiting room for everything new: places, photos, corrections, changed websites and calendar events. Nothing in Pending is public.</td></tr>
+    <tr><td><b>Stewards' monthly round</b></td><td>A steward asks Lumen "what needs approving this month?", reads one line per item with its evidence and a suggestion, and taps Approve, Reject or Ask for more.</td></tr>
+    <tr><td><b>Evidence and the sealed log</b></td><td>Every published fact is tied to a checked source. Every approval, change and Lumen answer goes into a log that shows any later tampering.</td></tr>
+    <tr><td><b>Freshness</b></td><td>Each listing's confidence fades as time passes since its last check. Lumen recommends a place only while it is more than 75 percent likely to be current.</td></tr>
+    <tr><td><b>Review queue</b></td><td>Tells stewards which listings most need a re-check, so a few checks a week keep the whole map trustworthy.</td></tr>
+    <tr><td><b>Monthly checks</b></td><td>The server re-reads each listing's official website. Pages that changed go into Pending, with the old and new text side by side.</td></tr>
+    <tr><td><b>Photos</b></td><td>Hidden GPS data is removed on arrival. The member confirms the place by hand. A photo goes public only after a steward approves it.</td></tr>
+    <tr><td><b>The Quadruplicate</b></td><td>Daniel Friedman's civic snapshot of Crescent City. Its community calendar feeds Pending, and its safety and meeting pages are linked.</td></tr>
+    <tr><td><b>Map files</b></td><td>Our own copy of the map from public data. Browsing sends nothing to Google or other map companies.</td></tr>
+    <tr><td><b>Permissions</b></td><td>The server checks who is allowed to do what on every action. No AI can change that.</td></tr>
+  </tbody>
+</table></div>
+
+<h2>How an update reaches the map</h2>
+<ol class="flow">
+  <li><b>Something new arrives.</b> A member adds a place or photo or sends a correction. A website changes, or a calendar event appears.</li>
+  <li><b>It is tidied and held.</b> GPS data is stripped, duplicates are flagged, and the item waits in Pending.</li>
+  <li><b>It is pre-checked overnight.</b> Lumen's specialist model looks at photos, compares changed pages and drafts a one-line summary with a suggested action.</li>
+  <li><b>A steward decides.</b> At the monthly round, or sooner, a steward approves, rejects or asks the member for more.</li>
+  <li><b>It goes live and is sealed.</b> The map updates, the listing's freshness clock starts, and the decision is written to the log.</li>
+  <li><b>It is watched.</b> As time passes the listing's confidence fades, and the review queue brings it back for a re-check before Lumen stops recommending it.</li>
+</ol>
+
+<h2>From member to steward</h2>
+<p class="prose-w">Responsibility grows with a track record, never with popularity, and only by invitation. The figures decide who may be invited; stewards invite, the member accepts, and the server records it.</p>
+<div class="tbl-wrap"><table class="tbl">
+  <thead><tr><th>Step</th><th>Can do</th><th>May be invited when</th></tr></thead>
+  <tbody>
+    <tr><td>Member</td><td>Ask Lumen, add places and photos, send corrections</td><td>Joins with an adult confirmation</td></tr>
+    <tr><td>Contributor</td><td>Draft listings straight into the review queue</td><td>At least 5 approved items, with a reliable track record</td></tr>
+    <tr><td>Editor</td><td>Check evidence and mark it verified; cannot publish</td><td>At least 20 approved items over 6 months, across at least 3 kinds of place</td></tr>
+    <tr><td>Steward</td><td>Approve publication, run the monthly round, propose rule changes</td><td>An editor for a year, invited by the stewards, with care for which communities are under-represented</td></tr>
+  </tbody>
+</table></div>
+<p class="note">"Reliable" uses a cautious estimate of how often a person's contributions are approved: 20 approvals and no rejections scores 0.87; with 2 rejections, 0.75. Old results fade over a year. Details are in the repository, in research/11_stewardship_pathway.md.</p>
+
+<h2>Built today, and still to build</h2>
+<div class="two-col">
+  <div><h3>Built</h3><ul><li>Public map, list, listings and filters</li><li>Joining and saved settings</li><li>Lumen's rules-based guide with all trust checks and the sealed log</li><li>Moderated suggestions and the review queue</li><li>The public preview on GitHub Pages</li></ul></div>
+  <div><h3>To build</h3><ul><li>Lumen's Haiku and Opus language layer, members only</li><li>Photo upload and the overnight photo check</li><li>Monthly website checks and the steward digest with Approve buttons</li><li>The Quadruplicate calendar feed and a safety alert banner</li><li>Spending caps and the stewardship invitations</li></ul></div>
+</div>
+{% endblock %}

@@ -183,7 +183,7 @@ class Command(BaseCommand):
         for old in Page.objects.filter(depth=2, slug="home").exclude(content_type=ContentType.objects.get_for_model(HomePage)):
             Site.objects.filter(root_page=old).update(root_page=root)
             old.delete()
-        home = HomePage(title="Pleasant Crescent", slug="home", strapline="Things to do with kids in Del Norte County",
+        home = HomePage(title="Crescent Compass", slug="home", strapline="Things to do with kids in Del Norte County",
                         intro="<p>A calm, verified directory for caregivers of children aged 0 to 18. Every listing shows its source and when it was last checked.</p>",
                         optional_question="Just show free things?")
         root.add_child(instance=home)

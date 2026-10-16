@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% block title %}{{ r.name }} · Pleasant Crescent{% endblock %}
+{% block title %}{{ r.name }} · Crescent Compass{% endblock %}
 {% block content %}
 <h1>{{ r.name }}{% if r.is_fictional %} <span class="tag fiction">Fictional demo</span>{% elif r.verification_method == 'official_online' %} <span class="tag verified">Checked online</span>{% endif %}</h1>
 <div class="meta"><span class="tag">{{ r.get_category_display }}</span><span class="tag">Ages {{ r.min_age }} to {{ r.max_age }}</span>{% if r.cost_status == 'free' %}<span class="tag free">Free</span>{% elif r.cost_status == 'priced' %}<span class="tag">${{ r.cost_usd|floatformat:0 }}</span>{% else %}<span class="tag unknown">Cost {{ r.cost_status }}</span>{% endif %}{% if r.accessibility_status == 'verified_yes' %}<span class="tag">Access: verified yes</span>{% elif r.accessibility_status == 'verified_no' %}<span class="tag">Access: verified no</span>{% else %}<span class="tag unknown">Access: unknown</span>{% endif %}<span class="tag">{{ r.get_community_display }}</span></div>

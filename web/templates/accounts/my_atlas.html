@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% block title %}My atlas · Pleasant Crescent{% endblock %}
+{% block title %}My atlas · Crescent Compass{% endblock %}
 {% block content %}
 <section class="prose-page">
 <p class="eyebrow">My atlas</p>
@@ -8,7 +8,7 @@
 <div class="stages" aria-label="Participation stages (choices available to you, not a score)">
 {% for s in stages %}<div class="stage {% if s.current %}current{% endif %}"><span class="num">0{{ forloop.counter }}</span><b>{{ s.label }}</b></div>{% endfor %}
 </div>
-<p class="src">Stages describe what you can do, in your own time: explore without an account; choose what matters; settle in with saved places and Compass; contribute suggestions for review; steward verified records if a moderator grants it. Nothing here is a score.</p>
+<p class="src">Stages describe what you can do, in your own time: explore without an account; choose what matters; settle in with saved places and Lumen; contribute suggestions for review; steward verified records if a moderator grants it. Nothing here is a score.</p>
 <div class="detail-grid">
 <section>
 <h2>Saved places</h2>
@@ -27,7 +27,7 @@
 <dt>Step-free only</dt><dd>{{ prefs.step_free|yesno:"yes,no" }}</dd>
 <dt>Community</dt><dd>{{ prefs.community|default:"anywhere" }}</dd>
 <dt>How much</dt><dd>{{ prefs.get_dosage_display }}</dd>
-<dt>Compass may remember</dt><dd>{{ prefs.compass_may_remember|yesno:"yes,no" }}</dd>
+<dt>Lumen may remember</dt><dd>{{ prefs.compass_may_remember|yesno:"yes,no" }}</dd>
 <dt>Email summaries</dt><dd>{{ prefs.notifications|yesno:"on,off" }}</dd>
 </dl>
 <p><a class="btn secondary" href="{% url 'accounts:welcome_step' 1 %}">Change settings</a></p>

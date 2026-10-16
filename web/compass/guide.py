@@ -1,17 +1,17 @@
-"""Compass guide mode: what Compass can do, and the questions the team asks the reviewer
+"""Lumen guide mode: what Lumen can do, and the questions the team asks the reviewer
 (Kim) about how the mapping and agentic system should work. Plain data rendered into the
 panel; answers are stored as ReviewNote rows (hosted) or compiled to text (static preview)."""
 
 INTRO = (
-    "Hello. I am Crescent Compass. I answer only from the verified directory: places by age, cost, access and community, "
+    "Hello. I am Lumen, the guide for Crescent Compass. I answer only from the verified directory: places by age, cost, access and community, "
     "and what is on this week. Every answer shows where it came from and when it was checked, and I say so when I do not know. "
     "Signed in, you can also say \"correct: ...\" or \"suggest: ...\" and I draft it for a steward; nothing publishes on its own.\n\n"
-    "Kim, the team would like your view on how this should work. Press \"Help shape Compass\" to answer a few short questions, "
+    "Kim, the team would like your view on how this should work. Press \"Help shape Lumen\" to answer a few short questions, "
     "or just ask me something about Del Norte County."
 )
 
 QUESTIONS = [
-    {"key": "serve_first", "text": "Who should Compass serve first: newcomers finding their feet, caregivers of young children, teenagers, local organisations, or someone else?"},
+    {"key": "serve_first", "text": "Who should Lumen serve first: newcomers finding their feet, caregivers of young children, teenagers, local organisations, or someone else?"},
     {"key": "allowed_to_do", "text": "What should it be allowed to do? Only answer from verified records (as now); also draft suggestions and corrections for a steward (built, needs sign-in); or, later, act with explicit consent, such as sending a message or a reminder?"},
     {"key": "uncertainty", "text": "When a listing was checked months ago and I am not sure it is still right, should I stay quiet, show it with a clear warning (as now), or ask you before showing it?"},
     {"key": "memory", "text": "What should I remember about a person between visits? Nothing at all; only the settings they choose to save (as now); or more, such as places they have been?"},

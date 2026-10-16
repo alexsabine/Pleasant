@@ -27,15 +27,15 @@ QUESTIONS = [
     {
         "key": "governance",
         "title": "Map governance: who decides how the whole resource changes over time?",
-        "ask": "Adding a place and changing the system are different powers. Who should decide system-level change: the categories, the freshness constants, what Compass is allowed to do, whether a new mode (fog, people, messaging) is switched on? One organisation, two named admins, a small council, or a monthly open review?",
-        "built": "Two independent admin accounts (Moderators) approve publication and can edit the published constants without code changes. Editors draft and verify but cannot publish. Every publish, verification and Compass answer is written to a hash-chained audit log that anyone with admin access can verify. The maths and policy are published in the repository.",
+        "ask": "Adding a place and changing the system are different powers. Who should decide system-level change: the categories, the freshness constants, what Lumen is allowed to do, whether a new mode (fog, people, messaging) is switched on? One organisation, two named admins, a small council, or a monthly open review?",
+        "built": "Two independent admin accounts (Moderators) approve publication and can edit the published constants without code changes. Editors draft and verify but cannot publish. Every publish, verification and Lumen answer is written to a hash-chained audit log that anyone with admin access can verify. The maths and policy are published in the repository.",
         "changes": "The proposal's monthly loop (listen, review, decide, change, report) can be run by whoever you name; the audit log and the decision records are the material for that report. Nothing in the AI can grant itself or anyone else a new power.",
     },
     {
         "key": "whatsapp",
         "title": "WhatsApp: should the assistant work between people, not only between a person and the map?",
-        "ask": "Would you want Compass to handle distributed coordination among humans navigating the territory, for example relaying 'is the pool open today?' to a steward and back, or posting a verified weekly digest to a group? Or should it stay a read-only guide inside the website for now?",
-        "built": "Compass is read-only and lives in the site. It answers only from verified records, shows where every answer came from, and can draft a suggestion for a steward when a signed-in person asks. No messaging channel is connected; the proposal's WhatsApp Business plan is logged as a separate, optional project with its own cost.",
+        "ask": "Would you want Lumen to handle distributed coordination among humans navigating the territory, for example relaying 'is the pool open today?' to a steward and back, or posting a verified weekly digest to a group? Or should it stay a read-only guide inside the website for now?",
+        "built": "Lumen is read-only and lives in the site. It answers only from verified records, shows where every answer came from, and can draft a suggestion for a steward when a signed-in person asks. No messaging channel is connected; the proposal's WhatsApp Business plan is logged as a separate, optional project with its own cost.",
         "changes": "Messaging means a third-party platform, a per-message cost outside the $500–$1,000 a year allowance, consent for every recipient, and a duplicate-aware ledger so nobody is messaged twice. It would need written approval before any build.",
     },
     {

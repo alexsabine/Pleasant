@@ -23,7 +23,7 @@ from django.test import Client
 from atlas.models import GROUPS, Resource
 from compass import policy, tools
 
-PREFIXES = ("static", "api", "tiles", "logo.svg", "explore", "resource", "about", "this-week", "local-help", "contribute", "review", "accounts", "compass")
+PREFIXES = ("static", "api", "tiles", "logo.svg", "explore", "resource", "about", "this-week", "local-help", "contribute", "review", "plan", "accounts", "compass")
 URL_RE = re.compile(r'"(/(?:' + "|".join(re.escape(p) for p in PREFIXES) + r')(?:[/?.][^"]*)?)"')
 REL_QS_RE = re.compile(r'href="\?([^"]*)"')
 CSS_URL_RE = re.compile(r"url\((['\"]?)/static/")
@@ -82,7 +82,7 @@ class Command(BaseCommand):
                 dest.write_bytes(body)
             return dest
 
-        pages = ["/", "/explore/", "/explore/?view=list", "/this-week/", "/local-help/", "/about/", "/review/", "/contribute/", "/accounts/join/", "/accounts/sign-in/"]
+        pages = ["/", "/explore/", "/explore/?view=list", "/this-week/", "/local-help/", "/about/", "/review/", "/plan/", "/plan/at-a-glance/", "/plan/system/", "/plan/costs/", "/plan/ethics/", "/plan/future/", "/contribute/", "/accounts/join/", "/accounts/sign-in/"]
         pages += [f"/explore/?group={k}" for k, _ in GROUPS]
         slugs = list(Resource.objects.filter(live=True, visibility="public", is_sensitive=False).values_list("slug", flat=True))
         pages += [f"/resource/{s}/" for s in slugs]
@@ -118,7 +118,7 @@ class Command(BaseCommand):
         self.subset_terrain(tiles / "delnorte_terrain.pmtiles", out / "tiles" / "delnorte_terrain.pmtiles", max_zoom=12)
 
         (out / ".nojekyll").write_text("")
-        (out / "404.html").write_text(f'<!doctype html><meta charset="utf-8"><meta name="robots" content="noindex"><title>Not found · Pleasant Crescent</title>'
+        (out / "404.html").write_text(f'<!doctype html><meta charset="utf-8"><meta name="robots" content="noindex"><title>Not found · Crescent Compass</title>'
                                       f'<p style="font-family:system-ui;padding:2rem">That page is not part of the static preview. <a href="{base}">Back to the atlas</a>.</p>')
         n = sum(1 for _ in out.rglob("*") if _.is_file())
         size = sum(p.stat().st_size for p in out.rglob("*") if p.is_file()) / 1e6

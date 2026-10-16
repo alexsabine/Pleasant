@@ -1,10 +1,10 @@
 {% extends "base.html" %}
-{% block title %}Join · Pleasant Crescent{% endblock %}
+{% block title %}Join · Crescent Compass{% endblock %}
 {% block content %}
 <section class="prose-page narrow">
 <p class="eyebrow">Join gently</p>
 <h1>Save places, set your preferences, help the map.</h1>
-<p class="lede">You can browse everything without an account. An account lets you save places, tell Compass what matters to your family, and later suggest additions for review. No child accounts, no location tracking, nothing shared without asking.</p>
+<p class="lede">You can browse everything without an account. An account lets you save places, tell Lumen what matters to your family, and later suggest additions for review. No child accounts, no location tracking, nothing shared without asking.</p>
 <form method="post" class="form-stack">{% csrf_token %}
 {{ form.non_field_errors }}
 {% for f in form %}<div class="field"><label for="{{ f.id_for_label }}">{{ f.label }}</label>{{ f }}{% if f.help_text %}<small>{{ f.help_text|safe }}</small>{% endif %}{{ f.errors }}</div>{% endfor %}

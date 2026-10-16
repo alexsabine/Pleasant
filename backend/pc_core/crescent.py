@@ -87,7 +87,7 @@ def crescent_svg(state: CrescentState, colours: dict, size: int = 36, animate: b
     if animate and amp > 0.005:
         anim = (f'<animate attributeName="d" dur="14s" repeatCount="indefinite" calcMode="spline" '
                 f'keyTimes="0;0.5;1" keySplines="0.45 0 0.55 1;0.45 0 0.55 1" values="{lit_lo};{lit_hi};{lit_lo}"/>')
-    ttl = title or (f"Pleasant Crescent. Freshness gauge: mean P(current) {state.p:.2f} over {state.n_listings} listings; "
+    ttl = title or (f"Crescent Compass. Freshness gauge: mean P(current) {state.p:.2f} over {state.n_listings} listings; "
                     f"belief moved {state.path_c:.2f} rad this window; {state.changes_n} changes")
     return (f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="{size}" height="{size}" role="img" aria-label="{ttl}">'
             f'<title>{ttl}</title>'

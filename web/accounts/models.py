@@ -29,7 +29,7 @@ class FamilyPreferences(models.Model):
     step_free = models.BooleanField(default=False, help_text="Only show places verified step-free / wheelchair accessible")
     community = models.CharField(max_length=32, blank=True)
     dosage = models.CharField(max_length=8, choices=DOSAGE, default="standard")
-    compass_may_remember = models.BooleanField(default=True, help_text="Let Crescent Compass use these settings when answering")
+    compass_may_remember = models.BooleanField(default=True, help_text="Let Lumen use these settings when answering")
     notifications = models.BooleanField(default=False, help_text="Email summaries (off unless you turn them on)")
     onboarding_done = models.BooleanField(default=False)
     updated_at = models.DateTimeField(auto_now=True)

@@ -1,10 +1,10 @@
 {% extends "base.html" %}{% load static atlas_extras %}
-{% block title %}For Kim · review guide and questions · Pleasant Crescent{% endblock %}
+{% block title %}For Kim · review guide and questions · Crescent Compass{% endblock %}
 {% block content %}
 <section class="hero-sz compact">
   <p class="eyebrow">Draft for review · {{ projection_version }} publications so far</p>
   <h1 class="display">Questions for Kim</h1>
-  <p class="place-line">· a first draft of Pleasant Crescent, built to be argued with ·</p>
+  <p class="place-line">· a first draft of Crescent Compass, built to be argued with ·</p>
 </section>
 
 <section class="intro-sz">
@@ -21,9 +21,9 @@
     <div class="three steps">
       <div class="pillar"><span class="num">01</span><h3>Explore the nine groups</h3><p>The home page follows your draft categories. Open <a href="{% url 'explore' %}">Explore</a>, switch between list and map, and try the age, cost and access filters. The list works with the map switched off.</p></div>
       <div class="pillar"><span class="num">02</span><h3>Open a listing</h3><p>Each listing shows its source, how it was located, when it was checked and a plain freshness band. Try a school, a trail and a beach, and tell us what is missing or wrong.</p></div>
-      <div class="pillar"><span class="num">03</span><h3>Ask Compass</h3><p>Use the Compass button and ask, for example: "somewhere free for a 3 year old", "rainy day ideas", "an easy redwood walk with a pushchair". It answers only from verified records and says where each answer came from.</p></div>
+      <div class="pillar"><span class="num">03</span><h3>Ask Lumen</h3><p>Use the Lumen button and ask, for example: "somewhere free for a 3 year old", "rainy day ideas", "an easy redwood walk with a pushchair". It answers only from verified records and says where each answer came from.</p></div>
       <div class="pillar"><span class="num">04</span><h3>Join, gently</h3><p><a href="{% url 'accounts:signup' %}">Join</a> to see the welcome steps. Nothing asks about a child; every step can be skipped; settings are yours to delete.</p></div>
-      <div class="pillar"><span class="num">05</span><h3>Suggest and correct</h3><p>Use <a href="{% url 'contribute' %}">Suggest a place</a>, or ask Compass to "correct: …" once signed in. Both go to a review queue; nothing publishes on its own.</p></div>
+      <div class="pillar"><span class="num">05</span><h3>Suggest and correct</h3><p>Use <a href="{% url 'contribute' %}">Suggest a place</a>, or ask Lumen to "correct: …" once signed in. Both go to a review queue; nothing publishes on its own.</p></div>
       <div class="pillar"><span class="num">06</span><h3>Read the promises</h3><p><a href="{% url 'about' %}">About</a> shows the moon gauge, the data licences and the governance loop. The maths behind the gauge and the freshness bands is public in the repository.</p></div>
     </div>
   </div>

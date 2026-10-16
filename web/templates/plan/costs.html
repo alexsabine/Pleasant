@@ -1,0 +1,53 @@
+{% extends "plan/_base.html" %}
+{% block plan_title %}What it costs once live{% endblock %}
+{% block plan_lede %}<p class="lede">For {{ members }} members, Crescent Compass costs about ${{ cost_rows.0.total|floatformat:0 }} to ${{ cost_rows.2.total|floatformat:0 }} a year, depending on how much people use Lumen. That is inside Kim's $1,500 ceiling at every level of use, with a spending cap as a guarantee.</p>{% endblock %}
+{% block plan_content %}
+<div class="tbl-wrap"><table class="tbl">
+  <thead><tr><th>Use</th><th class="num">Questions a member a week</th><th class="num">Haiku front desk</th><th class="num">Opus specialist jobs</th><th class="num">Opus for hard questions</th><th class="num">Fixed costs</th><th class="num">Total a year</th></tr></thead>
+  <tbody>{% for r in cost_rows %}
+    <tr><td>{{ r.label }}</td><td class="num">{{ r.questions }}</td><td class="num">${{ r.haiku|floatformat:0 }}</td><td class="num">${{ r.opus_jobs|floatformat:0 }}</td><td class="num">${{ r.opus_escalations|floatformat:0 }}</td><td class="num">${{ r.hosting }}</td><td class="num"><b>${{ r.total|floatformat:0 }}</b></td></tr>{% endfor %}
+  </tbody>
+</table></div>
+<p class="note">Each member also sends, each month: light use, half a correction and half a photo; typical, 1 correction and 2 photos; heavy, 3 corrections and 5 photos. Opus specialist jobs cover photo checks, website comparisons, the steward's digest, calendar sorting and a monthly trust summary.</p>
+
+<h2>Fixed costs, including subscriptions</h2>
+<div class="tbl-wrap"><table class="tbl">
+  <thead><tr><th>Item</th><th class="num">A year</th></tr></thead>
+  <tbody>{% for item, cost in fixed_items %}<tr><td>{{ item }}</td><td class="num">${{ cost }}</td></tr>{% endfor %}
+    <tr class="total"><td><b>Total</b></td><td class="num"><b>${{ fixed_total }}</b></td></tr></tbody>
+</table></div>
+<p class="note">A server is still needed alongside GitHub: GitHub Pages can only hand out finished pages. Signing in, Lumen, photos and approvals need a server that keeps the secret key for the AI and holds the records.</p>
+
+<h2>How an AI call works</h2>
+<ol class="flow">
+  <li><b>A member asks.</b> "Somewhere free and indoors for a 4-year-old on Saturday?"</li>
+  <li><b>Our server prepares the request.</b> It adds the published listings as a short catalogue, the member's saved settings if they allowed it, the last few turns, and the tools Lumen may use. Nothing private is included.</li>
+  <li><b>Claude Haiku reads it</b> and asks our server to run a search, for example "indoor, free, ages 3 to 5".</li>
+  <li><b>Our server runs the search</b> on published listings only, applies the 75 percent rule, and hands back the matching records.</li>
+  <li><b>Haiku writes the answer</b>, naming the listings each sentence relies on. It appears word by word.</li>
+  <li><b>Our server checks every sentence</b> against the records, removes anything unsupported, and seals the answer in the log. If Haiku's answer fails the checks, Opus answers instead, or the plain rules-based answer is used.</li>
+</ol>
+<p class="prose-w">We pay only for the text sent and received, measured in tokens, roughly three quarters of a word each. A typical turn sends about 12,000 tokens, mostly the catalogue, and receives about 700. With Haiku that is about ${{ per_turn_haiku|floatformat:4 }} a turn; with Opus about ${{ per_turn_opus|floatformat:3 }}.</p>
+
+<h2>Why this design</h2>
+<div class="reasons">
+  <div><b>Haiku at the front desk.</b> It understands everyday questions and writes warm, short answers for about a quarter of a cent. Using Opus for every turn would cost $2,000 to $4,000 a year at typical use.</div>
+  <div><b>Opus where judgement matters.</b> Photos, changed websites, the steward's digest and the hardest questions go to the most capable model. Jobs that can wait run overnight at half price.</div>
+  <div><b>Our server decides; the AI writes.</b> Recommending, permissions and publishing are rules and published maths on our server. That keeps the AI cheap, replaceable and unable to override a person.</div>
+  <div><b>The whole atlas fits in each request.</b> The catalogue is small, so Lumen always knows the full, current atlas and nothing else. No custom AI model has to be trained or kept up to date.</div>
+  <div><b>Spending caps make the ceiling a guarantee.</b> A per-member daily limit of about 40 turns, and a yearly cap on AI spending, stop a busy month from overshooting. Past a cap, Lumen answers from its rules, still accurately.</div>
+  <div><b>It works with no AI at all.</b> Switched off, Lumen still answers from rules and templates and every trust check still runs. The year then costs ${{ fixed_total }}.</div>
+</div>
+
+<h2>Other options considered</h2>
+<div class="tbl-wrap"><table class="tbl">
+  <thead><tr><th>Option</th><th class="num">Typical year</th><th>Verdict</th></tr></thead>
+  <tbody>
+    <tr><td>No AI: rules and templates only</td><td class="num">${{ fixed_total }}</td><td>Works today; less natural to talk to</td></tr>
+    <tr><td>Opus for everything, with token savings</td><td class="num">${{ opus_only.typical }}</td><td>Fits at typical use; over the ceiling at heavy use</td></tr>
+    <tr><td>Opus for everything, as the code stands today</td><td class="num">${{ as_built.typical }}</td><td>Over the ceiling</td></tr>
+    <tr><td><b>Haiku front desk, Opus specialist (recommended)</b></td><td class="num"><b>${{ cost_rows.1.total|floatformat:0 }}</b></td><td>Natural conversation for everyone, within budget at all levels</td></tr>
+  </tbody>
+</table></div>
+<p class="note">All figures are estimates from October 2026, before any real use. Prices: Claude Haiku 5.5 $0.10 and $0.50, Claude Opus 5.5 $4 and $20 per million tokens in and out. The model is in the repository at backend/examples/cost_model.py and can be re-run with new prices or real usage. Staff and volunteer time are not included.</p>
+{% endblock %}

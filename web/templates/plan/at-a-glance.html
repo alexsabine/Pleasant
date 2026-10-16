@@ -1,0 +1,87 @@
+{% extends "plan/_base.html" %}
+{% block plan_title %}Crescent Compass at a glance{% endblock %}
+{% block plan_lede %}<p class="lede">Eleven simple T-charts covering the whole process, from a visitor opening the map to a steward approving a new place.</p>{% endblock %}
+{% block plan_content %}
+<div class="tgrid">
+
+<section class="t"><span class="num">1</span><h2>Who can do what</h2>
+<div class="cols">
+  <div><h3>Anyone, no account</h3><ul><li>See the whole map</li><li>Read every listing and its source</li><li>See this week's events</li><li>Find local help</li></ul></div>
+  <div><h3>Members, signed in</h3><ul><li>Ask Lumen</li><li>Add a place or photo</li><li>Send a correction</li><li>Save favourite places</li></ul></div>
+</div></section>
+
+<section class="t"><span class="num">2</span><h2>Joining</h2>
+<div class="cols">
+  <div><h3>Member does</h3><ol><li>Opens the map</li><li>Taps Join</li><li>Confirms they are an adult</li><li>Picks age bands and budget, or skips</li></ol></div>
+  <div><h3>Crescent Compass does</h3><ol><li>Shows everything, no sign-up</li><li>Creates the account</li><li>Asks nothing about children</li><li>Shapes Lumen's answers with those settings</li></ol></div>
+</div></section>
+
+<section class="t"><span class="num">3</span><h2>Asking Lumen</h2>
+<div class="cols">
+  <div><h3>Member sees</h3><ol><li>Types any question</li><li>Answer appears word by word</li><li>Cards with map, save, directions</li><li>Source and check date on each place</li></ol></div>
+  <div><h3>Behind the scenes</h3><ol><li>Lumen reads it <span class="ai">(Haiku)</span></li><li>Searches published listings only</li><li>The 75% rule picks what to recommend</li><li>Each sentence checked, then sealed in the log</li></ol></div>
+</div></section>
+
+<section class="t"><span class="num">4</span><h2>Adding a place or photo</h2>
+<div class="cols">
+  <div><h3>Member does</h3><ol><li>Taps Add, or tells Lumen</li><li>Adds a photo and a note</li><li>Taps the spot on the map</li><li>Gets a note when it's live</li></ol></div>
+  <div><h3>Crescent Compass does</h3><ol><li>Removes hidden GPS data</li><li>Checks for a duplicate nearby</li><li>Pre-checks the photo overnight <span class="ai">(Opus)</span></li><li>Holds it in Pending for a steward</li></ol></div>
+</div></section>
+
+<section class="t"><span class="num">5</span><h2>A steward's month</h2>
+<div class="cols">
+  <div><h3>Lumen prepares</h3><ul><li>A list of everything pending</li><li>Evidence for each item</li><li>A suggested action</li><li>Websites that changed</li></ul></div>
+  <div><h3>Steward decides</h3><ul><li>Asks "What needs approving?"</li><li>Taps Approve, Reject or Ask</li><li>About an hour a month</li><li>Each decision sealed in the log</li></ul></div>
+</div></section>
+
+<section class="t"><span class="num">6</span><h2>Lumen's limits</h2>
+<div class="cols">
+  <div><h3>Lumen can</h3><ul><li>Answer from published listings</li><li>Suggest, explain and draft</li><li>Say "I don't know"</li><li>Remember the current chat</li></ul></div>
+  <div><h3>Lumen can never</h3><ul><li>Publish or approve</li><li>Invent a place or fact</li><li>See accounts or private notes</li><li>Give anyone a role</li></ul></div>
+</div></section>
+
+<section class="t"><span class="num">7</span><h2>The two AI models</h2>
+<div class="cols">
+  <div><h3>Haiku, the front desk</h3><ul><li>Every chat turn</li><li>Any phrasing, any language</li><li>Fast and cheap</li><li>About a quarter of a cent a turn</li></ul></div>
+  <div><h3>Opus, the specialist</h3><ul><li>Photo checks</li><li>Website comparisons</li><li>The steward's digest</li><li>Hard questions, about 1 in 20</li></ul></div>
+</div></section>
+
+<section class="t"><span class="num">8</span><h2>With and without AI</h2>
+<div class="cols">
+  <div><h3>Works with no AI, free</h3><ul><li>Map, filters, listings</li><li>The 75% rule and the sealed log</li><li>Spotting changed websites</li><li>Events calendar, approvals</li></ul></div>
+  <div><h3>Needs AI, paid</h3><ul><li>Understanding any question</li><li>Natural, friendly wording</li><li>Judging photos</li><li>Explaining what changed</li></ul></div>
+</div></section>
+
+<section class="t wide"><span class="num">9</span><h2>A year's money, 100 members</h2>
+<div class="cols money">
+  <div><h3>Fixed, ${{ fixed_total }} a year</h3><ul><li>Small server for members: $144</li><li>Backups and photo storage: $72</li><li>GitHub Pro, private code: $48</li><li>Domain: $20 · Email: $5</li><li>Public map on GitHub Pages: free</li></ul></div>
+  <div><h3>Usage, Haiku and Opus</h3><ul><li>Light use: <b>${{ cost_rows.0.total|floatformat:0 }}</b> a year in total</li><li>Typical use: <b>${{ cost_rows.1.total|floatformat:0 }}</b> a year in total</li><li>Heavy use: <b>${{ cost_rows.2.total|floatformat:0 }}</b> a year in total</li><li>A spending cap keeps it under $1,500</li></ul></div>
+</div>
+<p class="foot">Totals include fixed costs. Light, typical and heavy mean 3, 8 and 20 questions a member a week.</p></section>
+
+<section class="t"><span class="num">10</span><h2>The Quadruplicate</h2>
+<div class="cols">
+  <div><h3>We use</h3><ul><li>Its community calendar feed</li><li>Its list of local calendars</li><li>Its directory, to double-check ours</li><li>Links to safety alerts and meetings</li></ul></div>
+  <div><h3>We agree first</h3><ul><li>Credit on every item we show</li><li>Share-alike terms for its data</li><li>Which events are its to share</li><li>What we send back</li></ul></div>
+</div></section>
+
+<section class="t wide"><span class="num">11</span><h2>Daniel Friedman's tools: GEO_INFER and GNN</h2>
+<div class="cols">
+  <div><h3>GEO_INFER ideas we can use</h3><ul>
+    <li>A safety banner from official weather, earthquake and tsunami feeds that says plainly when a feed is down</li>
+    <li>Crescent City tide times from NOAA's harbour station</li>
+    <li>A rights-and-source record for every map layer</li>
+    <li>A community representation check to guide who is invited to become a steward</li>
+    <li>Strict time stamps on every feed, so old data never looks new</li></ul></div>
+  <div><h3>GNN, for the maths</h3><ul>
+    <li>Lumen's freshness model is now written in GNN notation</li>
+    <li>The translation was checked both ways and matches exactly</li>
+    <li>It gives Kim and stewards a readable record of the model</li>
+    <li>It serves as an offline research comparison</li>
+    <li>Live decisions stay with the 75% rule</li></ul></div>
+</div>
+<p class="foot">Both are CC BY-NC-SA 4.0, so we use the ideas in our own code or agree terms with Daniel. Under our privacy rules we leave out property-owner and tribal data and any profiling of people.</p></section>
+
+</div>
+<p class="note">Figures are estimates from October 2026, using Claude Haiku 5.5 at $0.10 and $0.50 and Claude Opus 5.5 at $4 and $20 per million tokens in and out. The Quadruplicate's code and data are CC BY-SA 4.0; GEO_INFER and GNN are CC BY-NC-SA 4.0.</p>
+{% endblock %}

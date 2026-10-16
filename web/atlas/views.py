@@ -294,3 +294,38 @@ def review(request):
     ctx.update({"questions": QUESTIONS, "saved": saved, "n_live": live.count(), "group_counts": [(k, v, counts.get(k, 0)) for k, v in GROUPS],
                 "n_human": live.exclude(verification_method__in=("official_online", "none")).count()})
     return render(request, "atlas/review.html", ctx)
+
+
+# ---- "For Kim": plan pages (summary, at a glance, system, costs, ethics, future) ----
+PLAN_TABS = [("summary", "Summary"), ("at-a-glance", "At a glance"), ("system", "How it's built"), ("costs", "Costs"),
+             ("ethics", "Ethics"), ("future", "Future")]
+
+
+def _cost_context():
+    path = settings.REPO_ROOT / "design" / "cost_model.json"
+    if not path.exists():
+        return {}
+    d = json.loads(path.read_text())
+    lum = d.get("lumen", {})
+    sc = lum.get("scenarios", {})
+    usage = d.get("usage", {})
+    rows = [{"label": usage[k]["label"], "questions": usage[k]["questions_wk"], **sc[k]} for k in ("light", "typical", "heavy") if k in sc]
+    opus_only = {k: round(d["scenarios"][k]["optimised"]["ai"] + d["hybrid_fixed"]) for k in d["scenarios"]}
+    as_built = {k: round(d["scenarios"][k]["as_built"]["ai"] + d["hybrid_fixed"]) for k in d["scenarios"]}
+    fixed = [("Small server for members' features (2 GB, $12 a month)", 144), ("Off-site backups and photo storage", 72),
+             ("GitHub Pro: private code, public map hosted free on GitHub Pages", 48), ("Domain name, e.g. crescentcompass.ca", 20),
+             ("Email for sign-up and password resets", 5), ("Anthropic API account (pay as you go, no subscription)", 0),
+             ("Security certificate, uptime alerts, map tiles, trust checks", 0)]
+    return {"cost_rows": rows, "fixed_items": fixed, "fixed_total": d.get("hybrid_fixed"), "per_turn_haiku": lum.get("per_turn_haiku"),
+            "per_turn_opus": lum.get("per_turn_opus"), "opus_only": opus_only, "as_built": as_built, "budget": d.get("budget", 1500),
+            "members": d.get("members", 100)}
+
+
+def plan(request, tab="summary"):
+    if tab not in dict(PLAN_TABS):
+        raise Http404
+    ctx = _common_ctx(request)
+    ctx.update({"tabs": PLAN_TABS, "tab": tab, "tab_label": dict(PLAN_TABS)[tab]})
+    if tab in ("costs", "at-a-glance", "summary"):
+        ctx.update(_cost_context())
+    return render(request, f"plan/{tab}.html", ctx)

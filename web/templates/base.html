@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, interactive-widget=resizes-content">
-<title>{% block title %}Pleasant Crescent{% endblock %}</title>
+<title>{% block title %}Crescent Compass{% endblock %}</title>
 <meta name="description" content="A friendly, verified atlas for families, neighbours and newcomers in Del Norte County.">
 <link rel="icon" href="{% url 'logo_svg' %}?size=64&static=1" type="image/svg+xml">
 {% if static_export %}<meta name="robots" content="noindex, nofollow">
@@ -32,26 +32,26 @@ body{background:var(--pc-bg)}
 </head>
 <body class="{% block bodyclass %}{% endblock %}">
 <a class="skip" href="#main">Skip to content</a>
-{% if static_export %}<div class="private-banner" role="status">Static preview for review. Listings and map are a snapshot checked online, not yet visited in person. Accounts, suggestions and Compass audit records need the hosted site. <a href="{% url 'review' %}">Review guide and questions</a></div>{% elif private_mode %}<div class="private-banner" role="status">Draft for review. Listings are summarised from official websites and checked online, not yet visited in person. <a href="{% url 'review' %}">Review guide and questions</a></div>{% endif %}
+{% if static_export %}<div class="private-banner" role="status">Static preview for review. Listings and map are a snapshot checked online, not yet visited in person. Accounts, suggestions and Lumen audit records need the hosted site. <a href="{% url 'review' %}">Review guide and questions</a></div>{% elif private_mode %}<div class="private-banner" role="status">Draft for review. Listings are summarised from official websites and checked online, not yet visited in person. <a href="{% url 'review' %}">Review guide and questions</a></div>{% endif %}
 <header class="site-head">
-  <a class="brand" href="/" aria-label="Pleasant Crescent home">{{ logo_svg|safe }}<span class="wordmark">Pleasant Crescent</span></a>
+  <a class="brand" href="/" aria-label="Crescent Compass home">{{ logo_svg|safe }}<span class="wordmark">Crescent Compass</span></a>
   <nav class="site-nav" aria-label="Main">
     <a href="{% url 'explore' %}" {% if request.resolver_match.url_name == 'explore' %}aria-current="page"{% endif %}>Explore</a>
     <a href="{% url 'this_week' %}" {% if request.resolver_match.url_name == 'this_week' %}aria-current="page"{% endif %}>This week</a>
     <a href="{% url 'local_help' %}" {% if request.resolver_match.url_name == 'local_help' %}aria-current="page"{% endif %}>Local help</a>
     <a href="{% url 'about' %}" {% if request.resolver_match.url_name == 'about' %}aria-current="page"{% endif %}>About</a>
-    {% if private_mode %}<a href="{% url 'review' %}" class="review-link" {% if request.resolver_match.url_name == 'review' %}aria-current="page"{% endif %}>For Kim</a>{% endif %}
+    {% if private_mode %}<a href="{% url 'plan' %}" class="review-link" {% if request.resolver_match.url_name == 'review' or request.resolver_match.url_name == 'plan' or request.resolver_match.url_name == 'plan_tab' %}aria-current="page"{% endif %}>For Kim</a>{% endif %}
     {% if user.is_authenticated %}<a href="{% url 'accounts:my_atlas' %}" {% if request.resolver_match.namespace == 'accounts' %}aria-current="page"{% endif %}>My atlas</a>{% else %}<a href="{% url 'accounts:signup' %}" class="join">Join</a>{% endif %}
   </nav>
   <button class="compass-toggle" type="button" aria-expanded="false" aria-controls="compass-drawer" id="compass-toggle">
-    {% include "compass/icon.html" with size=20 %}Compass
+    {% include "compass/icon.html" with size=20 %}Lumen
   </button>
 </header>
 <main id="main" class="site-main">{% block content %}{% endblock %}</main>
-<aside id="compass-drawer" class="compass-drawer" aria-label="Crescent Compass" hidden>{% include "compass/panel.html" %}</aside>
+<aside id="compass-drawer" class="compass-drawer" aria-label="Lumen" hidden>{% include "compass/panel.html" %}</aside>
 <footer class="site-foot">
   <div class="foot-grid">
-    <div class="foot-brand">{{ logo_svg|safe }}<p>Pleasant Crescent is a locally governed atlas for families, neighbours and newcomers. It helps people notice and care for their shared surroundings, and it never claims to be a complete picture of a place or of the people who live there.</p></div>
+    <div class="foot-brand">{{ logo_svg|safe }}<p>Crescent Compass is a locally governed atlas for families, neighbours and newcomers. It helps people notice and care for their shared surroundings, and it never claims to be a complete picture of a place or of the people who live there.</p></div>
     <div><p class="eyebrow">Visit</p><p>Organisation name<br>Street address<br>Crescent City, CA 95531<br><small class="ph-note">placeholder: owner supplies</small></p></div>
     <div><p class="eyebrow">Contact</p><p><a href="mailto:hello@example.invalid">hello@example.invalid</a><br><a href="{% url 'contribute' %}">Suggest a place or correction</a><br><a href="{% url 'about' %}#governance">Governance and commitments</a></p></div>
   </div>

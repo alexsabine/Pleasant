@@ -56,7 +56,7 @@
     qa.addEventListener("submit", async e => {
       e.preventDefault();
       const who = qa.querySelector("#reviewer");
-      const parts = ["Pleasant Crescent review replies" + (who && who.value ? " from " + who.value : ""), ""];
+      const parts = ["Crescent Compass review replies" + (who && who.value ? " from " + who.value : ""), ""];
       qa.querySelectorAll(".qcard").forEach(card => {
         const t = card.querySelector("textarea");
         if (t && t.value.trim()) parts.push(card.querySelector("h3").textContent.trim(), t.value.trim(), "");
@@ -66,7 +66,7 @@
       if (!box) { box = document.createElement("div"); box.className = "static-out"; qa.appendChild(box); }
       let copied = false;
       try { await navigator.clipboard.writeText(text); copied = true; } catch (err) { copied = false; }
-      const mail = S.reviewEmail ? `<a class="btn secondary" href="mailto:${S.reviewEmail}?subject=${encodeURIComponent("Pleasant Crescent review replies")}&body=${encodeURIComponent(text)}">Open in email</a>` : "";
+      const mail = S.reviewEmail ? `<a class="btn secondary" href="mailto:${S.reviewEmail}?subject=${encodeURIComponent("Crescent Compass review replies")}&body=${encodeURIComponent(text)}">Open in email</a>` : "";
       box.innerHTML = `<p class="notice-ok" role="status">${copied ? "Copied to your clipboard. " : ""}This static preview cannot store replies: paste the text below into an email or message to Alex.</p><textarea rows="10" readonly aria-label="Your compiled replies">${text.replace(/[&<>]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;" }[c]))}</textarea>${mail}`;
       box.scrollIntoView({ behavior: "smooth", block: "nearest" });
     });

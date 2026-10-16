@@ -54,7 +54,7 @@ def ask(request):
                              "items": [], "events": [], "provenance": {"policy_version": POLICY_VERSION}})
 
     if not _budget_ok():
-        return JsonResponse({"request_id": request_id, "action": "abstain", "text": "Compass has reached today's request budget. Please use the Explore list.",
+        return JsonResponse({"request_id": request_id, "action": "abstain", "text": "Lumen has reached today's request budget. Please use the Explore list.",
                              "items": [], "events": [], "provenance": {"policy_version": POLICY_VERSION}}, status=429)
 
     # 1. intent: rules first; LLM extraction only replaces fields it fills.
@@ -86,7 +86,7 @@ def ask(request):
                 used.append("community from your saved settings")
             max_items = prefs.max_items()
 
-    # PREPARE (proposal p.6): a signed-in person can ask Compass to draft a suggestion or
+    # PREPARE (proposal p.6): a signed-in person can ask Lumen to draft a suggestion or
     # correction. It becomes a pending Submission for a steward; it never publishes.
     m_prep = re.match(r"^\s*(suggest|correct|report)\b[:\s]+(.{8,})$", question, re.I)
     if m_prep and request.user.is_authenticated:
@@ -95,7 +95,7 @@ def ask(request):
         record = AuditEntry.append({
             "request_id": request_id, "retrieval_sources": [], "source_versions": {"projection_version": pv}, "policy_version": POLICY_VERSION,
             "assumptions": {"user": request.user.get_username()}, "confidence_type": "n/a (draft prepared, not asserted)",
-            "action_proposed": "prepare_submission", "user_approval": "explicit: user asked Compass to draft it",
+            "action_proposed": "prepare_submission", "user_approval": "explicit: user asked Lumen to draft it",
             "action_result": {"submission_id": sub.pk, "status": sub.status}, "timestamp": timezone.now().isoformat(),
             "limitations": ["A steward must review before anything changes publicly."]}, require_decision_fields=True)
         return JsonResponse({"request_id": request_id, "action": "prepare", "reason": "draft submission created for moderation",
@@ -152,7 +152,7 @@ def ask(request):
 
 @require_POST
 def feedback(request):
-    """Answers from the guide mode ('Help shape Compass'). Stored as ReviewNote rows for the
+    """Answers from the guide mode ('Help shape Lumen'). Stored as ReviewNote rows for the
     stewards, never published, never fed back into any answer. Anonymous replies are allowed
     so a reviewer need not create an account."""
     try:

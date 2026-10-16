@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block title %}{{ tab_label }} · For Kim · Crescent Compass{% endblock %}
+{% block bodyclass %}plan{% endblock %}
+{% block content %}
+<section class="plan-head">
+  <p class="eyebrow">For Kim · draft for review · October 2026</p>
+  <h1 class="display">{% block plan_title %}{{ tab_label }}{% endblock %}</h1>
+  {% block plan_lede %}{% endblock %}
+</section>
+<nav class="plan-tabs" aria-label="Plan sections">
+  {% for key, label in tabs %}<a href="{% if key == 'summary' %}{% url 'plan' %}{% else %}{% url 'plan_tab' key %}{% endif %}"{% if key == tab %} aria-current="page"{% endif %}>{{ label }}</a>{% endfor %}
+  <a href="{% url 'review' %}">Questions for Kim</a>
+</nav>
+<div class="plan-body">
+{% block plan_content %}{% endblock %}
+</div>
+{% endblock %}

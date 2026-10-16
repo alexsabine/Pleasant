@@ -108,7 +108,7 @@ SESSION_COOKIE_SAMESITE = "Lax"
 X_FRAME_OPTIONS = "SAMEORIGIN"
 
 # --- Wagtail ---------------------------------------------------------------
-WAGTAIL_SITE_NAME = "Pleasant Crescent"
+WAGTAIL_SITE_NAME = "Crescent Compass"
 WAGTAILADMIN_BASE_URL = os.environ.get("WAGTAILADMIN_BASE_URL", "http://localhost:8000")
 WAGTAILSEARCH_BACKENDS = {"default": {"BACKEND": "wagtail.search.backends.database"}}
 WAGTAILDOCS_EXTENSIONS = ["pdf", "txt", "csv"]

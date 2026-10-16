@@ -1,8 +1,8 @@
 {% extends "base.html" %}{% load static %}
-{% block title %}About · Pleasant Crescent{% endblock %}
+{% block title %}About · Crescent Compass{% endblock %}
 {% block content %}
 <h1>About this atlas</h1>
-<p class="lede">Pleasant Crescent is a caregiver-directed directory for Del Norte County. Every listing shows its official source, how it was located, and the date it was last checked. Listings marked "checked online" were summarised from official websites by an automated assistant and have not yet been visited in person. Unknown is shown as unknown. Nothing is tracked about children.</p>
+<p class="lede">Crescent Compass is a caregiver-directed directory for Del Norte County. Every listing shows its official source, how it was located, and the date it was last checked. Listings marked "checked online" were summarised from official websites by an automated assistant and have not yet been visited in person. Unknown is shown as unknown. Nothing is tracked about children.</p>
 <figure class="ph photo wide"><img src="{% static 'photos/sand-dollars.jpg' %}" alt="Two sand dollars on sand" loading="lazy"><figcaption>Project-supplied photography. Species and collection location are not stated; wildlife photographs never carry a location here.</figcaption></figure>
 <h2>What the moon shows</h2>
 <div class="gauge">{{ logo_svg|safe|cut:'width="36"'|cut:'height="36"' }}<p>The crescent is a gauge, not a decoration. Its lit fraction equals the directory's mean estimate that listings are still current; the terminator sits at the Fisher–Rao coordinate θ = 2·asin(√p) of that belief, so the arc it sweeps between two states is the information distance between them. The slow breathing is the distance the belief moved over the last week; the small marks on the ring count publications and verifications in that week. The mathematics is public, in research/04_mathematics_register.md.</p></div>
@@ -16,5 +16,5 @@
 <h2>Correct a listing</h2>
 <p class="lede">Use the correction form on any listing page, or email the editors. Corrections become claims that an editor checks before anything changes publicly.</p>
 <h2>Governance</h2>
-<p class="lede">The freshness model, decision constants and the Compass policy are published in the repository (research/04_mathematics_register.md) and editable by administrators without code changes. Monthly review covers corrections, audit-log entries and Compass abstentions.</p>
+<p class="lede">The freshness model, decision constants and the Lumen policy are published in the repository (research/04_mathematics_register.md) and editable by administrators without code changes. Monthly review covers corrections, audit-log entries and Lumen abstentions.</p>
 {% endblock %}

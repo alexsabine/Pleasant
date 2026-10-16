@@ -59,7 +59,7 @@
     const answers = guideAnswers.filter(a => a.answer); guideAnswers = [];
     if (!answers.length) { add("bot", "No answers to pass on. Ask me anything about the county whenever you like."); return; }
     if (window.PC_STATIC) {
-      const text = ["Compass guide answers", ""].concat(answers.flatMap(a => [a.question, a.answer, ""])).join("\n");
+      const text = ["Lumen guide answers", ""].concat(answers.flatMap(a => [a.question, a.answer, ""])).join("\n");
       let copied = false; try { await navigator.clipboard.writeText(text); copied = true; } catch (err) { copied = false; }
       add("bot", (copied ? "Copied to your clipboard. " : "") + "This static preview cannot store answers: please paste the text below into an email or message to Alex.\n\n" + text);
       return;
@@ -73,7 +73,7 @@
   function startGuide() {
     if (!guide.questions || !guide.questions.length) return;
     guideStep = 0; guideAnswers = [];
-    add("user", "Help shape Compass");
+    add("user", "Help shape Lumen");
     add("bot", "Thank you. There are " + guide.questions.length + " short questions; skip any you like, and nothing you say is published.");
     askNext(); input.focus();
   }
@@ -120,6 +120,6 @@
       const data = await r.json();
       thinking.remove();
       add("bot", data.text || data.error || "No answer.", Object.assign({ action: data.action, reason: data.reason }, data.provenance || {}));
-    } catch (err) { thinking.textContent = "Compass is unavailable right now. The Explore list still works."; }
+    } catch (err) { thinking.textContent = "Lumen is unavailable right now. The Explore list still works."; }
   });
 })();

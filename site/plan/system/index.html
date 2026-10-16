@@ -1,0 +1,201 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, interactive-widget=resizes-content">
+<title>How it&#x27;s built · For Kim · Crescent Compass</title>
+<meta name="description" content="A friendly, verified atlas for families, neighbours and newcomers in Del Norte County.">
+<link rel="icon" href="/Pleasant/logo.svg" type="image/svg+xml">
+<meta name="robots" content="noindex, nofollow">
+<script>window.PC_STATIC={"base": "/Pleasant/", "reviewEmail": ""};</script>
+<link rel="stylesheet" href="/Pleasant/static/fonts/cormorant/cormorant.css">
+<link rel="stylesheet" href="/Pleasant/static/vendor/maplibre-gl.css">
+<link rel="stylesheet" href="/Pleasant/static/pc/app.css?v=0f4e786a3d">
+<style>
+:root{
+  --pc-bg:#f7f2ea;--pc-surface:#ffffff;--pc-ink:#303848;--pc-ink-2:#586273;
+  --pc-accent:#00848b;--pc-accent-on:#ffffff;--pc-accent-2:#a3675b;--pc-free:#14875a;--pc-unknown:#6f787f;
+  --pc-verified:#14875a;--pc-stale:#a3675b;--pc-sensitive:#ae6161;
+  --pc-radius:14px;--pc-font-ui:system-ui, -apple-system, 'Segoe UI', Roboto, Inter, sans-serif;--pc-line:#d8d0c3;
+  --pc-font-display:'Cormorant Garamond', Georgia, 'Times New Roman', serif;--pc-font-mono:ui-monospace, 'JetBrains Mono', SFMono-Regular, Menlo, monospace;
+}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){
+  --pc-bg:#131822;--pc-surface:#1f242e;--pc-ink:#98a5ae;--pc-ink-2:#76828b;
+  --pc-accent:#1d999f;--pc-accent-on:#131822;--pc-accent-2:#bd786a;--pc-free:#3f9a6f;
+  --pc-unknown:#76828b;--pc-verified:#3f9a6f;--pc-stale:#bd786a;--pc-sensitive:#bd786a;
+  --pc-line:#2b3940;
+}}
+body{background:var(--pc-bg)}
+.tag.group-parks .sw,.ph.group-parks::after{background:#357a3a}
+.tag.group-pools .sw,.ph.group-pools::after{background:#00839a}
+.tag.group-attractions .sw,.ph.group-attractions::after{background:#bb6546}
+.tag.group-water .sw,.ph.group-water::after{background:#478ece}
+.tag.group-nature .sw,.ph.group-nature::after{background:#5d5900}
+.tag.group-learning .sw,.ph.group-learning::after{background:#6b66b4}
+.tag.group-arts .sw,.ph.group-arts::after{background:#a75c93}
+.tag.group-services .sw,.ph.group-services::after{background:#754a93}
+.tag.group-programs .sw,.ph.group-programs::after{background:#b27923}
+</style>
+
+</head>
+<body class="plan">
+<a class="skip" href="#main">Skip to content</a>
+<div class="private-banner" role="status">Static preview for review. Listings and map are a snapshot checked online, not yet visited in person. Accounts, suggestions and Lumen audit records need the hosted site. <a href="/Pleasant/review/">Review guide and questions</a></div>
+<header class="site-head">
+  <a class="brand" href="/" aria-label="Crescent Compass home"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="36" height="36" role="img" aria-label="Crescent Compass. Freshness gauge: mean P(current) 0.99 over 58 listings; belief moved 0.47 rad this window; 3859 changes"><title>Crescent Compass. Freshness gauge: mean P(current) 0.99 over 58 listings; belief moved 0.47 rad this window; 3859 changes</title><circle cx="50" cy="50" r="46" fill="#cae9ff" opacity="0.35"/><circle cx="50" cy="50" r="44" fill="#364868"/><path d="M50.00,6.00 L52.88,6.09 L55.74,6.38 L58.58,6.85 L61.39,7.50 L64.14,8.34 L66.84,9.35 L69.46,10.54 L72.00,11.89 L74.45,13.42 L76.79,15.09 L79.01,16.92 L81.11,18.89 L83.08,20.99 L84.91,23.21 L86.58,25.55 L88.11,28.00 L89.46,30.54 L90.65,33.16 L91.66,35.86 L92.50,38.61 L93.15,41.42 L93.62,44.26 L93.91,47.12 L94.00,50.00 L93.91,52.88 L93.62,55.74 L93.15,58.58 L92.50,61.39 L91.66,64.14 L90.65,66.84 L89.46,69.46 L88.11,72.00 L86.58,74.45 L84.91,76.79 L83.08,79.01 L81.11,81.11 L79.01,83.08 L76.79,84.91 L74.45,86.58 L72.00,88.11 L69.46,89.46 L66.84,90.65 L64.14,91.66 L61.39,92.50 L58.58,93.15 L55.74,93.62 L52.88,93.91 L50.00,94.00 L50.00,94.00 L47.16,93.91 L44.34,93.62 L41.54,93.15 L38.78,92.50 L36.06,91.66 L33.40,90.65 L30.82,89.46 L28.32,88.11 L25.91,86.58 L23.60,84.91 L21.41,83.08 L19.34,81.11 L17.40,79.01 L15.60,76.79 L13.94,74.45 L12.44,72.00 L11.11,69.46 L9.93,66.84 L8.94,64.14 L8.11,61.39 L7.47,58.58 L7.00,55.74 L6.73,52.88 L6.63,50.00 L6.73,47.12 L7.00,44.26 L7.47,41.42 L8.11,38.61 L8.94,35.86 L9.93,33.16 L11.11,30.54 L12.44,28.00 L13.94,25.55 L15.60,23.21 L17.40,20.99 L19.34,18.89 L21.41,16.92 L23.60,15.09 L25.91,13.42 L28.32,11.89 L30.82,10.54 L33.40,9.35 L36.06,8.34 L38.78,7.50 L41.54,6.85 L44.34,6.38 L47.16,6.09 L50.00,6.00 Z" fill="#e4b572"><animate attributeName="d" dur="14s" repeatCount="indefinite" calcMode="spline" keyTimes="0;0.5;1" keySplines="0.45 0 0.55 1;0.45 0 0.55 1" values="M50.00,6.00 L52.88,6.09 L55.74,6.38 L58.58,6.85 L61.39,7.50 L64.14,8.34 L66.84,9.35 L69.46,10.54 L72.00,11.89 L74.45,13.42 L76.79,15.09 L79.01,16.92 L81.11,18.89 L83.08,20.99 L84.91,23.21 L86.58,25.55 L88.11,28.00 L89.46,30.54 L90.65,33.16 L91.66,35.86 L92.50,38.61 L93.15,41.42 L93.62,44.26 L93.91,47.12 L94.00,50.00 L93.91,52.88 L93.62,55.74 L93.15,58.58 L92.50,61.39 L91.66,64.14 L90.65,66.84 L89.46,69.46 L88.11,72.00 L86.58,74.45 L84.91,76.79 L83.08,79.01 L81.11,81.11 L79.01,83.08 L76.79,84.91 L74.45,86.58 L72.00,88.11 L69.46,89.46 L66.84,90.65 L64.14,91.66 L61.39,92.50 L58.58,93.15 L55.74,93.62 L52.88,93.91 L50.00,94.00 L50.00,94.00 L47.50,93.91 L45.02,93.62 L42.55,93.15 L40.12,92.50 L37.73,91.66 L35.39,90.65 L33.11,89.46 L30.91,88.11 L28.78,86.58 L26.75,84.91 L24.82,83.08 L23.00,81.11 L21.29,79.01 L19.70,76.79 L18.25,74.45 L16.93,72.00 L15.75,69.46 L14.72,66.84 L13.84,64.14 L13.12,61.39 L12.55,58.58 L12.14,55.74 L11.90,52.88 L11.81,50.00 L11.90,47.12 L12.14,44.26 L12.55,41.42 L13.12,38.61 L13.84,35.86 L14.72,33.16 L15.75,30.54 L16.93,28.00 L18.25,25.55 L19.70,23.21 L21.29,20.99 L23.00,18.89 L24.82,16.92 L26.75,15.09 L28.78,13.42 L30.91,11.89 L33.11,10.54 L35.39,9.35 L37.73,8.34 L40.12,7.50 L42.55,6.85 L45.02,6.38 L47.50,6.09 L50.00,6.00 Z;M50.00,6.00 L52.88,6.09 L55.74,6.38 L58.58,6.85 L61.39,7.50 L64.14,8.34 L66.84,9.35 L69.46,10.54 L72.00,11.89 L74.45,13.42 L76.79,15.09 L79.01,16.92 L81.11,18.89 L83.08,20.99 L84.91,23.21 L86.58,25.55 L88.11,28.00 L89.46,30.54 L90.65,33.16 L91.66,35.86 L92.50,38.61 L93.15,41.42 L93.62,44.26 L93.91,47.12 L94.00,50.00 L93.91,52.88 L93.62,55.74 L93.15,58.58 L92.50,61.39 L91.66,64.14 L90.65,66.84 L89.46,69.46 L88.11,72.00 L86.58,74.45 L84.91,76.79 L83.08,79.01 L81.11,81.11 L79.01,83.08 L76.79,84.91 L74.45,86.58 L72.00,88.11 L69.46,89.46 L66.84,90.65 L64.14,91.66 L61.39,92.50 L58.58,93.15 L55.74,93.62 L52.88,93.91 L50.00,94.00 L50.00,94.00 L47.12,93.91 L44.26,93.62 L41.42,93.15 L38.61,92.50 L35.86,91.66 L33.16,90.65 L30.54,89.46 L28.00,88.11 L25.55,86.58 L23.21,84.91 L20.99,83.08 L18.89,81.11 L16.92,79.01 L15.09,76.79 L13.42,74.45 L11.89,72.00 L10.54,69.46 L9.35,66.84 L8.34,64.14 L7.50,61.39 L6.85,58.58 L6.38,55.74 L6.09,52.88 L6.00,50.00 L6.09,47.12 L6.38,44.26 L6.85,41.42 L7.50,38.61 L8.34,35.86 L9.35,33.16 L10.54,30.54 L11.89,28.00 L13.42,25.55 L15.09,23.21 L16.92,20.99 L18.89,18.89 L20.99,16.92 L23.21,15.09 L25.55,13.42 L28.00,11.89 L30.54,10.54 L33.16,9.35 L35.86,8.34 L38.61,7.50 L41.42,6.85 L44.26,6.38 L47.12,6.09 L50.00,6.00 Z;M50.00,6.00 L52.88,6.09 L55.74,6.38 L58.58,6.85 L61.39,7.50 L64.14,8.34 L66.84,9.35 L69.46,10.54 L72.00,11.89 L74.45,13.42 L76.79,15.09 L79.01,16.92 L81.11,18.89 L83.08,20.99 L84.91,23.21 L86.58,25.55 L88.11,28.00 L89.46,30.54 L90.65,33.16 L91.66,35.86 L92.50,38.61 L93.15,41.42 L93.62,44.26 L93.91,47.12 L94.00,50.00 L93.91,52.88 L93.62,55.74 L93.15,58.58 L92.50,61.39 L91.66,64.14 L90.65,66.84 L89.46,69.46 L88.11,72.00 L86.58,74.45 L84.91,76.79 L83.08,79.01 L81.11,81.11 L79.01,83.08 L76.79,84.91 L74.45,86.58 L72.00,88.11 L69.46,89.46 L66.84,90.65 L64.14,91.66 L61.39,92.50 L58.58,93.15 L55.74,93.62 L52.88,93.91 L50.00,94.00 L50.00,94.00 L47.50,93.91 L45.02,93.62 L42.55,93.15 L40.12,92.50 L37.73,91.66 L35.39,90.65 L33.11,89.46 L30.91,88.11 L28.78,86.58 L26.75,84.91 L24.82,83.08 L23.00,81.11 L21.29,79.01 L19.70,76.79 L18.25,74.45 L16.93,72.00 L15.75,69.46 L14.72,66.84 L13.84,64.14 L13.12,61.39 L12.55,58.58 L12.14,55.74 L11.90,52.88 L11.81,50.00 L11.90,47.12 L12.14,44.26 L12.55,41.42 L13.12,38.61 L13.84,35.86 L14.72,33.16 L15.75,30.54 L16.93,28.00 L18.25,25.55 L19.70,23.21 L21.29,20.99 L23.00,18.89 L24.82,16.92 L26.75,15.09 L28.78,13.42 L30.91,11.89 L33.11,10.54 L35.39,9.35 L37.73,8.34 L40.12,7.50 L42.55,6.85 L45.02,6.38 L47.50,6.09 L50.00,6.00 Z"/></path><defs><radialGradient id="pc_limb" cx="0.42" cy="0.40" r="0.62"><stop offset="0.6" stop-color="#000" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity="0.22"/></radialGradient></defs><circle cx="50" cy="50" r="44" fill="url(#pc_limb)"/><circle cx="50" cy="50" r="46" fill="none" stroke="#00848b" stroke-width="1.5" opacity="0.8"/><circle cx="50.0" cy="1.8" r="0.9" fill="#00848b" opacity="0.8"/><circle cx="74.1" cy="8.3" r="0.9" fill="#00848b" opacity="0.8"/><circle cx="91.7" cy="25.9" r="0.9" fill="#00848b" opacity="0.8"/><circle cx="98.2" cy="50.0" r="0.9" fill="#00848b" opacity="0.8"/><circle cx="91.7" cy="74.1" r="0.9" fill="#00848b" opacity="0.8"/><circle cx="74.1" cy="91.7" r="0.9" fill="#00848b" opacity="0.8"/><circle cx="50.0" cy="98.2" r="0.9" fill="#00848b" opacity="0.8"/><circle cx="25.9" cy="91.7" r="0.9" fill="#00848b" opacity="0.8"/><circle cx="8.3" cy="74.1" r="0.9" fill="#00848b" opacity="0.8"/><circle cx="1.8" cy="50.0" r="0.9" fill="#00848b" opacity="0.8"/><circle cx="8.3" cy="25.9" r="0.9" fill="#00848b" opacity="0.8"/><circle cx="25.9" cy="8.3" r="0.9" fill="#00848b" opacity="0.8"/></svg><span class="wordmark">Crescent Compass</span></a>
+  <nav class="site-nav" aria-label="Main">
+    <a href="/Pleasant/explore/" >Explore</a>
+    <a href="/Pleasant/this-week/" >This week</a>
+    <a href="/Pleasant/local-help/" >Local help</a>
+    <a href="/Pleasant/about/" >About</a>
+    <a href="/Pleasant/plan/" class="review-link" aria-current="page">For Kim</a>
+    <a href="/Pleasant/accounts/join/" class="join">Join</a>
+  </nav>
+  <button class="compass-toggle" type="button" aria-expanded="false" aria-controls="compass-drawer" id="compass-toggle">
+    
+<svg class="cc-icon" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false">
+  <circle cx="12" cy="12" r="10.2" fill="#e4b572" stroke="currentColor" stroke-width="1.6"/>
+  <path d="M6.4 6.2a7.6 7.6 0 0 0 7.2 12.9A6.2 6.2 0 0 1 6.4 6.2Z" fill="#364868" opacity=".28"/>
+  <g stroke="currentColor" stroke-width="1.1" stroke-linecap="round" opacity=".7"><path d="M12 2.6v1.9M12 19.5v1.9M2.6 12h1.9M19.5 12h1.9"/></g>
+  <g class="cc-needle">
+    <path d="M12 4.6 13.9 11.3 12 12.7 10.1 11.3Z" fill="#a3675b"/>
+    <path d="M12 19.4 13.9 12.7 12 11.3 10.1 12.7Z" fill="#364868" opacity=".85"/>
+  </g>
+  <circle cx="12" cy="12" r="1.4" fill="#fbf6ec" stroke="currentColor" stroke-width=".8"/>
+</svg>
+Lumen
+  </button>
+</header>
+<main id="main" class="site-main">
+<section class="plan-head">
+  <p class="eyebrow">For Kim · draft for review · October 2026</p>
+  <h1 class="display">How Crescent Compass is built</h1>
+  <p class="lede">The public map is a free copy on GitHub Pages. Members' features run on one small server of our own. Two AI models help with language, and every decision and record stays on our server.</p>
+</section>
+<nav class="plan-tabs" aria-label="Plan sections">
+  <a href="/Pleasant/plan/">Summary</a><a href="/Pleasant/plan/at-a-glance/">At a glance</a><a href="/Pleasant/plan/system/" aria-current="page">How it&#x27;s built</a><a href="/Pleasant/plan/costs/">Costs</a><a href="/Pleasant/plan/ethics/">Ethics</a><a href="/Pleasant/plan/future/">Future</a>
+  <a href="/Pleasant/review/">Questions for Kim</a>
+</nav>
+<div class="plan-body">
+
+<figure class="wire">
+  <div class="wire-scroll">
+  <svg viewBox="0 0 862 514" role="img" aria-label="Visitors use the free public map on GitHub Pages; members and stewards use pages on our server, where Lumen, permissions and monthly jobs read and write our records; outside services are Claude Haiku and Opus, official websites, The Quadruplicate, alert feeds, GitHub and backups.">
+    <defs>
+      <marker id="w1" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10Z" class="d-head"/></marker>
+      <marker id="w1a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10Z" class="d-head-ai"/></marker>
+    </defs>
+    <rect class="d-zone" x="16" y="40" width="170" height="304" rx="12"/><text class="d-z" x="30" y="62">PEOPLE</text>
+    <rect class="d-zone" x="206" y="40" width="190" height="304" rx="12"/><text class="d-z" x="220" y="62">WHERE THEY GO</text>
+    <rect class="d-zone" x="416" y="40" width="190" height="304" rx="12"/><text class="d-z" x="430" y="62">OUR SERVER</text>
+    <rect class="d-zone" x="626" y="40" width="220" height="304" rx="12"/><text class="d-z" x="640" y="62">OUR RECORDS</text>
+    <rect class="d-zone" x="16" y="364" width="830" height="134" rx="12"/><text class="d-z" x="30" y="386">OUTSIDE SERVICES</text>
+    <!-- people -->
+    <rect class="d-box" x="32" y="84" width="138" height="60" rx="9"/><text class="d-t" x="44" y="108">Visitors</text><text class="d-s" x="44" y="128">anyone, no account</text>
+    <rect class="d-key" x="32" y="174" width="138" height="60" rx="9"/><text class="d-t" x="44" y="198">Members</text><text class="d-s" x="44" y="218">signed in</text>
+    <rect class="d-box" x="32" y="264" width="138" height="60" rx="9"/><text class="d-t" x="44" y="288">Stewards</text><text class="d-s" x="44" y="308">two named people</text>
+    <!-- where -->
+    <rect class="d-box" x="222" y="84" width="158" height="60" rx="9"/><text class="d-t" x="234" y="108">Public map</text><text class="d-s" x="234" y="128">GitHub Pages, free</text>
+    <rect class="d-key" x="222" y="174" width="158" height="60" rx="9"/><text class="d-t" x="234" y="198">Member pages</text><text class="d-s" x="234" y="218">Lumen, add, correct</text>
+    <rect class="d-box" x="222" y="264" width="158" height="60" rx="9"/><text class="d-t" x="234" y="288">Stewards' desk</text><text class="d-s" x="234" y="308">monthly round</text>
+    <!-- server -->
+    <rect class="d-key" x="432" y="84" width="158" height="80" rx="9"/><text class="d-t" x="444" y="108">Lumen</text><text class="d-s" x="444" y="128">understands, looks up,</text><text class="d-s" x="444" y="146">checks, records</text>
+    <rect class="d-box" x="432" y="180" width="158" height="56" rx="9"/><text class="d-t" x="444" y="204">Permissions</text><text class="d-s" x="444" y="224">checked every action</text>
+    <rect class="d-box" x="432" y="252" width="158" height="72" rx="9"/><text class="d-t" x="444" y="276">Monthly jobs</text><text class="d-s" x="444" y="296">website checks, feeds,</text><text class="d-s" x="444" y="314">steward digest</text>
+    <!-- records -->
+    <rect class="d-box" x="642" y="80" width="188" height="50" rx="9"/><text class="d-t" x="654" y="102">Published listings</text><text class="d-s" x="654" y="120">all the public sees</text>
+    <rect class="d-box" x="642" y="138" width="188" height="50" rx="9"/><text class="d-t" x="654" y="160">Pending</text><text class="d-s" x="654" y="178">waits for a steward</text>
+    <rect class="d-box" x="642" y="196" width="188" height="50" rx="9"/><text class="d-t" x="654" y="218">Evidence and sealed log</text><text class="d-s" x="654" y="236">sources, every change</text>
+    <rect class="d-box" x="642" y="254" width="188" height="70" rx="9"/><text class="d-t" x="654" y="276">Photos and accounts</text><text class="d-s" x="654" y="296">private until approved;</text><text class="d-s" x="654" y="314">no child data</text>
+    <!-- outside -->
+    <rect class="d-ai" x="32" y="400" width="106" height="74" rx="9"/><text class="d-t" x="42" y="422">Claude Haiku</text><text class="d-s" x="42" y="442">every chat</text><text class="d-s" x="42" y="458">turn</text>
+    <rect class="d-ai" x="148" y="400" width="106" height="74" rx="9"/><text class="d-t" x="158" y="422">Claude Opus</text><text class="d-s" x="158" y="442">hard and</text><text class="d-s" x="158" y="458">overnight jobs</text>
+    <rect class="d-box" x="264" y="400" width="106" height="74" rx="9"/><text class="d-t" x="274" y="422">Official</text><text class="d-t" x="274" y="438">websites</text><text class="d-s" x="274" y="458">read monthly</text>
+    <rect class="d-box" x="380" y="400" width="106" height="74" rx="9"/><text class="d-t" x="390" y="422">The</text><text class="d-t" x="390" y="438">Quadruplicate</text><text class="d-s" x="390" y="458">calendar feed</text>
+    <rect class="d-box" x="496" y="400" width="106" height="74" rx="9"/><text class="d-t" x="506" y="422">Alert feeds</text><text class="d-s" x="506" y="442">NOAA, NWS,</text><text class="d-s" x="506" y="458">USGS (planned)</text>
+    <rect class="d-box" x="612" y="400" width="106" height="74" rx="9"/><text class="d-t" x="622" y="422">GitHub</text><text class="d-s" x="622" y="442">private code,</text><text class="d-s" x="622" y="458">public map host</text>
+    <rect class="d-box" x="728" y="400" width="106" height="74" rx="9"/><text class="d-t" x="738" y="422">Backups</text><text class="d-s" x="738" y="442">nightly,</text><text class="d-s" x="738" y="458">off-site</text>
+    <!-- arrows -->
+    <path class="d-a" d="M800 80 C800 24 360 24 360 80" marker-end="url(#w1)"/><text class="d-l" x="580" y="20" text-anchor="middle">nightly public copy of published listings</text>
+    <path class="d-a" d="M170 114H218" marker-end="url(#w1)"/>
+    <path class="d-a" d="M170 204H218" marker-end="url(#w1)"/>
+    <path class="d-a" d="M170 294H218" marker-end="url(#w1)"/>
+    <path class="d-a" d="M380 204 C406 204 406 124 428 124" marker-end="url(#w1)"/>
+    <path class="d-a" d="M380 216 C408 216 408 208 428 208" marker-end="url(#w1)"/>
+    <path class="d-a" d="M380 294 C410 294 410 222 428 222" marker-end="url(#w1)"/>
+    <path class="d-a" d="M590 104H638" marker-end="url(#w1)"/><text class="d-l" x="596" y="96">reads</text>
+    <path class="d-a" d="M590 150 C614 150 614 218 638 218" marker-end="url(#w1)"/>
+    <path class="d-a" d="M590 200 C614 200 614 162 638 162" marker-end="url(#w1)"/>
+    <path class="d-a" d="M590 222 C620 222 620 116 638 116" marker-end="url(#w1)"/>
+    <path class="d-a" d="M590 288 C616 288 616 172 638 172" marker-end="url(#w1)"/>
+    <path class="d-aa" d="M432 150 H406 V348 H85 V394" marker-end="url(#w1a)"/>
+    <path class="d-aa" d="M201 348 V394" marker-end="url(#w1a)"/>
+    <text class="d-l" x="218" y="362">question and public listings only</text>
+    <path class="d-a" d="M496 324 C496 360 317 360 317 396" marker-end="url(#w1)"/>
+    <path class="d-a" d="M511 324 C511 362 433 362 433 396" marker-end="url(#w1)"/>
+    <path class="d-a" d="M526 324 C526 362 549 362 549 396" marker-end="url(#w1)"/>
+    <path class="d-a" d="M781 324V396" marker-end="url(#w1)"/>
+  </svg>
+  </div>
+  <figcaption>Visitors read a public copy of the published listings, refreshed nightly. Members and stewards use our server. Lumen reads only published listings and records every answer. Only a steward's approval, checked by the server, moves anything from Pending to Published.</figcaption>
+</figure>
+
+<h2>The four journeys through the system</h2>
+<div class="tbl-wrap"><table class="tbl">
+  <thead><tr><th>Journey</th><th>Path</th><th>AI used</th></tr></thead>
+  <tbody>
+    <tr><td><b>Browsing</b></td><td>Visitor, then the public map on GitHub Pages. No account, no server, no tracking.</td><td>None</td></tr>
+    <tr><td><b>Asking Lumen</b></td><td>Member, then member pages, then Lumen, which reads published listings, checks its answer and records it in the log.</td><td>Haiku for most turns; Opus for about 1 in 20</td></tr>
+    <tr><td><b>Contributing</b></td><td>Member, then permissions, then Pending, then the overnight pre-check, then the steward's monthly round.</td><td>Opus, overnight, at half price</td></tr>
+    <tr><td><b>Approving</b></td><td>Steward, then the stewards' desk, then permissions, then Published and the sealed log. The public copy refreshes that night.</td><td>Opus writes the digest; a person decides</td></tr>
+  </tbody>
+</table></div>
+
+<h2>What never leaves our server</h2>
+<ul class="prose-w">
+  <li>Accounts, email addresses, saved places and members' settings.</li>
+  <li>Unpublished items in Pending, and steward notes.</li>
+  <li>Original photos, and any GPS data, which is removed on arrival.</li>
+  <li>The decision rules: what to recommend, who may do what, and what is published.</li>
+</ul>
+<p class="prose-w">Claude receives only a member's question, the published listings that might answer it, and photos sent for checking. Anthropic's commercial terms say API data is not used to train its models by default; confirm this when the account is opened. Nothing is sent at all when the AI is switched off.</p>
+
+</div>
+</main>
+<aside id="compass-drawer" class="compass-drawer" aria-label="Lumen" hidden><div class="compass-head">
+<svg class="cc-icon" viewBox="0 0 24 24" width="28" height="28" aria-hidden="true" focusable="false">
+  <circle cx="12" cy="12" r="10.2" fill="#e4b572" stroke="currentColor" stroke-width="1.6"/>
+  <path d="M6.4 6.2a7.6 7.6 0 0 0 7.2 12.9A6.2 6.2 0 0 1 6.4 6.2Z" fill="#364868" opacity=".28"/>
+  <g stroke="currentColor" stroke-width="1.1" stroke-linecap="round" opacity=".7"><path d="M12 2.6v1.9M12 19.5v1.9M2.6 12h1.9M19.5 12h1.9"/></g>
+  <g class="cc-needle">
+    <path d="M12 4.6 13.9 11.3 12 12.7 10.1 11.3Z" fill="#a3675b"/>
+    <path d="M12 19.4 13.9 12.7 12 11.3 10.1 12.7Z" fill="#364868" opacity=".85"/>
+  </g>
+  <circle cx="12" cy="12" r="1.4" fill="#fbf6ec" stroke="currentColor" stroke-width=".8"/>
+</svg>
+<h2>Lumen</h2><button type="button" data-close aria-label="Close Lumen"><span class="done">Done</span><span class="x" aria-hidden="true">×</span></button></div>
+<p class="lede compass-lede" style="padding:10px 16px 0;font-size:.85rem">I only answer from the verified directory. I show where each answer came from, and I say so when I don't know.</p>
+<div class="compass-log" role="log" aria-live="polite" data-guide="{&quot;intro&quot;: &quot;Hello. I am Lumen, the guide for Crescent Compass. I answer only from the verified directory: places by age, cost, access and community, and what is on this week. Every answer shows where it came from and when it was checked, and I say so when I do not know. Signed in, you can also say \&quot;correct: ...\&quot; or \&quot;suggest: ...\&quot; and I draft it for a steward; nothing publishes on its own.\n\nKim, the team would like your view on how this should work. Press \&quot;Help shape Lumen\&quot; to answer a few short questions, or just ask me something about Del Norte County.&quot;, &quot;questions&quot;: [{&quot;key&quot;: &quot;serve_first&quot;, &quot;text&quot;: &quot;Who should Lumen serve first: newcomers finding their feet, caregivers of young children, teenagers, local organisations, or someone else?&quot;}, {&quot;key&quot;: &quot;allowed_to_do&quot;, &quot;text&quot;: &quot;What should it be allowed to do? Only answer from verified records (as now); also draft suggestions and corrections for a steward (built, needs sign-in); or, later, act with explicit consent, such as sending a message or a reminder?&quot;}, {&quot;key&quot;: &quot;uncertainty&quot;, &quot;text&quot;: &quot;When a listing was checked months ago and I am not sure it is still right, should I stay quiet, show it with a clear warning (as now), or ask you before showing it?&quot;}, {&quot;key&quot;: &quot;memory&quot;, &quot;text&quot;: &quot;What should I remember about a person between visits? Nothing at all; only the settings they choose to save (as now); or more, such as places they have been?&quot;}, {&quot;key&quot;: &quot;channels&quot;, &quot;text&quot;: &quot;Where should I live? Only inside the website; also as an email digest people opt into; or in WhatsApp or text messages, which would be a separate, approved project?&quot;}, {&quot;key&quot;: &quot;initiative&quot;, &quot;text&quot;: &quot;Should I ever speak first, for example a weekly \&quot;what is on\&quot; note to people who asked for it, or only ever answer when asked?&quot;}, {&quot;key&quot;: &quot;red_lines&quot;, &quot;text&quot;: &quot;What is the line I must never cross? Say what would make you stop trusting me.&quot;}, {&quot;key&quot;: &quot;map_wishes&quot;, &quot;text&quot;: &quot;Last one: what should the map show, or do, that it does not today?&quot;}], &quot;closing&quot;: &quot;Thank you. I have passed your answers to the stewards; they are not published anywhere. You can ask me anything about the county now, or say \&quot;forget that\&quot; to clear this session.&quot;}"></div>
+<div class="suggest" aria-label="Example questions">
+  <button type="button" class="guide-start" data-guide-start>Help shape Lumen</button>
+  <button type="button">Free rainy-day ideas for a 6-year-old?</button>
+  <button type="button">Where can we go with a wheelchair?</button>
+  <button type="button">What's on this week?</button>
+  <button type="button">forget that</button>
+</div>
+<form class="compass-form" data-url="/Pleasant/compass/ask"><input type="hidden" name="csrfmiddlewaretoken" value="gydfcHHopWVkKgXQNWINru5w5FPj3HaUgrRNjI9c1XPwObhiSQeppJS84D7n6UlI"><label class="skip" for="compass-q">Your question</label><input id="compass-q" type="text" placeholder="Ask one thing, e.g. story time for a toddler" autocomplete="off" maxlength="1000"><button type="submit">Ask</button></form>
+</aside>
+<footer class="site-foot">
+  <div class="foot-grid">
+    <div class="foot-brand"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="36" height="36" role="img" aria-label="Crescent Compass. Freshness gauge: mean P(current) 0.99 over 58 listings; belief moved 0.47 rad this window; 3859 changes"><title>Crescent Compass. Freshness gauge: mean P(current) 0.99 over 58 listings; belief moved 0.47 rad this window; 3859 changes</title><circle cx="50" cy="50" r="46" fill="#cae9ff" opacity="0.35"/><circle cx="50" cy="50" r="44" fill="#364868"/><path d="M50.00,6.00 L52.88,6.09 L55.74,6.38 L58.58,6.85 L61.39,7.50 L64.14,8.34 L66.84,9.35 L69.46,10.54 L72.00,11.89 L74.45,13.42 L76.79,15.09 L79.01,16.92 L81.11,18.89 L83.08,20.99 L84.91,23.21 L86.58,25.55 L88.11,28.00 L89.46,30.54 L90.65,33.16 L91.66,35.86 L92.50,38.61 L93.15,41.42 L93.62,44.26 L93.91,47.12 L94.00,50.00 L93.91,52.88 L93.62,55.74 L93.15,58.58 L92.50,61.39 L91.66,64.14 L90.65,66.84 L89.46,69.46 L88.11,72.00 L86.58,74.45 L84.91,76.79 L83.08,79.01 L81.11,81.11 L79.01,83.08 L76.79,84.91 L74.45,86.58 L72.00,88.11 L69.46,89.46 L66.84,90.65 L64.14,91.66 L61.39,92.50 L58.58,93.15 L55.74,93.62 L52.88,93.91 L50.00,94.00 L50.00,94.00 L47.16,93.91 L44.34,93.62 L41.54,93.15 L38.78,92.50 L36.06,91.66 L33.40,90.65 L30.82,89.46 L28.32,88.11 L25.91,86.58 L23.60,84.91 L21.41,83.08 L19.34,81.11 L17.40,79.01 L15.60,76.79 L13.94,74.45 L12.44,72.00 L11.11,69.46 L9.93,66.84 L8.94,64.14 L8.11,61.39 L7.47,58.58 L7.00,55.74 L6.73,52.88 L6.63,50.00 L6.73,47.12 L7.00,44.26 L7.47,41.42 L8.11,38.61 L8.94,35.86 L9.93,33.16 L11.11,30.54 L12.44,28.00 L13.94,25.55 L15.60,23.21 L17.40,20.99 L19.34,18.89 L21.41,16.92 L23.60,15.09 L25.91,13.42 L28.32,11.89 L30.82,10.54 L33.40,9.35 L36.06,8.34 L38.78,7.50 L41.54,6.85 L44.34,6.38 L47.16,6.09 L50.00,6.00 Z" fill="#e4b572"><animate attributeName="d" dur="14s" repeatCount="indefinite" calcMode="spline" keyTimes="0;0.5;1" keySplines="0.45 0 0.55 1;0.45 0 0.55 1" values="M50.00,6.00 L52.88,6.09 L55.74,6.38 L58.58,6.85 L61.39,7.50 L64.14,8.34 L66.84,9.35 L69.46,10.54 L72.00,11.89 L74.45,13.42 L76.79,15.09 L79.01,16.92 L81.11,18.89 L83.08,20.99 L84.91,23.21 L86.58,25.55 L88.11,28.00 L89.46,30.54 L90.65,33.16 L91.66,35.86 L92.50,38.61 L93.15,41.42 L93.62,44.26 L93.91,47.12 L94.00,50.00 L93.91,52.88 L93.62,55.74 L93.15,58.58 L92.50,61.39 L91.66,64.14 L90.65,66.84 L89.46,69.46 L88.11,72.00 L86.58,74.45 L84.91,76.79 L83.08,79.01 L81.11,81.11 L79.01,83.08 L76.79,84.91 L74.45,86.58 L72.00,88.11 L69.46,89.46 L66.84,90.65 L64.14,91.66 L61.39,92.50 L58.58,93.15 L55.74,93.62 L52.88,93.91 L50.00,94.00 L50.00,94.00 L47.50,93.91 L45.02,93.62 L42.55,93.15 L40.12,92.50 L37.73,91.66 L35.39,90.65 L33.11,89.46 L30.91,88.11 L28.78,86.58 L26.75,84.91 L24.82,83.08 L23.00,81.11 L21.29,79.01 L19.70,76.79 L18.25,74.45 L16.93,72.00 L15.75,69.46 L14.72,66.84 L13.84,64.14 L13.12,61.39 L12.55,58.58 L12.14,55.74 L11.90,52.88 L11.81,50.00 L11.90,47.12 L12.14,44.26 L12.55,41.42 L13.12,38.61 L13.84,35.86 L14.72,33.16 L15.75,30.54 L16.93,28.00 L18.25,25.55 L19.70,23.21 L21.29,20.99 L23.00,18.89 L24.82,16.92 L26.75,15.09 L28.78,13.42 L30.91,11.89 L33.11,10.54 L35.39,9.35 L37.73,8.34 L40.12,7.50 L42.55,6.85 L45.02,6.38 L47.50,6.09 L50.00,6.00 Z;M50.00,6.00 L52.88,6.09 L55.74,6.38 L58.58,6.85 L61.39,7.50 L64.14,8.34 L66.84,9.35 L69.46,10.54 L72.00,11.89 L74.45,13.42 L76.79,15.09 L79.01,16.92 L81.11,18.89 L83.08,20.99 L84.91,23.21 L86.58,25.55 L88.11,28.00 L89.46,30.54 L90.65,33.16 L91.66,35.86 L92.50,38.61 L93.15,41.42 L93.62,44.26 L93.91,47.12 L94.00,50.00 L93.91,52.88 L93.62,55.74 L93.15,58.58 L92.50,61.39 L91.66,64.14 L90.65,66.84 L89.46,69.46 L88.11,72.00 L86.58,74.45 L84.91,76.79 L83.08,79.01 L81.11,81.11 L79.01,83.08 L76.79,84.91 L74.45,86.58 L72.00,88.11 L69.46,89.46 L66.84,90.65 L64.14,91.66 L61.39,92.50 L58.58,93.15 L55.74,93.62 L52.88,93.91 L50.00,94.00 L50.00,94.00 L47.12,93.91 L44.26,93.62 L41.42,93.15 L38.61,92.50 L35.86,91.66 L33.16,90.65 L30.54,89.46 L28.00,88.11 L25.55,86.58 L23.21,84.91 L20.99,83.08 L18.89,81.11 L16.92,79.01 L15.09,76.79 L13.42,74.45 L11.89,72.00 L10.54,69.46 L9.35,66.84 L8.34,64.14 L7.50,61.39 L6.85,58.58 L6.38,55.74 L6.09,52.88 L6.00,50.00 L6.09,47.12 L6.38,44.26 L6.85,41.42 L7.50,38.61 L8.34,35.86 L9.35,33.16 L10.54,30.54 L11.89,28.00 L13.42,25.55 L15.09,23.21 L16.92,20.99 L18.89,18.89 L20.99,16.92 L23.21,15.09 L25.55,13.42 L28.00,11.89 L30.54,10.54 L33.16,9.35 L35.86,8.34 L38.61,7.50 L41.42,6.85 L44.26,6.38 L47.12,6.09 L50.00,6.00 Z;M50.00,6.00 L52.88,6.09 L55.74,6.38 L58.58,6.85 L61.39,7.50 L64.14,8.34 L66.84,9.35 L69.46,10.54 L72.00,11.89 L74.45,13.42 L76.79,15.09 L79.01,16.92 L81.11,18.89 L83.08,20.99 L84.91,23.21 L86.58,25.55 L88.11,28.00 L89.46,30.54 L90.65,33.16 L91.66,35.86 L92.50,38.61 L93.15,41.42 L93.62,44.26 L93.91,47.12 L94.00,50.00 L93.91,52.88 L93.62,55.74 L93.15,58.58 L92.50,61.39 L91.66,64.14 L90.65,66.84 L89.46,69.46 L88.11,72.00 L86.58,74.45 L84.91,76.79 L83.08,79.01 L81.11,81.11 L79.01,83.08 L76.79,84.91 L74.45,86.58 L72.00,88.11 L69.46,89.46 L66.84,90.65 L64.14,91.66 L61.39,92.50 L58.58,93.15 L55.74,93.62 L52.88,93.91 L50.00,94.00 L50.00,94.00 L47.50,93.91 L45.02,93.62 L42.55,93.15 L40.12,92.50 L37.73,91.66 L35.39,90.65 L33.11,89.46 L30.91,88.11 L28.78,86.58 L26.75,84.91 L24.82,83.08 L23.00,81.11 L21.29,79.01 L19.70,76.79 L18.25,74.45 L16.93,72.00 L15.75,69.46 L14.72,66.84 L13.84,64.14 L13.12,61.39 L12.55,58.58 L12.14,55.74 L11.90,52.88 L11.81,50.00 L11.90,47.12 L12.14,44.26 L12.55,41.42 L13.12,38.61 L13.84,35.86 L14.72,33.16 L15.75,30.54 L16.93,28.00 L18.25,25.55 L19.70,23.21 L21.29,20.99 L23.00,18.89 L24.82,16.92 L26.75,15.09 L28.78,13.42 L30.91,11.89 L33.11,10.54 L35.39,9.35 L37.73,8.34 L40.12,7.50 L42.55,6.85 L45.02,6.38 L47.50,6.09 L50.00,6.00 Z"/></path><defs><radialGradient id="pc_limb" cx="0.42" cy="0.40" r="0.62"><stop offset="0.6" stop-color="#000" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity="0.22"/></radialGradient></defs><circle cx="50" cy="50" r="44" fill="url(#pc_limb)"/><circle cx="50" cy="50" r="46" fill="none" stroke="#00848b" stroke-width="1.5" opacity="0.8"/><circle cx="50.0" cy="1.8" r="0.9" fill="#00848b" opacity="0.8"/><circle cx="74.1" cy="8.3" r="0.9" fill="#00848b" opacity="0.8"/><circle cx="91.7" cy="25.9" r="0.9" fill="#00848b" opacity="0.8"/><circle cx="98.2" cy="50.0" r="0.9" fill="#00848b" opacity="0.8"/><circle cx="91.7" cy="74.1" r="0.9" fill="#00848b" opacity="0.8"/><circle cx="74.1" cy="91.7" r="0.9" fill="#00848b" opacity="0.8"/><circle cx="50.0" cy="98.2" r="0.9" fill="#00848b" opacity="0.8"/><circle cx="25.9" cy="91.7" r="0.9" fill="#00848b" opacity="0.8"/><circle cx="8.3" cy="74.1" r="0.9" fill="#00848b" opacity="0.8"/><circle cx="1.8" cy="50.0" r="0.9" fill="#00848b" opacity="0.8"/><circle cx="8.3" cy="25.9" r="0.9" fill="#00848b" opacity="0.8"/><circle cx="25.9" cy="8.3" r="0.9" fill="#00848b" opacity="0.8"/></svg><p>Crescent Compass is a locally governed atlas for families, neighbours and newcomers. It helps people notice and care for their shared surroundings, and it never claims to be a complete picture of a place or of the people who live there.</p></div>
+    <div><p class="eyebrow">Visit</p><p>Organisation name<br>Street address<br>Crescent City, CA 95531<br><small class="ph-note">placeholder: owner supplies</small></p></div>
+    <div><p class="eyebrow">Contact</p><p><a href="mailto:hello@example.invalid">hello@example.invalid</a><br><a href="/Pleasant/contribute/">Suggest a place or correction</a><br><a href="/Pleasant/about/#governance">Governance and commitments</a></p></div>
+  </div>
+  <div class="foot-rule"></div>
+  <p class="foot-small">Map data © OpenStreetMap contributors (ODbL) via Protomaps · Terrain USGS 3DEP · Boundaries U.S. Census Bureau · Fonts Noto Sans and Cormorant Garamond (OFL). Directory guidance is not medical, legal or emergency advice; verification dates are shown on every listing. <span class="right">Crescent City · California</span></p>
+</footer>
+<script src="/Pleasant/static/pc/compass.js?v=0f4e786a3d" defer></script>
+<script src="/Pleasant/static/pc/static.js?v=0f4e786a3d" defer></script>
+
+</body>
+</html>

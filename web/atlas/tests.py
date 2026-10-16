@@ -161,3 +161,28 @@ class ApiContract(TestCase):
         d = self.c.post("/compass/ask", data=json.dumps({"question": "a class"}), content_type="application/json").json()
         self.assertEqual(d["action"], "show_low_confidence")
         self.assertEqual([i["name"] for i in d["withheld"]], ["Old Listing"])
+
+
+class PlanPages(TestCase):
+    """The For Kim pages render, carry their key content, and use the new names."""
+
+    def test_every_tab_renders(self):
+        c = Client()
+        expect = {"/plan/": "What each part does", "/plan/at-a-glance/": "Lumen's limits", "/plan/system/": "What never leaves our server",
+                  "/plan/costs/": "How an AI call works", "/plan/ethics/": "who may be missing", "/plan/future/": "The map is never the territory"}
+        for url, text in expect.items():
+            r = c.get(url)
+            self.assertEqual(r.status_code, 200, url)
+            body = r.content.decode()
+            self.assertIn(text, body, url)
+            self.assertIn("Crescent Compass", body)
+            self.assertNotIn("Pleasant Crescent", body)
+        self.assertEqual(c.get("/plan/nope/").status_code, 404)
+
+    def test_costs_come_from_the_model_and_fit_the_ceiling(self):
+        body = Client().get("/plan/costs/").content.decode()
+        d = json.loads((Path(settings.REPO_ROOT) / "design" / "cost_model.json").read_text())
+        for k in ("light", "typical", "heavy"):
+            total = d["lumen"]["scenarios"][k]["total"]
+            self.assertLess(total, d["budget"])
+            self.assertIn(f"${round(total):,}".replace(",", ""), body.replace(",", ""))

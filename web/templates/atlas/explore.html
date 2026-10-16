@@ -1,5 +1,5 @@
 {% extends "base.html" %}{% load static atlas_extras %}
-{% block title %}Explore · Pleasant Crescent{% endblock %}
+{% block title %}Explore · Crescent Compass{% endblock %}
 {% block content %}
 <h1>Explore</h1>
 <p class="lede">Verified places and activities for families in Del Norte County. The map and the list show the same results; the list works on its own if you prefer it.</p>
@@ -46,7 +46,7 @@
       </article>
       {% endfor %}
     </div>
-    {% else %}<p class="empty">Nothing matches these filters yet. Try “Show all” or ask Crescent Compass.</p>{% endif %}
+    {% else %}<p class="empty">Nothing matches these filters yet. Try “Show all” or ask Lumen.</p>{% endif %}
   </section>
   {% if view == 'map' %}
   <section aria-label="Map of results">

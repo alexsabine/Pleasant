@@ -1,0 +1,86 @@
+{% extends "plan/_base.html" %}
+{% block plan_title %}How Crescent Compass is built{% endblock %}
+{% block plan_lede %}<p class="lede">The public map is a free copy on GitHub Pages. Members' features run on one small server of our own. Two AI models help with language, and every decision and record stays on our server.</p>{% endblock %}
+{% block plan_content %}
+<figure class="wire">
+  <div class="wire-scroll">
+  <svg viewBox="0 0 862 514" role="img" aria-label="Visitors use the free public map on GitHub Pages; members and stewards use pages on our server, where Lumen, permissions and monthly jobs read and write our records; outside services are Claude Haiku and Opus, official websites, The Quadruplicate, alert feeds, GitHub and backups.">
+    <defs>
+      <marker id="w1" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10Z" class="d-head"/></marker>
+      <marker id="w1a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10Z" class="d-head-ai"/></marker>
+    </defs>
+    <rect class="d-zone" x="16" y="40" width="170" height="304" rx="12"/><text class="d-z" x="30" y="62">PEOPLE</text>
+    <rect class="d-zone" x="206" y="40" width="190" height="304" rx="12"/><text class="d-z" x="220" y="62">WHERE THEY GO</text>
+    <rect class="d-zone" x="416" y="40" width="190" height="304" rx="12"/><text class="d-z" x="430" y="62">OUR SERVER</text>
+    <rect class="d-zone" x="626" y="40" width="220" height="304" rx="12"/><text class="d-z" x="640" y="62">OUR RECORDS</text>
+    <rect class="d-zone" x="16" y="364" width="830" height="134" rx="12"/><text class="d-z" x="30" y="386">OUTSIDE SERVICES</text>
+    <!-- people -->
+    <rect class="d-box" x="32" y="84" width="138" height="60" rx="9"/><text class="d-t" x="44" y="108">Visitors</text><text class="d-s" x="44" y="128">anyone, no account</text>
+    <rect class="d-key" x="32" y="174" width="138" height="60" rx="9"/><text class="d-t" x="44" y="198">Members</text><text class="d-s" x="44" y="218">signed in</text>
+    <rect class="d-box" x="32" y="264" width="138" height="60" rx="9"/><text class="d-t" x="44" y="288">Stewards</text><text class="d-s" x="44" y="308">two named people</text>
+    <!-- where -->
+    <rect class="d-box" x="222" y="84" width="158" height="60" rx="9"/><text class="d-t" x="234" y="108">Public map</text><text class="d-s" x="234" y="128">GitHub Pages, free</text>
+    <rect class="d-key" x="222" y="174" width="158" height="60" rx="9"/><text class="d-t" x="234" y="198">Member pages</text><text class="d-s" x="234" y="218">Lumen, add, correct</text>
+    <rect class="d-box" x="222" y="264" width="158" height="60" rx="9"/><text class="d-t" x="234" y="288">Stewards' desk</text><text class="d-s" x="234" y="308">monthly round</text>
+    <!-- server -->
+    <rect class="d-key" x="432" y="84" width="158" height="80" rx="9"/><text class="d-t" x="444" y="108">Lumen</text><text class="d-s" x="444" y="128">understands, looks up,</text><text class="d-s" x="444" y="146">checks, records</text>
+    <rect class="d-box" x="432" y="180" width="158" height="56" rx="9"/><text class="d-t" x="444" y="204">Permissions</text><text class="d-s" x="444" y="224">checked every action</text>
+    <rect class="d-box" x="432" y="252" width="158" height="72" rx="9"/><text class="d-t" x="444" y="276">Monthly jobs</text><text class="d-s" x="444" y="296">website checks, feeds,</text><text class="d-s" x="444" y="314">steward digest</text>
+    <!-- records -->
+    <rect class="d-box" x="642" y="80" width="188" height="50" rx="9"/><text class="d-t" x="654" y="102">Published listings</text><text class="d-s" x="654" y="120">all the public sees</text>
+    <rect class="d-box" x="642" y="138" width="188" height="50" rx="9"/><text class="d-t" x="654" y="160">Pending</text><text class="d-s" x="654" y="178">waits for a steward</text>
+    <rect class="d-box" x="642" y="196" width="188" height="50" rx="9"/><text class="d-t" x="654" y="218">Evidence and sealed log</text><text class="d-s" x="654" y="236">sources, every change</text>
+    <rect class="d-box" x="642" y="254" width="188" height="70" rx="9"/><text class="d-t" x="654" y="276">Photos and accounts</text><text class="d-s" x="654" y="296">private until approved;</text><text class="d-s" x="654" y="314">no child data</text>
+    <!-- outside -->
+    <rect class="d-ai" x="32" y="400" width="106" height="74" rx="9"/><text class="d-t" x="42" y="422">Claude Haiku</text><text class="d-s" x="42" y="442">every chat</text><text class="d-s" x="42" y="458">turn</text>
+    <rect class="d-ai" x="148" y="400" width="106" height="74" rx="9"/><text class="d-t" x="158" y="422">Claude Opus</text><text class="d-s" x="158" y="442">hard and</text><text class="d-s" x="158" y="458">overnight jobs</text>
+    <rect class="d-box" x="264" y="400" width="106" height="74" rx="9"/><text class="d-t" x="274" y="422">Official</text><text class="d-t" x="274" y="438">websites</text><text class="d-s" x="274" y="458">read monthly</text>
+    <rect class="d-box" x="380" y="400" width="106" height="74" rx="9"/><text class="d-t" x="390" y="422">The</text><text class="d-t" x="390" y="438">Quadruplicate</text><text class="d-s" x="390" y="458">calendar feed</text>
+    <rect class="d-box" x="496" y="400" width="106" height="74" rx="9"/><text class="d-t" x="506" y="422">Alert feeds</text><text class="d-s" x="506" y="442">NOAA, NWS,</text><text class="d-s" x="506" y="458">USGS (planned)</text>
+    <rect class="d-box" x="612" y="400" width="106" height="74" rx="9"/><text class="d-t" x="622" y="422">GitHub</text><text class="d-s" x="622" y="442">private code,</text><text class="d-s" x="622" y="458">public map host</text>
+    <rect class="d-box" x="728" y="400" width="106" height="74" rx="9"/><text class="d-t" x="738" y="422">Backups</text><text class="d-s" x="738" y="442">nightly,</text><text class="d-s" x="738" y="458">off-site</text>
+    <!-- arrows -->
+    <path class="d-a" d="M800 80 C800 24 360 24 360 80" marker-end="url(#w1)"/><text class="d-l" x="580" y="20" text-anchor="middle">nightly public copy of published listings</text>
+    <path class="d-a" d="M170 114H218" marker-end="url(#w1)"/>
+    <path class="d-a" d="M170 204H218" marker-end="url(#w1)"/>
+    <path class="d-a" d="M170 294H218" marker-end="url(#w1)"/>
+    <path class="d-a" d="M380 204 C406 204 406 124 428 124" marker-end="url(#w1)"/>
+    <path class="d-a" d="M380 216 C408 216 408 208 428 208" marker-end="url(#w1)"/>
+    <path class="d-a" d="M380 294 C410 294 410 222 428 222" marker-end="url(#w1)"/>
+    <path class="d-a" d="M590 104H638" marker-end="url(#w1)"/><text class="d-l" x="596" y="96">reads</text>
+    <path class="d-a" d="M590 150 C614 150 614 218 638 218" marker-end="url(#w1)"/>
+    <path class="d-a" d="M590 200 C614 200 614 162 638 162" marker-end="url(#w1)"/>
+    <path class="d-a" d="M590 222 C620 222 620 116 638 116" marker-end="url(#w1)"/>
+    <path class="d-a" d="M590 288 C616 288 616 172 638 172" marker-end="url(#w1)"/>
+    <path class="d-aa" d="M432 150 H406 V348 H85 V394" marker-end="url(#w1a)"/>
+    <path class="d-aa" d="M201 348 V394" marker-end="url(#w1a)"/>
+    <text class="d-l" x="218" y="362">question and public listings only</text>
+    <path class="d-a" d="M496 324 C496 360 317 360 317 396" marker-end="url(#w1)"/>
+    <path class="d-a" d="M511 324 C511 362 433 362 433 396" marker-end="url(#w1)"/>
+    <path class="d-a" d="M526 324 C526 362 549 362 549 396" marker-end="url(#w1)"/>
+    <path class="d-a" d="M781 324V396" marker-end="url(#w1)"/>
+  </svg>
+  </div>
+  <figcaption>Visitors read a public copy of the published listings, refreshed nightly. Members and stewards use our server. Lumen reads only published listings and records every answer. Only a steward's approval, checked by the server, moves anything from Pending to Published.</figcaption>
+</figure>
+
+<h2>The four journeys through the system</h2>
+<div class="tbl-wrap"><table class="tbl">
+  <thead><tr><th>Journey</th><th>Path</th><th>AI used</th></tr></thead>
+  <tbody>
+    <tr><td><b>Browsing</b></td><td>Visitor, then the public map on GitHub Pages. No account, no server, no tracking.</td><td>None</td></tr>
+    <tr><td><b>Asking Lumen</b></td><td>Member, then member pages, then Lumen, which reads published listings, checks its answer and records it in the log.</td><td>Haiku for most turns; Opus for about 1 in 20</td></tr>
+    <tr><td><b>Contributing</b></td><td>Member, then permissions, then Pending, then the overnight pre-check, then the steward's monthly round.</td><td>Opus, overnight, at half price</td></tr>
+    <tr><td><b>Approving</b></td><td>Steward, then the stewards' desk, then permissions, then Published and the sealed log. The public copy refreshes that night.</td><td>Opus writes the digest; a person decides</td></tr>
+  </tbody>
+</table></div>
+
+<h2>What never leaves our server</h2>
+<ul class="prose-w">
+  <li>Accounts, email addresses, saved places and members' settings.</li>
+  <li>Unpublished items in Pending, and steward notes.</li>
+  <li>Original photos, and any GPS data, which is removed on arrival.</li>
+  <li>The decision rules: what to recommend, who may do what, and what is published.</li>
+</ul>
+<p class="prose-w">Claude receives only a member's question, the published listings that might answer it, and photos sent for checking. Anthropic's commercial terms say API data is not used to train its models by default; confirm this when the account is opened. Nothing is sent at all when the AI is switched off.</p>
+{% endblock %}

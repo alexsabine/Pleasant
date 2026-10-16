@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% block title %}This week · Pleasant Crescent{% endblock %}
+{% block title %}This week · Crescent Compass{% endblock %}
 {% block content %}
 <h1>This week</h1><p class="lede">Events in the next two weeks. Expired events drop off by clock time, whether or not anyone has checked them.</p>
 {% if upcoming %}<div class="cards">{% for e in upcoming %}<article class="card"><h3>{{ e.title }}</h3>
