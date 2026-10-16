@@ -14,5 +14,6 @@ urlpatterns = [
     path("save/<int:resource_id>/", views.toggle_saved, name="toggle_saved"),
     path("my-data/", views.download_my_data, name="my_data"),
     path("delete/", views.delete_account, name="delete_account"),
+    path("steward-agreement/", views.steward_agreement, name="steward_agreement"),
     path("request-contributor/", views.request_contributor, name="request_contributor"),
 ]

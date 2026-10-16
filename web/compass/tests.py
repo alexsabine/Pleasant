@@ -147,3 +147,45 @@ class GuideFeedback(TestCase):
         for url in ("/api/resources.json", "/explore/"):
             self.assertNotIn("Newcomers first", c.get(url).content.decode())
         self.assertEqual(c.post("/compass/feedback", data="nope", content_type="application/json").status_code, 400)
+
+
+class StewardRecording(TestCase):
+    """Stewards' map instructions are recorded word for word only under a signed agreement; nothing else is."""
+
+    def setUp(self):
+        from django.contrib.auth.models import Group
+        User = get_user_model()
+        self.steward = User.objects.create_user("kim", "k@example.invalid", "long-enough-pass-123")
+        self.steward.groups.add(Group.objects.get_or_create(name="Moderators")[0])
+        self.member = User.objects.create_user("carer", "c@example.invalid", "long-enough-pass-123")
+        self.c = Client()
+
+    def ask(self, q):
+        return self.c.post("/compass/ask", data=json.dumps({"question": q}), content_type="application/json").json()
+
+    def sign(self):
+        return self.c.post("/accounts/steward-agreement/", {"signed_name": "Kim Example", "agree": "on"})
+
+    def test_only_signed_stewards_map_instructions_are_recorded(self):
+        from atlas.models import StewardEntry
+        self.c.force_login(self.member)
+        self.ask("correct: story time at the main library is now Thursdays at 10")
+        self.assertRedirects(self.sign(), "/accounts/my-atlas/")  # members cannot sign
+        self.assertEqual(StewardEntry.objects.count(), 0)
+        self.c.force_login(self.steward)
+        self.ask("correct: story time at the main library is now Thursdays at 10")
+        self.assertEqual(StewardEntry.objects.count(), 0)  # not signed yet: treated as a member
+        self.sign()
+        self.sign()  # signing twice keeps one signature
+        self.assertEqual(self.steward.steward_agreements.count(), 1)
+        self.assertTrue(AuditEntry.objects.filter(payload__event="steward_agreement_signed").exists())
+        d = self.ask("correct: story time at the main library is now Thursdays at 10")
+        self.assertIn("recorded under your steward agreement", d["text"])
+        e = StewardEntry.objects.get()
+        self.assertEqual(e.instruction, "correct: story time at the main library is now Thursdays at 10")
+        self.assertEqual((e.steward_name, e.outcome, e.agreement_version), ("Kim Example", "pending", "2026-10"))
+        self.assertEqual(e.submission.status, "pending")  # still needs approval; Lumen never publishes
+        self.ask("free things for a 3 year old")  # an ordinary question: never stored
+        self.assertEqual(StewardEntry.objects.count(), 1)
+        mine = self.c.get("/accounts/my-data/").json()
+        self.assertEqual(mine["steward_entries"][0]["instruction"], e.instruction)

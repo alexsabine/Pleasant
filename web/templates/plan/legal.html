@@ -53,6 +53,7 @@
     <tr><td><b>UK data protection fee</b></td><td>Processors do not pay. Honami's own business records are usually exempt.</td><td><span class="status todo">5 minutes</span> Alex runs the regulator's online self-check; if a fee is due, it is £52 a year</td></tr>
     <tr><td><b>Sending data abroad</b></td><td>Covered by the standard data terms each service offers, which include the UK transfer clauses.</td><td><span class="status todo">At sign-up</span> Accept each service's data processing terms</td></tr>
     <tr><td><b>Users' photos</b> (copyright, likeness)</td><td>Yes, lightly. Uploaders must own their photos, and there must be a way to ask for removal.</td><td><span class="status todo">At launch</span> Photo rules in the terms of use; prompt removal on request</td></tr>
+    <tr><td><b>Recording stewards' instructions</b></td><td>Lawful with consent. Stewards sign an agreement first, and only their map work is recorded.</td><td><span class="status ok">Built</span> Recording starts only after signing</td></tr>
     <tr><td><b>Events and meetups</b></td><td>Terms of use should say the site does not run or supervise meetups.</td><td><span class="status todo">At launch</span> Terms of use; reminders by email only</td></tr>
     <tr><td><b>Accessibility</b></td><td>Low legal risk for a free site, but already part of Kim's brief.</td><td><span class="status todo">In progress</span> WCAG 2.2 AA review is a planned step</td></tr>
     <tr><td><b>Domain name</b></td><td>A .ca address needs a Canadian owner, so it is not available to Kim.</td><td><span class="status ok">Fixed</span> Plan now uses a .org address</td></tr>
@@ -71,6 +72,51 @@
   <div><b>Your data.</b> Members can now download everything held about them, or delete their account themselves, from My atlas. The sealed log never records names or emails, only a member number.</div>
   <div><b>The map itself.</b> Map data comes from public sources with recorded licences and credit. No children's homes or locations, and no sensitive nature sites.</div>
 </div>
+
+<h2>Stewards: trust, recording and the agreement</h2>
+<p class="prose-w">Yes: stewards can sign an agreement that their map instructions to Lumen are recorded. This is lawful in both countries, and it is what the map's mathematics needs. The key is that people know and agree, and that only map work is recorded.</p>
+<div class="tbl-wrap"><table class="tbl">
+  <thead><tr><th>Who</th><th>What Lumen keeps on the server</th></tr></thead>
+  <tbody>
+    <tr><td>Visitors and members asking questions</td><td>Nothing they type. Only what Lumen showed and why, in the sealed log.</td></tr>
+    <tr><td>Members sending a suggestion or correction</td><td>The suggestion itself, for a steward to check. That is why they send it.</td></tr>
+    <tr><td><b>Stewards</b> adding, changing or approving map content, after signing</td><td>Their words, word for word, plus Lumen's draft, what they confirmed, the source and the time, with their name. Later, how the entry held up when re-checked.</td></tr>
+    <tr><td>Stewards asking ordinary questions</td><td>Nothing, the same as any member.</td></tr>
+  </tbody>
+</table></div>
+
+<h3>The laws that matter here</h3>
+<ul class="prose-w">
+  <li><b>Consent to recording.</b> California's wiretap law has been used against websites that record chats without telling people, especially where a third party also receives them. A signed agreement, and a clear note in Lumen, is consent. Members' questions are not recorded at all, and when the AI is on, Lumen's panel says questions go to Anthropic.</li>
+  <li><b>Volunteers, not staff.</b> Stewards are unpaid and set their own hours, so employment law does not apply. If stewards are ever paid, that changes.</li>
+  <li><b>Their words and photos.</b> Each steward gives Kim a free, permanent licence to publish and share what they add. A simple online agreement is enough for this kind of licence.</li>
+  <li><b>Accuracy.</b> Stewards act for the site, so what they publish counts as the site's own words. Hence the rules: a source for every change, unknown stays unknown, and quick correction.</li>
+  <li><b>UK data protection.</b> Steward records are data Alex handles for Kim, so they go in the contract's data section. The agreement itself tells stewards what is kept and why.</li>
+  <li><b>Decisions stay human.</b> No number ever grants or removes a role on its own. People decide, which keeps clear of the rules on automated decisions about people.</li>
+  <li><b>No background checks needed.</b> Stewards edit a map. They do not supervise children.</li>
+</ul>
+
+<h3>How trust works with the Bayes-optimal map</h3>
+<div class="reasons">
+  <div><b>One rule, unchanged.</b> A listing is recommended while the chance it is right is above 75 percent, the Bayes-optimal choice when a wrong recommendation costs three times what a right one gains. Steward trust feeds into that chance. It adds no new rule.</div>
+  <div><b>Trust sets the re-check date.</b> The chance a listing is right is the steward's reliability multiplied by the chance nothing has changed since. Reliable entries are recommended for longer before a re-check is due; newer or less certain ones are re-checked sooner. Nobody is blocked from contributing.</div>
+  <div><b>New stewards start at the group's level.</b> Their first entries are trusted like everyone else's, then their own record takes over gradually. Outcomes count half after a year.</div>
+  <div><b>Fair blame.</b> At each re-check the checker records: still right, changed since, wrong when entered, or can't tell. Only "wrong when entered" counts against a steward. A change that happened later never does.</div>
+  <div><b>Lumen is measured separately.</b> Because each steward's words are kept, Lumen's draft can be compared with what they meant. Lumen's mistakes count against Lumen, never the steward.</div>
+  <div><b>Proved before it is switched on.</b> Until there are real re-check results, every steward is treated equally. Personal trust is switched on only if it predicts re-check results better than treating everyone equally. In simulation it does, once records build up.</div>
+</div>
+<p class="note">The maths is in the repository: backend/pc_core/steward.py, checked in research/13_steward_trust.md (7 of 7 checks pass). Recording under a signed agreement is built and tested. Using trust in map decisions waits for real re-check results.</p>
+
+<h3>Becoming a steward, and what they sign</h3>
+<ol class="flow">
+  <li><b>Member, then editor.</b> Joins, contributes, and builds a reliable record: at least 20 approved items over six months, across at least three kinds of place, then a year as an editor.</li>
+  <li><b>Invited.</b> At least three of the four founding stewards invite them, with care for which communities are under-represented. No number does this on its own.</li>
+  <li><b>Signs the steward agreement</b> online, by typing their name. It is versioned and sealed in the log. Kim, Sasha, Daniel and Bill sign it too.</li>
+  <li><b>Mentored.</b> Three months alongside a founding steward, then full steward access, checked by the server on every action.</li>
+</ol>
+<details class="prose-w sources"><summary>Read the draft steward agreement</summary>
+{% include "includes/steward_agreement_text.html" %}
+</details>
 
 <h2>The contract between Alex and Kim</h2>
 <p class="prose-w">A single written agreement, signed electronically by both, is enough in both countries. It needs ten parts:</p>
@@ -132,6 +178,7 @@
   <li>UK GDPR scope: <a href="https://www.legislation.gov.uk/eur/2016/679/article/3">Article 3</a>, <a href="https://ico.org.uk/for-organisations/uk-gdpr-guidance-and-resources/controllers-and-processors/controllers-and-processors/what-does-it-mean-if-you-are-a-processor/">processors</a>, <a href="https://ico.org.uk/for-organisations/uk-gdpr-guidance-and-resources/accountability-and-governance/contracts-and-liabilities-between-controllers-and-processors-multi/what-needs-to-be-included-in-the-contract/">contract contents</a></li>
   <li>International transfers: <a href="https://ico.org.uk/for-organisations/uk-gdpr-guidance-and-resources/international-transfers/quick-reference-faqs/">ICO FAQs</a></li>
   <li>Site owner versus host: <a href="https://california.public.law/codes/business_and_professions_code_section_22577">Business and Professions Code 22577(c)</a>; owner and custodian breach duties: <a href="https://california.public.law/codes/ca_civ_code_section_1798.82">Civil Code 1798.82</a></li>
+  <li>California wiretap law and website chats: <a href="https://www.manatt.com/insights/newsletters/client-alert/bots-beware-website-chat-bots-become-latest-target">Manatt</a>, <a href="https://www.covingtonblogs.com/2023/05/09/a-closer-look-courts-reject-california-wiretap-claims-based-on-website-chat-features/">Covington</a>; licences without a signed document: <a href="https://www.dmlp.org/legal-guide/creating-written-contract-transfer-or-license-rights-under-copyright">Digital Media Law Project</a></li>
   <li>Anthropic's data processing terms: <a href="https://www.anthropic.com/legal/data-processing-addendum">Data Processing Addendum</a>, <a href="https://support.anthropic.com/en/articles/7996862-how-do-i-view-and-sign-your-data-processing-addendum-dpa">how it is incorporated</a></li>
   <li>Data protection fee: <a href="https://ico.org.uk/for-organisations/data-protection-fee/data-protection-fee-self-assessment/">self-assessment</a>, <a href="https://www.legislation.gov.uk/uksi/2018/480/schedule">exemptions</a>, <a href="https://www.gov.uk/government/consultations/data-protection-fee-regime-proposed-changes/outcome/data-protection-fee-regime-government-response">2025 fee levels</a></li>
   <li>Information Commission: <a href="https://www.lexisnexis.co.uk/legal/news/duaa-2025-provisions-establishing-new-information-commission-come-into-force-on-30-september-2026">LexisNexis</a>, <a href="https://www.lewissilkin.com/insights/2026/09/29/what-the-icos-transformation-into-the-information-commission-means-for-your-orga-102o3ni">Lewis Silkin</a></li>

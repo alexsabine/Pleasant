@@ -12,7 +12,8 @@ from django.shortcuts import render
 from django.utils import timezone
 from django.views.decorators.http import require_GET, require_POST
 
-from atlas.models import AuditEntry, ProjectionVersion, ReviewNote, Submission, member_ref
+from accounts.models import StewardAgreement, is_steward
+from atlas.models import AuditEntry, ProjectionVersion, ReviewNote, StewardEntry, Submission, member_ref
 
 from .guide import QUESTIONS
 
@@ -92,14 +93,23 @@ def ask(request):
     if m_prep and request.user.is_authenticated:
         sub = Submission.objects.create(submitter=request.user, proposed_payload={"attribute": "correction" if m_prep.group(1).lower() != "suggest" else "suggestion",
                                                                                  "details": m_prep.group(2)[:1000], "via": "compass"})
+        # A steward who has signed the current agreement: record their words, word for word, as original evidence
+        # for steward trust (pc_core.steward). Unsigned stewards are treated as ordinary members.
+        agreement = StewardAgreement.current_for(request.user) if is_steward(request.user) else None
+        entry = None
+        if agreement:
+            entry = StewardEntry.objects.create(steward=request.user, steward_name=agreement.signed_name, instruction=question,
+                                                lumen_draft=sub.proposed_payload, submission=sub, agreement_version=agreement.version)
         record = AuditEntry.append({
             "request_id": request_id, "retrieval_sources": [], "source_versions": {"projection_version": pv}, "policy_version": POLICY_VERSION,
             "assumptions": {"user": member_ref(request.user)}, "confidence_type": "n/a (draft prepared, not asserted)",
             "action_proposed": "prepare_submission", "user_approval": "explicit: user asked Lumen to draft it",
-            "action_result": {"submission_id": sub.pk, "status": sub.status}, "timestamp": timezone.now().isoformat(),
+            "action_result": {"submission_id": sub.pk, "status": sub.status, "steward_entry_id": entry.pk if entry else None},
+            "timestamp": timezone.now().isoformat(),
             "limitations": ["A steward must review before anything changes publicly."]}, require_decision_fields=True)
         return JsonResponse({"request_id": request_id, "action": "prepare", "reason": "draft submission created for moderation",
-                             "text": f"Drafted and sent for review (submission #{sub.pk}). A steward checks it against a source before anything changes publicly. You can see its status in My atlas.",
+                             "text": (f"Drafted as submission #{sub.pk} and recorded under your steward agreement. Check the draft and its source, then approve it." if entry else
+                                      f"Drafted and sent for review (submission #{sub.pk}). A steward checks it against a source before anything changes publicly. You can see its status in My atlas."),
                              "items": [], "events": [], "provenance": {"policy_version": POLICY_VERSION, "audit_index": record.index, "audit_hash": record.hash,
                                                                         "tools": [], "allow_list": ALLOW_LIST, "llm_used": False, "memory_used": [], "limitations": ["moderated; never auto-published"]}})
     if m_prep:

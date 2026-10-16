@@ -377,3 +377,6 @@ code{overflow-wrap:anywhere}
 .plan-body details.sources summary{cursor:pointer;font-weight:600;min-height:32px}
 .plan-body details.sources li{margin:4px 0;overflow-wrap:anywhere}
 .plan-body .flow .note{display:inline;margin:0}
+.agreement{max-width:70ch;background:var(--pc-surface);border:1px solid var(--pc-line);border-radius:12px;padding:12px 16px;margin:12px 0}
+.agreement ol{padding-left:20px}
+.agreement li{margin:6px 0}

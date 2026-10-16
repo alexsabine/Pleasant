@@ -82,3 +82,32 @@ class SavedPlace(models.Model):
 
     def __str__(self):
         return f"{self.user.get_username()} saved {self.resource.name}"
+
+
+STEWARD_AGREEMENT_VERSION = "2026-10"
+
+
+def is_steward(user) -> bool:
+    return bool(user and user.is_authenticated and (user.is_superuser or user.groups.filter(name="Moderators").exists()))
+
+
+class StewardAgreement(models.Model):
+    """A steward's signed agreement, one row per version signed. Stewards' map instructions to Lumen
+    are recorded only while they hold a signature for the current version."""
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="steward_agreements")
+    version = models.CharField(max_length=16)
+    signed_name = models.CharField(max_length=120)
+    signed_at = models.DateTimeField(default=timezone.now)
+
+    class Meta:
+        ordering = ["-signed_at"]
+        unique_together = [("user", "version")]
+
+    def __str__(self):
+        return f"{self.signed_name} signed steward agreement {self.version}"
+
+    @classmethod
+    def current_for(cls, user):
+        if not (user and user.is_authenticated):
+            return None
+        return cls.objects.filter(user=user, version=STEWARD_AGREEMENT_VERSION).first()

@@ -26,7 +26,8 @@ def site_tokens(request):
     return {"tokens": _tokens(), "private_mode": settings.PC_PRIVATE_MODE, "static_export": static_export, "asset_v": _asset_version(),
             "static_config": json.dumps({"base": settings.PC_STATIC_BASE, "reviewEmail": settings.PC_REVIEW_EMAIL}),
             "compass_guide": json.dumps({"intro": INTRO, "questions": QUESTIONS, "closing": CLOSING}),
-            "map_center": settings.PC_MAP_CENTER, "map_zoom": settings.PC_MAP_ZOOM}
+            "map_center": settings.PC_MAP_CENTER, "map_zoom": settings.PC_MAP_ZOOM,
+            "compass_llm": settings.COMPASS_LLM_ENABLED}
 
 
 def living_logo(request, size: int = 36, animate: bool = True):

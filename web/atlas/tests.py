@@ -187,7 +187,8 @@ class PlanPages(TestCase):
         self.assertIn("Thirteen simple T-charts", c.get("/plan/at-a-glance/").content.decode())
         legal = c.get("/plan/legal/").content.decode()
         for text in ("Legal considerations", "The contract between Alex and Kim", "Group meetups", "Information Commission",
-                     "Accounts in Alex's name", "What US law asks of Kim", "keeps no record of conversations"):
+                     "Accounts in Alex's name", "What US law asks of Kim", "keeps no record of conversations",
+                     "Stewards: trust, recording and the agreement", "Crescent Compass steward agreement", "Fair blame"):
             self.assertIn(text, legal)
         privacy = c.get("/privacy/").content.decode()
         self.assertIn("aged 18 and over", privacy)

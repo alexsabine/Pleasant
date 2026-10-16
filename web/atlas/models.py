@@ -338,6 +338,31 @@ class Submission(models.Model):
         )
 
 
+class StewardEntry(models.Model):
+    """What a steward told Lumen, what Lumen drafted, and how the entry held up when re-checked.
+    The original-evidence layer for steward trust (pc_core.steward); recorded only under a signed
+    steward agreement. Ordinary questions are never stored."""
+    OUTCOMES = [("pending", "Not yet re-checked"), ("still_right", "Still right"), ("changed_since", "Changed since"),
+                ("wrong_at_entry", "Wrong when entered"), ("cant_tell", "Can't tell")]
+    steward = models.ForeignKey(settings.AUTH_USER_MODEL, null=True, on_delete=models.SET_NULL, related_name="+")
+    steward_name = models.CharField(max_length=150, help_text="Kept with the entry for accountability, even after the steward steps down")
+    instruction = models.TextField(help_text="What the steward told Lumen, word for word")
+    lumen_draft = models.JSONField(default=dict, blank=True)
+    submission = models.ForeignKey(Submission, null=True, blank=True, on_delete=models.SET_NULL, related_name="steward_entries")
+    agreement_version = models.CharField(max_length=16)
+    created_at = models.DateTimeField(auto_now_add=True)
+    outcome = models.CharField(max_length=16, choices=OUTCOMES, default="pending")
+    outcome_at = models.DateTimeField(null=True, blank=True)
+    outcome_by = models.ForeignKey(settings.AUTH_USER_MODEL, null=True, blank=True, on_delete=models.SET_NULL, related_name="+")
+    outcome_evidence_dated = models.BooleanField(default=False, help_text="The checker has dated evidence of when it changed")
+
+    class Meta:
+        ordering = ["-created_at"]
+
+    def __str__(self):
+        return f"{self.steward_name}: {self.instruction[:60]}"
+
+
 def member_ref(user) -> str:
     """How a member appears in the sealed log: a number, never a name or email, so deleting
     the account leaves nothing personal behind. Stewards' own decisions stay named."""

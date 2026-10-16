@@ -10,10 +10,10 @@ from django.shortcuts import get_object_or_404, redirect, render
 from django.utils import timezone
 from django.views.decorators.http import require_POST
 
-from atlas.models import AuditEntry, Resource, Submission, member_ref
+from atlas.models import AuditEntry, Resource, StewardEntry, Submission, member_ref
 
 from .forms import FamilyForm, HelpForm, QuietForm, SignupForm
-from .models import STAGES, FamilyPreferences, SavedPlace
+from .models import STAGES, STEWARD_AGREEMENT_VERSION, FamilyPreferences, SavedPlace, StewardAgreement, is_steward
 
 STEP_FORMS = {1: HelpForm, 2: FamilyForm, 3: QuietForm}
 STEP_TITLES = {1: "What kind of help would be welcome?", 2: "For my family", 3: "How much, and how quietly"}
@@ -63,7 +63,9 @@ def my_atlas(request):
     saved = SavedPlace.objects.filter(user=request.user).select_related("resource")
     pending = Submission.objects.filter(submitter=request.user).order_by("-submitted_at")[:10]
     stages = [{"key": k, "label": v, "current": k == prefs.stage} for k, v in STAGES]
-    return render(request, "accounts/my_atlas.html", {"prefs": prefs, "saved": saved, "pending": pending, "stages": stages})
+    return render(request, "accounts/my_atlas.html", {"prefs": prefs, "saved": saved, "pending": pending, "stages": stages,
+                                                      "is_steward": is_steward(request.user),
+                                                      "steward_signed": StewardAgreement.current_for(request.user)})
 
 
 @login_required
@@ -102,7 +104,11 @@ def download_my_data(request):
                          for s in SavedPlace.objects.filter(user=u).select_related("resource")],
         "suggestions": [{"submitted_at": s.submitted_at.isoformat(), "status": s.status, "details": s.proposed_payload}
                         for s in Submission.objects.filter(submitter=u)],
-        "note": "Lumen keeps the current conversation in your session for up to 6 hours. The log records what Lumen showed, not what you typed, and refers to you only by your log reference.",
+        "steward_agreements": [{"version": a.version, "signed_name": a.signed_name, "signed_at": a.signed_at.isoformat()}
+                               for a in StewardAgreement.objects.filter(user=u)],
+        "steward_entries": [{"created_at": e.created_at.isoformat(), "instruction": e.instruction, "outcome": e.outcome}
+                            for e in StewardEntry.objects.filter(steward=u)],
+        "note": "Lumen keeps no record of conversations. The log records what Lumen showed, not what you typed, and refers to members only by their log reference. Stewards' map instructions are recorded under the steward agreement.",
     }
     resp = JsonResponse(data, json_dumps_params={"indent": 2})
     resp["Content-Disposition"] = 'attachment; filename="crescent-compass-my-data.json"'
@@ -125,3 +131,22 @@ def delete_account(request):
     AuditEntry.append({"event": "account_deleted", "user": ref, "timestamp": timezone.now().isoformat()})
     messages.success(request, "Your account and everything linked to it have been deleted.")
     return redirect("/")
+
+
+@login_required
+def steward_agreement(request):
+    """Stewards read and sign the agreement. Only invited stewards can sign; signing grants no role."""
+    if not is_steward(request.user):
+        messages.info(request, "The steward agreement is for invited stewards.")
+        return redirect("accounts:my_atlas")
+    signed = StewardAgreement.current_for(request.user)
+    if request.method == "POST" and not signed:
+        name = request.POST.get("signed_name", "").strip()[:120]
+        if name and request.POST.get("agree"):
+            signed = StewardAgreement.objects.create(user=request.user, version=STEWARD_AGREEMENT_VERSION, signed_name=name)
+            AuditEntry.append({"event": "steward_agreement_signed", "steward": request.user.get_username(),
+                               "version": STEWARD_AGREEMENT_VERSION, "timestamp": timezone.now().isoformat()})
+            messages.success(request, "Thank you. Your map instructions to Lumen are now recorded under this agreement.")
+            return redirect("accounts:steward_agreement")
+        messages.info(request, "Please type your name and tick the box to sign.")
+    return render(request, "accounts/steward_agreement.html", {"signed": signed, "steward_agreement_version": STEWARD_AGREEMENT_VERSION})

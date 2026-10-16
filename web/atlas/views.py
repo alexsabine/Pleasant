@@ -329,7 +329,8 @@ def plan(request, tab="summary"):
     if tab not in dict(PLAN_TABS):
         raise Http404
     ctx = _common_ctx(request)
-    ctx.update({"tabs": PLAN_TABS, "tab": tab, "tab_label": dict(PLAN_TABS)[tab]})
+    from accounts.models import STEWARD_AGREEMENT_VERSION
+    ctx.update({"tabs": PLAN_TABS, "tab": tab, "tab_label": dict(PLAN_TABS)[tab], "steward_agreement_version": STEWARD_AGREEMENT_VERSION})
     if tab in ("costs", "at-a-glance", "summary"):
         ctx.update(_cost_context())
     return render(request, f"plan/{tab}.html", ctx)

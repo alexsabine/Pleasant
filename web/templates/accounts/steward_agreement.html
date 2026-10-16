@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block title %}Steward agreement · Crescent Compass{% endblock %}
+{% block content %}
+<section class="prose-page">
+<p class="eyebrow">Stewards</p>
+<h1>Steward agreement</h1>
+{% if messages %}{% for m in messages %}<p class="notice-ok" role="status">{{ m }}</p>{% endfor %}{% endif %}
+{% include "includes/steward_agreement_text.html" %}
+{% if signed %}
+<p class="notice-ok">You signed this version as {{ signed.signed_name }} on {{ signed.signed_at|date:"j F Y" }}. Lumen records your map instructions under it.</p>
+{% else %}
+<form method="post" class="form-stack">{% csrf_token %}
+<label for="signed-name">Type your full name to sign</label><input id="signed-name" name="signed_name" required maxlength="120" autocomplete="name">
+<label class="check"><input type="checkbox" name="agree" required> I have read this agreement and agree to it. I am 18 or over.</label>
+<button type="submit" class="btn">Sign the agreement</button>
+</form>
+{% endif %}
+<p class="src"><a href="{% url 'accounts:my_atlas' %}">Back to My atlas</a> · <a href="{% url 'privacy' %}">Privacy</a></p>
+</section>
+{% endblock %}
