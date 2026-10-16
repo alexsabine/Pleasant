@@ -2,12 +2,16 @@
  *
  * Mathematics (checked in backend/examples/fog_math.py, written up in research/14_fog_mode.md):
  * - Belief a spot is unexplored: u(x) = prod_i (1 - c_i exp(-d_i^2 / 2 r_i^2)), one factor per footprint.
- * - Opacity = theta / pi, theta = 2 asin(sqrt(p)), p = u x fog cover: the Fisher-Rao angle of Bern(p).
+ * - Opacity = fog density x theta / pi, theta = 2 asin(sqrt(u)): the Fisher-Rao angle of Bern(u).
  * - Coherence, C = (1/sigma) int v_FR dt: every clearing moves along the Fisher-Rao geodesic at constant speed,
  *   so fog thins (and rolls back) evenly.
  * - Rupture, a unit event at t_{n+1}: an arrival. Targets change only then, and the explored count rises by one.
- * - Regeneration, m_new = q m + (1 - q) Phi, q = 0.75, on the event clock: at each arrival older trail footprints
- *   keep q of their clearing (Phi = 0), the newest walk is clear (Phi = 1). Visited places stay clear.
+ * - Regeneration, m_new = q m + (1 - q) Phi, q = 0.75, on the event clock: at each arrival older paths move toward
+ *   Phi = 1/2, the fixed point, so they settle as a light haze ("explored, not in sight"); the newest walk is clear
+ *   (Phi = 1); visited places stay clear.
+ * - The explorer carries a lantern footprint that moves with every step, so the fog visibly parts around them.
+ * - Footprints are flat-topped, exp(-(d^2/r^2)^2 / 2): a clear core and a crisp, wispy edge. The edge is shaded by
+ *   the Bernoulli variance u(1 - u), largest where the belief is most uncertain.
  * - Lived surplus, S = C - C* >= 0: distance walked minus the straight line from the start, shown as wandering.
  * - Omega = 1, a normalisation only: noise octave weights sum to one.
  * The look is ordinary graphics: domain-warped noise, light from the west-south-west, a marine layer thick offshore
@@ -21,7 +25,7 @@
   if (!btn) return;
   const reduced = window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches;
   const KEY = "pc_fog_v2", SCALE = 0.5, FPS = 30;
-  const VISIT_M = 330, TRAIL_M = 110, Q = 0.75;           // footprint radii (metres); regeneration retention
+  const VISIT_M = 340, TRAIL_M = 150, LANTERN_M = 230, Q = 0.75, PHI_PAST = 0.5;   // radii (m); regeneration
   const V_FR = Math.PI / 1.6;                              // Fisher-Rao speed: a full clearing takes 1.6 s
   const LON0 = -124.20, LAT0 = 41.755, KX = 111320 * Math.cos(LAT0 * Math.PI / 180), KY = 110540;
   const toXY = (lon, lat) => [(lon - LON0) * KX, (lat - LAT0) * KY];
@@ -31,7 +35,7 @@
   const WIND = [0.78, -0.62];                              // onshore, from the north-west
 
   let map = null, places = [], on = false, canvas = null, gl = null, prog = null, buf = null, loc = {}, NS = 32;
-  let spots = [], visited = [], current = null, walked = 0, arrivals = 0, explorer = null, card = null, walking = false;
+  let spots = [], lantern = null, visited = [], current = null, walked = 0, arrivals = 0, explorer = null, card = null, walking = false;
   let raf = 0, lastT = 0, lastDraw = 0, windOff = [0, 0], tEvo = 0;
 
   // --- state on this device only ---------------------------------------------------------------------------
@@ -125,9 +129,15 @@
     return el;
   }
   function placeExplorer(p) {
-    if (!p) { if (explorer) { explorer.remove(); explorer = null; } return; }
+    if (!p) { if (explorer) { explorer.remove(); explorer = null; } lantern = null; return; }
     if (!explorer) explorer = new maplibregl.Marker({ element: explorerEl(), anchor: "bottom" }).setLngLat([p.lon, p.lat]).addTo(map);
     else explorer.setLngLat([p.lon, p.lat]);
+    moveLantern(p.lon, p.lat);
+  }
+  function moveLantern(lon, lat) {                         // the clearing the explorer carries with them
+    const [x, y] = toXY(lon, lat);
+    if (!lantern) lantern = { x, y, r: LANTERN_M, kind: "lantern", target: 1, th: reduced ? 0 : Math.PI, c: reduced ? 1 : 0 };
+    else { lantern.x = x; lantern.y = y; }
   }
 
   // --- footprints: Fisher-Rao clearing, regeneration on arrivals -------------------------------------------------
@@ -138,14 +148,14 @@
   }
   function arrive(p) {                                     // a rupture: one event of unit weight
     arrivals += 1;
-    for (const s of spots) if (s.kind === "trail") s.target = Q * s.target + (1 - Q) * (s.walk === arrivals - 1 ? 1 : 0);   // regeneration
-    spots = spots.filter(s => s.kind !== "trail" || s.target > 0.03 || s.c > 0.03);
+    // regeneration toward the fixed point: the walk just finished stays clear (Phi = 1), older paths settle at Phi = 1/2
+    for (const s of spots) if (s.kind === "trail") s.target = Q * s.target + (1 - Q) * (s.walk === arrivals - 1 ? 1 : PHI_PAST);
     current = p; visited.push(p); footprint(p.lon, p.lat, VISIT_M, "visit");
     if (reduced) for (const s of spots) { s.th = thetaOf(s.target); s.c = s.target; }
   }
   function step(dt) {                                      // coherence: constant Fisher-Rao speed toward each target
     let moving = false;
-    for (const s of spots) {
+    for (const s of lantern ? spots.concat([lantern]) : spots) {
       const goal = thetaOf(s.target), d = goal - s.th;
       if (Math.abs(d) > 1e-4) { s.th += Math.sign(d) * Math.min(Math.abs(d), V_FR * dt); moving = true; }
       s.c = 1 - Math.sin(s.th / 2) ** 2;
@@ -179,8 +189,8 @@
     (function walk(now) {
       const k = Math.min(1, (now - start) / dur), e = k < 0.5 ? 2 * k * k : 1 - Math.pow(-2 * k + 2, 2) / 2;
       const lon = from.lon + (p.lon - from.lon) * e, lat = from.lat + (p.lat - from.lat) * e;
-      explorer.setLngLat([lon, lat]);
-      if (metres(trail, { lon, lat }) > TRAIL_M * 0.9) { footprint(lon, lat, TRAIL_M, "trail"); trail = { lon, lat }; }
+      explorer.setLngLat([lon, lat]); moveLantern(lon, lat);
+      if (metres(trail, { lon, lat }) > TRAIL_M * 0.6) { footprint(lon, lat, TRAIL_M, "trail"); trail = { lon, lat }; }
       if (k < 1) return requestAnimationFrame(walk);
       el.classList.remove("walking");
       walked += d;
@@ -199,6 +209,7 @@
     varying vec2 vW;
     uniform vec2 uWind; uniform float uT; uniform vec4 uSpots[NS]; uniform int uCount;
     uniform vec2 uCoast[7]; uniform vec3 uLo; uniform vec3 uHi; uniform float uMax; uniform float uMpp;
+    uniform vec4 uLamp; uniform vec3 uWarm;
     float hash(vec2 p){ vec3 p3 = fract(vec3(p.xyx) * 0.1031); p3 += dot(p3, p3.yzx + 33.33); return fract((p3.x + p3.y) * p3.z); }
     float noise(vec2 p){ vec2 i = floor(p), f = fract(p); vec2 u = f * f * f * (f * (f * 6.0 - 15.0) + 10.0);   // quintic: no grid creases
       return mix(mix(hash(i), hash(i + vec2(1.0, 0.0)), u.x), mix(hash(i + vec2(0.0, 1.0)), hash(i + vec2(1.0, 1.0)), u.x), u.y); }
@@ -232,17 +243,20 @@
       float dSun = fbm3(w + vec2(-0.11, -0.045), 6000.0);   // one step toward the sun, low in the west-south-west
       float lit = clamp(0.64 + (dBig - dSun) * 2.6 + (d - dBig) * 0.6, 0.0, 1.0);
       float inland = (vW.x - coastX(vW.y)) / 1000.0;        // km east of the coast
-      float coast = 1.0 - 0.55 * smoothstep(2.0, 24.0, inland);
-      float cover = coast * (0.62 + 0.38 * smoothstep(0.30, 0.64, d));
+      float coast = 1.0 - 0.12 * smoothstep(2.0, 24.0, inland);          // thick everywhere, a touch thinner inland
+      float cover = coast * (0.93 + 0.07 * smoothstep(0.30, 0.64, d));
       float wob = fbm3(km * 1.3 + vec2(3.1, 7.7) + 0.02 * uT, 770.0) - 0.5;   // ragged, breathing edges to each clearing
       float logu = 0.0;
       for (int i = 0; i < NS; i++){ if (i >= uCount) break;
         vec4 s = uSpots[i]; vec2 dv = vW - s.xy;
         float e = dot(dv, dv) / (s.z * s.z) * (1.0 + 0.9 * wob);
-        logu += log(max(1e-4, 1.0 - s.w * exp(-0.5 * e))); }
-      float pr = clamp(exp(logu) * cover, 0.0, 1.0);
-      float a = uMax * (2.0 / 3.14159265) * asin(sqrt(pr));  // theta / pi, the Fisher-Rao angle
-      vec3 col = mix(uLo, uHi, lit) * mix(0.94, 1.0, lit);
+        logu += log(max(1e-4, 1.0 - s.w * exp(-0.5 * e * e))); }       // flat-topped: clear core, crisp edge
+      float u = clamp(exp(logu), 0.0, 1.0);                 // belief the spot is unexplored
+      float a = uMax * cover * (2.0 / 3.14159265) * asin(sqrt(u));   // density x theta / pi, the Fisher-Rao angle
+      vec3 col = mix(uLo, uHi, lit) * mix(0.93, 1.0, lit);
+      col *= 1.0 - 0.16 * 4.0 * u * (1.0 - u);              // edge shade where belief is least certain, u(1 - u)
+      vec2 dl = vW - uLamp.xy;                              // lantern light scattering in the nearby fog
+      col = mix(col, uWarm, 0.38 * uLamp.w * exp(-dot(dl, dl) / (2.0 * 3.2 * uLamp.z * uLamp.z)));
       gl_FragColor = vec4(col * a, a);                      // premultiplied
     }`;
 
@@ -262,7 +276,7 @@
     gl.linkProgram(prog);
     if (!gl.getProgramParameter(prog, gl.LINK_STATUS)) throw new Error(gl.getProgramInfoLog(prog));
     gl.useProgram(prog);
-    ["uWind", "uT", "uSpots", "uCount", "uCoast", "uLo", "uHi", "uMax", "uMpp"].forEach(n => { loc[n] = gl.getUniformLocation(prog, n); });
+    ["uWind", "uT", "uSpots", "uCount", "uCoast", "uLo", "uHi", "uMax", "uMpp", "uLamp", "uWarm"].forEach(n => { loc[n] = gl.getUniformLocation(prog, n); });
     loc.aPos = gl.getAttribLocation(prog, "aPos"); loc.aWorld = gl.getAttribLocation(prog, "aWorld");
     buf = gl.createBuffer();
     gl.uniform2fv(loc.uCoast, new Float32Array(COAST.flat()));
@@ -271,7 +285,8 @@
   }
   function colours() {
     const dark = window.matchMedia && matchMedia("(prefers-color-scheme: dark)").matches && document.documentElement.dataset.theme !== "light";
-    return dark ? { lo: [0.08, 0.10, 0.14], hi: [0.42, 0.46, 0.53], max: 0.9 } : { lo: [0.70, 0.75, 0.81], hi: [0.995, 0.985, 0.965], max: 0.95 };
+    return dark ? { lo: [0.07, 0.09, 0.13], hi: [0.40, 0.44, 0.52], warm: [0.85, 0.62, 0.32], max: 0.96 }
+                : { lo: [0.62, 0.67, 0.74], hi: [0.975, 0.97, 0.955], warm: [1.0, 0.86, 0.6], max: 0.975 };
   }
 
   function draw(now) {
@@ -296,18 +311,21 @@
     // footprints near the view, most recent first, up to the GPU's budget
     const xs = [bl[0], br[0], tl[0], tr[0]], ys = [bl[1], br[1], tl[1], tr[1]];
     const minX = Math.min(...xs), maxX = Math.max(...xs), minY = Math.min(...ys), maxY = Math.max(...ys);
-    const live = [];
+    const live = lantern && lantern.c > 0.004 ? [lantern] : [];
     for (let i = spots.length - 1; i >= 0 && live.length < NS; i--) {
       const s = spots[i], m = 3 * s.r;
       if (s.c > 0.004 && s.x > minX - m && s.x < maxX + m && s.y > minY - m && s.y < maxY + m) live.push(s);
     }
     const arr = new Float32Array(NS * 4);
-    live.forEach((s, i) => { arr[i * 4] = s.x; arr[i * 4 + 1] = s.y; arr[i * 4 + 2] = s.r; arr[i * 4 + 3] = s.c; });
+    // a visit blooms out from lantern size to full size as it clears (the rupture made visible)
+    live.forEach((s, i) => { arr[i * 4] = s.x; arr[i * 4 + 1] = s.y; arr[i * 4 + 2] = s.kind === "visit" ? s.r * (0.6 + 0.4 * s.c) : s.r; arr[i * 4 + 3] = s.c; });
     const col = colours();
     gl.uniform4fv(loc.uSpots, arr); gl.uniform1i(loc.uCount, live.length);
     gl.uniform2f(loc.uWind, windOff[0], windOff[1]); gl.uniform1f(loc.uT, tEvo);
     gl.uniform3fv(loc.uLo, col.lo); gl.uniform3fv(loc.uHi, col.hi); gl.uniform1f(loc.uMax, col.max);
     gl.uniform1f(loc.uMpp, mpp() / SCALE);                 // metres per fog pixel, for level of detail
+    gl.uniform4f(loc.uLamp, lantern ? lantern.x : 0, lantern ? lantern.y : 0, LANTERN_M, lantern ? lantern.c : 0);
+    gl.uniform3fv(loc.uWarm, col.warm);
     gl.viewport(0, 0, w, h);
     gl.clearColor(0, 0, 0, 0); gl.clear(gl.COLOR_BUFFER_BIT);
     gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);

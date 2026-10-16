@@ -170,7 +170,7 @@ class FogMode(TestCase):
         self.assertIn("pc/fog.js", body)
         js = (Path(settings.BASE_DIR) / "static" / "pc" / "fog.js").read_text()
         self.assertNotIn("geolocation", js)     # fog never reads the device's location
-        self.assertIn("asin(sqrt(pr))", js)        # opacity is the Fisher-Rao angle
+        self.assertIn("asin(sqrt(u))", js)         # opacity is the Fisher-Rao angle
         self.assertIn("Q * s.target + (1 - Q)", js)  # regeneration on arrivals
 
 
