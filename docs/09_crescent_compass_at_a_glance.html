@@ -1,0 +1,139 @@
+<title>Crescent Compass at a Glance</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&display=swap">
+<style>
+/* Layout: a stack of simple T-charts on the atlas paper; two per row on wide screens, one per row on phones; each T keeps its two columns */
+:root{
+  --paper:#f7f2ea; --surface:#ffffff; --ink:#303848; --ink-2:#586273; --line:#ded6ca;
+  --river:#00848b; --river-soft:#e3f1f1; --redwood:#a3675b;
+  --display:'Cormorant Garamond', Georgia, 'Times New Roman', serif;
+  --ui:system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
+  --mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --paper:#131822; --surface:#1f242e; --ink:#d7dee4; --ink-2:#9aa6b0; --line:#2f3845;
+  --river:#2aa7ad; --river-soft:#16323a; --redwood:#c98b7d; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --paper:#131822; --surface:#1f242e; --ink:#d7dee4; --ink-2:#9aa6b0; --line:#2f3845;
+  --river:#2aa7ad; --river-soft:#16323a; --redwood:#c98b7d; color-scheme:dark}
+body{background:var(--paper);color:var(--ink);font-family:var(--ui);font-size:15px;line-height:1.5;padding-block:0 56px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.wrap{max-width:1040px;margin:0 auto}
+header{padding:34px 0 8px;max-width:66ch}
+.eyebrow{font-family:var(--mono);font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-2);margin:0 0 8px}
+h1{font-family:var(--display);font-weight:500;font-size:clamp(2.2rem,6vw,3rem);line-height:1.05;margin:0 0 10px;text-wrap:balance}
+header p{margin:0 0 8px}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;margin-top:20px}
+@media (max-width:760px){.grid{grid-template-columns:1fr}}
+.t{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:16px 16px 12px;min-width:0}
+.t.wide{grid-column:1/-1}
+.t h2{font-family:var(--display);font-weight:600;font-size:1.45rem;line-height:1.15;text-align:center;margin:0 0 10px;text-wrap:balance}
+.t .num{font-family:var(--mono);font-size:.7rem;letter-spacing:.14em;color:var(--river);display:block;text-align:center;margin-bottom:2px}
+.cols{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);border-top:2.5px solid var(--ink)}
+.cols>div{padding:8px 10px 2px;min-width:0}
+.cols>div:first-child{border-right:2.5px solid var(--ink)}
+.cols h3{font-size:.78rem;font-family:var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--ink-2);margin:0 0 6px;font-weight:600}
+.cols ul,.cols ol{margin:0;padding-left:18px}
+.cols li{margin:0 0 6px}
+.cols ol li::marker{color:var(--river);font-weight:600}
+.money{font-variant-numeric:tabular-nums}
+.foot{font-size:.84rem;color:var(--ink-2);margin:8px 0 0;text-align:center}
+.ai{color:var(--redwood);font-weight:600}
+.notes{margin-top:26px;font-size:.86rem;color:var(--ink-2);max-width:72ch}
+.notes p{margin:0 0 6px}
+</style>
+
+<div class="wrap">
+<header>
+  <p class="eyebrow">Crescent Compass · for Kim · October 2026</p>
+  <h1>Crescent Compass at a glance</h1>
+  <p>Eleven simple T-charts covering the whole process, from a visitor opening the map to a steward approving a new place. Lumen is the site's assistant.</p>
+</header>
+
+<div class="grid">
+
+<section class="t"><span class="num">1</span><h2>Who can do what</h2>
+<div class="cols">
+  <div><h3>Anyone, no account</h3><ul><li>See the whole map</li><li>Read every listing and its source</li><li>See this week's events</li><li>Find local help</li></ul></div>
+  <div><h3>Members, signed in</h3><ul><li>Ask Lumen</li><li>Add a place or photo</li><li>Send a correction</li><li>Save favourite places</li></ul></div>
+</div></section>
+
+<section class="t"><span class="num">2</span><h2>Joining</h2>
+<div class="cols">
+  <div><h3>Member does</h3><ol><li>Opens the map</li><li>Taps Join</li><li>Confirms they are an adult</li><li>Picks age bands and budget, or skips</li></ol></div>
+  <div><h3>Crescent Compass does</h3><ol><li>Shows everything, no sign-up</li><li>Creates the account</li><li>Asks nothing about children</li><li>Shapes Lumen's answers with those settings</li></ol></div>
+</div></section>
+
+<section class="t"><span class="num">3</span><h2>Asking Lumen</h2>
+<div class="cols">
+  <div><h3>Member sees</h3><ol><li>Types any question</li><li>Answer appears word by word</li><li>Cards with map, save, directions</li><li>Source and check date on each place</li></ol></div>
+  <div><h3>Behind the scenes</h3><ol><li>Lumen reads it <span class="ai">(Haiku)</span></li><li>Searches published listings only</li><li>The 75% rule picks what to recommend</li><li>Each sentence checked, then sealed in the log</li></ol></div>
+</div></section>
+
+<section class="t"><span class="num">4</span><h2>Adding a place or photo</h2>
+<div class="cols">
+  <div><h3>Member does</h3><ol><li>Taps Add, or tells Lumen</li><li>Adds a photo and a note</li><li>Taps the spot on the map</li><li>Gets a note when it's live</li></ol></div>
+  <div><h3>Crescent Compass does</h3><ol><li>Removes hidden GPS data</li><li>Checks for a duplicate nearby</li><li>Pre-checks the photo overnight <span class="ai">(Opus)</span></li><li>Holds it in Pending for a steward</li></ol></div>
+</div></section>
+
+<section class="t"><span class="num">5</span><h2>A steward's month</h2>
+<div class="cols">
+  <div><h3>Lumen prepares</h3><ul><li>A list of everything pending</li><li>Evidence for each item</li><li>A suggested action</li><li>Websites that changed</li></ul></div>
+  <div><h3>Steward decides</h3><ul><li>Asks "What needs approving?"</li><li>Taps Approve, Reject or Ask</li><li>About an hour a month</li><li>Each decision sealed in the log</li></ul></div>
+</div></section>
+
+<section class="t"><span class="num">6</span><h2>Lumen's limits</h2>
+<div class="cols">
+  <div><h3>Lumen can</h3><ul><li>Answer from published listings</li><li>Suggest, explain and draft</li><li>Say "I don't know"</li><li>Remember the current chat</li></ul></div>
+  <div><h3>Lumen can never</h3><ul><li>Publish or approve</li><li>Invent a place or fact</li><li>See accounts or private notes</li><li>Give anyone a role</li></ul></div>
+</div></section>
+
+<section class="t"><span class="num">7</span><h2>The two AI models</h2>
+<div class="cols">
+  <div><h3>Haiku, the front desk</h3><ul><li>Every chat turn</li><li>Any phrasing, any language</li><li>Fast and cheap</li><li>About a quarter of a cent a turn</li></ul></div>
+  <div><h3>Opus, the specialist</h3><ul><li>Photo checks</li><li>Website comparisons</li><li>The steward's digest</li><li>Hard questions, about 1 in 20</li></ul></div>
+</div></section>
+
+<section class="t"><span class="num">8</span><h2>With and without AI</h2>
+<div class="cols">
+  <div><h3>Works with no AI, free</h3><ul><li>Map, filters, listings</li><li>The 75% rule and the sealed log</li><li>Spotting changed websites</li><li>Events calendar, approvals</li></ul></div>
+  <div><h3>Needs AI, paid</h3><ul><li>Understanding any question</li><li>Natural, friendly wording</li><li>Judging photos</li><li>Explaining what changed</li></ul></div>
+</div></section>
+
+<section class="t wide"><span class="num">9</span><h2>A year's money, 100 members</h2>
+<div class="cols money">
+  <div><h3>Fixed, $289 a year</h3><ul><li>Small server for members: $144</li><li>Backups and photo storage: $72</li><li>GitHub Pro, private code: $48</li><li>Domain: $20 · Email: $5</li><li>Public map on GitHub Pages: free</li></ul></div>
+  <div><h3>Usage, Haiku and Opus</h3><ul><li>Light use: <b>$404</b> a year in total</li><li>Typical use: <b>$568</b> a year in total</li><li>Heavy use: <b>$972</b> a year in total</li><li>A spending cap keeps it under $1,500</li></ul></div>
+</div>
+<p class="foot">Totals include fixed costs. Light, typical and heavy mean 3, 8 and 20 questions a member a week.</p></section>
+
+<section class="t"><span class="num">10</span><h2>The Quadruplicate</h2>
+<div class="cols">
+  <div><h3>We use</h3><ul><li>Its community calendar feed</li><li>Its list of local calendars</li><li>Its directory, to double-check ours</li><li>Links to safety alerts and meetings</li></ul></div>
+  <div><h3>We agree first</h3><ul><li>Credit on every item we show</li><li>Share-alike terms for its data</li><li>Which events are its to share</li><li>What we send back</li></ul></div>
+</div></section>
+
+<section class="t wide"><span class="num">11</span><h2>Active Inference Institute tools: GEO_INFER and GNN</h2>
+<div class="cols">
+  <div><h3>Worth adding, with Daniel</h3><ul>
+    <li>A safety banner from official alert feeds (weather, earthquake, tsunami) that says plainly when a feed is down</li>
+    <li>Lumen's decision maths written in GNN notation, so stewards and Kim can read the models</li>
+    <li>Links to relevant city code sections, once rights are agreed</li>
+    <li>A guard that keeps map layers small and fast</li>
+    <li>A research comparison of our freshness model with theirs, offline only</li></ul></div>
+  <div><h3>Leave out</h3><ul>
+    <li>Running either toolkit on our server: large, fast-changing, still in beta</li>
+    <li>Property-owner, mortgage and tribal-territory data</li>
+    <li>Tracking where people are, or scoring people</li>
+    <li>Our own evacuation routes: link the official ones</li>
+    <li>Copying their code: it is licensed for non-commercial use only</li></ul></div>
+</div>
+<p class="foot">Both repositories are CC BY-NC-SA 4.0. We take ideas and write our own code, or agree terms with the maintainers first.</p></section>
+
+</div>
+
+<div class="notes">
+  <p>Figures are estimates from 16 October 2026, using Claude Haiku 5.5 at $0.10 and $0.50 and Claude Opus 5.5 at $4 and $20 per million tokens in and out. The model behind them is in the project repository.</p>
+  <p>The Quadruplicate's code and data are published under Creative Commons Attribution-ShareAlike 4.0. Some of its calendar entries come from other publishers, so permission for those is checked separately.</p>
+</div>
+</div>
