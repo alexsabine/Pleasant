@@ -1,12 +1,15 @@
-"""One-year running-cost model for Pleasant Crescent with 20 onboarded people.
+"""One-year running cost for Pleasant Crescent: 100 onboarded members, Claude Opus 5.5.
 
-Everything is an explicit, editable assumption; nothing is measured yet. Prices were gathered
-on 2026-10-16 (Anthropic from its published model table; others from provider pages and price
-aggregators, which disagree by up to ~20%). Re-run after changing any number:
+Scenario (owner's brief, 2026-10-16):
+- the map and listings are public; only onboarded members can use Crescent Compass (the API);
+- members can send corrections, suggestions and photographs of places they visited;
+- stewards approve all "write" items once a month by asking Compass for the monthly digest;
+- every listing's official web page is checked monthly; soft integration with quadruplicate.org;
+- the full trust system runs on every answer (show rule, honesty check, sealed log, closure, k-anonymity);
+- no offline/own AI computer, no WhatsApp.
 
-    python backend/examples/cost_model.py
-
-Writes research/09_cost_model.md and design/cost_model.json (the data the explainer page uses).
+Every number below is an editable assumption. Re-run:  python backend/examples/cost_model.py
+Writes research/09_cost_model.md and design/cost_model.json (data for the explainer page).
 """
 from __future__ import annotations
 
@@ -14,150 +17,116 @@ import json
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
-PEOPLE, WEEKS, BUDGET = 20, 52, 1500
+MEMBERS, WEEKS, MONTHS, BUDGET = 100, 52, 12, 1500
+IN, OUT = 4.00, 20.00          # Claude Opus 5.5, US$ per million tokens (Anthropic model table, 2026-10)
+BATCH = 0.5                    # Message Batches API: 50% off for jobs that can wait a few hours
 
-# ---- how much people use it (per onboarded person per week) --------------------------------
-USAGE = {
-    "light":   {"label": "Light",   "questions": 5,  "suggestions": 0.25},
-    "typical": {"label": "Typical", "questions": 15, "suggestions": 1},
-    "heavy":   {"label": "Heavy",   "questions": 40, "suggestions": 3},
+USAGE = {   # per onboarded member
+    "light":   {"label": "Light",   "questions_wk": 3,  "suggestions_mo": 0.5, "photos_mo": 0.5},
+    "typical": {"label": "Typical", "questions_wk": 8,  "suggestions_mo": 1,   "photos_mo": 2},
+    "heavy":   {"label": "Heavy",   "questions_wk": 20, "suggestions_mo": 3,   "photos_mo": 5},
+}
+LISTINGS = 150          # average live listings over the year (58 today, growing)
+PAGE_CHANGED = 0.35     # share of official pages whose text changed since last month
+RULES_STUCK = 0.20      # share of questions the rules cannot parse
+CACHE_HIT = 0.25        # share of questions answered from the checked-answer cache
+
+# tokens (input, output); output includes Opus's reasoning at low effort
+T = {
+    "intent":        (700, 300),    # turn a question the rules could not read into filters
+    "phrase_full":   (2600, 600),   # as built: full public records sent for wording
+    "phrase_lean":   (1200, 450),   # optimised: only the 8 fields an answer uses, at most 4 listings
+    "suggestion":    (1500, 500),   # tidy a member's correction into a steward-ready draft
+    "photo":         (1900, 300),   # vision check: people, children, private homes, readable signs, matches place
+    "page_compare":  (4500, 500),   # changed official page vs the listing's claims
+    "digest_item":   (1200, 250),   # one line of the steward's monthly digest with a recommendation
+    "digest_summary": (10000, 1500),  # "What needs approving this month?" overview
+    "steward_followup": (4000, 600),  # a steward's follow-up question (10 a month)
+    "quadruplicate": (9000, 1500),  # sort ~50 new Quadruplicate calendar events for family relevance
+    "governance":    (15000, 2000),  # monthly trust and audit summary for the stewards
 }
 
-# ---- token profiles (estimates from compass/adapter.py; output includes the model's reasoning) --
-CALL = {
-    "intent":     (700, 300),     # turn the question into filters (schema-constrained)
-    "phrase":     (2600, 600),    # reword the checked answer from up to 8 public records
-    "agent":      (12000, 1800),  # conversational agent: ~3 model turns per question, growing context
-    "suggestion": (1500, 500),    # tidy a person's suggestion into a draft for a steward
-}
-GATED_SHARE = 0.20  # share of questions the rules cannot parse (the 34-question sweep parsed 33; real phrasing is messier)
-
-# AI modes: model calls per question, plus whether suggestions use the model
-MODES = {
-    "A": {"label": "Rules only (today's default)", "per_question": {}, "suggestions": False},
-    "B": {"label": "AI only when the rules are stuck", "per_question": {"intent": GATED_SHARE}, "suggestions": True},
-    "C": {"label": "AI words every answer", "per_question": {"intent": 1, "phrase": 1}, "suggestions": True},
-    "D": {"label": "Conversational agent", "per_question": {"agent": 1}, "suggestions": True},
-}
-
-# steward helpers per year (modes B-D): weekly submissions digest, monthly governance report,
-# and a summary for each re-check the review queue asks for (~3.3 per week, research/07)
-STEWARD = [(52, 6000, 800), (12, 30000, 3000), (172, 10000, 800)]
-
-# ---- model prices, US$ per million tokens (input, output) ------------------------------------
-PROVIDERS = [
-    # key, label, family, in, out, where the data goes, note
-    ("opus",     "Claude Opus 5.5",            "Anthropic",  4.00, 20.00, "Anthropic (US)", "Most capable Claude for this job"),
-    ("sonnet",   "Claude Sonnet 5.5",          "Anthropic",  2.00, 10.00, "Anthropic (US)", "Strong, half the price of Opus"),
-    ("haiku",    "Claude Haiku 5.5",           "Anthropic",  0.10,  0.50, "Anthropic (US)", "Small, fast; ample for wording checked facts"),
-    ("gem_lite", "Gemini 2.5 Flash-Lite",      "Google",     0.10,  0.40, "Google (US)", "Very cheap"),
-    ("gem_fl",   "Gemini 3 Flash",             "Google",     0.50,  3.00, "Google (US)", "Mid-price"),
-    ("gpt_nano", "GPT-5 nano",                 "OpenAI",     0.05,  0.40, "OpenAI (US)", "Cheapest listed; snapshot retiring Dec 2026"),
-    ("gpt_mini", "GPT-5 mini",                 "OpenAI",     0.25,  2.00, "OpenAI (US)", "Mid-price"),
-    ("mistral",  "Mistral Small 4",            "Mistral",    0.15,  0.60, "Mistral (EU)", "Open-weight family, EU company"),
-    ("deepseek", "DeepSeek V4.1 Flash",        "DeepSeek",   0.30,  1.20, "DeepSeek (China)", "Cheap; data leaves the US, not recommended for a family service"),
-    ("oss_host", "gpt-oss-120B (Groq/Together)", "Open model, hosted", 0.15, 0.60, "Groq/Together (US)", "Open model without owning hardware"),
-]
-
-# ---- running the website itself (per year) ---------------------------------------------------
-HOSTING = {
-    "static": {"label": "Static preview on GitHub Pages (no accounts, no AI)", "year": 15,
-               "parts": "domain name $15"},
-    "small":  {"label": "Small server we manage", "year": 22 * 12 + 5 * 12 + 15,
-               "parts": "4 GB virtual server ~$22/mo, backups and photo storage ~$5/mo, domain $15"},
-    "managed": {"label": "Managed server and database", "year": (24 + 15 + 5) * 12 + 15,
-                "parts": "4 GB server $24/mo, managed PostgreSQL $15/mo, storage $5/mo, domain $15"},
-}
-
-# ---- our own AI box: hardware amortised over 3 years + electricity at 26 c/kWh (Del Norte average) --
-KWH = 0.26
-LOCAL = [
-    # key, label, hardware $, average watts (24/7), what it can run
-    ("mac",  "Mac mini (M5 Pro, 64 GB)", 2300, 40,  "20-30B open models (Qwen, gpt-oss-20b, Mistral Small) at chat speed"),
-    ("3090", "PC with a used RTX 3090 (24 GB)", 1800, 120, "Same class of models, faster, louder, more power"),
-    ("5090", "Workstation with an RTX 5090 (32 GB)", 9000, 180, "Larger models; far beyond this project's needs"),
-]
-RENTED = [
-    ("pod",  "Rented cloud GPU, always on (RTX 4090)", 0.34 * 24 * 365, "Community-tier pod at $0.34/hour"),
-    ("srv",  "Rented serverless GPU (about 2 busy hours a day)", 66 * 12, "Pay per second; 10-60 s cold starts"),
+FIXED = [  # US$ per year
+    ("Server for the website, database and Compass (4 GB virtual server, $24/month)", 288),
+    ("Off-site backups and photo storage (object storage, about $6/month)", 72),
+    ("Domain name, e.g. crescentcompass.ca", 20),
+    ("Email for sign-up and password resets (pay-per-use service)", 5),
+    ("GitHub Pro for the code owner: private code, public preview site ($4/month)", 48),
+    ("Anthropic API account: pay as you go, no subscription", 0),
+    ("Security certificate (Let's Encrypt), uptime and error alerts (free tiers)", 0),
+    ("Map: our own tiles from public data, no map subscription", 0),
+    ("Trust system: runs as code on our server, no AI tokens", 0),
 ]
 
 
-def tokens_per_year(usage: dict, mode: dict) -> tuple[float, float, int]:
-    q = PEOPLE * WEEKS * usage["questions"]
-    s = PEOPLE * WEEKS * usage["suggestions"]
-    tin = tout = 0.0
-    calls = 0.0
-    for kind, per in mode["per_question"].items():
-        i, o = CALL[kind]
-        tin += q * per * i; tout += q * per * o; calls += q * per
-    if mode["suggestions"]:
-        i, o = CALL["suggestion"]
-        tin += s * i; tout += s * o; calls += s
-    if mode["per_question"]:
-        for n, i, o in STEWARD:
-            tin += n * i; tout += n * o; calls += n
-    return tin, tout, round(calls)
+def usd(tokens, batch=False):
+    i, o = tokens
+    return (i * IN + o * OUT) / 1e6 * (BATCH if batch else 1)
 
 
-def cost(tin: float, tout: float, p_in: float, p_out: float) -> float:
-    return tin / 1e6 * p_in + tout / 1e6 * p_out
+def jobs(u: dict, optimised: bool) -> list[dict]:
+    q = MEMBERS * WEEKS * u["questions_wk"]
+    sug = MEMBERS * MONTHS * u["suggestions_mo"]
+    pho = MEMBERS * MONTHS * u["photos_mo"]
+    pages = LISTINGS * MONTHS * PAGE_CHANGED
+    b = optimised  # batch the jobs that can wait
+    if optimised:
+        per_q = RULES_STUCK * usd(T["intent"]) + (1 - CACHE_HIT) * usd(T["phrase_lean"])
+        q_note = "intent only when the rules are stuck; lean records; checked-answer cache"
+    else:
+        per_q = usd(T["intent"]) + usd(T["phrase_full"])
+        q_note = "intent and wording on every question; full records"
+    items = sug + pho + pages
+    rows = [
+        {"job": "Compass answers for members", "count": q, "unit": "questions", "per": per_q, "note": q_note},
+        {"job": "Corrections and suggestions drafted", "count": sug, "unit": "drafts", "per": usd(T["suggestion"])},
+        {"job": "Photo checks before a steward sees them", "count": pho, "unit": "photos", "per": usd(T["photo"], b)},
+        {"job": "Monthly check of official web pages", "count": pages, "unit": "changed pages", "per": usd(T["page_compare"], b),
+         "note": f"{LISTINGS} pages fetched by our code each month; only the ~{int(PAGE_CHANGED*100)}% that changed go to Opus"},
+        {"job": "Steward digest: one line per item", "count": items, "unit": "items", "per": usd(T["digest_item"], b)},
+        {"job": "Steward asks: what needs approving?", "count": MONTHS, "unit": "months", "per": usd(T["digest_summary"])},
+        {"job": "Steward follow-up questions", "count": 10 * MONTHS, "unit": "questions", "per": usd(T["steward_followup"])},
+        {"job": "Quadruplicate events sorted", "count": MONTHS, "unit": "months", "per": usd(T["quadruplicate"], b)},
+        {"job": "Monthly trust and audit summary", "count": MONTHS, "unit": "months", "per": usd(T["governance"], b)},
+    ]
+    for r in rows:
+        r["year"] = r["count"] * r["per"]
+    return rows
 
 
 def main():
-    rows = []
-    for ukey, u in USAGE.items():
-        for mkey, m in MODES.items():
-            tin, tout, calls = tokens_per_year(u, m)
-            for key, label, fam, pin, pout, where, note in PROVIDERS:
-                rows.append({"usage": ukey, "mode": mkey, "provider": key, "calls": calls,
-                             "tokens_in": round(tin), "tokens_out": round(tout), "ai_cost": round(cost(tin, tout, pin, pout), 2)})
-    local = []
-    for key, label, hw, watts, runs in LOCAL:
-        elec = watts * 24 * 365 / 1000 * KWH
-        local.append({"key": key, "label": label, "hardware": hw, "electricity_year": round(elec), "amortised_year": round(hw / 3 + elec),
-                      "first_year_cash": round(hw + elec), "runs": runs})
-    rented = [{"key": k, "label": l, "year": round(y), "note": n} for k, l, y, n in RENTED]
+    fixed = sum(v for _, v in FIXED)
+    out = {"generated": "2026-10-16", "members": MEMBERS, "budget": BUDGET, "price": {"in": IN, "out": OUT, "batch": BATCH},
+           "fixed": [{"item": k, "year": v} for k, v in FIXED], "fixed_total": fixed, "usage": USAGE, "tokens": T,
+           "assumptions": {"listings": LISTINGS, "page_changed": PAGE_CHANGED, "rules_stuck": RULES_STUCK, "cache_hit": CACHE_HIT},
+           "scenarios": {}}
+    for k, u in USAGE.items():
+        s = {}
+        for mode in ("as_built", "optimised"):
+            rows = jobs(u, mode == "optimised")
+            ai = sum(r["year"] for r in rows)
+            s[mode] = {"rows": [{**r, "per": round(r["per"], 5), "year": round(r["year"], 2), "count": round(r["count"])} for r in rows],
+                       "ai": round(ai, 2), "total": round(ai + fixed, 2)}
+        # daily cap on worded answers that guarantees the ceiling (optimised)
+        rows = s["optimised"]["rows"]
+        other = sum(r["year"] for r in rows[1:])
+        per_q = rows[0]["per"]
+        s["optimised"]["daily_cap"] = max(0, int((BUDGET - fixed - other) / 365 / per_q))
+        out["scenarios"][k] = s
+    (ROOT / "design" / "cost_model.json").write_text(json.dumps(out, indent=1))
 
-    # the daily cap that turns a yearly AI allowance into a guarantee
-    def cap(ai_allowance: float, provider: str, mode: str = "C") -> int:
-        p = next(x for x in PROVIDERS if x[0] == provider)
-        per_q = sum(cost(CALL[k][0] * n, CALL[k][1] * n, p[3], p[4]) for k, n in MODES[mode]["per_question"].items())
-        return int(ai_allowance / 365 / per_q) if per_q else 0
-
-    data = {"generated": "2026-10-16", "people": PEOPLE, "weeks": WEEKS, "budget": BUDGET, "usage": USAGE,
-            "modes": {k: {"label": v["label"]} for k, v in MODES.items()}, "calls": CALL, "gated_share": GATED_SHARE,
-            "providers": [{"key": k, "label": l, "family": f, "in": pi, "out": po, "where": w, "note": n} for k, l, f, pi, po, w, n in PROVIDERS],
-            "hosting": HOSTING, "local": local, "rented": rented, "rows": rows,
-            "caps": {p: cap(BUDGET - HOSTING["small"]["year"], p) for p in ("opus", "sonnet", "haiku")}}
-    (ROOT / "design" / "cost_model.json").write_text(json.dumps(data, indent=1))
-
-    # markdown report
-    def ai(u, m, p):
-        return next(r for r in rows if r["usage"] == u and r["mode"] == m and r["provider"] == p)
-    L = ["# One-year running-cost model (generated)", "",
-         f"Generated by `backend/examples/cost_model.py` on {data['generated']}. {PEOPLE} onboarded people for {WEEKS} weeks; Kim's ceiling ${BUDGET}/year. "
-         "All figures are estimates from stated assumptions; prices change and aggregators disagree by up to ~20%.", "",
-         "## Usage scenarios (per person per week)", "", "| Scenario | Compass questions | Suggestions or corrections |", "|---|---|---|"]
-    for u in USAGE.values():
-        L.append(f"| {u['label']} | {u['questions']} | {u['suggestions']} |")
-    L += ["", "## AI cost per year (US$), typical use", "", "| Model | " + " | ".join(f"{k}: {m['label']}" for k, m in MODES.items()) + " |", "|---" * (len(MODES) + 1) + "|"]
-    for key, label, *_ in PROVIDERS:
-        L.append(f"| {label} | " + " | ".join(f"{ai('typical', mk, key)['ai_cost']:,.2f}" for mk in MODES) + " |")
-    L += ["", "## AI cost per year (US$), heavy use", "", "| Model | " + " | ".join(f"{k}" for k in MODES) + " |", "|---" * (len(MODES) + 1) + "|"]
-    for key, label, *_ in PROVIDERS:
-        L.append(f"| {label} | " + " | ".join(f"{ai('heavy', mk, key)['ai_cost']:,.2f}" for mk in MODES) + " |")
-    L += ["", "## Running the website", "", "| Option | Per year | Made of |", "|---|---|---|"]
-    for h in HOSTING.values():
-        L.append(f"| {h['label']} | ${h['year']:,} | {h['parts']} |")
-    L += ["", "## Our own AI hardware (plus website hosting, which is still needed)", "", "| Option | Hardware | Electricity/yr | Per year over 3 years | First-year cash |", "|---|---|---|---|---|"]
-    for x in local:
-        L.append(f"| {x['label']} | ${x['hardware']:,} | ${x['electricity_year']:,} | ${x['amortised_year']:,} | ${x['first_year_cash']:,} |")
-    for x in rented:
-        L.append(f"| {x['label']} | none | included | ${x['year']:,} | ${x['year']:,} |")
-    L += ["", "## Daily caps that guarantee the ceiling (AI mode C, small server)", ""]
-    for p, n in data["caps"].items():
-        L.append(f"- {p}: at most {n} AI-worded answers a day keeps the year under ${BUDGET}.")
+    L = ["# One-year running cost (generated)", "",
+         f"`backend/examples/cost_model.py`, {out['generated']}. {MEMBERS} onboarded members, Claude Opus 5.5 at ${IN}/${OUT} per million tokens "
+         f"(batch jobs at {int(BATCH*100)}%). Ceiling ${BUDGET}/year. Estimates from stated assumptions.", "",
+         "## Fixed costs per year", "", "| Item | US$ |", "|---|---|"]
+    L += [f"| {k} | {v} |" for k, v in FIXED] + [f"| **Total** | **{fixed}** |", "", "## Totals", "",
+          "| Use | Questions/member/week | AI as built | AI optimised | Total optimised | Daily cap on worded answers |", "|---|---|---|---|---|---|"]
+    for k, u in USAGE.items():
+        s = out["scenarios"][k]
+        L.append(f"| {u['label']} | {u['questions_wk']} | ${s['as_built']['ai']:,.0f} | ${s['optimised']['ai']:,.0f} | ${s['optimised']['total']:,.0f} | {s['optimised']['daily_cap']} |")
+    L += ["", "## Typical use, optimised, by job", "", "| Job | Count/year | US$ each | US$/year |", "|---|---|---|---|"]
+    for r in out["scenarios"]["typical"]["optimised"]["rows"]:
+        L.append(f"| {r['job']} | {r['count']:,} {r['unit']} | {r['per']:.4f} | {r['year']:,.2f} |")
     (ROOT / "research" / "09_cost_model.md").write_text("\n".join(L) + "\n")
     print("\n".join(L))
 

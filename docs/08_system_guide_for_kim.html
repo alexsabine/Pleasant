@@ -1,48 +1,43 @@
 <title>Pleasant Crescent System Guide</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&display=swap">
 <style>
-/* Layout: one readable column on the atlas's own paper, with full-width figures that scroll sideways on phones; a calculator panel in the cost section */
+/* Layout: one short column on the atlas's paper; three full-width wireframes that scroll sideways on phones; two compact cost tables */
 :root{
   --paper:#f7f2ea; --surface:#ffffff; --ink:#303848; --ink-2:#586273; --line:#ded6ca;
   --river:#00848b; --river-soft:#e3f1f1; --redwood:#a3675b; --ok:#14875a; --warn:#a3675b;
-  --s1:#00909e; --s2:#b27923; --s3:#6b66b4;
   --display:'Cormorant Garamond', Georgia, 'Times New Roman', serif;
   --ui:system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
   --mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
 }
 @media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
   --paper:#131822; --surface:#1f242e; --ink:#d7dee4; --ink-2:#9aa6b0; --line:#2f3845;
-  --river:#2aa7ad; --river-soft:#16323a; --redwood:#c98b7d; --ok:#4fb386; --warn:#d09080;
-  --s1:#0f8fa3; --s2:#b7812f; --s3:#8f8ad0; color-scheme:dark}}
+  --river:#2aa7ad; --river-soft:#16323a; --redwood:#c98b7d; --ok:#4fb386; --warn:#d09080; color-scheme:dark}}
 :root[data-theme="dark"]{
   --paper:#131822; --surface:#1f242e; --ink:#d7dee4; --ink-2:#9aa6b0; --line:#2f3845;
-  --river:#2aa7ad; --river-soft:#16323a; --redwood:#c98b7d; --ok:#4fb386; --warn:#d09080;
-  --s1:#0f8fa3; --s2:#b7812f; --s3:#8f8ad0; color-scheme:dark}
-body{background:var(--paper);color:var(--ink);font-family:var(--ui);font-size:16px;line-height:1.6;padding-block:0 64px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
-.wrap{max-width:900px;margin:0 auto}
-.prose{max-width:68ch}
-header.top{padding:40px 0 10px}
+  --river:#2aa7ad; --river-soft:#16323a; --redwood:#c98b7d; --ok:#4fb386; --warn:#d09080; color-scheme:dark}
+body{background:var(--paper);color:var(--ink);font-family:var(--ui);font-size:16px;line-height:1.6;padding-block:0 56px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.wrap{max-width:880px;margin:0 auto}
+.prose{max-width:66ch}
+header{padding:36px 0 4px}
 .eyebrow{font-family:var(--mono);font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-2);margin:0 0 8px}
-h1{font-family:var(--display);font-weight:500;font-size:clamp(2.3rem,6vw,3.4rem);line-height:1.04;margin:0 0 12px;text-wrap:balance}
-h2{font-family:var(--display);font-weight:600;font-size:clamp(1.7rem,4vw,2.2rem);line-height:1.15;margin:56px 0 10px;text-wrap:balance}
-h3{font-size:1.02rem;margin:22px 0 6px}
-p{margin:0 0 12px}
+h1{font-family:var(--display);font-weight:500;font-size:clamp(2.2rem,6vw,3.1rem);line-height:1.05;margin:0 0 10px;text-wrap:balance}
+h2{font-family:var(--display);font-weight:600;font-size:clamp(1.6rem,4vw,2rem);line-height:1.15;margin:44px 0 8px;text-wrap:balance}
+p{margin:0 0 10px}
 a{color:var(--river)}
-.lede{font-family:var(--display);font-size:1.32rem;line-height:1.45;max-width:60ch}
-.toc{display:flex;flex-wrap:wrap;gap:6px 14px;margin:18px 0 0;padding:0;list-style:none;font-size:.9rem}
-.toc a{text-decoration:none;border-bottom:1px solid var(--line)}
-.answer{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:18px 20px;margin:26px 0 0}
-.answer h2{margin:0 0 8px;font-size:1.5rem}
-.answer ul{margin:0;padding-left:20px}
-.answer li{margin:0 0 6px}
-figure{margin:18px 0 6px}
+ul{margin:0 0 10px;padding-left:20px} li{margin:0 0 5px}
+.answer{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:16px 20px;margin:20px 0 0}
+.answer ul{margin:0}
+.big{font-family:var(--display);font-size:2.6rem;line-height:1;font-variant-numeric:tabular-nums}
+.tiles{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin:14px 0}
+.tile{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:12px 14px}
+.tile .l{font-size:.82rem;color:var(--ink-2)}
+@media (max-width:560px){.tiles{grid-template-columns:1fr}}
+figure{margin:14px 0 6px}
 .scroll{overflow-x:auto;-webkit-overflow-scrolling:touch;border:1px solid var(--line);border-radius:12px;background:var(--surface)}
 .scroll svg{display:block;min-width:760px;width:100%;height:auto}
-figcaption{font-size:.86rem;color:var(--ink-2);margin-top:8px;max-width:68ch}
-.hint{font-size:.78rem;color:var(--ink-2);font-family:var(--mono);margin:6px 0 0}
-/* diagram classes (styled from the page; the SVGs carry no styles of their own) */
+figcaption{font-size:.86rem;color:var(--ink-2);margin-top:6px;max-width:66ch}
 .d-box{fill:var(--surface);stroke:var(--ink-2);stroke-width:1.2}
 .d-zone{fill:var(--paper);stroke:var(--line);stroke-width:1.2}
 .d-key{fill:var(--river-soft);stroke:var(--river);stroke-width:1.4}
@@ -54,472 +49,187 @@ figcaption{font-size:.86rem;color:var(--ink-2);margin-top:8px;max-width:68ch}
 .d-n{fill:var(--river);font:600 12px var(--mono)}
 .d-a{stroke:var(--ink-2);stroke-width:1.4;fill:none}
 .d-aa{stroke:var(--redwood);stroke-width:1.4;fill:none;stroke-dasharray:5 4}
-.d-head{fill:var(--ink-2)}
-.d-head-ai{fill:var(--redwood)}
+.d-head{fill:var(--ink-2)} .d-head-ai{fill:var(--redwood)}
+.tbl{overflow-x:auto;border:1px solid var(--line);border-radius:12px;background:var(--surface);margin:10px 0}
 table{border-collapse:collapse;width:100%;font-size:.92rem}
-.tbl{overflow-x:auto;border:1px solid var(--line);border-radius:12px;background:var(--surface);margin:12px 0}
-th,td{text-align:left;padding:9px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+th,td{text-align:left;padding:8px 12px;border-bottom:1px solid var(--line);vertical-align:top}
 tr:last-child td{border-bottom:0}
 th{font-family:var(--mono);font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-2);font-weight:500;background:var(--paper)}
 td.num,th.num{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+tr.total td{font-weight:600}
 .pill{display:inline-block;font-size:.72rem;font-weight:600;border-radius:999px;padding:1px 8px;border:1px solid currentColor;white-space:nowrap}
 .pill.ok{color:var(--ok)} .pill.over{color:var(--warn)}
-.steps{counter-reset:s;list-style:none;padding:0;margin:14px 0;display:grid;gap:10px}
-.steps li{counter-increment:s;background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:12px 14px 12px 52px;position:relative}
-.steps li::before{content:counter(s);position:absolute;left:14px;top:12px;width:26px;height:26px;border-radius:50%;background:var(--river-soft);color:var(--river);font:600 .85rem var(--mono);display:grid;place-items:center}
-.steps b{display:block}
-.never{border-left:3px solid var(--redwood);padding:4px 0 4px 14px;margin:14px 0;color:var(--ink)}
-/* calculator */
-.calc{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:18px;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:18px;margin:16px 0}
-.calc fieldset{border:0;margin:0;padding:0;display:grid;gap:12px;min-width:0}
-.calc label{display:grid;gap:4px;font-size:.88rem;font-weight:600}
-.calc label small{font-weight:400;color:var(--ink-2)}
-.calc select,.calc input[type=number]{font:inherit;font-weight:400;padding:8px 10px;border:1px solid var(--line);border-radius:8px;background:var(--paper);color:var(--ink);min-height:40px;width:100%}
-.calc input[type=range]{width:100%;accent-color:var(--river)}
-.rangev{font-family:var(--mono);font-weight:400;color:var(--river)}
-.out{min-width:0;display:grid;gap:10px;align-content:start}
-.total{font-family:var(--display);font-size:3rem;line-height:1;font-variant-numeric:tabular-nums}
-.total small{font-family:var(--ui);font-size:.9rem;color:var(--ink-2)}
-.meter{height:12px;border-radius:999px;background:var(--paper);border:1px solid var(--line);overflow:hidden;position:relative}
-.meter i{display:block;height:100%;background:var(--river);border-radius:999px;transition:width .3s}
-.meter.over i{background:var(--warn)}
-.parts{display:grid;gap:4px;font-size:.88rem}
-.parts div{display:flex;justify-content:space-between;gap:10px;border-bottom:1px dashed var(--line);padding:3px 0}
-.parts span:last-child{font-variant-numeric:tabular-nums}
-.note{font-size:.84rem;color:var(--ink-2)}
-.status{font-weight:600}
-.status.ok{color:var(--ok)} .status.over{color:var(--warn)}
-@media (max-width:680px){.calc{grid-template-columns:1fr}}
-/* chart */
-.chart{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:12px 12px 6px;position:relative}
-.chart svg{display:block;width:100%;height:auto}
-.c-lab{fill:var(--ink);font:12.5px var(--ui)}
-.c-val{fill:var(--ink);font:600 12px var(--ui);font-variant-numeric:tabular-nums}
-.c-ax{fill:var(--ink-2);font:11px var(--mono)}
-.c-grid{stroke:var(--line);stroke-width:1}
-.c-bud{stroke:var(--warn);stroke-width:1.5;stroke-dasharray:4 3}
-.c-s1{fill:var(--s1)} .c-s2{fill:var(--s2)} .c-s3{fill:var(--s3)}
-.legend{display:flex;flex-wrap:wrap;gap:6px 16px;font-size:.84rem;color:var(--ink-2);margin:4px 2px 8px}
-.legend i{display:inline-block;width:11px;height:11px;border-radius:3px;margin-right:6px;vertical-align:-1px}
-.tip{position:absolute;pointer-events:none;background:var(--ink);color:var(--paper);font-size:.8rem;padding:6px 9px;border-radius:6px;white-space:nowrap;transform:translate(-50%,-110%)}
-.math{display:grid;gap:12px;margin:14px 0}
-.math div{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:12px 16px}
-.math b{display:block;margin-bottom:2px}
+.note{font-size:.86rem;color:var(--ink-2)}
+.save{display:grid;gap:8px;margin:10px 0;padding:0;list-style:none}
+.save li{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:10px 14px;margin:0}
+.save b{display:block}
 .sources{font-size:.84rem;color:var(--ink-2)}
-.sources li{margin:0 0 4px}
 :focus-visible{outline:2px solid var(--river);outline-offset:2px}
-@media (prefers-reduced-motion:reduce){*{transition:none!important}}
 </style>
 
 <div class="wrap">
-<header class="top">
+<header>
   <p class="eyebrow">Pleasant Crescent · for Kim · October 2026</p>
-  <h1>How the atlas works, who looks after it, and what it costs</h1>
-  <p class="lede">A plain guide to the parts behind the website, the people who keep it honest, and a year of running costs for twenty members, set against the $1,500 ceiling.</p>
-  <ul class="toc">
-    <li><a href="#picture">The big picture</a></li>
-    <li><a href="#compass">How Compass answers</a></li>
-    <li><a href="#people">Who does what</a></li>
-    <li><a href="#joining">Joining</a></li>
-    <li><a href="#costs">A year of costs</a></li>
-    <li><a href="#calculator">Calculator</a></li>
-    <li><a href="#own">Our own AI box</a></li>
-    <li><a href="#fits">What fits in $1,500</a></li>
-    <li><a href="#maths">How the maths helps</a></li>
-  </ul>
+  <h1>How the atlas runs, and what a year costs</h1>
+  <p class="prose">Assumes 100 onboarded members, Claude Opus 5.5 for Compass, a public map, members-only Compass, photo uploads, a monthly steward approval round, monthly checks of official websites, and a light link to The Quadruplicate.</p>
 </header>
 
-<section class="answer" aria-labelledby="short">
-  <h2 id="short">The short answer</h2>
-  <ul>
-    <li><b>The atlas works today without any AI.</b> Compass answers from the verified listings with fixed rules, so its running cost is the website alone, about $340 a year on a small server.</li>
-    <li><b>Adding AI is cheap if it only rewords checked facts.</b> With a small model such as Claude Haiku, Gemini Flash-Lite or GPT-5 nano, twenty members cost $1 to $35 a year in AI, even with heavy use.</li>
-    <li><b>The most capable models fit too, with a cap.</b> Claude Opus wording every answer costs about $520 a year at typical use, and a daily limit of about 100 worded answers guarantees the year stays under $1,500.</li>
-    <li><b>Our own AI computer does not fit the first year.</b> It needs $1,800 to $2,300 of hardware up front. Spread over three years it costs about $860 a year, plus the website.</li>
-    <li><b>Stewards are people, never the AI.</b> Two named stewards approve everything that goes public. The AI cannot publish, verify, or give anyone a role.</li>
-  </ul>
-</section>
-
-<h2 id="picture">The big picture</h2>
-<div class="prose">
-  <p>Think of the atlas as a small public library. The <b>website</b> is the reading room people walk into. The <b>server</b> is the librarian who fetches things. The <b>records</b> are the shelves, kept in a database. <b>Stewards</b> work at a separate desk where new material is checked before it goes on the public shelf.</p>
-  <p>Nothing reaches the public shelf without a person checking it. Every change and every Compass answer is written into a log that cannot be quietly edited later.</p>
+<div class="tiles">
+  <div class="tile"><div class="big">$659</div><div class="l">a year, light use<br>3 questions a member a week</div></div>
+  <div class="tile"><div class="big">$1,007</div><div class="l">a year, typical use<br>8 questions a member a week</div></div>
+  <div class="tile"><div class="big">$1,855</div><div class="l">a year, heavy use<br>20 questions; needs a daily cap</div></div>
 </div>
+<div class="answer">
+  <ul>
+    <li><b>Typical use fits inside $1,500</b> with Opus, the full trust system and every feature listed, with about $493 to spare.</li>
+    <li><b>It fits only with four token-saving changes.</b> As the code stands, Opus would be called twice for every question, and typical use would cost $1,848.</li>
+    <li><b>Heavy use needs a daily limit</b> of about 200 Opus-worded answers. Past it, Compass still answers from the same checked listings, in plain wording.</li>
+    <li><b>Fixed costs are $433 a year</b>: server, backups and photos, domain, email and a GitHub plan. The trust system adds no AI cost.</li>
+  </ul>
+</div>
+
+<h2>1. The whole site, back to front</h2>
 <figure>
   <div class="scroll">
-  <svg viewBox="0 0 960 520" role="img" aria-label="Families use the website; the server reads only published listings from the records; stewards check and publish from a separate desk; an optional AI service receives only the question and public listings.">
+  <svg viewBox="0 0 960 470" role="img" aria-label="Anyone can see the map; members also use Compass and send photos and corrections; the server runs the checks and reads only published listings; outside services are Claude Opus, official websites, The Quadruplicate, GitHub and backups.">
     <defs>
-      <marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10Z" class="d-head"/></marker>
-      <marker id="ara" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10Z" class="d-head-ai"/></marker>
+      <marker id="a1" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10Z" class="d-head"/></marker>
+      <marker id="a1a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10Z" class="d-head-ai"/></marker>
     </defs>
-    <!-- zones -->
-    <rect class="d-zone" x="16" y="16" width="170" height="488" rx="12"/>
-    <text class="d-z" x="32" y="40">PEOPLE</text>
-    <rect class="d-zone" x="214" y="16" width="214" height="488" rx="12"/>
-    <text class="d-z" x="230" y="40">THE WEBSITE</text>
-    <rect class="d-zone" x="456" y="16" width="214" height="488" rx="12"/>
-    <text class="d-z" x="472" y="40">THE SERVER</text>
-    <rect class="d-zone" x="698" y="16" width="246" height="488" rx="12"/>
-    <text class="d-z" x="714" y="40">THE RECORDS</text>
-    <!-- people -->
-    <rect class="d-box" x="32" y="62" width="138" height="78" rx="9"/>
-    <text class="d-t" x="44" y="86">Families and</text><text class="d-t" x="44" y="103">newcomers</text><text class="d-s" x="44" y="124">phone or computer</text>
-    <rect class="d-box" x="32" y="366" width="138" height="88" rx="9"/>
-    <text class="d-t" x="44" y="390">Stewards and</text><text class="d-t" x="44" y="407">editors</text><text class="d-s" x="44" y="428">named people,</text><text class="d-s" x="44" y="444">signed in</text>
+    <rect class="d-zone" x="16" y="16" width="208" height="292" rx="12"/><text class="d-z" x="32" y="40">WEBSITE</text>
+    <rect class="d-zone" x="252" y="16" width="208" height="292" rx="12"/><text class="d-z" x="268" y="40">SERVER</text>
+    <rect class="d-zone" x="488" y="16" width="208" height="292" rx="12"/><text class="d-z" x="504" y="40">RECORDS</text>
+    <rect class="d-zone" x="724" y="16" width="220" height="292" rx="12"/><text class="d-z" x="740" y="40">STEWARDS</text>
+    <rect class="d-zone" x="16" y="330" width="928" height="124" rx="12"/><text class="d-z" x="32" y="354">OUTSIDE SERVICES</text>
     <!-- website -->
-    <rect class="d-box" x="230" y="62" width="182" height="190" rx="9"/>
-    <text class="d-t" x="244" y="86">Public pages</text>
-    <text class="d-s" x="244" y="110">Home and nine groups</text>
-    <text class="d-s" x="244" y="130">Explore: map and list</text>
-    <text class="d-s" x="244" y="150">Each listing and its source</text>
-    <text class="d-s" x="244" y="170">This week, Local help</text>
-    <text class="d-s" x="244" y="190">Join, My atlas</text>
-    <text class="d-s" x="244" y="210">Compass drawer</text>
-    <text class="d-s" x="244" y="230">Suggest a place</text>
-    <rect class="d-box" x="230" y="366" width="182" height="88" rx="9"/>
-    <text class="d-t" x="244" y="390">Stewards' desk</text>
-    <text class="d-s" x="244" y="412">review queue, drafts,</text>
-    <text class="d-s" x="244" y="430">checks, publish button</text>
+    <rect class="d-box" x="32" y="56" width="176" height="96" rx="9"/><text class="d-t" x="46" y="80">Anyone</text><text class="d-s" x="46" y="102">map and list, listings,</text><text class="d-s" x="46" y="120">this week, local help</text><text class="d-s" x="46" y="138">no account needed</text>
+    <rect class="d-key" x="32" y="168" width="176" height="120" rx="9"/><text class="d-t" x="46" y="192">Members (signed in)</text><text class="d-s" x="46" y="214">ask Compass</text><text class="d-s" x="46" y="232">upload a photo</text><text class="d-s" x="46" y="250">send a correction</text><text class="d-s" x="46" y="268">save places</text>
     <!-- server -->
-    <rect class="d-box" x="472" y="62" width="182" height="74" rx="9"/>
-    <text class="d-t" x="486" y="86">Directory and map</text>
-    <text class="d-s" x="486" y="108">filters, listings, our</text><text class="d-s" x="486" y="124">own map files</text>
-    <rect class="d-key" x="472" y="152" width="182" height="74" rx="9"/>
-    <text class="d-t" x="486" y="176">Crescent Compass</text>
-    <text class="d-s" x="486" y="198">rules, checks and</text><text class="d-s" x="486" y="214">a record of each answer</text>
-    <rect class="d-box" x="472" y="242" width="182" height="60" rx="9"/>
-    <text class="d-t" x="486" y="266">Accounts</text>
-    <text class="d-s" x="486" y="286">sign-in, saved settings</text>
-    <rect class="d-box" x="472" y="366" width="182" height="88" rx="9"/>
-    <text class="d-t" x="486" y="390">Permissions</text>
-    <text class="d-s" x="486" y="412">checked by the server</text><text class="d-s" x="486" y="430">for every action</text>
+    <rect class="d-box" x="268" y="56" width="176" height="64" rx="9"/><text class="d-t" x="282" y="80">Directory and map</text><text class="d-s" x="282" y="100">filters, our own map files</text>
+    <rect class="d-key" x="268" y="134" width="176" height="80" rx="9"/><text class="d-t" x="282" y="158">Compass</text><text class="d-s" x="282" y="178">trust checks and</text><text class="d-s" x="282" y="196">permissions, in our code</text>
+    <rect class="d-box" x="268" y="228" width="176" height="60" rx="9"/><text class="d-t" x="282" y="252">Monthly jobs</text><text class="d-s" x="282" y="272">website checks, feed import</text>
     <!-- records -->
-    <rect class="d-box" x="714" y="62" width="214" height="62" rx="9"/>
-    <text class="d-t" x="728" y="86">Published listings</text><text class="d-s" x="728" y="106">all the public ever sees</text>
-    <rect class="d-box" x="714" y="138" width="214" height="62" rx="9"/>
-    <text class="d-t" x="728" y="162">Evidence</text><text class="d-s" x="728" y="182">claims, sources, check dates</text>
-    <rect class="d-box" x="714" y="214" width="214" height="62" rx="9"/>
-    <text class="d-t" x="728" y="238">Sealed log</text><text class="d-s" x="728" y="258">every change and answer</text>
-    <rect class="d-box" x="714" y="290" width="214" height="62" rx="9"/>
-    <text class="d-t" x="728" y="314">Member settings</text><text class="d-s" x="728" y="334">private, never on the map</text>
-    <rect class="d-ai" x="714" y="392" width="214" height="78" rx="9"/>
-    <text class="d-t" x="728" y="416">AI service (optional)</text><text class="d-s" x="728" y="436">off today; Claude, Gemini,</text><text class="d-s" x="728" y="452">or our own box</text>
+    <rect class="d-box" x="504" y="56" width="176" height="52" rx="9"/><text class="d-t" x="518" y="78">Published listings</text><text class="d-s" x="518" y="96">all the public sees</text>
+    <rect class="d-box" x="504" y="118" width="176" height="52" rx="9"/><text class="d-t" x="518" y="140">Pending items</text><text class="d-s" x="518" y="158">waiting for a steward</text>
+    <rect class="d-box" x="504" y="180" width="176" height="52" rx="9"/><text class="d-t" x="518" y="202">Sealed log</text><text class="d-s" x="518" y="220">every change and answer</text>
+    <rect class="d-box" x="504" y="242" width="176" height="52" rx="9"/><text class="d-t" x="518" y="264">Photos and accounts</text><text class="d-s" x="518" y="282">private until approved</text>
+    <!-- stewards -->
+    <rect class="d-box" x="740" y="56" width="188" height="238" rx="9"/><text class="d-t" x="754" y="80">Monthly round</text><text class="d-s" x="754" y="104">ask Compass what</text><text class="d-s" x="754" y="122">needs approving</text><text class="d-s" x="754" y="148">approve, reject or</text><text class="d-s" x="754" y="166">ask for more, item</text><text class="d-s" x="754" y="184">by item</text><text class="d-s" x="754" y="210">only a steward's tap</text><text class="d-s" x="754" y="228">publishes anything</text>
+    <!-- outside -->
+    <rect class="d-ai" x="32" y="368" width="200" height="70" rx="9"/><text class="d-t" x="46" y="392">Claude Opus 5.5</text><text class="d-s" x="46" y="412">wording, photo checks,</text><text class="d-s" x="46" y="428">monthly digest</text>
+    <rect class="d-box" x="252" y="368" width="160" height="70" rx="9"/><text class="d-t" x="266" y="392">Official websites</text><text class="d-s" x="266" y="412">checked monthly</text>
+    <rect class="d-box" x="432" y="368" width="160" height="70" rx="9"/><text class="d-t" x="446" y="392">The Quadruplicate</text><text class="d-s" x="446" y="412">calendar feed, link-outs</text>
+    <rect class="d-box" x="612" y="368" width="150" height="70" rx="9"/><text class="d-t" x="626" y="392">GitHub</text><text class="d-s" x="626" y="412">private code</text>
+    <rect class="d-box" x="782" y="368" width="146" height="70" rx="9"/><text class="d-t" x="796" y="392">Backups</text><text class="d-s" x="796" y="412">nightly, off-site</text>
     <!-- arrows -->
-    <path class="d-a" d="M170 101H226" marker-end="url(#ar)"/><text class="d-l" x="198" y="94" text-anchor="middle">use</text>
-    <path class="d-a" d="M170 410H226" marker-end="url(#ar)"/><text class="d-l" x="198" y="403" text-anchor="middle">sign in</text>
-    <path class="d-a" d="M412 100H468" marker-end="url(#ar)"/>
-    <path class="d-a" d="M412 190H468" marker-end="url(#ar)"/><text class="d-l" x="418" y="183">question</text>
-    <path class="d-a" d="M412 272H468" marker-end="url(#ar)"/>
-    <path class="d-a" d="M412 410H468" marker-end="url(#ar)"/>
-    <path class="d-a" d="M654 92H710" marker-end="url(#ar)"/><text class="d-l" x="656" y="84">reads</text>
-    <path class="d-a" d="M654 188 C684 188 684 92 710 92" marker-end="url(#ar)"/>
-    <path class="d-a" d="M654 214 C686 214 686 244 710 244" marker-end="url(#ar)"/>
-    <path class="d-a" d="M654 272 C686 272 686 320 710 320" marker-end="url(#ar)"/>
-    <path class="d-a" d="M654 400 C690 400 690 170 710 170" marker-end="url(#ar)"/><text class="d-l" x="486" y="478">checks evidence, then</text><text class="d-l" x="486" y="494">publishes (stewards only)</text>
-    <path class="d-aa" d="M654 206 C690 206 690 420 710 420" marker-end="url(#ara)"/>
-    <text class="d-l" x="821" y="487" text-anchor="middle">gets only the question</text><text class="d-l" x="821" y="501" text-anchor="middle">and public listings</text>
+    <path class="d-a" d="M208 104H264" marker-end="url(#a1)"/>
+    <path class="d-a" d="M208 200 C236 200 236 174 264 174" marker-end="url(#a1)"/>
+    <path class="d-a" d="M444 84H500" marker-end="url(#a1)"/><text class="d-l" x="448" y="76">reads</text>
+    <path class="d-a" d="M444 196 C472 196 472 206 500 206" marker-end="url(#a1)"/>
+    <path class="d-a" d="M444 258 C472 258 472 146 500 146" marker-end="url(#a1)"/>
+    <path class="d-a" d="M736 144H684" marker-end="url(#a1)"/>
+    <path class="d-a" d="M736 100 C716 100 704 82 684 82" marker-end="url(#a1)"/>
+    <path class="d-aa" d="M268 196 C238 196 238 300 132 364" marker-end="url(#a1a)"/><text class="d-l" x="40" y="324">to Claude: public listings only</text>
+    <path class="d-a" d="M332 364V292" marker-end="url(#a1)"/>
+    <path class="d-a" d="M512 364 C512 326 420 326 420 292" marker-end="url(#a1)"/>
+    <path class="d-a" d="M687 364V300" marker-end="url(#a1)"/><text class="d-l" x="694" y="350">code</text>
+    <path class="d-a" d="M680 268 C760 268 855 320 855 364" marker-end="url(#a1)"/>
   </svg>
   </div>
-  <figcaption>Families see only published listings. Stewards check evidence and publish from their own desk. If an AI service is switched on, it receives the question and public listings, never accounts or private notes.</figcaption>
-  <p class="hint">On a phone, slide the diagram sideways.</p>
+  <figcaption>The public sees only published listings. Members' photos and corrections wait in Pending until a steward approves them. Claude receives questions and public listings, plus photos for checking, never accounts or private notes. GitHub holds the code privately; the site itself stays public.</figcaption>
 </figure>
 
-<h3>The parts, in plain words</h3>
-<div class="tbl"><table>
-  <thead><tr><th>Part</th><th>What it is</th><th>What it holds or does</th></tr></thead>
-  <tbody>
-    <tr><td>Website</td><td>The pages people see, on phones and computers</td><td>Map and list, listings, this week, help pages, joining, Compass</td></tr>
-    <tr><td>Server</td><td>A small rented computer that runs the site (Django and Wagtail)</td><td>Fetches records, applies filters, checks permissions, runs Compass</td></tr>
-    <tr><td>Database</td><td>The shelves where records live (PostgreSQL)</td><td>Published listings, evidence, the sealed log, member settings</td></tr>
-    <tr><td>Map files</td><td>Our own copy of the map, stored with the site</td><td>Streets, terrain and boundaries from public data; no Google or Esri</td></tr>
-    <tr><td>Stewards' desk</td><td>The admin screens, for signed-in staff only</td><td>Review queue, drafts, evidence checks, the publish button</td></tr>
-    <tr><td>AI service</td><td>An optional outside model, or one on our own computer</td><td>Rewords answers that are already checked; it never decides what is true</td></tr>
-  </tbody>
-</table></div>
-
-<h2 id="compass">How Compass answers a question</h2>
-<div class="prose">
-  <p>Compass follows the same six steps every time. Steps 1, 2, 3, 5 and 6 are fixed rules that run on our own server and cost nothing. Step 4 is the only place an AI model can be used, and only to make the wording friendlier.</p>
-</div>
+<h2>2. Joining and using Compass</h2>
 <figure>
   <div class="scroll">
-  <svg viewBox="0 0 960 250" role="img" aria-label="Compass: understand the question, look up published listings, decide whether to recommend, word the answer with optional AI help, check every sentence against a listing, record the answer in the sealed log.">
-    <defs>
-      <marker id="ar2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10Z" class="d-head"/></marker>
-      <marker id="ar2a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10Z" class="d-head-ai"/></marker>
-    </defs>
-    <g>
-      <rect class="d-box" x="16" y="30" width="136" height="104" rx="10"/><text class="d-n" x="30" y="54">1</text><text class="d-t" x="30" y="76">Understand</text><text class="d-s" x="30" y="98">rules read age,</text><text class="d-s" x="30" y="114">cost, place, access</text>
-      <rect class="d-box" x="172" y="30" width="136" height="104" rx="10"/><text class="d-n" x="186" y="54">2</text><text class="d-t" x="186" y="76">Look up</text><text class="d-s" x="186" y="98">published listings</text><text class="d-s" x="186" y="114">only</text>
-      <rect class="d-box" x="328" y="30" width="136" height="104" rx="10"/><text class="d-n" x="342" y="54">3</text><text class="d-t" x="342" y="76">Decide</text><text class="d-s" x="342" y="98">recommend, warn,</text><text class="d-s" x="342" y="114">or "I don't know"</text>
-      <rect class="d-key" x="484" y="30" width="136" height="104" rx="10"/><text class="d-n" x="498" y="54">4</text><text class="d-t" x="498" y="76">Word it</text><text class="d-s" x="498" y="98">plain template,</text><text class="d-s" x="498" y="114">or AI rewording</text>
-      <rect class="d-box" x="640" y="30" width="136" height="104" rx="10"/><text class="d-n" x="654" y="54">5</text><text class="d-t" x="654" y="76">Check</text><text class="d-s" x="654" y="98">each sentence must</text><text class="d-s" x="654" y="114">point to a listing</text>
-      <rect class="d-box" x="796" y="30" width="148" height="104" rx="10"/><text class="d-n" x="810" y="54">6</text><text class="d-t" x="810" y="76">Record</text><text class="d-s" x="810" y="98">sealed in the log</text><text class="d-s" x="810" y="114">with its sources</text>
-      <path class="d-a" d="M152 82H168" marker-end="url(#ar2)"/><path class="d-a" d="M308 82H324" marker-end="url(#ar2)"/><path class="d-a" d="M464 82H480" marker-end="url(#ar2)"/><path class="d-a" d="M620 82H636" marker-end="url(#ar2)"/><path class="d-a" d="M776 82H792" marker-end="url(#ar2)"/>
-      <rect class="d-ai" x="400" y="176" width="300" height="58" rx="10"/>
-      <text class="d-t" x="416" y="200">AI model (optional)</text><text class="d-s" x="416" y="220">gets the question and the chosen listings</text>
-      <path class="d-aa" d="M530 134V172" marker-end="url(#ar2a)"/><path class="d-aa" d="M590 172V138" marker-end="url(#ar2a)"/>
-      <text class="d-l" x="520" y="158" text-anchor="end">asks</text><text class="d-l" x="600" y="158">reworded text</text>
-      <text class="d-l" x="720" y="200">anything not backed</text><text class="d-l" x="720" y="216">by a listing is removed</text>
-      <text class="d-l" x="16" y="170">Steps 1 to 3 never use AI.</text><text class="d-l" x="16" y="186">The decision is a published</text><text class="d-l" x="16" y="202">number, not a guess.</text>
-    </g>
+  <svg viewBox="0 0 960 200" role="img" aria-label="Visit the public map, join with an adult confirmation, skip or fill three welcome steps, then use Compass, upload photos and send corrections, all of which wait for a steward.">
+    <defs><marker id="a2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10Z" class="d-head"/></marker></defs>
+    <rect class="d-box" x="16" y="24" width="160" height="104" rx="10"/><text class="d-n" x="30" y="48">1</text><text class="d-t" x="30" y="70">Visit</text><text class="d-s" x="30" y="92">public map and list,</text><text class="d-s" x="30" y="110">no account</text>
+    <rect class="d-box" x="204" y="24" width="160" height="104" rx="10"/><text class="d-n" x="218" y="48">2</text><text class="d-t" x="218" y="70">Join</text><text class="d-s" x="218" y="92">email, password,</text><text class="d-s" x="218" y="110">"I am an adult"</text>
+    <rect class="d-box" x="392" y="24" width="160" height="104" rx="10"/><text class="d-n" x="406" y="48">3</text><text class="d-t" x="406" y="70">Welcome</text><text class="d-s" x="406" y="92">age bands, budget,</text><text class="d-s" x="406" y="110">all skippable</text>
+    <rect class="d-key" x="580" y="24" width="160" height="104" rx="10"/><text class="d-n" x="594" y="48">4</text><text class="d-t" x="594" y="70">Use Compass</text><text class="d-s" x="594" y="92">ask questions,</text><text class="d-s" x="594" y="110">save places</text>
+    <rect class="d-box" x="768" y="24" width="176" height="104" rx="10"/><text class="d-n" x="782" y="48">5</text><text class="d-t" x="782" y="70">Contribute</text><text class="d-s" x="782" y="92">photos, corrections,</text><text class="d-s" x="782" y="110">new places</text>
+    <path class="d-a" d="M176 76H200" marker-end="url(#a2)"/><path class="d-a" d="M364 76H388" marker-end="url(#a2)"/><path class="d-a" d="M552 76H576" marker-end="url(#a2)"/><path class="d-a" d="M740 76H764" marker-end="url(#a2)"/>
+    <text class="d-l" x="16" y="164">Never asked: a child's name, birth date, school or home address. No phone location is read.</text>
+    <text class="d-l" x="768" y="152">waits in Pending</text><text class="d-l" x="768" y="168">for the monthly round</text>
   </svg>
   </div>
-  <figcaption>If the AI is switched off, unreachable, or over its daily limit, Compass skips step 4's rewording and answers from the plain template. The answer is the same; only the phrasing changes.</figcaption>
+  <figcaption>The map stays public. Compass, photos and corrections need a member account. A photo's hidden GPS data is removed before anyone sees it, and the member confirms the place by hand.</figcaption>
 </figure>
 
-<h3>What an "API call" is</h3>
-<div class="prose">
-  <p>An API call is one request from our server to an AI company's computer: we send some text, it sends text back, and we pay by the amount of text. Text is measured in tokens, where a token is roughly three quarters of a word. Prices are quoted per million tokens, with words sent in costing less than words sent back.</p>
-  <p>For Compass, one question uses at most two calls. The first turns a question the rules could not read into filters such as age and cost. The second rewords the checked answer. A typical question with both calls sends about 3,300 tokens and receives about 900, including the model's own working.</p>
-</div>
-<p class="never"><b>The AI never sees</b> accounts, email addresses, saved places, private notes, unpublished drafts, or anything about a child. It never writes to the records, never publishes, and never answers on its own when our checks disagree.</p>
-
-<h2 id="people">Who does what</h2>
-<div class="prose">
-  <p>Kim's brief asks for two independent organisational admins, an editor role and moderated contributors. In the atlas those admins are called <b>stewards</b>. Each step up is granted by a person, by hand, and can be taken back.</p>
-</div>
-<div class="tbl"><table>
-  <thead><tr><th>Who</th><th>Can</th><th>Cannot</th><th>How someone gets there</th></tr></thead>
-  <tbody>
-    <tr><td><b>Visitor</b></td><td>See the whole map and every listing, ask Compass, suggest a place through the public form</td><td>Save places, change anything</td><td>Nothing needed; no account, no location permission</td></tr>
-    <tr><td><b>Member</b></td><td>Save places, choose settings that shape Compass, ask Compass to draft a correction for review</td><td>Publish or edit listings</td><td>Joins with an adult confirmation; every welcome step can be skipped</td></tr>
-    <tr><td><b>Contributor</b></td><td>Draft new listings and corrections in the admin screens</td><td>Publish, verify, or delete</td><td>Asks from My atlas; a steward approves by hand</td></tr>
-    <tr><td><b>Editor</b></td><td>Check evidence against sources and mark it verified; draft listings and events</td><td>Publish or delete; change the rules</td><td>Appointed by a steward</td></tr>
-    <tr><td><b>Steward</b></td><td>Approve publication, change the freshness settings and Compass rules, grant and remove roles, run the monthly review</td><td>Hide changes: every action is in the sealed log</td><td>The two organisational admins Kim names</td></tr>
-    <tr><td><b>Crescent Compass</b></td><td>Read published listings, word answers, draft suggestions when a member asks</td><td>Publish, verify, grant roles, message anyone, change its own rules</td><td>It is a tool, not a member; switched on or off by the stewards</td></tr>
-  </tbody>
-</table></div>
-<h3>What a steward does each week</h3>
-<div class="prose">
-  <p>The review queue lists which listings most need a re-check, ordered by how likely they are to have changed and how much a fix is worth. For about 60 listings this comes to about three checks a week, roughly 35 minutes. Stewards also clear the suggestion queue and, once a month, read the log and decide any rule changes together.</p>
-  <p><b>Open questions for Kim:</b> who the two stewards are; whether system-wide changes (new categories, switching on AI or WhatsApp) need both stewards or a wider group; and whether contributors come by request, invitation, or both.</p>
-</div>
-
-<h2 id="joining">How joining works</h2>
-<div class="prose"><p>Joining is optional. Everything public works without an account.</p></div>
-<ol class="steps">
-  <li><b>Browse first</b>The map, listings and Compass are open to anyone, with no sign-up and no location request.</li>
-  <li><b>Join</b>A username, email and password, plus a box confirming the person is an adult caregiver, resident or community member. There are no child accounts.</li>
-  <li><b>What help would be welcome?</b>Family support, local orientation, community events, practical guidance. Skippable.</li>
-  <li><b>What to look for</b>Age bands such as "Preschool (3 to 5)", budget, step-free access only, closest community. These are search settings, not a child profile. Skippable.</li>
-  <li><b>How much Compass should say</b>A few suggestions, a standard shortlist, or everything; whether Compass may use these settings; email summaries stay off unless turned on. Skippable.</li>
-  <li><b>My atlas</b>Saved places, settings to change or clear, and a button to ask a steward for contributor rights.</li>
-</ol>
-<p class="never"><b>Never asked:</b> a child's name, birth date, school, or home address. No location is read from the phone. A member can tell Compass "forget that" at any time.</p>
-
-<h2 id="costs">A year of running costs</h2>
-<div class="prose">
-  <p>The estimate covers twenty onboarded members for 52 weeks. Each member asks Compass a number of questions a week and sends a few suggestions or corrections. Three levels of use are compared: light (5 questions, a suggestion a month), typical (15 questions, 1 suggestion) and heavy (40 questions, 3 suggestions).</p>
-  <p>The total has three parts. <b>Hosting</b> is the website and database. <b>AI calls</b> are paid per use. <b>Own hardware</b> applies only if we buy or rent our own AI computer. Four ways of using AI are compared:</p>
-</div>
-<div class="tbl"><table>
-  <thead><tr><th>Way of using AI</th><th>What happens</th><th>Calls per question</th></tr></thead>
-  <tbody>
-    <tr><td><b>A. Rules only</b> (today)</td><td>No AI. Compass answers from templates.</td><td class="num">0</td></tr>
-    <tr><td><b>B. AI when stuck</b></td><td>AI reads only the questions the rules cannot, about 1 in 5. Suggestions get tidied for stewards. Stewards get a weekly digest and help with re-checks.</td><td class="num">0.2</td></tr>
-    <tr><td><b>C. AI words every answer</b></td><td>As B, plus every answer is reworded by the AI and checked.</td><td class="num">2</td></tr>
-    <tr><td><b>D. Conversational agent</b></td><td>A back-and-forth assistant that plans and looks things up in several steps.</td><td class="num">about 3, larger</td></tr>
-  </tbody>
-</table></div>
-
-<h3>Typical use, a year at a glance</h3>
-<div class="legend" aria-hidden="true"><span><i style="background:var(--s1)"></i>Hosting</span><span><i style="background:var(--s2)"></i>AI calls</span><span><i style="background:var(--s3)"></i>Own hardware, per year over 3 years</span><span><i style="background:transparent;border:1.5px dashed var(--warn)"></i>$1,500 ceiling</span></div>
-<div class="chart" id="chart"></div>
-<p class="note">Bars with own hardware show the cost spread over three years. The first year needs the whole hardware price in cash, shown in the table below the calculator.</p>
-
-<h3>AI cost per year by model</h3>
-<p class="note">Choose a level of use. Figures are AI calls only; add hosting of about $340. A cell marked "over" passes $1,500 once hosting is added.</p>
-<label class="note" for="tblUsage">Level of use
-  <select id="tblUsage" style="font:inherit;margin-left:6px;padding:4px 8px;border-radius:6px;border:1px solid var(--line);background:var(--surface);color:var(--ink)">
-    <option value="light">Light</option><option value="typical" selected>Typical</option><option value="heavy">Heavy</option>
-  </select>
-</label>
-<div class="tbl"><table id="aiTable"><thead><tr><th>Model</th><th>Company, data goes to</th><th class="num">A</th><th class="num">B</th><th class="num">C</th><th class="num">D</th></tr></thead><tbody></tbody></table></div>
-
-<h2 id="calculator">Try your own numbers</h2>
-<div class="prose"><p>Change any setting and the year's total updates. It opens with a plan that suits a first year: typical use, AI only when the rules are stuck, a small model, and a small server.</p></div>
-<form class="calc" id="calc" onsubmit="return false">
-  <fieldset>
-    <label for="cPeople">Onboarded members<input id="cPeople" type="number" min="1" max="2000" value="20"></label>
-    <label for="cQ">Compass questions per member per week <span class="rangev" id="cQv">15</span><input id="cQ" type="range" min="0" max="80" value="15"></label>
-    <label for="cS">Suggestions per member per week <span class="rangev" id="cSv">1</span><input id="cS" type="range" min="0" max="10" step="0.25" value="1"></label>
-    <label for="cMode">How Compass uses AI<select id="cMode"></select></label>
-    <label for="cModel">AI model<select id="cModel"></select><small id="cModelNote"></small></label>
-    <label for="cHost">Where the website runs<select id="cHost"></select></label>
-    <label for="cOwn">Own AI computer<select id="cOwn"></select><small>With one, AI calls cost nothing per use.</small></label>
-  </fieldset>
-  <div class="out" aria-live="polite">
-    <div class="total" id="oTotal">$0 <small>per year</small></div>
-    <div class="meter" id="oMeter"><i style="width:0"></i></div>
-    <div class="status" id="oStatus"></div>
-    <div class="parts" id="oParts"></div>
-    <div class="note" id="oNotes"></div>
+<h2>3. A steward's month</h2>
+<figure>
+  <div class="scroll">
+  <svg viewBox="0 0 960 230" role="img" aria-label="Items collect in Pending during the month and are pre-checked overnight; the steward asks Compass what needs approving, reads one line per item with evidence and a suggestion, taps approve, reject or ask for more; the server publishes and seals each decision.">
+    <defs>
+      <marker id="a3" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10Z" class="d-head"/></marker>
+      <marker id="a3a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10Z" class="d-head-ai"/></marker>
+    </defs>
+    <rect class="d-box" x="16" y="24" width="168" height="120" rx="10"/><text class="d-n" x="30" y="48">1 · all month</text><text class="d-t" x="30" y="70">Items collect</text><text class="d-s" x="30" y="92">photos, corrections,</text><text class="d-s" x="30" y="110">website changes,</text><text class="d-s" x="30" y="128">Quadruplicate events</text>
+    <rect class="d-box" x="204" y="24" width="168" height="120" rx="10"/><text class="d-n" x="218" y="48">2 · overnight</text><text class="d-t" x="218" y="70">Pre-checked</text><text class="d-s" x="218" y="92">photo check, evidence</text><text class="d-s" x="218" y="110">compared, freshness</text><text class="d-s" x="218" y="128">scored</text>
+    <rect class="d-key" x="392" y="24" width="168" height="120" rx="10"/><text class="d-n" x="406" y="48">3 · once a month</text><text class="d-t" x="406" y="70">Ask Compass</text><text class="d-s" x="406" y="92">"What needs</text><text class="d-s" x="406" y="110">approving this</text><text class="d-s" x="406" y="128">month?"</text>
+    <rect class="d-key" x="580" y="24" width="168" height="120" rx="10"/><text class="d-n" x="594" y="48">4 · about an hour</text><text class="d-t" x="594" y="70">Decide</text><text class="d-s" x="594" y="92">one line per item:</text><text class="d-s" x="594" y="110">Approve, Reject,</text><text class="d-s" x="594" y="128">Ask for more</text>
+    <rect class="d-box" x="768" y="24" width="176" height="120" rx="10"/><text class="d-n" x="782" y="48">5 · instantly</text><text class="d-t" x="782" y="70">Published</text><text class="d-s" x="782" y="92">map updates, each</text><text class="d-s" x="782" y="110">decision sealed in</text><text class="d-s" x="782" y="128">the log</text>
+    <path class="d-a" d="M184 84H200" marker-end="url(#a3)"/><path class="d-a" d="M372 84H388" marker-end="url(#a3)"/><path class="d-a" d="M560 84H576" marker-end="url(#a3)"/><path class="d-a" d="M748 84H764" marker-end="url(#a3)"/>
+    <text class="d-l" x="204" y="176">Opus suggests an action and shows its evidence.</text><text class="d-l" x="204" y="194">It cannot approve, publish or give anyone a role.</text>
+    <text class="d-l" x="580" y="176">Two stewards, either can approve;</text><text class="d-l" x="580" y="194">system-wide changes need both.</text>
+  </svg>
   </div>
-</form>
+  <figcaption>The admin screens stay available, but a steward's normal month is one conversation with Compass and a column of Approve buttons. The server checks the steward's permission on every tap.</figcaption>
+</figure>
 
-<h2 id="own">Running our own AI computer</h2>
-<div class="prose">
-  <p>An open model can run on a computer we own, so no question ever leaves our hands. Models in the 20 to 30 billion parameter range, such as Qwen, gpt-oss-20b or Mistral Small, word checked answers well and need a machine with plenty of memory. Twenty members ask at most a few questions an hour, so a single quiet machine is enough.</p>
-</div>
-<div class="tbl"><table id="ownTable"><thead><tr><th>Option</th><th class="num">Hardware</th><th class="num">Electricity a year</th><th class="num">Per year over 3 years</th><th class="num">First-year cash</th></tr></thead><tbody></tbody></table></div>
-<div class="prose">
-  <p>Electricity is priced at 26 cents per kWh, the Del Norte average, for a machine left on day and night. The website still needs its own server, because a computer at home depends on home internet and power, and opening it to the public adds security work. Someone also has to update and look after the machine, and that time is not in these figures.</p>
-  <p>Renting the same open model from a hosting company such as Groq or Together gives most of the benefit with no hardware: about $17 a year at typical use with every answer worded.</p>
-</div>
-
-<h2 id="fits">What fits within $1,500 a year</h2>
+<h2>4. A year of costs</h2>
 <div class="tbl"><table>
-  <thead><tr><th>Plan</th><th class="num">Typical use</th><th class="num">Heavy use</th><th>Fits?</th></tr></thead>
-  <tbody id="fitTable"></tbody>
+  <thead><tr><th>Use</th><th class="num">Questions a member a week</th><th class="num">Opus, as built</th><th class="num">Opus, optimised</th><th class="num">Total with fixed costs</th><th>Fits $1,500?</th></tr></thead>
+  <tbody><tr><td>Light</td><td class="num">3</td><td class="num">$546</td><td class="num">$226</td><td class="num">$659</td><td><span class="pill ok">Yes</span></td></tr><tr><td>Typical</td><td class="num">8</td><td class="num">$1,415</td><td class="num">$574</td><td class="num">$1,007</td><td><span class="pill ok">Yes</span></td></tr><tr><td>Heavy</td><td class="num">20</td><td class="num">$3,508</td><td class="num">$1,422</td><td class="num">$1,855</td><td><span class="pill over">Only with a daily cap of 200</span></td></tr></tbody>
 </table></div>
+<p class="note">Each member also sends, a month: light 0.5 corrections and 0.5 photos; typical 1 correction and 2 photos; heavy 3 corrections and 5 photos. Opus 5.5 is priced at $4 per million tokens in and $20 out, with overnight jobs at half price.</p>
+
+<h3>Fixed costs, including subscriptions</h3>
+<div class="tbl"><table>
+  <thead><tr><th>Item</th><th class="num">A year</th></tr></thead>
+  <tbody><tr><td>Server for the website, database and Compass (4 GB virtual server, $24/month)</td><td class="num">$288</td></tr><tr><td>Off-site backups and photo storage (object storage, about $6/month)</td><td class="num">$72</td></tr><tr><td>Domain name, e.g. crescentcompass.ca</td><td class="num">$20</td></tr><tr><td>Email for sign-up and password resets (pay-per-use service)</td><td class="num">$5</td></tr><tr><td>GitHub Pro for the code owner: private code, public preview site ($4/month)</td><td class="num">$48</td></tr><tr><td>Anthropic API account: pay as you go, no subscription</td><td class="num">$0</td></tr><tr><td>Security certificate (Let's Encrypt), uptime and error alerts (free tiers)</td><td class="num">$0</td></tr><tr><td>Map: our own tiles from public data, no map subscription</td><td class="num">$0</td></tr><tr><td>Trust system: runs as code on our server, no AI tokens</td><td class="num">$0</td></tr><tr class="total"><td>Total</td><td class="num">$433</td></tr></tbody>
+</table></div>
+<p class="note">GitHub: private code with a public site needs GitHub Pro on a personal account, or GitHub Team at $4 per person a month if the code moves to an organisation. Stewards never need GitHub accounts; they work inside the site.</p>
+
+<h3>Where the Opus money goes, typical use</h3>
+<div class="tbl"><table>
+  <thead><tr><th>Job</th><th class="num">A year</th><th class="num">Each</th><th class="num">Cost a year</th></tr></thead>
+  <tbody><tr><td>Compass answers for members</td><td class="num">41,600 questions</td><td class="num">$0.012</td><td class="num">$504</td></tr><tr><td>Corrections and suggestions drafted</td><td class="num">1,200 drafts</td><td class="num">$0.016</td><td class="num">$19</td></tr><tr><td>Photo checks before a steward sees them</td><td class="num">2,400 photos</td><td class="num">$0.007</td><td class="num">$16</td></tr><tr><td>Monthly check of official web pages</td><td class="num">630 changed pages</td><td class="num">$0.014</td><td class="num">$9</td></tr><tr><td>Steward digest: one line per item</td><td class="num">4,230 items</td><td class="num">$0.005</td><td class="num">$21</td></tr><tr><td>Steward asks: what needs approving?</td><td class="num">12 months</td><td class="num">$0.070</td><td class="num">$1</td></tr><tr><td>Steward follow-up questions</td><td class="num">120 questions</td><td class="num">$0.028</td><td class="num">$3</td></tr><tr><td>Quadruplicate events sorted</td><td class="num">12 months</td><td class="num">$0.033</td><td class="num">$0</td></tr><tr><td>Monthly trust and audit summary</td><td class="num">12 months</td><td class="num">$0.050</td><td class="num">$1</td></tr><tr class="total"><td>Total Opus</td><td></td><td></td><td class="num">$574</td></tr></tbody>
+</table></div>
+
+<h2>5. How the maths keeps tokens down and trust up</h2>
+<div class="prose"><p>Every trust check runs as code on our server, at no token cost: the 75 percent show rule, the honesty check on each sentence, the sealed log, the published-facts check, removal of photo GPS data, and the five-or-more rule for map counts. Opus is used only for language and judgement. These four changes take typical use from $1,415 to $574 of Opus a year, with the same model and the same checks.</p></div>
+<ul class="save">
+  <li><b>Call Opus to read a question only when the rules cannot.</b> The rules parsed 33 of 34 test questions. Today the code calls Opus on every question; we assume 1 in 5 still needs it.</li>
+  <li><b>Send only what an answer needs.</b> Eight fields from at most four listings instead of whole records, roughly halving the words sent.</li>
+  <li><b>Reuse checked answers.</b> The same understood question gets the same checked answer until a listing changes, which the projection version number tells us exactly. We assume 1 in 4 questions repeats.</li>
+  <li><b>Batch what can wait.</b> Photo checks, website comparisons and the digest lines run overnight at half price. A website page that has not changed since last month is never sent to Opus at all, because identical text is not new evidence.</li>
+</ul>
+<p class="prose">A daily limit makes the budget a guarantee. At heavy use, after about 200 worded answers in a day, Compass answers in its plain template from the same checked listings, at no cost.</p>
+
+<h2>6. The Quadruplicate, lightly connected</h2>
 <div class="prose">
-  <h3>Recommendation for the first year</h3>
-  <p><b>Run the site on a small server and use AI only when the rules are stuck, with a small model.</b> That costs about $340 to $400 a year and leaves about $1,100 for surprises, a second domain, or trying a stronger model for a few months. If a stronger model is wanted for every answer, Claude Sonnet or Opus fits at typical use, protected by a daily limit so heavy months cannot overshoot.</p>
-  <p><b>Keep our own AI computer as a later step.</b> It fits the yearly ceiling only once the hardware is paid for, for example from a one-off grant. After that its running cost is electricity, $90 to $275 a year, plus the website.</p>
-  <p><b>Avoid sending family questions to providers outside the US or EU</b>, even when cheaper. DeepSeek is listed for comparison only.</p>
-</div>
-
-<h2 id="maths">How the maths keeps it smooth, cheap and honest</h2>
-<div class="prose"><p>The atlas already contains a small set of published formulas. Each one does a practical job.</p></div>
-<div class="math">
-  <div><b>The AI never decides what is true.</b> Whether to recommend a listing is a calculation: the chance it is still current, worked out from when it was last checked and how often places like it change. Compass recommends only above 75 percent. Below that it shows the listing with a warning, or says it does not know.</div>
-  <div><b>A cheap model is safe because every sentence is checked.</b> Each AI sentence must name the listings it relies on. Any sentence that names an unknown place, claims access that is not verified, or adds a fact with no listing is removed. The safety comes from the check, so we do not need to pay for the most capable model.</div>
-  <div><b>Ask the AI only when it changes the answer.</b> The rules already understand most questions. In a test of 34 typical questions they understood 33. Calling the AI only when the rules are stuck cuts AI calls, and AI cost, by about 90 percent compared with wording every answer.</div>
-  <div><b>A daily limit turns the budget into a guarantee.</b> If a worded answer costs about 3 cents with Claude Opus, a limit of about 100 worded answers a day keeps the year under $1,500 with the website included. Past the limit, Compass answers from the plain template. The limit is a setting stewards can change.</div>
-  <div><b>Short memory, long records.</b> Compass remembers only the last six turns of a conversation, and only which listings it showed. The long-term memory is the database and the sealed log, which cost nothing per question. Each question therefore costs the same in year three as on day one.</div>
-  <div><b>The re-check schedule is worked out, not guessed.</b> The freshness formulas tell stewards which listings to re-check first. About three checks a week keep every listing recommendable, which keeps the steward workload small and steady.</div>
-  <div><b>Every answer can be audited.</b> Each Compass answer and each publish is written into a chained log, where each entry seals the one before. Changing an old entry breaks the chain, and a single command shows whether it is intact.</div>
-  <div><b>Privacy by design.</b> No child data exists to leak. Counts on the map are grouped into hexagon cells about 0.7 square kilometres across, and any cell with fewer than five items is hidden, so no single home or person can be picked out.</div>
-</div>
-
-<h2 id="sources">Assumptions and sources</h2>
-<div class="prose sources">
-  <p>All figures are estimates made on 16 October 2026 from stated assumptions; nothing has been measured with real members yet. Prices change often, and price-comparison sites disagree by up to about 20 percent. The model behind every number is in the project repository as <code>backend/examples/cost_model.py</code>, with its output in <code>research/09_cost_model.md</code>, so it can be re-run with new prices.</p>
+  <p><a href="https://quadruplicate.org/">The Quadruplicate</a> is a public, open-source snapshot of Crescent City civic information: news, government meetings, a community calendar and a safety alert board, rebuilt on a schedule from public sources. It has no sign-in or live API, and it states no licence.</p>
   <ul>
-    <li>Claude prices: Anthropic's published model table (Opus 5.5 $4 and $20, Sonnet 5.5 $2 and $10, Haiku 5.5 $0.10 and $0.50 per million tokens in and out). <a href="https://www.anthropic.com/pricing">anthropic.com/pricing</a></li>
-    <li>Gemini: <a href="https://www.cloudzero.com/blog/gemini-pricing/">CloudZero</a>, <a href="https://benchlm.ai/google/api-pricing">BenchLM</a></li>
-    <li>OpenAI: <a href="https://benchlm.ai/openai/api-pricing">BenchLM</a>, <a href="https://www.silicondata.com/use-cases/openai-api-pricing-per-1m-tokens">Silicon Data</a></li>
-    <li>DeepSeek and Mistral: <a href="https://www.morphllm.com/deepseek-api">MorphLLM</a>, <a href="https://costgoat.com/pricing/mistral-api">CostGoat</a></li>
-    <li>Open models hosted: <a href="https://www.morphllm.com/comparisons/together-vs-groq">Together vs Groq comparison</a></li>
-    <li>Hardware: <a href="https://www.macrumors.com/guide/2024-vs-2026-mac-mini/">MacRumors Mac mini guide</a> (64 GB M5 Pro price is our estimate from the $1,699 base), <a href="https://www.xda-developers.com/used-rtx-3090-still-best-for-local-ai-in-value/">XDA on used RTX 3090s</a>, <a href="https://petronellatech.com/blog/how-to-build-custom-ai-workstation-2026/">RTX 5090 workstation prices</a></li>
-    <li>Electricity: <a href="https://www.energysage.com/local-data/electricity-cost/ca/del-norte-county/">EnergySage, Del Norte County</a></li>
-    <li>Rented GPUs: <a href="https://www.runpod.io/product/serverless">RunPod</a>, <a href="https://scientyficworld.org/runpod-pricing/">RunPod pricing explained</a></li>
-    <li>Servers: <a href="https://apicalculators.com/blog/cloud-vps-cost-comparison-2026">VPS comparison 2026</a>, <a href="https://onedollarvps.com/pricing/digitalocean-pricing.html">DigitalOcean pricing</a></li>
-    <li>Not included: staff and volunteer time, training, and one-off build costs, which sit in the $10,000 delivery budget.</li>
+    <li><b>Calendar:</b> each month our server reads its free calendar feed. Family-relevant events become Pending items in the steward's digest, labelled "reported by The Quadruplicate", and appear only once approved.</li>
+    <li><b>Safety and meetings:</b> link out to its safety board and meeting pages rather than copying them.</li>
+    <li><b>Rights first:</b> before republishing any of its text, ask its maintainers (CrescentCity@tuta.com) and log the answer, as our data-rights rules require.</li>
   </ul>
 </div>
+
+<h2>7. Built today, and still to build</h2>
+<div class="prose">
+  <p><b>Built:</b> public map and listings, joining, Compass with the trust checks and sealed log, moderated suggestions, the admin review queue, and the Opus connection, which is switched off.</p>
+  <p><b>To build</b> within the delivery budget: Compass limited to members, photo upload with GPS removal and the photo check, the monthly website check, the steward's monthly digest with Approve buttons, the Quadruplicate feed, the four token savings, and the daily limit.</p>
+  <p class="note">Not included: WhatsApp, an offline AI computer, staff and volunteer time. All figures are estimates from stated assumptions, made on 16 October 2026; the model is <code>backend/examples/cost_model.py</code> and can be re-run with new prices.</p>
 </div>
 
-<script>
-const D = {"generated":"2026-10-16","people":20,"weeks":52,"budget":1500,"usage":{"light":{"label":"Light","questions":5,"suggestions":0.25},"typical":{"label":"Typical","questions":15,"suggestions":1},"heavy":{"label":"Heavy","questions":40,"suggestions":3}},"modes":{"A":{"label":"Rules only (today's default)"},"B":{"label":"AI only when the rules are stuck"},"C":{"label":"AI words every answer"},"D":{"label":"Conversational agent"}},"calls":{"intent":[700,300],"phrase":[2600,600],"agent":[12000,1800],"suggestion":[1500,500]},"gated_share":0.2,"providers":[{"key":"opus","label":"Claude Opus 5.5","family":"Anthropic","in":4.0,"out":20.0,"where":"Anthropic (US)","note":"Most capable Claude for this job"},{"key":"sonnet","label":"Claude Sonnet 5.5","family":"Anthropic","in":2.0,"out":10.0,"where":"Anthropic (US)","note":"Strong, half the price of Opus"},{"key":"haiku","label":"Claude Haiku 5.5","family":"Anthropic","in":0.1,"out":0.5,"where":"Anthropic (US)","note":"Small, fast; ample for wording checked facts"},{"key":"gem_lite","label":"Gemini 2.5 Flash-Lite","family":"Google","in":0.1,"out":0.4,"where":"Google (US)","note":"Very cheap"},{"key":"gem_fl","label":"Gemini 3 Flash","family":"Google","in":0.5,"out":3.0,"where":"Google (US)","note":"Mid-price"},{"key":"gpt_nano","label":"GPT-5 nano","family":"OpenAI","in":0.05,"out":0.4,"where":"OpenAI (US)","note":"Cheapest listed; snapshot retiring Dec 2026"},{"key":"gpt_mini","label":"GPT-5 mini","family":"OpenAI","in":0.25,"out":2.0,"where":"OpenAI (US)","note":"Mid-price"},{"key":"mistral","label":"Mistral Small 4","family":"Mistral","in":0.15,"out":0.6,"where":"Mistral (EU)","note":"Open-weight family, EU company"},{"key":"deepseek","label":"DeepSeek V4.1 Flash","family":"DeepSeek","in":0.3,"out":1.2,"where":"DeepSeek (China)","note":"Cheap; data leaves the US, not recommended for a family service"},{"key":"oss_host","label":"gpt-oss-120B (Groq/Together)","family":"Open model, hosted","in":0.15,"out":0.6,"where":"Groq/Together (US)","note":"Open model without owning hardware"}],"hosting":{"static":{"label":"Static preview on GitHub Pages (no accounts, no AI)","year":15,"parts":"domain name $15"},"small":{"label":"Small server we manage","year":339,"parts":"4 GB virtual server ~$22/mo, backups and photo storage ~$5/mo, domain $15"},"managed":{"label":"Managed server and database","year":543,"parts":"4 GB server $24/mo, managed PostgreSQL $15/mo, storage $5/mo, domain $15"}},"local":[{"key":"mac","label":"Mac mini (M5 Pro, 64 GB)","hardware":2300,"electricity_year":91,"amortised_year":858,"first_year_cash":2391,"runs":"20-30B open models (Qwen, gpt-oss-20b, Mistral Small) at chat speed"},{"key":"3090","label":"PC with a used RTX 3090 (24 GB)","hardware":1800,"electricity_year":273,"amortised_year":873,"first_year_cash":2073,"runs":"Same class of models, faster, louder, more power"},{"key":"5090","label":"Workstation with an RTX 5090 (32 GB)","hardware":9000,"electricity_year":410,"amortised_year":3410,"first_year_cash":9410,"runs":"Larger models; far beyond this project's needs"}],"rented":[{"key":"pod","label":"Rented cloud GPU, always on (RTX 4090)","year":2978,"note":"Community-tier pod at $0.34/hour"},{"key":"srv","label":"Rented serverless GPU (about 2 busy hours a day)","year":792,"note":"Pay per second; 10-60 s cold starts"}],"caps":{"opus":101,"sonnet":203,"haiku":4077}};
-const $ = id => document.getElementById(id);
-const fmt = n => "$" + Math.round(n).toLocaleString("en-US");
-const fmt2 = n => n < 10 ? "$" + n.toFixed(2) : fmt(n);
-const MODES = {A:{per:{}, sug:false}, B:{per:{intent:D.gated_share}, sug:true}, C:{per:{intent:1, phrase:1}, sug:true}, D:{per:{agent:1}, sug:true}};
-const STEWARD = [[52,6000,800],[12,30000,3000],[172,10000,800]];
-function aiYear(people, q, s, mode, prov){
-  const m = MODES[mode]; if (!m || !Object.keys(m.per).length) return {cost:0, calls:0, perQ:0};
-  const Q = people * 52 * q, S = people * 52 * s; let tin = 0, tout = 0, calls = 0, perQ = 0;
-  for (const [k, n] of Object.entries(m.per)) { const [i, o] = D.calls[k]; tin += Q*n*i; tout += Q*n*o; calls += Q*n; perQ += n*(i*prov.in + o*prov.out)/1e6; }
-  if (m.sug) { const [i, o] = D.calls.suggestion; tin += S*i; tout += S*o; calls += S; }
-  for (const [n, i, o] of STEWARD) { tin += n*i; tout += n*o; calls += n; }
-  return {cost: tin/1e6*prov.in + tout/1e6*prov.out, calls: Math.round(calls), perQ};
-}
-const prov = k => D.providers.find(p => p.key === k);
-const OWN = [{key:"none", label:"None (use an AI service)"}].concat(D.local.map(l => ({key:l.key, label:l.label, year:l.amortised_year, cash:l.first_year_cash, kind:"buy"}))).concat(D.rented.map(r => ({key:r.key, label:r.label, year:r.year, cash:r.year, kind:"rent"})));
-
-// ---- AI table
-function aiTable(){
-  const u = D.usage[$("tblUsage").value], host = D.hosting.small.year;
-  $("aiTable").tBodies[0].innerHTML = D.providers.map(p => {
-    const cells = ["A","B","C","D"].map(m => { const c = aiYear(D.people, u.questions, u.suggestions, m, p).cost; const over = c + host > D.budget;
-      return `<td class="num">${m === "A" ? "$0" : fmt2(c)}${over ? ' <span class="pill over">over</span>' : ""}</td>`; }).join("");
-    return `<tr><td>${p.label}</td><td>${p.where}</td>${cells}</tr>`; }).join("");
-}
-$("tblUsage").addEventListener("change", aiTable);
-
-// ---- own hardware table
-$("ownTable").tBodies[0].innerHTML = D.local.map(l => `<tr><td>${l.label}<br><span class="note">${l.runs}</span></td><td class="num">${fmt(l.hardware)}</td><td class="num">${fmt(l.electricity_year)}</td><td class="num">${fmt(l.amortised_year)}</td><td class="num">${fmt(l.first_year_cash)}</td></tr>`).join("")
-  + D.rented.map(r => `<tr><td>${r.label}<br><span class="note">${r.note}</span></td><td class="num">none</td><td class="num">included</td><td class="num">${fmt(r.year)}</td><td class="num">${fmt(r.year)}</td></tr>`).join("");
-
-// ---- plans: chart rows and the fits table
-const t = D.usage.typical, h = D.usage.heavy, HS = D.hosting.small.year, HM = D.hosting.managed.year;
-const own = k => OWN.find(o => o.key === k);
-const PLANS = [
-  {label:"Static preview only (no accounts)", host:D.hosting.static.year, ai:() => 0, hw:0},
-  {label:"Small server, rules only", host:HS, ai:() => 0, hw:0},
-  {label:"Small server, AI when stuck, Haiku", host:HS, ai:u => aiYear(D.people,u.questions,u.suggestions,"B",prov("haiku")).cost, hw:0},
-  {label:"Small server, AI every answer, Haiku", host:HS, ai:u => aiYear(D.people,u.questions,u.suggestions,"C",prov("haiku")).cost, hw:0},
-  {label:"Small server, AI every answer, Sonnet", host:HS, ai:u => aiYear(D.people,u.questions,u.suggestions,"C",prov("sonnet")).cost, hw:0},
-  {label:"Small server, AI every answer, Opus", host:HS, ai:u => aiYear(D.people,u.questions,u.suggestions,"C",prov("opus")).cost, hw:0},
-  {label:"Small server, agent, Opus", host:HS, ai:u => aiYear(D.people,u.questions,u.suggestions,"D",prov("opus")).cost, hw:0},
-  {label:"Small server, own Mac mini", host:HS, ai:() => 0, hw:own("mac").year, cash:own("mac").cash},
-  {label:"Small server, own RTX 3090 PC", host:HS, ai:() => 0, hw:own("3090").year, cash:own("3090").cash},
-  {label:"Managed server, AI every answer, Sonnet", host:HM, ai:u => aiYear(D.people,u.questions,u.suggestions,"C",prov("sonnet")).cost, hw:0},
-];
-$("fitTable").innerHTML = PLANS.map(p => {
-  const ty = p.host + p.ai(t) + p.hw, he = p.host + p.ai(h) + p.hw;
-  const first = p.cash ? p.host + p.cash : null;
-  let verdict = he <= D.budget ? '<span class="pill ok">Yes</span>' : ty <= D.budget ? '<span class="pill ok">Typical yes</span> <span class="pill over">heavy needs a cap</span>' : '<span class="pill over">No</span>';
-  if (first && first > D.budget) verdict = '<span class="pill over">Not in year 1</span> <span class="note">first year ' + fmt(first) + '</span>';
-  return `<tr><td>${p.label}</td><td class="num">${fmt(ty)}</td><td class="num">${fmt(he)}</td><td>${verdict}</td></tr>`; }).join("");
-
-// ---- chart (typical use): stacked horizontal bars, budget line, hover tooltip
-function chart(){
-  const el = $("chart"), W = Math.max(320, el.clientWidth - 24), narrow = W < 560;
-  const labW = narrow ? 0 : 250, rowH = narrow ? 46 : 30, top = 22, axisH = 24, right = 64;
-  const rows = PLANS.map(p => ({label:p.label, parts:[p.host, p.ai(t), p.hw]}));
-  const max = 2000, x0 = labW + 8, plotW = W - x0 - right, sx = v => x0 + Math.min(v, max) / max * plotW;
-  const H = top + rows.length * rowH + axisH;
-  let s = `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Yearly cost of ten plans at typical use, split into hosting, AI calls and own hardware, against the $1,500 ceiling">`;
-  for (let v = 0; v <= max; v += 500) s += `<line class="c-grid" x1="${sx(v)}" x2="${sx(v)}" y1="${top}" y2="${H - axisH}"/><text class="c-ax" x="${sx(v)}" y="${H - 8}" text-anchor="middle">${v ? "$" + v.toLocaleString() : "$0"}</text>`;
-  rows.forEach((r, i) => {
-    const y = top + i * rowH + (narrow ? 20 : 6), bh = narrow ? 16 : 18;
-    s += `<text class="c-lab" x="${narrow ? x0 : labW}" y="${narrow ? y - 6 : y + 13}" text-anchor="${narrow ? "start" : "end"}">${r.label}</text>`;
-    let acc = 0; const names = ["Hosting", "AI calls", "Own hardware"];
-    r.parts.forEach((v, k) => { if (v <= 0) return; const a = sx(acc), b = sx(acc + v); acc += v;
-      s += `<rect class="c-s${k + 1}" x="${a}" y="${y}" width="${Math.max(1.5, b - a - (k < 2 ? 2 : 0))}" height="${bh}" rx="3" data-tip="${r.label}: ${names[k]} ${fmt2(v)} a year"/>`; });
-    const total = r.parts.reduce((a, b) => a + b, 0);
-    s += `<text class="c-val" x="${sx(total) + 6}" y="${y + bh - 4}">${fmt(total)}${total > max ? " ›" : ""}</text>`;
-  });
-  s += `<line class="c-bud" x1="${sx(D.budget)}" x2="${sx(D.budget)}" y1="${top - 6}" y2="${H - axisH}"/><text class="c-ax" x="${sx(D.budget)}" y="12" text-anchor="middle">$1,500 ceiling</text>`;
-  el.innerHTML = s + "</svg>";
-  const tip = document.createElement("div"); tip.className = "tip"; tip.hidden = true; el.appendChild(tip);
-  el.querySelectorAll("rect[data-tip]").forEach(rc => {
-    rc.addEventListener("pointerenter", e => { tip.textContent = rc.dataset.tip; tip.hidden = false; });
-    rc.addEventListener("pointermove", e => { const b = el.getBoundingClientRect(); tip.style.left = (e.clientX - b.left) + "px"; tip.style.top = (e.clientY - b.top) + "px"; });
-    rc.addEventListener("pointerleave", () => { tip.hidden = true; });
-  });
-}
-
-// ---- calculator
-$("cMode").innerHTML = Object.entries(D.modes).map(([k, m]) => `<option value="${k}"${k === "B" ? " selected" : ""}>${k}. ${m.label}</option>`).join("");
-$("cModel").innerHTML = D.providers.map(p => `<option value="${p.key}"${p.key === "haiku" ? " selected" : ""}>${p.label} ($${p.in} in, $${p.out} out)</option>`).join("");
-$("cHost").innerHTML = Object.entries(D.hosting).map(([k, v]) => `<option value="${k}"${k === "small" ? " selected" : ""}>${v.label} (${fmt(v.year)}/yr)</option>`).join("");
-$("cOwn").innerHTML = OWN.map(o => `<option value="${o.key}">${o.label}</option>`).join("");
-function calc(){
-  const people = Math.max(1, +$("cPeople").value || 1), q = +$("cQ").value, sg = +$("cS").value;
-  $("cQv").textContent = q; $("cSv").textContent = sg;
-  const mode = $("cMode").value, p = prov($("cModel").value), host = D.hosting[$("cHost").value], o = own($("cOwn").value);
-  $("cModel").disabled = mode === "A"; $("cModelNote").textContent = p.note;
-  const ai = aiYear(people, q, sg, mode, p), useOwn = o.key !== "none" && mode !== "A";
-  const aiCost = useOwn ? 0 : ai.cost, hw = useOwn ? o.year : 0, total = host.year + aiCost + hw;
-  const over = total > D.budget;
-  $("oTotal").innerHTML = `${fmt(total)} <small>per year, about ${fmt(total / 12)} a month</small>`;
-  $("oMeter").className = "meter" + (over ? " over" : ""); $("oMeter").firstElementChild.style.width = Math.min(100, total / D.budget * 100) + "%";
-  $("oStatus").className = "status " + (over ? "over" : "ok");
-  $("oStatus").textContent = over ? `Over the $1,500 ceiling by ${fmt(total - D.budget)}` : `Within the $1,500 ceiling, ${fmt(D.budget - total)} to spare`;
-  $("oParts").innerHTML = `<div><span>Hosting</span><span>${fmt(host.year)}</span></div><div><span>AI calls${useOwn ? " (on our own computer)" : ""}</span><span>${fmt2(aiCost)}</span></div>` + (useOwn ? `<div><span>Own AI computer, per year</span><span>${fmt(hw)}</span></div>` : "") + `<div><span>AI requests a year</span><span>${ai.calls.toLocaleString("en-US")}</span></div>`;
-  const notes = [];
-  if (host === D.hosting.static && mode !== "A") notes.push("The static preview cannot call an AI service or hold accounts; choose a server to use AI.");
-  if (useOwn && o.kind === "buy") notes.push(`First year needs ${fmt(o.cash + host.year)} in cash, because the hardware is paid up front.`);
-  if (!useOwn && ai.perQ > 0) { const allowance = D.budget - host.year; const cap = Math.floor(allowance / 365 / ai.perQ);
-    notes.push(cap <= 0 ? "The hosting choice alone uses the whole ceiling." : cap > 2000 ? "No daily limit is needed: even thousands of AI-assisted answers a day would stay under $1,500." : `A daily limit of ${cap.toLocaleString("en-US")} AI-assisted answers guarantees the year stays under $1,500.`); }
-  if (p.key === "deepseek" && mode !== "A") notes.push("Questions would be processed outside the US and EU.");
-  $("oNotes").innerHTML = notes.map(n => `<p>${n}</p>`).join("");
-}
-["cPeople","cQ","cS","cMode","cModel","cHost","cOwn"].forEach(id => $(id).addEventListener("input", calc));
-aiTable(); chart(); calc();
-let rt; window.addEventListener("resize", () => { clearTimeout(rt); rt = setTimeout(chart, 120); });
-</script>
+<h2>Sources</h2>
+<ul class="sources">
+  <li>Claude Opus 5.5 price: Anthropic's published model table, <a href="https://www.anthropic.com/pricing">anthropic.com/pricing</a></li>
+  <li>GitHub plans: <a href="https://capitalandcompute.net/blog/github-pricing-plans-cost/">GitHub pricing 2026</a>, <a href="https://smartscope.blog/Tips/GitHub/github-pages-private-repository/">Pages from private repositories</a></li>
+  <li>The Quadruplicate: <a href="https://quadruplicate.org/">quadruplicate.org</a> and its <a href="https://quadruplicate.org/data/events.ics">calendar feed</a></li>
+  <li>Servers and storage: <a href="https://apicalculators.com/blog/cloud-vps-cost-comparison-2026">VPS comparison 2026</a>, <a href="https://onedollarvps.com/pricing/digitalocean-pricing.html">DigitalOcean pricing</a></li>
+</ul>
+</div>
