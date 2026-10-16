@@ -302,7 +302,7 @@ def review(request):
 
 # ---- "For Kim": plan pages (summary, at a glance, system, costs, ethics, future) ----
 PLAN_TABS = [("summary", "Summary"), ("at-a-glance", "At a glance"), ("system", "How it's built"), ("costs", "Costs"),
-             ("ethics", "Ethics"), ("legal", "Legal considerations"), ("future", "Future")]
+             ("ethics", "Ethics"), ("future", "Future")]
 
 
 def _cost_context():
@@ -329,8 +329,7 @@ def plan(request, tab="summary"):
     if tab not in dict(PLAN_TABS):
         raise Http404
     ctx = _common_ctx(request)
-    from accounts.models import STEWARD_AGREEMENT_VERSION
-    ctx.update({"tabs": PLAN_TABS, "tab": tab, "tab_label": dict(PLAN_TABS)[tab], "steward_agreement_version": STEWARD_AGREEMENT_VERSION})
+    ctx.update({"tabs": PLAN_TABS, "tab": tab, "tab_label": dict(PLAN_TABS)[tab]})
     if tab in ("costs", "at-a-glance", "summary"):
         ctx.update(_cost_context())
     return render(request, f"plan/{tab}.html", ctx)

@@ -38,7 +38,7 @@
 <button type="submit" class="btn secondary">Ask for contributor rights</button></form>
 {% endif %}
 {% if is_steward %}<h2>Steward agreement</h2>
-{% if steward_signed %}<p class="src">Signed on {{ steward_signed.signed_at|date:"j F Y" }}. Your map instructions to Lumen are recorded under it; your ordinary questions are not.</p>
+{% if steward_signed %}<p class="src">Signed on {{ steward_signed.signed_at|date:"j F Y" }}. Your map instructions to Lumen are recorded under it; your ordinary questions are treated like anyone else's.</p>
 {% else %}<p class="src">Please sign before working on the map through Lumen. Until then, what you send Lumen is treated as an ordinary member's suggestion.</p>{% endif %}
 <p><a class="btn secondary" href="{% url 'accounts:steward_agreement' %}">{% if steward_signed %}Read{% else %}Read and sign{% endif %} the agreement</a></p>
 {% endif %}

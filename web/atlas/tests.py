@@ -169,8 +169,7 @@ class PlanPages(TestCase):
     def test_every_tab_renders(self):
         c = Client()
         expect = {"/plan/": "What each part does", "/plan/at-a-glance/": "Lumen's limits", "/plan/system/": "What never leaves our server",
-                  "/plan/costs/": "How an AI call works", "/plan/ethics/": "who may be missing", "/plan/future/": "The map is never the territory",
-                  "/plan/legal/": "The check: where we stand"}
+                  "/plan/costs/": "How an AI call works", "/plan/ethics/": "who may be missing", "/plan/future/": "The map is never the territory"}
         for url, text in expect.items():
             r = c.get(url)
             self.assertEqual(r.status_code, 200, url)
@@ -185,13 +184,9 @@ class PlanPages(TestCase):
         self.assertIn("Coordinating a group event", summary)
         self.assertIn("never the single source of truth", c.get("/plan/ethics/").content.decode())
         self.assertIn("Thirteen simple T-charts", c.get("/plan/at-a-glance/").content.decode())
-        legal = c.get("/plan/legal/").content.decode()
-        for text in ("Legal considerations", "The contract between Alex and Kim", "Group meetups", "Information Commission",
-                     "Option 1: Alex holds them for Kim", "preferred, but only because it is easier for Kim", "Option 2: Kim holds them",
-                     "What Crescent Compass is", "does not run, staff or supervise", "for up to six hours", "Lumen and stewards",
-                     "Crescent Compass steward agreement", "Fair blame", "Legal summaries reviewed"):
-            self.assertIn(text, legal)
-        self.assertNotIn("solicitor", legal)
+        # the legal notes are shared with Kim privately, never on the public site
+        self.assertEqual(c.get("/plan/legal/").status_code, 404)
+        self.assertNotIn("Legal considerations", summary)
         privacy = c.get("/privacy/").content.decode()
         self.assertIn("aged 18 and over", privacy)
         self.assertIn("Do Not Track", privacy)
