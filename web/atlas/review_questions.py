@@ -21,7 +21,7 @@ QUESTIONS = [
         "key": "fog",
         "title": "Fog mode: reveal only the places you have been, like a game map?",
         "ask": "Would you like an optional 'fog' view where the map starts hidden and clears around places a person marks as visited, so the atlas becomes a record of their own exploring? Should it be personal only, or could families share a cleared map with each other?",
-        "built": "Saved places exist (private to the account). The map already renders exact H3 cells per venue and a halo one grid step wide, which is the natural unit for clearing fog. No visit history is stored, and no location is read from the device.",
+        "built": "A demo is on the Explore map: press Fog mode, choose where to begin, and a little explorer walks between places you pick, clearing the fog as it goes. The trail stays on the device. Saved places exist (private to the account). The map already renders exact H3 cells per venue and a halo one grid step wide, which is the natural unit for clearing fog. No visit history is stored, and no location is read from the device.",
         "changes": "Fog can be built from saved places with no new data about where anyone actually went: a person marks a place as visited, and the cell clears. Automatic clearing from the phone's location is out, because the brief forbids covert location collection.",
     },
     {

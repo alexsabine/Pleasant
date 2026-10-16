@@ -163,6 +163,16 @@ class ApiContract(TestCase):
         self.assertEqual([i["name"] for i in d["withheld"]], ["Old Listing"])
 
 
+class FogMode(TestCase):
+    def test_map_offers_fog_mode_without_reading_location(self):
+        body = Client().get("/explore/?view=map").content.decode()
+        self.assertIn('class="fog-toggle"', body)
+        self.assertIn("pc/fog.js", body)
+        js = (Path(settings.BASE_DIR) / "static" / "pc" / "fog.js").read_text()
+        self.assertNotIn("geolocation", js)     # fog never reads the device's location
+        self.assertIn("2 * Math.asin(Math.sqrt(p))", js)
+
+
 class PlanPages(TestCase):
     """The For Kim pages render, carry their key content, and use the new names."""
 

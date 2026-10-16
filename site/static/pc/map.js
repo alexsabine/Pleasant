@@ -12,6 +12,7 @@
     layersPanel.classList.toggle("open", open); layersBtn.setAttribute("aria-expanded", String(open));
   });
   const ORIGIN = location.origin + ((window.PC_STATIC && window.PC_STATIC.base) || "/").replace(/\/$/, "");
+  window.PC_ORIGIN = ORIGIN;
   const protocol = new pmtiles.Protocol();
   maplibregl.addProtocol("pmtiles", protocol.tile);
   const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -71,6 +72,7 @@
 
       // Directory points: clustered. Clusters carry the count; a cluster of co-located points stays a cluster until clicked.
       pinsData = await fetch(cfg.api.pins).then(r => r.json());
+      window.dispatchEvent(new CustomEvent("pc:mapready", { detail: { map, pins: pinsData, colors: cfg.colors } }));   // fog mode and other add-ons
       map.addSource("pins", { type: "geojson", data: filteredPins(), cluster: true, clusterRadius: 34, clusterMaxZoom: 15,
         clusterProperties: { grp: ["coalesce", ["get", "group"], "attractions"] } });
       map.addLayer({ id: "pc_cluster", type: "circle", source: "pins", filter: ["has", "point_count"], paint: {

@@ -53,6 +53,7 @@
     <div class="map-wrap">
       <div id="map" data-config='{"styleUrl":"{% static 'style/basemap.json' %}","center":{{ map_center }},"zoom":{{ map_zoom }},"api":{"pins":"{% url 'api_resources_geojson' %}?{{ request.GET.urlencode }}","county":"{% url 'api_boundary' 'county' %}","places":"{% url 'api_boundary' 'places' %}","aiannh":"{% url 'api_boundary' 'aiannh' %}","h3":"{% url 'api_h3' %}?res=7&amp;k=2","venues":"{% url 'api_h3_venues' %}?{{ request.GET.urlencode }}"},"venueRes":11,"groups":{{ tokens.groups|tojson }},"colors":{"accent":"{{ tokens.ui.accent }}","ink":"{{ tokens.ui.ink }}","ink2":"{{ tokens.ui.ink_2 }}","boundary":"{{ tokens.map.boundary }}","sensitive":"{{ tokens.ui.sensitive }}","hex":"{{ tokens.map.hex_venue }}","hexFill":"{{ tokens.map.hex_venue_fill }}"}}' role="application" aria-label="Interactive map; the list beside it has the same results"></div>
       <button type="button" class="layers-toggle" aria-expanded="false" aria-controls="layer-switch">Layers</button>
+      <button type="button" class="fog-toggle" aria-pressed="false" hidden title="Fog mode: explore the map as an adventure"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M7 15.5h10.5a3.5 3.5 0 0 0 .3-7 5 5 0 0 0-9.6 1.1A3 3 0 0 0 7 15.5Z" fill="currentColor" opacity=".35"/><path d="M3 18.5h12M6 21h12M9 13h3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>Fog mode</button>
       <fieldset class="layer-switch" id="layer-switch"><legend>Show on the map</legend>
         {% for k,v in groups %}<label class="grp"><input type="checkbox" data-group="{{ k }}" checked> <i class="sw" style="background:{{ tokens.groups|get_item:k|get_item:'color' }}" aria-hidden="true"></i>{{ v }}</label>
         {% endfor %}
@@ -76,4 +77,5 @@
 <script src="{% static 'vendor/maplibre-gl.js' %}"></script>
 <script src="{% static 'vendor/pmtiles.js' %}"></script>
 <script src="{% static 'pc/map.js' %}?v={{ asset_v }}"></script>
+<script src="{% static 'pc/fog.js' %}?v={{ asset_v }}"></script>
 {% endif %}{% endblock %}
