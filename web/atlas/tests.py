@@ -184,9 +184,13 @@ class PlanPages(TestCase):
         self.assertIn("Coordinating a group event", summary)
         self.assertIn("never the single source of truth", c.get("/plan/ethics/").content.decode())
         self.assertIn("Thirteen simple T-charts", c.get("/plan/at-a-glance/").content.decode())
-        # the legal notes are shared with Kim privately, never on the public site
-        self.assertEqual(c.get("/plan/legal/").status_code, 404)
-        self.assertNotIn("Legal considerations", summary)
+        # general legal checks are public; the paid agreement and data-handling terms are shared privately
+        legal = c.get("/plan/legal/").content.decode()
+        for text in ("Legal considerations", "The check: where we stand", "What Crescent Compass is", "does not run, staff or supervise",
+                     "for up to six hours", "Lumen and stewards", "Crescent Compass steward agreement", "Fair blame", "Legal summaries reviewed"):
+            self.assertIn(text, legal)
+        for private in ("$10,000", "Alex and Kim", "processor", "Honami", "Option 1", "Self Assessment", "solicitor"):
+            self.assertNotIn(private, legal)
         privacy = c.get("/privacy/").content.decode()
         self.assertIn("aged 18 and over", privacy)
         self.assertIn("Do Not Track", privacy)

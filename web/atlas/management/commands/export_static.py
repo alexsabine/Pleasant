@@ -82,7 +82,7 @@ class Command(BaseCommand):
                 dest.write_bytes(body)
             return dest
 
-        pages = ["/", "/explore/", "/explore/?view=list", "/this-week/", "/local-help/", "/about/", "/review/", "/plan/", "/plan/at-a-glance/", "/plan/system/", "/plan/costs/", "/plan/ethics/", "/plan/future/", "/privacy/", "/contribute/", "/accounts/join/", "/accounts/sign-in/"]
+        pages = ["/", "/explore/", "/explore/?view=list", "/this-week/", "/local-help/", "/about/", "/review/", "/plan/", "/plan/at-a-glance/", "/plan/system/", "/plan/costs/", "/plan/ethics/", "/plan/legal/", "/plan/future/", "/privacy/", "/contribute/", "/accounts/join/", "/accounts/sign-in/"]
         pages += [f"/explore/?group={k}" for k, _ in GROUPS]
         slugs = list(Resource.objects.filter(live=True, visibility="public", is_sensitive=False).values_list("slug", flat=True))
         pages += [f"/resource/{s}/" for s in slugs]
