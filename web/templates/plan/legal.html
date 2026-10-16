@@ -1,6 +1,6 @@
 {% extends "plan/_base.html" %}
 {% block plan_title %}Legal considerations{% endblock %}
-{% block plan_lede %}<p class="lede">The short version: the plan fits the law in California, the US and the UK, as long as nine simple things are in place before members can sign up. Most cost nothing. Today's public preview itself collects no personal data.</p>{% endblock %}
+{% block plan_lede %}<p class="lede">The short version: the plan fits the law in California, the US and the UK, as long as eight simple things are in place before members can sign up. Most cost nothing. Today's public preview itself collects no personal data.</p>{% endblock %}
 {% block plan_content %}
 <p class="callout"><b>This is a careful check, not legal advice.</b> It was researched in October 2026 from official sources, listed at the bottom. Before launch, it is worth an hour with a solicitor or lawyer to review the contract between Alex and Kim.</p>
 
@@ -9,10 +9,36 @@
   <thead><tr><th>Person</th><th>Role in law</th><th>What that means</th></tr></thead>
   <tbody>
     <tr><td><b>Kim</b>, private individual, California</td><td>Owner of the site, and the "controller" of members' data</td><td>Decides what data is collected and why, and approves the privacy notice.</td></tr>
-    <tr><td><b>Alex</b>, UK sole trader (Honami)</td><td>Builder, and the "processor" of members' data</td><td>Handles the data only on Kim's written instructions, keeps it secure, and tells Kim at once about any problem.</td></tr>
-    <tr><td><b>Kim, Bill and Daniel</b></td><td>Account holders</td><td>Domain, server, GitHub, Anthropic and email accounts are in their names. Alex has delegated access only.</td></tr>
+    <tr><td><b>Alex</b>, UK sole trader (Honami)</td><td>Builder, and the "processor" of members' data</td><td>Holds the technical accounts on Kim's behalf, with full access to build and run the site. Handles members' data only on Kim's written instructions, keeps it secure, and tells Kim at once about any problem.</td></tr>
+    <tr><td><b>Kim, Daniel and Bill</b></td><td>Full administrators</td><td>Full access to every account and all the data, at all times. Any account moves into their names whenever they ask.</td></tr>
   </tbody>
 </table></div>
+
+<h2>Accounts in Alex's name, with Kim in control</h2>
+<p class="prose-w">Holding the accounts in Alex's name is the easiest way to build, and it is lawful, as long as the contract says Alex holds them for Kim. In both countries, the person who decides what the data is for, Kim, is the one responsible for it. Who pays the bill or holds the login does not change that.</p>
+<div class="tbl-wrap"><table class="tbl">
+  <thead><tr><th>Service</th><th>Held by</th><th>Kim, Daniel and Bill</th><th>Moving it to them</th></tr></thead>
+  <tbody>
+    <tr><td>GitHub: code and public map</td><td>Alex's GitHub Pro account</td><td>Added as collaborators: they can see and change all the code</td><td>One click: transfer the repository</td></tr>
+    <tr><td>Server, database and backups</td><td>Alex's hosting account</td><td>Added as team members with full access</td><td>Transfer the team's ownership</td></tr>
+    <tr><td>Domain name</td><td>Alex's registrar account</td><td>Can see and renew it</td><td>Push to their account at any time</td></tr>
+    <tr><td>Anthropic, for Lumen</td><td>Alex's organisation account</td><td>Added as members; Kim sees the spending</td><td>Add Kim as owner</td></tr>
+    <tr><td>Email for sign-in</td><td>Alex's account</td><td>Added as members</td><td>Transfer or re-create in minutes</td></tr>
+  </tbody>
+</table></div>
+<p class="note">Running costs are billed to Alex and paid back by Kim from the yearly allowance. When signing up for each service, Alex accepts its standard data processing terms. Anthropic's already include the UK transfer clauses. For the server, choose a host whose terms also include them; most large hosts' do.</p>
+
+<h2>What US law asks of Kim, as a private individual</h2>
+<p class="prose-w">The US has no general data protection law for private individuals, and no register of "data controllers". The state privacy laws, such as California's, only apply to businesses far above this size, usually 100,000 people's data or millions in revenue, and most leave out non-profits. Kim is well below every threshold. What does apply is short:</p>
+<ul class="prose-w">
+  <li><b>Tell the truth about data.</b> The privacy page must match what the site really does.</li>
+  <li><b>Keep it reasonably secure,</b> and if sign-in details are ever exposed, tell the members affected. California's law splits this neatly: whoever looks after data for its owner tells the owner straight away, and the owner tells the people affected within 30 days. So Alex tells Kim, and Kim tells members.</li>
+  <li><b>Collect nothing about children,</b> which the site already does by design.</li>
+</ul>
+<p class="prose-w">The privacy notice law names the site's owner as responsible, and leaves out anyone who hosts or manages a site on the owner's behalf. Kim is the owner and Alex the manager, so the law sits with Kim, as intended.</p>
+
+<h2>Alex's full access while building</h2>
+<p class="prose-w">Alex can have full access to everything throughout. That is normal for the person building and running a site. During the eight-week build there are no real members yet, only public listings and test accounts, so there is almost no personal data to protect. Once members join, Alex keeps full access on three conditions: he uses it only for the site, his accounts use two-step sign-in, and he keeps no copies of members' data on his own computer.</p>
 
 <h2>The check: where we stand</h2>
 <div class="tbl-wrap"><table class="tbl legal-check">
@@ -25,12 +51,12 @@
     <tr><td><b>AI disclosure</b> (California's bot law, Anthropic's rules)</td><td>Lumen must not pretend to be a person, and must be clearly an AI. It is not a "companion" chatbot.</td><td><span class="status ok">In keeping</span> Lumen now says it is automated and can be wrong</td></tr>
     <tr><td><b>UK data protection</b> (UK GDPR)</td><td>Yes, for Alex only, as a UK processor. It does not extend to Kim.</td><td><span class="status todo">At contract</span> Needs a data processing section in the contract and a one-page record</td></tr>
     <tr><td><b>UK data protection fee</b></td><td>Processors do not pay. Honami's own business records are usually exempt.</td><td><span class="status todo">5 minutes</span> Alex runs the regulator's online self-check; if a fee is due, it is £52 a year</td></tr>
-    <tr><td><b>Sending data abroad</b></td><td>No restricted transfer, as long as Kim owns every service and Alex keeps no copies on his own accounts.</td><td><span class="status ok">In keeping</span> By design</td></tr>
-    <tr><td><b>Users' photos</b> (copyright, likeness)</td><td>Yes, lightly. Uploaders must own their photos, and there must be a way to ask for removal.</td><td><span class="status todo">At launch</span> Terms of use and a $6 copyright agent registration</td></tr>
+    <tr><td><b>Sending data abroad</b></td><td>Covered by the standard data terms each service offers, which include the UK transfer clauses.</td><td><span class="status todo">At sign-up</span> Accept each service's data processing terms</td></tr>
+    <tr><td><b>Users' photos</b> (copyright, likeness)</td><td>Yes, lightly. Uploaders must own their photos, and there must be a way to ask for removal.</td><td><span class="status todo">At launch</span> Photo rules in the terms of use; prompt removal on request</td></tr>
     <tr><td><b>Events and meetups</b></td><td>Terms of use should say the site does not run or supervise meetups.</td><td><span class="status todo">At launch</span> Terms of use; reminders by email only</td></tr>
     <tr><td><b>Accessibility</b></td><td>Low legal risk for a free site, but already part of Kim's brief.</td><td><span class="status todo">In progress</span> WCAG 2.2 AA review is a planned step</td></tr>
     <tr><td><b>Domain name</b></td><td>A .ca address needs a Canadian owner, so it is not available to Kim.</td><td><span class="status ok">Fixed</span> Plan now uses a .org address</td></tr>
-    <tr><td><b>GitHub Pages</b></td><td>Fine for a free community map, but not for sign-in or passwords.</td><td><span class="status ok">In keeping</span> Sign-in, photos and Lumen run on Kim's own server</td></tr>
+    <tr><td><b>GitHub Pages</b></td><td>Fine for a free community map, but not for sign-in or passwords.</td><td><span class="status ok">In keeping</span> Sign-in, photos and Lumen run on the site's own server</td></tr>
   </tbody>
 </table></div>
 
@@ -41,7 +67,7 @@
   <div><b>Group meetups.</b> The site is a noticeboard, not an organiser. The terms say it does not run, supervise or vet meetups, outdoor activities carry their own risks, and parents stay responsible for their children. Meeting places are always public places. If Kim's organisation ever ran supervised children's activities itself, California's background-check law for youth organisations would apply. Listing events and helping families meet does not trigger it.</div>
   <div><b>RSVPs and reminders.</b> Only a count of people coming is shown. Reminders go by email, only to people who asked. No text messages, because US texting law needs special consent records.</div>
   <div><b>Photos.</b> Places, not people. No identifiable children, no faces without permission, and no homes. Location data is removed on arrival, and every photo is checked by a steward. Member photos are never used for promotion or fundraising.</div>
-  <div><b>Lumen.</b> Answers only from published listings, says it is automated and can be wrong, and has no personality designed to form a relationship. It remembers a conversation for six hours at most, and uses saved settings only if the member allows.</div>
+  <div><b>Lumen.</b> Answers only from published listings, says it is automated and can be wrong, and has no personality designed to form a relationship. It keeps no record of conversations: each question is answered on its own, and the log never stores what people type. The map stays accurate through the back-end instead: stewards' updates through Lumen, the monthly website checks, and the freshness clock on every listing.</div>
   <div><b>Your data.</b> Members can now download everything held about them, or delete their account themselves, from My atlas. The sealed log never records names or emails, only a member number.</div>
   <div><b>The map itself.</b> Map data comes from public sources with recorded licences and credit. No children's homes or locations, and no sensitive nature sites.</div>
 </div>
@@ -53,7 +79,7 @@
   <li><b>What.</b> The eight-week scope and milestones from the brief, with written acceptance of each milestone. A milestone counts as accepted if Kim does not reply within an agreed time, such as 10 working days.</li>
   <li><b>Money.</b> $10,000 fixed, in US dollars, in milestone payments. Running costs ($500 to $1,000 a year) are paid by Kim directly, and any paid service needs her written approval first.</li>
   <li><b>Ownership.</b> Once paid, Alex assigns the code and content to Kim in writing. His pre-existing tools are licensed to her, and open-source parts keep their own licences. Avoid the phrase "work made for hire", which has a special meaning in California employment law.</li>
-  <li><b>Accounts.</b> Kim, Bill and Daniel own the domain, server, GitHub and other accounts. Alex has delegated access and hands everything over when the work ends.</li>
+  <li><b>Accounts.</b> Alex holds the technical accounts on Kim's behalf. Kim, Daniel and Bill have full access at all times, and Alex moves any account into their names whenever they ask, or when the work ends.</li>
   <li><b>Data.</b> A short data processing section: Alex acts only on Kim's instructions, keeps data secure and confidential, lists the services used (server host, email, Anthropic), tells Kim of any breach within 48 hours, helps with members' requests, and deletes his access at the end.</li>
   <li><b>Confidentiality</b> both ways.</li>
   <li><b>Care and limits.</b> Alex works with reasonable skill and care and fixes defects for an agreed period. He gives no promise about third-party software or the accuracy of listings, and his liability is capped at the fee.</li>
@@ -77,12 +103,14 @@
   <li><b>Alex runs the UK regulator's five-minute fee self-check.</b> <span class="note">£0, or £52 a year.</span></li>
   <li><b>Kim approves the Privacy page</b> and adds a contact email.</li>
   <li><b>Publish short terms of use:</b> 18 and over, photo rules, not an organiser of meetups, and a removal request route.</li>
-  <li><b>Register a copyright agent</b> with the US Copyright Office. <span class="note">$6, renewed every three years.</span></li>
-  <li><b>Put every account in Kim's, Bill's or Daniel's name,</b> with Alex as a delegate.</li>
-  <li><b>Keep sign-in on Kim's server</b> with secure connections and two-step sign-in for stewards and Alex.</li>
+  <li><b>Hold the accounts in Alex's name for Kim,</b> with Kim, Daniel and Bill as full administrators, and accept each service's standard data processing terms.</li>
+  <li><b>Keep sign-in on the site's own server</b> with secure connections and two-step sign-in for stewards and Alex.</li>
   <li><b>Write a one-page breach plan:</b> stop it, record it, tell Kim, then tell affected members and ask them to reset passwords.</li>
   <li><b>Keep a one-page record</b> of what data is held, where it is, and who can reach it.</li>
 </ol>
+
+<h3>Optional: a copyright agent</h3>
+<p class="prose-w">Registering a copyright agent with the US Copyright Office costs $6 every three years. It is not required. It gives extra legal protection if someone uploads a photo they do not own, and it means publishing a contact name and postal address. Because stewards check every photo first, and anything is removed promptly on request, it can wait until photo uploads are busy, if it is needed at all.</p>
 
 <h2>To recheck in January 2027</h2>
 <ul class="prose-w">
@@ -103,6 +131,8 @@
   <li>.ca domains: <a href="https://www.cira.ca/en/resources/documents/domains/canadian-presence-requirements-registrants/">CIRA</a>; GitHub Pages: <a href="https://docs.github.com/en/pages/getting-started-with-github-pages/github-pages-limits">GitHub Docs</a></li>
   <li>UK GDPR scope: <a href="https://www.legislation.gov.uk/eur/2016/679/article/3">Article 3</a>, <a href="https://ico.org.uk/for-organisations/uk-gdpr-guidance-and-resources/controllers-and-processors/controllers-and-processors/what-does-it-mean-if-you-are-a-processor/">processors</a>, <a href="https://ico.org.uk/for-organisations/uk-gdpr-guidance-and-resources/accountability-and-governance/contracts-and-liabilities-between-controllers-and-processors-multi/what-needs-to-be-included-in-the-contract/">contract contents</a></li>
   <li>International transfers: <a href="https://ico.org.uk/for-organisations/uk-gdpr-guidance-and-resources/international-transfers/quick-reference-faqs/">ICO FAQs</a></li>
+  <li>Site owner versus host: <a href="https://california.public.law/codes/business_and_professions_code_section_22577">Business and Professions Code 22577(c)</a>; owner and custodian breach duties: <a href="https://california.public.law/codes/ca_civ_code_section_1798.82">Civil Code 1798.82</a></li>
+  <li>Anthropic's data processing terms: <a href="https://www.anthropic.com/legal/data-processing-addendum">Data Processing Addendum</a>, <a href="https://support.anthropic.com/en/articles/7996862-how-do-i-view-and-sign-your-data-processing-addendum-dpa">how it is incorporated</a></li>
   <li>Data protection fee: <a href="https://ico.org.uk/for-organisations/data-protection-fee/data-protection-fee-self-assessment/">self-assessment</a>, <a href="https://www.legislation.gov.uk/uksi/2018/480/schedule">exemptions</a>, <a href="https://www.gov.uk/government/consultations/data-protection-fee-regime-proposed-changes/outcome/data-protection-fee-regime-government-response">2025 fee levels</a></li>
   <li>Information Commission: <a href="https://www.lexisnexis.co.uk/legal/news/duaa-2025-provisions-establishing-new-information-commission-come-into-force-on-30-september-2026">LexisNexis</a>, <a href="https://www.lewissilkin.com/insights/2026/09/29/what-the-icos-transformation-into-the-information-commission-means-for-your-orga-102o3ni">Lewis Silkin</a></li>
   <li>Contracts and e-signatures: <a href="https://www.legislation.gov.uk/ukpga/2000/7/section/7">Electronic Communications Act 2000 s7</a>, <a href="https://california.public.law/codes/civil_code_section_1633.7">California Civil Code 1633.7</a>, <a href="https://www.legislation.gov.uk/ukpga/1988/48/section/90">copyright assignment</a>, <a href="https://california.public.law/codes/labor_code_section_3351.5">Labor Code 3351.5</a>, <a href="https://www.legislation.gov.uk/uksi/2013/3134/regulation/29">consumer cancellation</a></li>

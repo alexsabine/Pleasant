@@ -84,20 +84,20 @@ class CompassGuarantees(TestCase):
         self.assertEqual(rec.hash, d["provenance"]["audit_hash"])
         self.assertTrue(AuditEntry.verify_chain()[0])
 
-    def test_memory_carries_preferences_and_can_be_forgotten(self):
+    def test_lumen_keeps_no_conversation(self):
         self.ask("free things for a 3 year old")
-        d = self.ask("anything with wheelchair access?")
-        self.assertTrue(any("age" in m for m in d["provenance"]["memory_used"]))
-        self.assertEqual(d["provenance"]["intent"]["age"], 3)
-        self.assertEqual(self.ask("forget that")["action"], "forget")
-        d2 = self.ask("anything with wheelchair access?")
-        self.assertEqual(d2["provenance"]["memory_used"], [])
-
-    def test_memory_invalidates_when_projection_changes(self):
-        self.ask("free things for a 3 year old")
-        make_resource("Newly Published Place", days=1)  # publishing bumps the projection version
         d = self.ask("anything with wheelchair access?")
         self.assertEqual(d["provenance"]["memory_used"], [])
+        self.assertIsNone(d["provenance"]["intent"]["age"])
+        self.assertNotIn("compass_ctx", self.c.session.keys())
+        f = self.ask("forget that")
+        self.assertEqual(f["action"], "forget")
+        self.assertIn("don't keep our conversation", f["text"])
+
+    def test_log_records_what_was_shown_not_what_was_typed(self):
+        d = self.ask("free things near Grandma Smith's house for a 3 year old")
+        rec = AuditEntry.objects.get(index=d["provenance"]["audit_index"])
+        self.assertNotIn("Grandma Smith", json.dumps(rec.payload))
 
     def test_llm_is_off_by_default_and_tools_are_allow_listed(self):
         d = self.ask("free playground")

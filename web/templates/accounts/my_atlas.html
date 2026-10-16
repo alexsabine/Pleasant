@@ -27,7 +27,7 @@
 <dt>Step-free only</dt><dd>{{ prefs.step_free|yesno:"yes,no" }}</dd>
 <dt>Community</dt><dd>{{ prefs.community|default:"anywhere" }}</dd>
 <dt>How much</dt><dd>{{ prefs.get_dosage_display }}</dd>
-<dt>Lumen may remember</dt><dd>{{ prefs.compass_may_remember|yesno:"yes,no" }}</dd>
+<dt>Lumen may use these settings</dt><dd>{{ prefs.compass_may_remember|yesno:"yes,no" }}</dd>
 <dt>Email summaries</dt><dd>{{ prefs.notifications|yesno:"on,off" }}</dd>
 </dl>
 <p><a class="btn secondary" href="{% url 'accounts:welcome_step' 1 %}">Change settings</a></p>

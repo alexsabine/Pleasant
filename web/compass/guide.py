@@ -14,7 +14,7 @@ QUESTIONS = [
     {"key": "serve_first", "text": "Who should Lumen serve first: newcomers finding their feet, caregivers of young children, teenagers, local organisations, or someone else?"},
     {"key": "allowed_to_do", "text": "What should it be allowed to do? Only answer from verified records (as now); also draft suggestions and corrections for a steward (built, needs sign-in); or, later, act with explicit consent, such as sending a message or a reminder?"},
     {"key": "uncertainty", "text": "When a listing was checked months ago and I am not sure it is still right, should I stay quiet, show it with a clear warning (as now), or ask you before showing it?"},
-    {"key": "memory", "text": "What should I remember about a person between visits? Nothing at all; only the settings they choose to save (as now); or more, such as places they have been?"},
+    {"key": "memory", "text": "I keep no memory of conversations. Should I use a member's saved settings, such as age bands and budget, when they choose to save them (as now), or always start from scratch?"},
     {"key": "channels", "text": "Where should I live? Only inside the website; also as an email digest people opt into; or in WhatsApp or text messages, which would be a separate, approved project?"},
     {"key": "initiative", "text": "Should I ever speak first, for example a weekly \"what is on\" note to people who asked for it, or only ever answer when asked?"},
     {"key": "red_lines", "text": "What is the line I must never cross? Say what would make you stop trusting me."},
@@ -22,4 +22,4 @@ QUESTIONS = [
 ]
 
 CLOSING = ("Thank you. I have passed your answers to the stewards; they are not published anywhere. "
-           "You can ask me anything about the county now, or say \"forget that\" to clear this session.")
+           "You can ask me anything about the county now. I don't keep our conversation; each question is answered on its own.")

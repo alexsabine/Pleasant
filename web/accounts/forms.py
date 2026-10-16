@@ -50,6 +50,6 @@ class QuietForm(forms.ModelForm):
     class Meta:
         model = FamilyPreferences
         fields = ("dosage", "compass_may_remember", "notifications")
-        labels = {"dosage": "How much at once?", "compass_may_remember": "Crescent Compass may use these settings when I ask it something",
+        labels = {"dosage": "How much at once?", "compass_may_remember": "Lumen may use these settings when I ask it something",
                   "notifications": "Send me an email summary of new verified places and events (off by default)"}
         widgets = {"dosage": forms.RadioSelect}

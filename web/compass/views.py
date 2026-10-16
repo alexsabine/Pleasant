@@ -16,7 +16,7 @@ from atlas.models import AuditEntry, ProjectionVersion, ReviewNote, Submission, 
 
 from .guide import QUESTIONS
 
-from . import adapter, honesty, memory, policy
+from . import adapter, honesty, policy
 from .tools import ALLOW_LIST
 
 POLICY_VERSION = "compass-0.1"
@@ -46,11 +46,11 @@ def ask(request):
         question = question[:1000]
     request_id = str(uuid.uuid4())
     pv = ProjectionVersion.current()
-    ctx = memory.load(request.session, pv)
 
+    # Lumen keeps no conversation: each question is answered on its own, and nothing
+    # about it is stored in the session. Saved settings (opt-in, on the account) still apply.
     if question.lower().strip(" .!") in ("forget that", "forget", "clear memory", "start over"):
-        memory.forget(request.session)
-        return JsonResponse({"request_id": request_id, "action": "forget", "text": "Done. I have cleared what I remembered from this session.",
+        return JsonResponse({"request_id": request_id, "action": "forget", "text": "There is nothing to forget: I don't keep our conversation. I answer each question on its own.",
                              "items": [], "events": [], "provenance": {"policy_version": POLICY_VERSION}})
 
     if not _budget_ok():
@@ -66,7 +66,7 @@ def ask(request):
             if v not in (None, False, [], "") and hasattr(intent, k):
                 setattr(intent, k, v)
         intent.source = "llm+rules"
-    used = memory.carry_forward(ctx, intent)
+    used = []
     max_items = 4
     if request.user.is_authenticated:
         prefs = getattr(request.user, "family_prefs", None)
@@ -128,7 +128,9 @@ def ask(request):
         "retrieval_sources": decision.tool_calls,
         "source_versions": {"projection_version": decision.projection_version},
         "policy_version": POLICY_VERSION,
-        "assumptions": {"intent": intent.as_dict(), "memory_used": used, "utilities": settings.COMPASS_UTILITIES},
+        # the parsed search only; the words a person typed are never written to the log
+        "assumptions": {"intent": {k: v for k, v in intent.as_dict().items() if k != "text"}, "memory_used": used,
+                        "utilities": settings.COMPASS_UTILITIES},
         "confidence_type": "model: posterior-predictive survival per category; show test = Bayes act",
         "action_proposed": decision.action,
         "user_approval": None,
@@ -137,7 +139,6 @@ def ask(request):
         "timestamp": timezone.now().isoformat(),
         "limitations": answer["limitations"],
     }, require_decision_fields=True)
-    memory.remember(request.session, ctx, question, intent.as_dict(), [d["id"] for d in decision.shown], decision.action)
 
     return JsonResponse({
         "request_id": request_id, "action": decision.action, "reason": decision.reason,
