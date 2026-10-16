@@ -302,7 +302,7 @@ def review(request):
 
 # ---- "For Kim": plan pages (summary, at a glance, system, costs, ethics, future) ----
 PLAN_TABS = [("summary", "Summary"), ("at-a-glance", "At a glance"), ("system", "How it's built"), ("costs", "Costs"),
-             ("ethics", "Ethics"), ("legal", "Legal"), ("future", "Future")]
+             ("ethics", "Ethics"), ("legal", "Legal considerations"), ("future", "Future")]
 
 
 def _cost_context():

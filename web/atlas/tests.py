@@ -169,7 +169,8 @@ class PlanPages(TestCase):
     def test_every_tab_renders(self):
         c = Client()
         expect = {"/plan/": "What each part does", "/plan/at-a-glance/": "Lumen's limits", "/plan/system/": "What never leaves our server",
-                  "/plan/costs/": "How an AI call works", "/plan/ethics/": "who may be missing", "/plan/future/": "The map is never the territory"}
+                  "/plan/costs/": "How an AI call works", "/plan/ethics/": "who may be missing", "/plan/future/": "The map is never the territory",
+                  "/plan/legal/": "The check: where we stand"}
         for url, text in expect.items():
             r = c.get(url)
             self.assertEqual(r.status_code, 200, url)
@@ -184,6 +185,13 @@ class PlanPages(TestCase):
         self.assertIn("Coordinating a group event", summary)
         self.assertIn("never the single source of truth", c.get("/plan/ethics/").content.decode())
         self.assertIn("Thirteen simple T-charts", c.get("/plan/at-a-glance/").content.decode())
+        legal = c.get("/plan/legal/").content.decode()
+        for text in ("Legal considerations", "The contract between Alex and Kim", "Group meetups", "Information Commission"):
+            self.assertIn(text, legal)
+        privacy = c.get("/privacy/").content.decode()
+        self.assertIn("aged 18 and over", privacy)
+        self.assertIn("Do Not Track", privacy)
+        self.assertIn('href="/privacy/"', c.get("/about/").content.decode())
 
     def test_costs_come_from_the_model_and_fit_the_ceiling(self):
         body = Client().get("/plan/costs/").content.decode()

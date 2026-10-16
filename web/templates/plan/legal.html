@@ -1,4 +1,111 @@
 {% extends "plan/_base.html" %}
 {% block plan_title %}Legal considerations{% endblock %}
-{% block plan_lede %}<p class="lede">Draft in preparation.</p>{% endblock %}
-{% block plan_content %}{% endblock %}
+{% block plan_lede %}<p class="lede">The short version: the plan fits the law in California, the US and the UK, as long as nine simple things are in place before members can sign up. Most cost nothing. Today's public preview itself collects no personal data.</p>{% endblock %}
+{% block plan_content %}
+<p class="callout"><b>This is a careful check, not legal advice.</b> It was researched in October 2026 from official sources, listed at the bottom. Before launch, it is worth an hour with a solicitor or lawyer to review the contract between Alex and Kim.</p>
+
+<h2>Who is who</h2>
+<div class="tbl-wrap"><table class="tbl">
+  <thead><tr><th>Person</th><th>Role in law</th><th>What that means</th></tr></thead>
+  <tbody>
+    <tr><td><b>Kim</b>, private individual, California</td><td>Owner of the site, and the "controller" of members' data</td><td>Decides what data is collected and why, and approves the privacy notice.</td></tr>
+    <tr><td><b>Alex</b>, UK sole trader (Honami)</td><td>Builder, and the "processor" of members' data</td><td>Handles the data only on Kim's written instructions, keeps it secure, and tells Kim at once about any problem.</td></tr>
+    <tr><td><b>Kim, Bill and Daniel</b></td><td>Account holders</td><td>Domain, server, GitHub, Anthropic and email accounts are in their names. Alex has delegated access only.</td></tr>
+  </tbody>
+</table></div>
+
+<h2>The check: where we stand</h2>
+<div class="tbl-wrap"><table class="tbl legal-check">
+  <thead><tr><th>Law</th><th>Does it apply?</th><th>Status</th></tr></thead>
+  <tbody>
+    <tr><td><b>California Consumer Privacy Act</b></td><td>No. It covers profit-making businesses with over $26.6 million revenue or 100,000 people's data. The site has neither.</td><td><span class="status ok">In keeping</span></td></tr>
+    <tr><td><b>California privacy notice law</b> (CalOPPA)</td><td>Probably not, as the site is not commercial. But a clear privacy notice is expected, and every promise in it must be true.</td><td><span class="status todo">Draft ready</span> Kim to approve the <a href="{% url 'privacy' %}">Privacy page</a></td></tr>
+    <tr><td><b>California data security and breach notice</b></td><td>Assume yes. Sign-in details count as personal information.</td><td><span class="status todo">At launch</span> Built with protected passwords and minimal data; a short breach plan goes in the contract</td></tr>
+    <tr><td><b>Children's privacy</b> (COPPA and California's minors' law)</td><td>No. The site is for adults, accounts are 18 and over, and nothing is collected about children.</td><td><span class="status ok">In keeping</span></td></tr>
+    <tr><td><b>AI disclosure</b> (California's bot law, Anthropic's rules)</td><td>Lumen must not pretend to be a person, and must be clearly an AI. It is not a "companion" chatbot.</td><td><span class="status ok">In keeping</span> Lumen now says it is automated and can be wrong</td></tr>
+    <tr><td><b>UK data protection</b> (UK GDPR)</td><td>Yes, for Alex only, as a UK processor. It does not extend to Kim.</td><td><span class="status todo">At contract</span> Needs a data processing section in the contract and a one-page record</td></tr>
+    <tr><td><b>UK data protection fee</b></td><td>Processors do not pay. Honami's own business records are usually exempt.</td><td><span class="status todo">5 minutes</span> Alex runs the regulator's online self-check; if a fee is due, it is £52 a year</td></tr>
+    <tr><td><b>Sending data abroad</b></td><td>No restricted transfer, as long as Kim owns every service and Alex keeps no copies on his own accounts.</td><td><span class="status ok">In keeping</span> By design</td></tr>
+    <tr><td><b>Users' photos</b> (copyright, likeness)</td><td>Yes, lightly. Uploaders must own their photos, and there must be a way to ask for removal.</td><td><span class="status todo">At launch</span> Terms of use and a $6 copyright agent registration</td></tr>
+    <tr><td><b>Events and meetups</b></td><td>Terms of use should say the site does not run or supervise meetups.</td><td><span class="status todo">At launch</span> Terms of use; reminders by email only</td></tr>
+    <tr><td><b>Accessibility</b></td><td>Low legal risk for a free site, but already part of Kim's brief.</td><td><span class="status todo">In progress</span> WCAG 2.2 AA review is a planned step</td></tr>
+    <tr><td><b>Domain name</b></td><td>A .ca address needs a Canadian owner, so it is not available to Kim.</td><td><span class="status ok">Fixed</span> Plan now uses a .org address</td></tr>
+    <tr><td><b>GitHub Pages</b></td><td>Fine for a free community map, but not for sign-in or passwords.</td><td><span class="status ok">In keeping</span> Sign-in, photos and Lumen run on Kim's own server</td></tr>
+  </tbody>
+</table></div>
+
+<h2>The no-children rule, events and other map features</h2>
+<div class="reasons">
+  <div><b>Children.</b> No child accounts and no child details: the main US children's privacy law does not apply to a site for adults that collects nothing about children. Sign-up now asks people to confirm they are 18 or over. If a child's account is ever found, it is deleted.</div>
+  <div><b>Public events.</b> Taken from organisations' own websites and calendars, with credit, and checked by a steward. Each one links back to its source.</div>
+  <div><b>Group meetups.</b> The site is a noticeboard, not an organiser. The terms say it does not run, supervise or vet meetups, outdoor activities carry their own risks, and parents stay responsible for their children. Meeting places are always public places. If Kim's organisation ever ran supervised children's activities itself, California's background-check law for youth organisations would apply. Listing events and helping families meet does not trigger it.</div>
+  <div><b>RSVPs and reminders.</b> Only a count of people coming is shown. Reminders go by email, only to people who asked. No text messages, because US texting law needs special consent records.</div>
+  <div><b>Photos.</b> Places, not people. No identifiable children, no faces without permission, and no homes. Location data is removed on arrival, and every photo is checked by a steward. Member photos are never used for promotion or fundraising.</div>
+  <div><b>Lumen.</b> Answers only from published listings, says it is automated and can be wrong, and has no personality designed to form a relationship. It remembers a conversation for six hours at most, and uses saved settings only if the member allows.</div>
+  <div><b>Your data.</b> Members can now download everything held about them, or delete their account themselves, from My atlas. The sealed log never records names or emails, only a member number.</div>
+  <div><b>The map itself.</b> Map data comes from public sources with recorded licences and credit. No children's homes or locations, and no sensitive nature sites.</div>
+</div>
+
+<h2>The contract between Alex and Kim</h2>
+<p class="prose-w">A single written agreement, signed electronically by both, is enough in both countries. It needs ten parts:</p>
+<ol class="prose-w">
+  <li><b>Who.</b> Kim, as an individual or on behalf of her organisation, and Alex trading as Honami, an independent contractor working from the UK with his own tools.</li>
+  <li><b>What.</b> The eight-week scope and milestones from the brief, with written acceptance of each milestone. A milestone counts as accepted if Kim does not reply within an agreed time, such as 10 working days.</li>
+  <li><b>Money.</b> $10,000 fixed, in US dollars, in milestone payments. Running costs ($500 to $1,000 a year) are paid by Kim directly, and any paid service needs her written approval first.</li>
+  <li><b>Ownership.</b> Once paid, Alex assigns the code and content to Kim in writing. His pre-existing tools are licensed to her, and open-source parts keep their own licences. Avoid the phrase "work made for hire", which has a special meaning in California employment law.</li>
+  <li><b>Accounts.</b> Kim, Bill and Daniel own the domain, server, GitHub and other accounts. Alex has delegated access and hands everything over when the work ends.</li>
+  <li><b>Data.</b> A short data processing section: Alex acts only on Kim's instructions, keeps data secure and confidential, lists the services used (server host, email, Anthropic), tells Kim of any breach within 48 hours, helps with members' requests, and deletes his access at the end.</li>
+  <li><b>Confidentiality</b> both ways.</li>
+  <li><b>Care and limits.</b> Alex works with reasonable skill and care and fixes defects for an agreed period. He gives no promise about third-party software or the accuracy of listings, and his liability is capped at the fee.</li>
+  <li><b>Ending and disputes.</b> Either side can end it on notice, with payment for work done. If they disagree, they talk first, then try online mediation. Choose one governing law: England and Wales suits Alex, California suits Kim. English law, with any claim brought where the other person lives, is a fair middle way.</li>
+  <li><b>Ongoing work.</b> Later support from the UK goes in a separate short support agreement or change orders, with an agreed rate and Kim's approval before each piece of paid work.</li>
+</ol>
+<p class="note">Kim signs as a private individual, so UK consumer law may treat her as a consumer. That means the contract must be fair and plainly worded, and she may have a 14-day right to cancel before work starts. Signing on behalf of her organisation, if she has one, makes this simpler.</p>
+
+<h2>Tax and invoicing, for Alex</h2>
+<ul class="prose-w">
+  <li><b>UK tax:</b> the fee is ordinary Honami income on the Self Assessment return, converted to pounds at the rate received.</li>
+  <li><b>US tax:</b> none, because the work is done wholly in the UK. Kim needs no tax form as a private payer. Alex can offer a W-8BEN form if anyone asks.</li>
+  <li><b>VAT:</b> design, data processing and hosting work for a customer outside the UK is generally outside UK VAT, and the registration threshold is £90,000. Worth a quick check with an accountant.</li>
+  <li><b>Invoice wording:</b> "Services performed wholly in the UK. Outside the scope of UK VAT." Invoice in US dollars, and a service such as Wise avoids high bank fees.</li>
+  <li><b>Insurance:</b> professional indemnity insurance is not required by law. If Alex has a policy, check that it covers US clients.</li>
+</ul>
+
+<h2>The minimum to do before members can join</h2>
+<ol class="flow">
+  <li><b>Sign the contract,</b> including the data processing section. <span class="note">Cost: an optional review by a lawyer.</span></li>
+  <li><b>Alex runs the UK regulator's five-minute fee self-check.</b> <span class="note">£0, or £52 a year.</span></li>
+  <li><b>Kim approves the Privacy page</b> and adds a contact email.</li>
+  <li><b>Publish short terms of use:</b> 18 and over, photo rules, not an organiser of meetups, and a removal request route.</li>
+  <li><b>Register a copyright agent</b> with the US Copyright Office. <span class="note">$6, renewed every three years.</span></li>
+  <li><b>Put every account in Kim's, Bill's or Daniel's name,</b> with Alex as a delegate.</li>
+  <li><b>Keep sign-in on Kim's server</b> with secure connections and two-step sign-in for stewards and Alex.</li>
+  <li><b>Write a one-page breach plan:</b> stop it, record it, tell Kim, then tell affected members and ask them to reset passwords.</li>
+  <li><b>Keep a one-page record</b> of what data is held, where it is, and who can reach it.</li>
+</ol>
+
+<h2>To recheck in January 2027</h2>
+<ul class="prose-w">
+  <li>California's privacy thresholds are adjusted every two years, next on 1 January 2027.</li>
+  <li>Court cases on California's design code for children's sites, and proposed changes to the bot law.</li>
+  <li>US rules on consent for text messages, if texts are ever wanted.</li>
+  <li>The UK regulator became the Information Commission on 30 September 2026. Its website, guidance and fee carry on as before.</li>
+</ul>
+
+<details class="prose-w sources"><summary>Sources</summary><ul>
+  <li>California Consumer Privacy Act, business definition: <a href="https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CIV&amp;sectionNum=1798.140">Civil Code 1798.140</a>; threshold adjustment: <a href="https://cppa.ca.gov/regulations/cpi_adjustment.html">CPPA</a></li>
+  <li>CalOPPA: <a href="https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=BPC&amp;sectionNum=22575">Business and Professions Code 22575</a>; FTC on privacy promises: <a href="https://www.ftc.gov/business-guidance/privacy-security">FTC</a></li>
+  <li>Data security and breach notice: <a href="https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CIV&amp;sectionNum=1798.81.5">Civil Code 1798.81.5</a>, <a href="https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CIV&amp;sectionNum=1798.82">1798.82</a>, <a href="https://oag.ca.gov/privacy/databreach/reporting">Attorney General</a></li>
+  <li>COPPA: <a href="https://www.ftc.gov/business-guidance/resources/complying-coppa-frequently-asked-questions">FTC FAQs</a>, <a href="https://www.federalregister.gov/documents/2025/04/22/2025-05904/childrens-online-privacy-protection-rule">2025 amended rule</a>; minors' law: <a href="https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=BPC&amp;sectionNum=22580">Business and Professions Code 22580</a></li>
+  <li>Bot law: <a href="https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=BPC&amp;sectionNum=17941">Business and Professions Code 17941</a>; companion chatbots: <a href="https://california.public.law/codes/business_and_professions_code_section_22601">22601</a>; <a href="https://www.anthropic.com/legal/aup">Anthropic Usage Policy</a></li>
+  <li>Youth organisations: <a href="https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=BPC&amp;sectionNum=18975">Business and Professions Code 18975</a>; texting rules: <a href="https://www.fcc.gov/document/cgb-extends-effective-date-tcpas-consent-revocation-rule">FCC</a>; email: <a href="https://www.ftc.gov/business-guidance/resources/can-spam-act-compliance-guide-business">FTC CAN-SPAM guide</a></li>
+  <li>Copyright agent: <a href="https://www.copyright.gov/dmca-directory/faq.html">US Copyright Office</a>; likeness: <a href="https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CIV&amp;sectionNum=3344">Civil Code 3344</a></li>
+  <li>.ca domains: <a href="https://www.cira.ca/en/resources/documents/domains/canadian-presence-requirements-registrants/">CIRA</a>; GitHub Pages: <a href="https://docs.github.com/en/pages/getting-started-with-github-pages/github-pages-limits">GitHub Docs</a></li>
+  <li>UK GDPR scope: <a href="https://www.legislation.gov.uk/eur/2016/679/article/3">Article 3</a>, <a href="https://ico.org.uk/for-organisations/uk-gdpr-guidance-and-resources/controllers-and-processors/controllers-and-processors/what-does-it-mean-if-you-are-a-processor/">processors</a>, <a href="https://ico.org.uk/for-organisations/uk-gdpr-guidance-and-resources/accountability-and-governance/contracts-and-liabilities-between-controllers-and-processors-multi/what-needs-to-be-included-in-the-contract/">contract contents</a></li>
+  <li>International transfers: <a href="https://ico.org.uk/for-organisations/uk-gdpr-guidance-and-resources/international-transfers/quick-reference-faqs/">ICO FAQs</a></li>
+  <li>Data protection fee: <a href="https://ico.org.uk/for-organisations/data-protection-fee/data-protection-fee-self-assessment/">self-assessment</a>, <a href="https://www.legislation.gov.uk/uksi/2018/480/schedule">exemptions</a>, <a href="https://www.gov.uk/government/consultations/data-protection-fee-regime-proposed-changes/outcome/data-protection-fee-regime-government-response">2025 fee levels</a></li>
+  <li>Information Commission: <a href="https://www.lexisnexis.co.uk/legal/news/duaa-2025-provisions-establishing-new-information-commission-come-into-force-on-30-september-2026">LexisNexis</a>, <a href="https://www.lewissilkin.com/insights/2026/09/29/what-the-icos-transformation-into-the-information-commission-means-for-your-orga-102o3ni">Lewis Silkin</a></li>
+  <li>Contracts and e-signatures: <a href="https://www.legislation.gov.uk/ukpga/2000/7/section/7">Electronic Communications Act 2000 s7</a>, <a href="https://california.public.law/codes/civil_code_section_1633.7">California Civil Code 1633.7</a>, <a href="https://www.legislation.gov.uk/ukpga/1988/48/section/90">copyright assignment</a>, <a href="https://california.public.law/codes/labor_code_section_3351.5">Labor Code 3351.5</a>, <a href="https://www.legislation.gov.uk/uksi/2013/3134/regulation/29">consumer cancellation</a></li>
+  <li>Tax and VAT: <a href="https://www.law.cornell.edu/uscode/text/26/862">US source rules</a>, <a href="https://www.irs.gov/instructions/i1099mec">IRS 1099 instructions</a>, <a href="https://www.gov.uk/hmrc-internal-manuals/vat-place-of-supply-services/vatposs13100">HMRC place of supply</a>, <a href="https://www.gov.uk/how-vat-works/vat-thresholds">VAT thresholds</a></li>
+</ul></details>
+{% endblock %}

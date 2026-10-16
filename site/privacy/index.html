@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, interactive-widget=resizes-content">
+<title>Privacy · Crescent Compass</title>
+<meta name="description" content="A friendly, verified atlas for families, neighbours and newcomers in Del Norte County.">
+<link rel="icon" href="/Pleasant/logo.svg" type="image/svg+xml">
+<meta name="robots" content="noindex, nofollow">
+<script>window.PC_STATIC={"base": "/Pleasant/", "reviewEmail": ""};</script>
+<link rel="stylesheet" href="/Pleasant/static/fonts/cormorant/cormorant.css">
+<link rel="stylesheet" href="/Pleasant/static/vendor/maplibre-gl.css">
+<link rel="stylesheet" href="/Pleasant/static/pc/app.css?v=5fb5804699">
+<style>
+:root{
+  --pc-bg:#f7f2ea;--pc-surface:#ffffff;--pc-ink:#303848;--pc-ink-2:#586273;
+  --pc-accent:#00848b;--pc-accent-on:#ffffff;--pc-accent-2:#a3675b;--pc-free:#14875a;--pc-unknown:#6f787f;
+  --pc-verified:#14875a;--pc-stale:#a3675b;--pc-sensitive:#ae6161;
+  --pc-radius:14px;--pc-font-ui:system-ui, -apple-system, 'Segoe UI', Roboto, Inter, sans-serif;--pc-line:#d8d0c3;
+  --pc-font-display:'Cormorant Garamond', Georgia, 'Times New Roman', serif;--pc-font-mono:ui-monospace, 'JetBrains Mono', SFMono-Regular, Menlo, monospace;
+}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){
+  --pc-bg:#131822;--pc-surface:#1f242e;--pc-ink:#98a5ae;--pc-ink-2:#76828b;
+  --pc-accent:#1d999f;--pc-accent-on:#131822;--pc-accent-2:#bd786a;--pc-free:#3f9a6f;
+  --pc-unknown:#76828b;--pc-verified:#3f9a6f;--pc-stale:#bd786a;--pc-sensitive:#bd786a;
+  --pc-line:#2b3940;
+}}
+body{background:var(--pc-bg)}
+.tag.group-parks .sw,.ph.group-parks::after{background:#357a3a}
+.tag.group-pools .sw,.ph.group-pools::after{background:#00839a}
+.tag.group-attractions .sw,.ph.group-attractions::after{background:#bb6546}
+.tag.group-water .sw,.ph.group-water::after{background:#478ece}
+.tag.group-nature .sw,.ph.group-nature::after{background:#5d5900}
+.tag.group-learning .sw,.ph.group-learning::after{background:#6b66b4}
+.tag.group-arts .sw,.ph.group-arts::after{background:#a75c93}
+.tag.group-services .sw,.ph.group-services::after{background:#754a93}
+.tag.group-programs .sw,.ph.group-programs::after{background:#b27923}
+</style>
+
+</head>
+<body class="">
+<a class="skip" href="#main">Skip to content</a>
+<div class="private-banner" role="status">Static preview for review. Listings and map are a snapshot checked online, not yet visited in person. Accounts, suggestions and Lumen audit records need the hosted site. <a href="/Pleasant/review/">Review guide and questions</a></div>
+<header class="site-head">
+  <a class="brand" href="/" aria-label="Crescent Compass home"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="36" height="36" role="img" aria-label="Crescent Compass. Freshness gauge: mean P(current) 0.99 over 58 listings; belief moved 0.47 rad this window; 3859 changes"><title>Crescent Compass. Freshness gauge: mean P(current) 0.99 over 58 listings; belief moved 0.47 rad this window; 3859 changes</title><circle cx="50" cy="50" r="46" fill="#cae9ff" opacity="0.35"/><circle cx="50" cy="50" r="44" fill="#364868"/><path d="M50.00,6.00 L52.88,6.09 L55.74,6.38 L58.58,6.85 L61.39,7.50 L64.14,8.34 L66.84,9.35 L69.46,10.54 L72.00,11.89 L74.45,13.42 L76.79,15.09 L79.01,16.92 L81.11,18.89 L83.08,20.99 L84.91,23.21 L86.58,25.55 L88.11,28.00 L89.46,30.54 L90.65,33.16 L91.66,35.86 L92.50,38.61 L93.15,41.42 L93.62,44.26 L93.91,47.12 L94.00,50.00 L93.91,52.88 L93.62,55.74 L93.15,58.58 L92.50,61.39 L91.66,64.14 L90.65,66.84 L89.46,69.46 L88.11,72.00 L86.58,74.45 L84.91,76.79 L83.08,79.01 L81.11,81.11 L79.01,83.08 L76.79,84.91 L74.45,86.58 L72.00,88.11 L69.46,89.46 L66.84,90.65 L64.14,91.66 L61.39,92.50 L58.58,93.15 L55.74,93.62 L52.88,93.91 L50.00,94.00 L50.00,94.00 L47.16,93.91 L44.34,93.62 L41.54,93.15 L38.78,92.50 L36.06,91.66 L33.41,90.65 L30.82,89.46 L28.32,88.11 L25.91,86.58 L23.60,84.91 L21.41,83.08 L19.34,81.11 L17.40,79.01 L15.60,76.79 L13.95,74.45 L12.45,72.00 L11.11,69.46 L9.94,66.84 L8.94,64.14 L8.12,61.39 L7.47,58.58 L7.01,55.74 L6.73,52.88 L6.64,50.00 L6.73,47.12 L7.01,44.26 L7.47,41.42 L8.12,38.61 L8.94,35.86 L9.94,33.16 L11.11,30.54 L12.45,28.00 L13.95,25.55 L15.60,23.21 L17.40,20.99 L19.34,18.89 L21.41,16.92 L23.60,15.09 L25.91,13.42 L28.32,11.89 L30.82,10.54 L33.41,9.35 L36.06,8.34 L38.78,7.50 L41.54,6.85 L44.34,6.38 L47.16,6.09 L50.00,6.00 Z" fill="#e4b572"><animate attributeName="d" dur="14s" repeatCount="indefinite" calcMode="spline" keyTimes="0;0.5;1" keySplines="0.45 0 0.55 1;0.45 0 0.55 1" values="M50.00,6.00 L52.88,6.09 L55.74,6.38 L58.58,6.85 L61.39,7.50 L64.14,8.34 L66.84,9.35 L69.46,10.54 L72.00,11.89 L74.45,13.42 L76.79,15.09 L79.01,16.92 L81.11,18.89 L83.08,20.99 L84.91,23.21 L86.58,25.55 L88.11,28.00 L89.46,30.54 L90.65,33.16 L91.66,35.86 L92.50,38.61 L93.15,41.42 L93.62,44.26 L93.91,47.12 L94.00,50.00 L93.91,52.88 L93.62,55.74 L93.15,58.58 L92.50,61.39 L91.66,64.14 L90.65,66.84 L89.46,69.46 L88.11,72.00 L86.58,74.45 L84.91,76.79 L83.08,79.01 L81.11,81.11 L79.01,83.08 L76.79,84.91 L74.45,86.58 L72.00,88.11 L69.46,89.46 L66.84,90.65 L64.14,91.66 L61.39,92.50 L58.58,93.15 L55.74,93.62 L52.88,93.91 L50.00,94.00 L50.00,94.00 L47.50,93.91 L45.02,93.62 L42.55,93.15 L40.12,92.50 L37.73,91.66 L35.39,90.65 L33.12,89.46 L30.92,88.11 L28.80,86.58 L26.77,84.91 L24.83,83.08 L23.01,81.11 L21.30,79.01 L19.72,76.79 L18.26,74.45 L16.95,72.00 L15.77,69.46 L14.74,66.84 L13.86,64.14 L13.13,61.39 L12.57,58.58 L12.16,55.74 L11.91,52.88 L11.83,50.00 L11.91,47.12 L12.16,44.26 L12.57,41.42 L13.13,38.61 L13.86,35.86 L14.74,33.16 L15.77,30.54 L16.95,28.00 L18.26,25.55 L19.72,23.21 L21.30,20.99 L23.01,18.89 L24.83,16.92 L26.77,15.09 L28.80,13.42 L30.92,11.89 L33.12,10.54 L35.39,9.35 L37.73,8.34 L40.12,7.50 L42.55,6.85 L45.02,6.38 L47.50,6.09 L50.00,6.00 Z;M50.00,6.00 L52.88,6.09 L55.74,6.38 L58.58,6.85 L61.39,7.50 L64.14,8.34 L66.84,9.35 L69.46,10.54 L72.00,11.89 L74.45,13.42 L76.79,15.09 L79.01,16.92 L81.11,18.89 L83.08,20.99 L84.91,23.21 L86.58,25.55 L88.11,28.00 L89.46,30.54 L90.65,33.16 L91.66,35.86 L92.50,38.61 L93.15,41.42 L93.62,44.26 L93.91,47.12 L94.00,50.00 L93.91,52.88 L93.62,55.74 L93.15,58.58 L92.50,61.39 L91.66,64.14 L90.65,66.84 L89.46,69.46 L88.11,72.00 L86.58,74.45 L84.91,76.79 L83.08,79.01 L81.11,81.11 L79.01,83.08 L76.79,84.91 L74.45,86.58 L72.00,88.11 L69.46,89.46 L66.84,90.65 L64.14,91.66 L61.39,92.50 L58.58,93.15 L55.74,93.62 L52.88,93.91 L50.00,94.00 L50.00,94.00 L47.12,93.91 L44.26,93.62 L41.42,93.15 L38.61,92.50 L35.86,91.66 L33.16,90.65 L30.54,89.46 L28.00,88.11 L25.55,86.58 L23.21,84.91 L20.99,83.08 L18.89,81.11 L16.92,79.01 L15.09,76.79 L13.42,74.45 L11.89,72.00 L10.54,69.46 L9.35,66.84 L8.34,64.14 L7.50,61.39 L6.85,58.58 L6.38,55.74 L6.09,52.88 L6.00,50.00 L6.09,47.12 L6.38,44.26 L6.85,41.42 L7.50,38.61 L8.34,35.86 L9.35,33.16 L10.54,30.54 L11.89,28.00 L13.42,25.55 L15.09,23.21 L16.92,20.99 L18.89,18.89 L20.99,16.92 L23.21,15.09 L25.55,13.42 L28.00,11.89 L30.54,10.54 L33.16,9.35 L35.86,8.34 L38.61,7.50 L41.42,6.85 L44.26,6.38 L47.12,6.09 L50.00,6.00 Z;M50.00,6.00 L52.88,6.09 L55.74,6.38 L58.58,6.85 L61.39,7.50 L64.14,8.34 L66.84,9.35 L69.46,10.54 L72.00,11.89 L74.45,13.42 L76.79,15.09 L79.01,16.92 L81.11,18.89 L83.08,20.99 L84.91,23.21 L86.58,25.55 L88.11,28.00 L89.46,30.54 L90.65,33.16 L91.66,35.86 L92.50,38.61 L93.15,41.42 L93.62,44.26 L93.91,47.12 L94.00,50.00 L93.91,52.88 L93.62,55.74 L93.15,58.58 L92.50,61.39 L91.66,64.14 L90.65,66.84 L89.46,69.46 L88.11,72.00 L86.58,74.45 L84.91,76.79 L83.08,79.01 L81.11,81.11 L79.01,83.08 L76.79,84.91 L74.45,86.58 L72.00,88.11 L69.46,89.46 L66.84,90.65 L64.14,91.66 L61.39,92.50 L58.58,93.15 L55.74,93.62 L52.88,93.91 L50.00,94.00 L50.00,94.00 L47.50,93.91 L45.02,93.62 L42.55,93.15 L40.12,92.50 L37.73,91.66 L35.39,90.65 L33.12,89.46 L30.92,88.11 L28.80,86.58 L26.77,84.91 L24.83,83.08 L23.01,81.11 L21.30,79.01 L19.72,76.79 L18.26,74.45 L16.95,72.00 L15.77,69.46 L14.74,66.84 L13.86,64.14 L13.13,61.39 L12.57,58.58 L12.16,55.74 L11.91,52.88 L11.83,50.00 L11.91,47.12 L12.16,44.26 L12.57,41.42 L13.13,38.61 L13.86,35.86 L14.74,33.16 L15.77,30.54 L16.95,28.00 L18.26,25.55 L19.72,23.21 L21.30,20.99 L23.01,18.89 L24.83,16.92 L26.77,15.09 L28.80,13.42 L30.92,11.89 L33.12,10.54 L35.39,9.35 L37.73,8.34 L40.12,7.50 L42.55,6.85 L45.02,6.38 L47.50,6.09 L50.00,6.00 Z"/></path><defs><radialGradient id="pc_limb" cx="0.42" cy="0.40" r="0.62"><stop offset="0.6" stop-color="#000" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity="0.22"/></radialGradient></defs><circle cx="50" cy="50" r="44" fill="url(#pc_limb)"/><circle cx="50" cy="50" r="46" fill="none" stroke="#00848b" stroke-width="1.5" opacity="0.8"/><circle cx="50.0" cy="1.8" r="0.9" fill="#00848b" opacity="0.8"/><circle cx="74.1" cy="8.3" r="0.9" fill="#00848b" opacity="0.8"/><circle cx="91.7" cy="25.9" r="0.9" fill="#00848b" opacity="0.8"/><circle cx="98.2" cy="50.0" r="0.9" fill="#00848b" opacity="0.8"/><circle cx="91.7" cy="74.1" r="0.9" fill="#00848b" opacity="0.8"/><circle cx="74.1" cy="91.7" r="0.9" fill="#00848b" opacity="0.8"/><circle cx="50.0" cy="98.2" r="0.9" fill="#00848b" opacity="0.8"/><circle cx="25.9" cy="91.7" r="0.9" fill="#00848b" opacity="0.8"/><circle cx="8.3" cy="74.1" r="0.9" fill="#00848b" opacity="0.8"/><circle cx="1.8" cy="50.0" r="0.9" fill="#00848b" opacity="0.8"/><circle cx="8.3" cy="25.9" r="0.9" fill="#00848b" opacity="0.8"/><circle cx="25.9" cy="8.3" r="0.9" fill="#00848b" opacity="0.8"/></svg><span class="wordmark">Crescent Compass</span></a>
+  <nav class="site-nav" aria-label="Main">
+    <a href="/Pleasant/explore/" >Explore</a>
+    <a href="/Pleasant/this-week/" >This week</a>
+    <a href="/Pleasant/local-help/" >Local help</a>
+    <a href="/Pleasant/about/" >About</a>
+    <a href="/Pleasant/plan/" class="review-link" >For Kim</a>
+    <a href="/Pleasant/accounts/join/" class="join">Join</a>
+  </nav>
+  <button class="compass-toggle" type="button" aria-expanded="false" aria-controls="compass-drawer" id="compass-toggle">
+    
+<svg class="cc-icon" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false">
+  <circle cx="12" cy="12" r="10.2" fill="#e4b572" stroke="currentColor" stroke-width="1.6"/>
+  <path d="M6.4 6.2a7.6 7.6 0 0 0 7.2 12.9A6.2 6.2 0 0 1 6.4 6.2Z" fill="#364868" opacity=".28"/>
+  <g stroke="currentColor" stroke-width="1.1" stroke-linecap="round" opacity=".7"><path d="M12 2.6v1.9M12 19.5v1.9M2.6 12h1.9M19.5 12h1.9"/></g>
+  <g class="cc-needle">
+    <path d="M12 4.6 13.9 11.3 12 12.7 10.1 11.3Z" fill="#a3675b"/>
+    <path d="M12 19.4 13.9 12.7 12 11.3 10.1 12.7Z" fill="#364868" opacity=".85"/>
+  </g>
+  <circle cx="12" cy="12" r="1.4" fill="#fbf6ec" stroke="currentColor" stroke-width=".8"/>
+</svg>
+Lumen
+  </button>
+</header>
+<main id="main" class="site-main">
+<section class="prose-page">
+<p class="eyebrow">Privacy</p>
+<h1>Privacy</h1>
+<p class="lede">Crescent Compass collects as little as it can. You can browse everything without an account, and nothing is collected about children.</p>
+<p class="callout"><b>Draft for Kim's approval.</b> Effective date and contact details to be added before members can join.</p>
+
+<h2>Who runs the site</h2>
+<p>Crescent Compass is owned by Kim, a private individual in Crescent City, California, who decides how members' information is used. The site is built and looked after by Alex Sabine (Honami), a contractor in the United Kingdom, who handles members' information only on Kim's instructions. Contact: <a href="mailto:hello@example.invalid">hello@example.invalid</a> (placeholder).</p>
+
+<h2>If you just browse</h2>
+<p>We do not ask for anything, and we do not read your location. The public map is hosted on GitHub Pages, which keeps standard server logs, such as IP addresses, under <a href="https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement">GitHub's privacy statement</a>. We do not use analytics, advertising or cross-site tracking. If we ever add visitor counts, they will be counts only, with no cookies and nothing that identifies you, and this page will say so first.</p>
+
+<h2>If you join</h2>
+<ul>
+  <li><b>Your account:</b> a username, your email address, and your password, which is stored only in a protected, scrambled form.</li>
+  <li><b>Settings you choose,</b> all optional: a display name, the age bands you are searching for, budget, step-free access, your community, and how much Lumen shows. These are search settings. They are not a profile of your children.</li>
+  <li><b>Places you save,</b> and any private notes on them, visible only to you.</li>
+  <li><b>Suggestions and photos you send.</b> Nothing is public until a steward approves it. Location data is removed from photos when they arrive.</li>
+</ul>
+
+<h2>Lumen, the guide</h2>
+<p>Lumen is automated, not a person, and can be wrong. It answers only from the published listings. It keeps your current conversation for up to six hours, and you can clear it at any time by saying "forget that". It uses your saved settings only if you allow it. Our log records what Lumen showed and why, not what you typed. When Lumen's AI language feature is switched on, your question and the published listings it might use are sent to Anthropic, which provides the AI. Anthropic's commercial terms say this data is not used to train its models by default.</p>
+
+<h2>Who else sees it</h2>
+<p>We never sell or rent your information, and we never share it for advertising. It is handled only by the services that run the site for Kim: the server host, the email service for sign-in and any reminders you turn on, and Anthropic for Lumen, as above. Each one uses it only to provide its service. We would share it with the authorities only if the law required it.</p>
+
+<h2>Children</h2>
+<p>Accounts are for adults aged 18 and over, and the site is not aimed at children. We do not knowingly collect information from or about children. If we learn that a child has an account, we delete it. Please do not upload photos that show identifiable children.</p>
+
+<h2>Your choices</h2>
+<ul>
+  <li>Change or remove any setting at any time from My atlas.</li>
+  <li><b>Download</b> everything we hold about you, as one file, from My atlas.</li>
+  <li><b>Delete</b> your account from My atlas. Your settings, saved places and unreviewed suggestions go with it. Suggestions a steward has already reviewed stay, with your name removed.</li>
+  <li>Reminders and email summaries are off unless you turn them on, and every email has a way to stop them. We do not send text messages.</li>
+  <li>Browser "Do Not Track" and Global Privacy Control signals: we do no cross-site tracking, so there is nothing for them to switch off.</li>
+</ul>
+
+<h2>How long we keep it</h2>
+<p>Your account information is kept until you delete your account. Lumen's conversation memory lasts six hours at most. Our log of decisions is kept so that every change to the map can be checked, and it refers to members only by a number, never by name or email.</p>
+
+<h2>Keeping it safe</h2>
+<p>Sign-in and members' information stay on the site's own server, with secure connections and protected passwords, and only a few named people can reach it. If your information were ever exposed, we would tell you promptly, explain what happened, and ask you to change your password.</p>
+
+<h2>Questions, complaints and changes</h2>
+<p>Write to us at the contact address above and we will reply within 30 days. If this page changes in a way that matters, we will say so on the site before the change takes effect, and show the new effective date here.</p>
+</section>
+</main>
+<aside id="compass-drawer" class="compass-drawer" aria-label="Lumen" hidden><div class="compass-head">
+<svg class="cc-icon" viewBox="0 0 24 24" width="28" height="28" aria-hidden="true" focusable="false">
+  <circle cx="12" cy="12" r="10.2" fill="#e4b572" stroke="currentColor" stroke-width="1.6"/>
+  <path d="M6.4 6.2a7.6 7.6 0 0 0 7.2 12.9A6.2 6.2 0 0 1 6.4 6.2Z" fill="#364868" opacity=".28"/>
+  <g stroke="currentColor" stroke-width="1.1" stroke-linecap="round" opacity=".7"><path d="M12 2.6v1.9M12 19.5v1.9M2.6 12h1.9M19.5 12h1.9"/></g>
+  <g class="cc-needle">
+    <path d="M12 4.6 13.9 11.3 12 12.7 10.1 11.3Z" fill="#a3675b"/>
+    <path d="M12 19.4 13.9 12.7 12 11.3 10.1 12.7Z" fill="#364868" opacity=".85"/>
+  </g>
+  <circle cx="12" cy="12" r="1.4" fill="#fbf6ec" stroke="currentColor" stroke-width=".8"/>
+</svg>
+<h2>Lumen</h2><button type="button" data-close aria-label="Close Lumen"><span class="done">Done</span><span class="x" aria-hidden="true">×</span></button></div>
+<p class="lede compass-lede" style="padding:10px 16px 0;font-size:.85rem">I am an automated guide, not a person, and I can be wrong. I only answer from the verified directory, show where each answer came from, and say so when I don't know. Please check the listing before you go.</p>
+<div class="compass-log" role="log" aria-live="polite" data-guide="{&quot;intro&quot;: &quot;Hello. I am Lumen, the guide for Crescent Compass. I answer only from the verified directory: places by age, cost, access and community, and what is on this week. Every answer shows where it came from and when it was checked, and I say so when I do not know. Signed in, you can also say \&quot;correct: ...\&quot; or \&quot;suggest: ...\&quot; and I draft it for a steward; nothing publishes on its own.\n\nKim, the team would like your view on how this should work. Press \&quot;Help shape Lumen\&quot; to answer a few short questions, or just ask me something about Del Norte County.&quot;, &quot;questions&quot;: [{&quot;key&quot;: &quot;serve_first&quot;, &quot;text&quot;: &quot;Who should Lumen serve first: newcomers finding their feet, caregivers of young children, teenagers, local organisations, or someone else?&quot;}, {&quot;key&quot;: &quot;allowed_to_do&quot;, &quot;text&quot;: &quot;What should it be allowed to do? Only answer from verified records (as now); also draft suggestions and corrections for a steward (built, needs sign-in); or, later, act with explicit consent, such as sending a message or a reminder?&quot;}, {&quot;key&quot;: &quot;uncertainty&quot;, &quot;text&quot;: &quot;When a listing was checked months ago and I am not sure it is still right, should I stay quiet, show it with a clear warning (as now), or ask you before showing it?&quot;}, {&quot;key&quot;: &quot;memory&quot;, &quot;text&quot;: &quot;What should I remember about a person between visits? Nothing at all; only the settings they choose to save (as now); or more, such as places they have been?&quot;}, {&quot;key&quot;: &quot;channels&quot;, &quot;text&quot;: &quot;Where should I live? Only inside the website; also as an email digest people opt into; or in WhatsApp or text messages, which would be a separate, approved project?&quot;}, {&quot;key&quot;: &quot;initiative&quot;, &quot;text&quot;: &quot;Should I ever speak first, for example a weekly \&quot;what is on\&quot; note to people who asked for it, or only ever answer when asked?&quot;}, {&quot;key&quot;: &quot;red_lines&quot;, &quot;text&quot;: &quot;What is the line I must never cross? Say what would make you stop trusting me.&quot;}, {&quot;key&quot;: &quot;map_wishes&quot;, &quot;text&quot;: &quot;Last one: what should the map show, or do, that it does not today?&quot;}], &quot;closing&quot;: &quot;Thank you. I have passed your answers to the stewards; they are not published anywhere. You can ask me anything about the county now, or say \&quot;forget that\&quot; to clear this session.&quot;}"></div>
+<div class="suggest" aria-label="Example questions">
+  <button type="button" class="guide-start" data-guide-start>Help shape Lumen</button>
+  <button type="button">Free rainy-day ideas for a 6-year-old?</button>
+  <button type="button">Where can we go with a wheelchair?</button>
+  <button type="button">What's on this week?</button>
+  <button type="button">forget that</button>
+</div>
+<form class="compass-form" data-url="/Pleasant/compass/ask"><input type="hidden" name="csrfmiddlewaretoken" value="rpIsAM6eDQqEfhSwkSSpEzfLYGswkDHteypbXNQQhmDIN7Z0HmsrmNmpUj40kDtF"><label class="skip" for="compass-q">Your question</label><input id="compass-q" type="text" placeholder="Ask one thing, e.g. story time for a toddler" autocomplete="off" maxlength="1000"><button type="submit">Ask</button></form>
+</aside>
+<footer class="site-foot">
+  <div class="foot-grid">
+    <div class="foot-brand"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="36" height="36" role="img" aria-label="Crescent Compass. Freshness gauge: mean P(current) 0.99 over 58 listings; belief moved 0.47 rad this window; 3859 changes"><title>Crescent Compass. Freshness gauge: mean P(current) 0.99 over 58 listings; belief moved 0.47 rad this window; 3859 changes</title><circle cx="50" cy="50" r="46" fill="#cae9ff" opacity="0.35"/><circle cx="50" cy="50" r="44" fill="#364868"/><path d="M50.00,6.00 L52.88,6.09 L55.74,6.38 L58.58,6.85 L61.39,7.50 L64.14,8.34 L66.84,9.35 L69.46,10.54 L72.00,11.89 L74.45,13.42 L76.79,15.09 L79.01,16.92 L81.11,18.89 L83.08,20.99 L84.91,23.21 L86.58,25.55 L88.11,28.00 L89.46,30.54 L90.65,33.16 L91.66,35.86 L92.50,38.61 L93.15,41.42 L93.62,44.26 L93.91,47.12 L94.00,50.00 L93.91,52.88 L93.62,55.74 L93.15,58.58 L92.50,61.39 L91.66,64.14 L90.65,66.84 L89.46,69.46 L88.11,72.00 L86.58,74.45 L84.91,76.79 L83.08,79.01 L81.11,81.11 L79.01,83.08 L76.79,84.91 L74.45,86.58 L72.00,88.11 L69.46,89.46 L66.84,90.65 L64.14,91.66 L61.39,92.50 L58.58,93.15 L55.74,93.62 L52.88,93.91 L50.00,94.00 L50.00,94.00 L47.16,93.91 L44.34,93.62 L41.54,93.15 L38.78,92.50 L36.06,91.66 L33.41,90.65 L30.82,89.46 L28.32,88.11 L25.91,86.58 L23.60,84.91 L21.41,83.08 L19.34,81.11 L17.40,79.01 L15.60,76.79 L13.95,74.45 L12.45,72.00 L11.11,69.46 L9.94,66.84 L8.94,64.14 L8.12,61.39 L7.47,58.58 L7.01,55.74 L6.73,52.88 L6.64,50.00 L6.73,47.12 L7.01,44.26 L7.47,41.42 L8.12,38.61 L8.94,35.86 L9.94,33.16 L11.11,30.54 L12.45,28.00 L13.95,25.55 L15.60,23.21 L17.40,20.99 L19.34,18.89 L21.41,16.92 L23.60,15.09 L25.91,13.42 L28.32,11.89 L30.82,10.54 L33.41,9.35 L36.06,8.34 L38.78,7.50 L41.54,6.85 L44.34,6.38 L47.16,6.09 L50.00,6.00 Z" fill="#e4b572"><animate attributeName="d" dur="14s" repeatCount="indefinite" calcMode="spline" keyTimes="0;0.5;1" keySplines="0.45 0 0.55 1;0.45 0 0.55 1" values="M50.00,6.00 L52.88,6.09 L55.74,6.38 L58.58,6.85 L61.39,7.50 L64.14,8.34 L66.84,9.35 L69.46,10.54 L72.00,11.89 L74.45,13.42 L76.79,15.09 L79.01,16.92 L81.11,18.89 L83.08,20.99 L84.91,23.21 L86.58,25.55 L88.11,28.00 L89.46,30.54 L90.65,33.16 L91.66,35.86 L92.50,38.61 L93.15,41.42 L93.62,44.26 L93.91,47.12 L94.00,50.00 L93.91,52.88 L93.62,55.74 L93.15,58.58 L92.50,61.39 L91.66,64.14 L90.65,66.84 L89.46,69.46 L88.11,72.00 L86.58,74.45 L84.91,76.79 L83.08,79.01 L81.11,81.11 L79.01,83.08 L76.79,84.91 L74.45,86.58 L72.00,88.11 L69.46,89.46 L66.84,90.65 L64.14,91.66 L61.39,92.50 L58.58,93.15 L55.74,93.62 L52.88,93.91 L50.00,94.00 L50.00,94.00 L47.50,93.91 L45.02,93.62 L42.55,93.15 L40.12,92.50 L37.73,91.66 L35.39,90.65 L33.12,89.46 L30.92,88.11 L28.80,86.58 L26.77,84.91 L24.83,83.08 L23.01,81.11 L21.30,79.01 L19.72,76.79 L18.26,74.45 L16.95,72.00 L15.77,69.46 L14.74,66.84 L13.86,64.14 L13.13,61.39 L12.57,58.58 L12.16,55.74 L11.91,52.88 L11.83,50.00 L11.91,47.12 L12.16,44.26 L12.57,41.42 L13.13,38.61 L13.86,35.86 L14.74,33.16 L15.77,30.54 L16.95,28.00 L18.26,25.55 L19.72,23.21 L21.30,20.99 L23.01,18.89 L24.83,16.92 L26.77,15.09 L28.80,13.42 L30.92,11.89 L33.12,10.54 L35.39,9.35 L37.73,8.34 L40.12,7.50 L42.55,6.85 L45.02,6.38 L47.50,6.09 L50.00,6.00 Z;M50.00,6.00 L52.88,6.09 L55.74,6.38 L58.58,6.85 L61.39,7.50 L64.14,8.34 L66.84,9.35 L69.46,10.54 L72.00,11.89 L74.45,13.42 L76.79,15.09 L79.01,16.92 L81.11,18.89 L83.08,20.99 L84.91,23.21 L86.58,25.55 L88.11,28.00 L89.46,30.54 L90.65,33.16 L91.66,35.86 L92.50,38.61 L93.15,41.42 L93.62,44.26 L93.91,47.12 L94.00,50.00 L93.91,52.88 L93.62,55.74 L93.15,58.58 L92.50,61.39 L91.66,64.14 L90.65,66.84 L89.46,69.46 L88.11,72.00 L86.58,74.45 L84.91,76.79 L83.08,79.01 L81.11,81.11 L79.01,83.08 L76.79,84.91 L74.45,86.58 L72.00,88.11 L69.46,89.46 L66.84,90.65 L64.14,91.66 L61.39,92.50 L58.58,93.15 L55.74,93.62 L52.88,93.91 L50.00,94.00 L50.00,94.00 L47.12,93.91 L44.26,93.62 L41.42,93.15 L38.61,92.50 L35.86,91.66 L33.16,90.65 L30.54,89.46 L28.00,88.11 L25.55,86.58 L23.21,84.91 L20.99,83.08 L18.89,81.11 L16.92,79.01 L15.09,76.79 L13.42,74.45 L11.89,72.00 L10.54,69.46 L9.35,66.84 L8.34,64.14 L7.50,61.39 L6.85,58.58 L6.38,55.74 L6.09,52.88 L6.00,50.00 L6.09,47.12 L6.38,44.26 L6.85,41.42 L7.50,38.61 L8.34,35.86 L9.35,33.16 L10.54,30.54 L11.89,28.00 L13.42,25.55 L15.09,23.21 L16.92,20.99 L18.89,18.89 L20.99,16.92 L23.21,15.09 L25.55,13.42 L28.00,11.89 L30.54,10.54 L33.16,9.35 L35.86,8.34 L38.61,7.50 L41.42,6.85 L44.26,6.38 L47.12,6.09 L50.00,6.00 Z;M50.00,6.00 L52.88,6.09 L55.74,6.38 L58.58,6.85 L61.39,7.50 L64.14,8.34 L66.84,9.35 L69.46,10.54 L72.00,11.89 L74.45,13.42 L76.79,15.09 L79.01,16.92 L81.11,18.89 L83.08,20.99 L84.91,23.21 L86.58,25.55 L88.11,28.00 L89.46,30.54 L90.65,33.16 L91.66,35.86 L92.50,38.61 L93.15,41.42 L93.62,44.26 L93.91,47.12 L94.00,50.00 L93.91,52.88 L93.62,55.74 L93.15,58.58 L92.50,61.39 L91.66,64.14 L90.65,66.84 L89.46,69.46 L88.11,72.00 L86.58,74.45 L84.91,76.79 L83.08,79.01 L81.11,81.11 L79.01,83.08 L76.79,84.91 L74.45,86.58 L72.00,88.11 L69.46,89.46 L66.84,90.65 L64.14,91.66 L61.39,92.50 L58.58,93.15 L55.74,93.62 L52.88,93.91 L50.00,94.00 L50.00,94.00 L47.50,93.91 L45.02,93.62 L42.55,93.15 L40.12,92.50 L37.73,91.66 L35.39,90.65 L33.12,89.46 L30.92,88.11 L28.80,86.58 L26.77,84.91 L24.83,83.08 L23.01,81.11 L21.30,79.01 L19.72,76.79 L18.26,74.45 L16.95,72.00 L15.77,69.46 L14.74,66.84 L13.86,64.14 L13.13,61.39 L12.57,58.58 L12.16,55.74 L11.91,52.88 L11.83,50.00 L11.91,47.12 L12.16,44.26 L12.57,41.42 L13.13,38.61 L13.86,35.86 L14.74,33.16 L15.77,30.54 L16.95,28.00 L18.26,25.55 L19.72,23.21 L21.30,20.99 L23.01,18.89 L24.83,16.92 L26.77,15.09 L28.80,13.42 L30.92,11.89 L33.12,10.54 L35.39,9.35 L37.73,8.34 L40.12,7.50 L42.55,6.85 L45.02,6.38 L47.50,6.09 L50.00,6.00 Z"/></path><defs><radialGradient id="pc_limb" cx="0.42" cy="0.40" r="0.62"><stop offset="0.6" stop-color="#000" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity="0.22"/></radialGradient></defs><circle cx="50" cy="50" r="44" fill="url(#pc_limb)"/><circle cx="50" cy="50" r="46" fill="none" stroke="#00848b" stroke-width="1.5" opacity="0.8"/><circle cx="50.0" cy="1.8" r="0.9" fill="#00848b" opacity="0.8"/><circle cx="74.1" cy="8.3" r="0.9" fill="#00848b" opacity="0.8"/><circle cx="91.7" cy="25.9" r="0.9" fill="#00848b" opacity="0.8"/><circle cx="98.2" cy="50.0" r="0.9" fill="#00848b" opacity="0.8"/><circle cx="91.7" cy="74.1" r="0.9" fill="#00848b" opacity="0.8"/><circle cx="74.1" cy="91.7" r="0.9" fill="#00848b" opacity="0.8"/><circle cx="50.0" cy="98.2" r="0.9" fill="#00848b" opacity="0.8"/><circle cx="25.9" cy="91.7" r="0.9" fill="#00848b" opacity="0.8"/><circle cx="8.3" cy="74.1" r="0.9" fill="#00848b" opacity="0.8"/><circle cx="1.8" cy="50.0" r="0.9" fill="#00848b" opacity="0.8"/><circle cx="8.3" cy="25.9" r="0.9" fill="#00848b" opacity="0.8"/><circle cx="25.9" cy="8.3" r="0.9" fill="#00848b" opacity="0.8"/></svg><p>Crescent Compass is a locally governed atlas for families, neighbours and newcomers. It helps people notice and care for their shared surroundings, and it never claims to be a complete picture of a place or of the people who live there.</p></div>
+    <div><p class="eyebrow">Visit</p><p>Organisation name<br>Street address<br>Crescent City, CA 95531<br><small class="ph-note">placeholder: owner supplies</small></p></div>
+    <div><p class="eyebrow">Contact</p><p><a href="mailto:hello@example.invalid">hello@example.invalid</a><br><a href="/Pleasant/contribute/">Suggest a place or correction</a><br><a href="/Pleasant/about/#governance">Governance and commitments</a><br><a href="/Pleasant/privacy/">Privacy</a></p></div>
+  </div>
+  <div class="foot-rule"></div>
+  <p class="foot-small">Map data © OpenStreetMap contributors (ODbL) via Protomaps · Terrain USGS 3DEP · Boundaries U.S. Census Bureau · Fonts Noto Sans and Cormorant Garamond (OFL). Directory guidance is not medical, legal or emergency advice; verification dates are shown on every listing. <span class="right">Crescent City · California</span></p>
+</footer>
+<script src="/Pleasant/static/pc/compass.js?v=5fb5804699" defer></script>
+<script src="/Pleasant/static/pc/static.js?v=5fb5804699" defer></script>
+
+</body>
+</html>
