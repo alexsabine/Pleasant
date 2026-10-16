@@ -558,5 +558,36 @@
    }
   }
  },
- "hybrid_fixed": 289
+ "hybrid_fixed": 289,
+ "lumen": {
+  "per_turn_haiku": 0.00248,
+  "per_turn_opus": 0.05056,
+  "escalate": 0.05,
+  "scenarios": {
+   "light": {
+    "turns": 15600,
+    "haiku": 38.69,
+    "opus_jobs": 36.67,
+    "opus_escalations": 39.44,
+    "hosting": 289,
+    "total": 403.79
+   },
+   "typical": {
+    "turns": 41600,
+    "haiku": 103.17,
+    "opus_jobs": 70.27,
+    "opus_escalations": 105.16,
+    "hosting": 289,
+    "total": 567.6
+   },
+   "heavy": {
+    "turns": 104000,
+    "haiku": 257.92,
+    "opus_jobs": 162.55,
+    "opus_escalations": 262.91,
+    "hosting": 289,
+    "total": 972.38
+   }
+  }
+ }
 }

@@ -39,6 +39,16 @@
 | Quadruplicate events sorted | 12 months | 0.0330 | 0.40 |
 | Monthly trust and audit summary | 12 months | 0.0500 | 0.60 |
 
+## Lumen plan: Haiku front desk, Opus specialist, hybrid hosting
+
+Per turn: Haiku $0.0025, Opus $0.0506; 5% of turns escalated to Opus.
+
+| Use | Turns/year | Haiku | Opus jobs | Opus escalations | Hosting | Total |
+|---|---|---|---|---|---|---|
+| Light | 15,600 | $39 | $37 | $39 | $289 | $404 |
+| Typical | 41,600 | $103 | $70 | $105 | $289 | $568 |
+| Heavy | 104,000 | $258 | $163 | $263 | $289 | $972 |
+
 ## Suggested hybrid hosting
 
 Public pages on GitHub Pages (covered by GitHub Pro), members' features on a 2 GB server: fixed $289/year.

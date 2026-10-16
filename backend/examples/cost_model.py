@@ -62,6 +62,16 @@ FIXED = [  # US$ per year
 # Suggested hybrid: public pages served free by GitHub Pages (static export), members' features on a
 # smaller 2 GB server ($12/month) because public traffic no longer reaches it.
 HYBRID_SERVER = 144
+
+# The "Lumen" plan: a grounded assistant. Claude Haiku 5.5 is the front desk for every turn, with the whole
+# compact catalogue of published listings in each request and allow-listed tools; Opus 5.5 takes the jobs
+# above (photos, website checks, digest, drafts) plus the turns where Haiku's answer fails our checks.
+HAIKU_IN, HAIKU_OUT = 0.10, 0.50
+TURN = (12000, 700)        # system + tools 1.5k, catalogue 8k, six-turn memory 1.5k, retrieved records 1k; reply + reasoning
+TOOL_ROUNDTRIP = 1.6       # a tool call means a second model pass on most turns
+ESCALATE = 0.05            # share of turns re-answered by Opus
+CATALOGUE = 8000           # tokens of the catalogue, cached on Opus at $0.20 per million
+OPUS_CACHE_READ = 0.20
 SINGLE_SERVER = 288
 
 
@@ -137,7 +147,21 @@ def main():
     out["hybrid_fixed"] = hyb
     for k in USAGE:
         out["scenarios"][k]["optimised"]["hybrid_total"] = round(out["scenarios"][k]["optimised"]["ai"] + hyb, 2)
+    haiku_turn = (TURN[0] * HAIKU_IN + TURN[1] * HAIKU_OUT) / 1e6 * TOOL_ROUNDTRIP
+    opus_turn = ((TURN[0] - CATALOGUE) * IN + CATALOGUE * OPUS_CACHE_READ + TURN[1] * OUT) / 1e6 * TOOL_ROUNDTRIP
+    lumen = {}
+    for k, u in USAGE.items():
+        turns = MEMBERS * WEEKS * u["questions_wk"]
+        specialist = sum(r["year"] for r in out["scenarios"][k]["optimised"]["rows"][1:])
+        front, esc = turns * haiku_turn, turns * ESCALATE * opus_turn
+        lumen[k] = {"turns": turns, "haiku": round(front, 2), "opus_jobs": round(specialist, 2), "opus_escalations": round(esc, 2),
+                    "hosting": hyb, "total": round(front + specialist + esc + hyb, 2)}
+    out["lumen"] = {"per_turn_haiku": round(haiku_turn, 5), "per_turn_opus": round(opus_turn, 5), "escalate": ESCALATE, "scenarios": lumen}
     (ROOT / "design" / "cost_model.json").write_text(json.dumps(out, indent=1))
+    L += ["", "## Lumen plan: Haiku front desk, Opus specialist, hybrid hosting", "",
+          f"Per turn: Haiku ${haiku_turn:.4f}, Opus ${opus_turn:.4f}; {int(ESCALATE*100)}% of turns escalated to Opus.", "",
+          "| Use | Turns/year | Haiku | Opus jobs | Opus escalations | Hosting | Total |", "|---|---|---|---|---|---|---|"]
+    L += [f"| {USAGE[k]['label']} | {v['turns']:,} | ${v['haiku']:,.0f} | ${v['opus_jobs']:,.0f} | ${v['opus_escalations']:,.0f} | ${v['hosting']} | ${v['total']:,.0f} |" for k, v in lumen.items()]
     L += ["", "## Suggested hybrid hosting", "",
           f"Public pages on GitHub Pages (covered by GitHub Pro), members' features on a 2 GB server: fixed ${hyb}/year.", "",
           "| Use | Total optimised, hybrid |", "|---|---|"]
