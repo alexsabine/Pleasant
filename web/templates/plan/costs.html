@@ -21,7 +21,7 @@
 <h2>How an AI call works</h2>
 <ol class="flow">
   <li><b>A member asks.</b> "Somewhere free and indoors for a 4-year-old on Saturday?"</li>
-  <li><b>Our server prepares the request.</b> It adds the published listings as a short catalogue, the member's saved settings if they allowed it, and the tools Lumen may use. Each question is sent on its own, with no record of earlier ones. Nothing private is included.</li>
+  <li><b>Our server prepares the request.</b> It adds the published listings as a short catalogue, the member's saved settings if they allowed it, the last few turns of the conversation, and the tools Lumen may use. Nothing private is included.</li>
   <li><b>Claude Haiku reads it</b> and asks our server to run a search, for example "indoor, free, ages 3 to 5".</li>
   <li><b>Our server runs the search</b> on published listings only, applies the 75 percent rule, and hands back the matching records.</li>
   <li><b>Haiku writes the answer</b>, naming the listings each sentence relies on. It appears word by word.</li>

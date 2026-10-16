@@ -63,7 +63,7 @@ def compose(decision, memory_notes: list[str]) -> dict:
     if decision.question:
         lines.append(decision.question)
     if memory_notes:
-        lines.append("(I used " + "; ".join(memory_notes) + ". You can change these in My atlas.)")
+        lines.append("(I used " + "; ".join(memory_notes) + ". Say 'forget that' to clear our conversation.)")
     limitations = ["Only published, editor-verified records are used; nothing is inferred about places not listed.",
                    "Access status 'unknown' is never presented as accessible.",
                    "Verification dates are shown; conditions can change between checks."]

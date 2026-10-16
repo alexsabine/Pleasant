@@ -380,3 +380,9 @@ code{overflow-wrap:anywhere}
 .agreement{max-width:70ch;background:var(--pc-surface);border:1px solid var(--pc-line);border-radius:12px;padding:12px 16px;margin:12px 0}
 .agreement ol{padding-left:20px}
 .agreement li{margin:6px 0}
+.plan-body .option{background:var(--pc-surface);border:1px solid var(--pc-line);border-radius:12px;padding:12px 16px}
+.plan-body .option h3{margin-top:4px}
+.plan-body .option .pref{display:block;font-weight:400;font-size:.85rem;color:var(--pc-ink-2);margin-top:2px}
+.plan-body .option ul{padding-left:18px;margin:6px 0}
+.plan-body .sources-list{font-size:.88rem;color:var(--pc-ink-2)}
+.plan-body .sources-list li{margin:4px 0;overflow-wrap:anywhere}

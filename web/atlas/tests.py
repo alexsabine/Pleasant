@@ -187,9 +187,11 @@ class PlanPages(TestCase):
         self.assertIn("Thirteen simple T-charts", c.get("/plan/at-a-glance/").content.decode())
         legal = c.get("/plan/legal/").content.decode()
         for text in ("Legal considerations", "The contract between Alex and Kim", "Group meetups", "Information Commission",
-                     "Accounts in Alex's name", "What US law asks of Kim", "keeps no record of conversations",
-                     "Stewards: trust, recording and the agreement", "Crescent Compass steward agreement", "Fair blame"):
+                     "Option 1: Alex holds them for Kim", "preferred, but only because it is easier for Kim", "Option 2: Kim holds them",
+                     "What Crescent Compass is", "does not run, staff or supervise", "for up to six hours", "Lumen and stewards",
+                     "Crescent Compass steward agreement", "Fair blame", "Legal summaries reviewed"):
             self.assertIn(text, legal)
+        self.assertNotIn("solicitor", legal)
         privacy = c.get("/privacy/").content.decode()
         self.assertIn("aged 18 and over", privacy)
         self.assertIn("Do Not Track", privacy)

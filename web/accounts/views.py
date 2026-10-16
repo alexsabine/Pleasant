@@ -108,7 +108,7 @@ def download_my_data(request):
                                for a in StewardAgreement.objects.filter(user=u)],
         "steward_entries": [{"created_at": e.created_at.isoformat(), "instruction": e.instruction, "outcome": e.outcome}
                             for e in StewardEntry.objects.filter(steward=u)],
-        "note": "Lumen keeps no record of conversations. The log records what Lumen showed, not what you typed, and refers to members only by their log reference. Stewards' map instructions are recorded under the steward agreement.",
+        "note": "Lumen remembers a conversation for up to six hours, then deletes it. The log records what Lumen showed, not what you typed, and refers to members only by their log reference. Stewards' map instructions are recorded under the steward agreement.",
     }
     resp = JsonResponse(data, json_dumps_params={"indent": 2})
     resp["Content-Disposition"] = 'attachment; filename="crescent-compass-my-data.json"'

@@ -84,15 +84,29 @@ class CompassGuarantees(TestCase):
         self.assertEqual(rec.hash, d["provenance"]["audit_hash"])
         self.assertTrue(AuditEntry.verify_chain()[0])
 
-    def test_lumen_keeps_no_conversation(self):
+    def test_memory_carries_preferences_and_can_be_forgotten(self):
         self.ask("free things for a 3 year old")
         d = self.ask("anything with wheelchair access?")
+        self.assertTrue(any("age" in m for m in d["provenance"]["memory_used"]))
+        self.assertEqual(d["provenance"]["intent"]["age"], 3)
+        self.assertEqual(self.ask("forget that")["action"], "forget")
+        d2 = self.ask("anything with wheelchair access?")
+        self.assertEqual(d2["provenance"]["memory_used"], [])
+
+    def test_memory_invalidates_when_projection_changes(self):
+        self.ask("free things for a 3 year old")
+        make_resource("Newly Published Place", days=1)  # publishing bumps the projection version
+        d = self.ask("anything with wheelchair access?")
         self.assertEqual(d["provenance"]["memory_used"], [])
-        self.assertIsNone(d["provenance"]["intent"]["age"])
-        self.assertNotIn("compass_ctx", self.c.session.keys())
-        f = self.ask("forget that")
-        self.assertEqual(f["action"], "forget")
-        self.assertIn("don't keep our conversation", f["text"])
+
+    def test_memory_is_deleted_after_six_hours_even_if_nobody_returns(self):
+        import time
+        from compass.memory import KEY, purge_expired
+        self.ask("free things for a 3 year old")
+        self.assertIn(KEY, self.c.session.keys())
+        self.assertEqual(purge_expired(), 0)  # still within six hours
+        self.assertEqual(purge_expired(now=time.time() + 6 * 3600 + 60), 1)
+        self.assertNotIn(KEY, self.c.session.keys())
 
     def test_log_records_what_was_shown_not_what_was_typed(self):
         d = self.ask("free things near Grandma Smith's house for a 3 year old")

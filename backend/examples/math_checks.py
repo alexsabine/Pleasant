@@ -502,8 +502,7 @@ def agt_checks() -> None:
     web = _os.path.join(_os.path.dirname(__file__), "..", "..", "web")
     if web not in _sys.path:
         _sys.path.insert(0, web)
-    from compass import honesty
-    import importlib.util as _ilu
+    from compass import honesty, memory
 
     # G1: show threshold is exactly p* = -u_false / (u_true - u_false) under the published utilities
     u_true, u_false, u_abst = 1.0, -3.0, 0.0
@@ -533,15 +532,22 @@ def agt_checks() -> None:
           len(kept) == 3 and len(dropped) == 3 and kept[0].startswith("Harbour"),
           f"kept {len(kept)}: {[k[:30] for k in kept]}; dropped {len(dropped)}: {[d.split(':')[0] for d in dropped]}")
 
-    # G3: Lumen keeps no conversation (owner's decision, Oct 2026): no working-memory module exists, so an answer
-    # depends only on the question, the published projection and the member's opt-in saved settings
-    no_memory_module = _ilu.find_spec("compass.memory") is None
-    views_src = open(_os.path.join(web, "compass", "views.py"), encoding="utf8").read()
-    no_session_store = "request.session[" not in views_src and "memory." not in views_src
-    check("AGT", "Lumen keeps no conversation: no working-memory module and no session writes in the ask path, "
-                 "so each answer depends only on the question, the published listings and opt-in saved settings",
-          no_memory_module and no_session_store,
-          f"compass.memory present={not no_memory_module}; session writes in views={not no_session_store}")
+    # G3: working memory is bounded, stores ids not facts, folds to preferences, invalidates on projection change
+    sess = {}
+    ctx = memory.load(sess, projection_version=1)
+    for i in range(20):
+        intent = {"age": 3 + (i % 4), "free_only": i % 2 == 0, "max_cost": None, "requires_accessibility": False, "community": None}
+        ctx = memory.remember(sess, ctx, f"question {i} about a place with hours 9-5", intent, [i, i + 1], "show")
+    bounded = len(ctx["turns"]) == memory.DEFAULTS["COMPASS_WORKING_CONTEXT_TURNS"]
+    no_facts = all(set(t.keys()) == {"q", "intent", "shown", "action", "t"} and all(isinstance(x, int) for x in t["shown"]) for t in ctx["turns"])
+    folded = "age" in ctx["prefs"] and ctx["prefs"]["age"]["value"] in (3, 4, 5, 6)
+    ctx2 = memory.load(sess, projection_version=2)
+    invalidated = ctx2["turns"] == [] and ctx2["invalidated_from"] == 1
+    memory.forget(sess)
+    check("AGT", "Working memory: bounded to N turns, holds record ids and parsed preferences only, folds older turns into preferences, "
+                 "and is rebuilt when the projection version changes",
+          bounded and no_facts and folded and invalidated and memory.KEY not in sess,
+          f"after 20 turns: {len(ctx['turns'])} kept, prefs={sorted(ctx['prefs'])}, invalidated on projection change={invalidated}, forget clears={memory.KEY not in sess}")
 
     # G4: the system's trust in its own freshness estimates calibrates with evidence (synthetic)
     rng = random.Random(21)
@@ -654,7 +660,7 @@ def write_report(path: str, elapsed: float) -> None:
         lines.append(f"| {par} | {name} | {'PASS' if ok else 'FAIL'} | {detail.replace('|', '/')} |")
     lines += ["", "Paradigm key: BDT = Bayesian decision theory; AIF = Active Inference / FEP; "
               "PHX = Phoenix / CRR information geometry; MEM = memory, governance and agent interface; "
-              "H3 = derived hexagonal index; AGT = Crescent Compass honesty and statelessness; LOGO = the living crescent gauge; GEO = geolocation quality.", "",
+              "H3 = derived hexagonal index; AGT = Crescent Compass honesty and memory; LOGO = the living crescent gauge; GEO = geolocation quality.", "",
               "See `research/04_mathematics_register.md` for the public sources and the interpretation of each row."]
     with open(path, "w", encoding="utf8") as fh:
         fh.write("\n".join(lines) + "\n")

@@ -135,6 +135,8 @@ COMPASS_MODEL = os.environ.get("COMPASS_MODEL", "claude-opus-5-5")
 COMPASS_MAX_TOKENS = int(os.environ.get("COMPASS_MAX_TOKENS", "2000"))
 COMPASS_DAILY_REQUEST_BUDGET = int(os.environ.get("COMPASS_DAILY_REQUEST_BUDGET", "200"))
 COMPASS_UTILITIES = {"show_true": 1.0, "show_false": -3.0, "abstain": 0.0}
+COMPASS_WORKING_CONTEXT_TURNS = 6
+COMPASS_SESSION_TTL_SECONDS = 60 * 60 * 6   # Lumen's conversation memory; purged nightly by purge_lumen_memory
 
 LOGGING = {
     "version": 1, "disable_existing_loggers": False,
