@@ -317,7 +317,7 @@ def _cost_context():
     opus_only = {k: round(d["scenarios"][k]["optimised"]["ai"] + d["hybrid_fixed"]) for k in d["scenarios"]}
     as_built = {k: round(d["scenarios"][k]["as_built"]["ai"] + d["hybrid_fixed"]) for k in d["scenarios"]}
     fixed = [("Small server for members' features (2 GB, $12 a month)", 144), ("Off-site backups and photo storage", 72),
-             ("GitHub Pro: private code, public map hosted free on GitHub Pages", 48), ("Domain name, e.g. crescentcompass.ca", 20),
+             ("GitHub Pro: private code, public map hosted free on GitHub Pages", 48), ("Domain name, e.g. crescentcompass.org", 20),
              ("Email for sign-up and password resets", 5), ("Anthropic API account (pay as you go, no subscription)", 0),
              ("Security certificate, uptime alerts, map tiles, trust checks", 0)]
     return {"cost_rows": rows, "fixed_items": fixed, "fixed_total": d.get("hybrid_fixed"), "per_turn_haiku": lum.get("per_turn_haiku"),

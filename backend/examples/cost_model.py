@@ -49,7 +49,7 @@ T = {
 FIXED = [  # US$ per year
     ("Server for the website, database and Compass (4 GB virtual server, $24/month)", 288),
     ("Off-site backups and photo storage (object storage, about $6/month)", 72),
-    ("Domain name, e.g. crescentcompass.ca", 20),
+    ("Domain name, e.g. crescentcompass.org", 20),
     ("Email for sign-up and password resets (pay-per-use service)", 5),
     ("GitHub Pro for the code owner: private code, public preview site ($4/month)", 48),
     ("Anthropic API account: pay as you go, no subscription", 0),
