@@ -6,9 +6,10 @@
  * - Coherence, C = (1/sigma) int v_FR dt: every clearing moves along the Fisher-Rao geodesic at constant speed,
  *   so fog thins (and rolls back) evenly.
  * - Rupture, a unit event at t_{n+1}: an arrival. Targets change only then, and the explored count rises by one.
- * - Regeneration, m_new = q m + (1 - q) Phi, q = 0.75, on the event clock: at each arrival older paths move toward
- *   Phi = 1/2, the fixed point, so they settle as a light haze ("explored, not in sight"); the newest walk is clear
- *   (Phi = 1); visited places stay clear.
+ * - Regeneration, m_new = q m + (1 - q) Phi, on the event clock: its fixed point is Phi. With Phi = 1 for every
+ *   path and place, explored ground stays clear for good, as in a game: you can always see where you have been.
+ * - Each walk is one capsule (a band from where it started to where the explorer is) that grows behind them, so a
+ *   long journey costs one shape per walk. Trails are saved on this device with the places visited.
  * - The explorer carries a lantern footprint that moves with every step, so the fog visibly parts around them.
  * - Footprints are flat-topped, exp(-(d^2/r^2)^2 / 2): a clear core and a crisp, wispy edge. The edge is shaded by
  *   the Bernoulli variance u(1 - u), largest where the belief is most uncertain.
@@ -25,7 +26,7 @@
   if (!btn) return;
   const reduced = window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches;
   const KEY = "pc_fog_v2", SCALE = 0.5, FPS = 30;
-  const VISIT_M = 340, TRAIL_M = 150, LANTERN_M = 230, Q = 0.75, PHI_PAST = 0.5;   // radii (m); regeneration
+  const VISIT_M = 340, TRAIL_M = 160, LANTERN_M = 230, Q = 0.75, PHI = 1;   // radii (m); regeneration, fixed point
   const V_FR = Math.PI / 1.6;                              // Fisher-Rao speed: a full clearing takes 1.6 s
   const LON0 = -124.20, LAT0 = 41.755, KX = 111320 * Math.cos(LAT0 * Math.PI / 180), KY = 110540;
   const toXY = (lon, lat) => [(lon - LON0) * KX, (lat - LAT0) * KY];
@@ -44,7 +45,8 @@
     return null;
   }
   function save() {
-    try { localStorage.setItem(KEY, JSON.stringify({ visited: visited.map(p => p.id), current: current && current.id, walked })); } catch (e) { /* ignore */ }
+    const trails = spots.filter(s => s.kind === "trail").map(s => [s.a[0], s.a[1], s.b[0], s.b[1]].map(v => +v.toFixed(5)));
+    try { localStorage.setItem(KEY, JSON.stringify({ visited: visited.map(p => p.id), current: current && current.id, walked, trails })); } catch (e) { /* ignore */ }
   }
 
   // --- geography ---------------------------------------------------------------------------------------------
@@ -135,21 +137,23 @@
     moveLantern(p.lon, p.lat);
   }
   function moveLantern(lon, lat) {                         // the clearing the explorer carries with them
-    const [x, y] = toXY(lon, lat);
-    if (!lantern) lantern = { x, y, r: LANTERN_M, kind: "lantern", target: 1, th: reduced ? 0 : Math.PI, c: reduced ? 1 : 0 };
-    else { lantern.x = x; lantern.y = y; }
+    if (!lantern) lantern = capsule([lon, lat], [lon, lat], LANTERN_M, "lantern", !reduced);
+    else { lantern.a = lantern.b = [lon, lat]; lantern.ax = lantern.bx = toXY(lon, lat)[0]; lantern.ay = lantern.by = toXY(lon, lat)[1]; }
   }
 
   // --- footprints: Fisher-Rao clearing, regeneration on arrivals -------------------------------------------------
   const thetaOf = c => 2 * Math.asin(Math.sqrt(Math.min(1, Math.max(0, 1 - c))));   // theta of u = 1 - c
-  function footprint(lon, lat, r, kind) {
-    const [x, y] = toXY(lon, lat);
-    spots.push({ x, y, r, kind, walk: arrivals, target: 1, th: reduced ? 0 : Math.PI, c: reduced ? 1 : 0 });
+  // every footprint is a capsule from a to b ([lon, lat]); a place is a capsule of zero length
+  function capsule(a, b, r, kind, animate) {
+    const [ax, ay] = toXY(a[0], a[1]), [bx, by] = toXY(b[0], b[1]);
+    return { a, b, ax, ay, bx, by, r, kind, walk: arrivals, target: 1, th: animate ? Math.PI : 0, c: animate ? 0 : 1 };
   }
+  function footprint(lon, lat, r, kind) { const s = capsule([lon, lat], [lon, lat], r, kind, !reduced); spots.push(s); return s; }
+  function stretch(s, lon, lat) { s.b = [lon, lat]; [s.bx, s.by] = toXY(lon, lat); }
   function arrive(p) {                                     // a rupture: one event of unit weight
     arrivals += 1;
-    // regeneration toward the fixed point: the walk just finished stays clear (Phi = 1), older paths settle at Phi = 1/2
-    for (const s of spots) if (s.kind === "trail") s.target = Q * s.target + (1 - Q) * (s.walk === arrivals - 1 ? 1 : PHI_PAST);
+    // regeneration: m <- q m + (1 - q) Phi has fixed point Phi; with Phi = 1, explored ground stays clear
+    for (const s of spots) if (s.kind === "trail") s.target = Q * s.target + (1 - Q) * PHI;
     current = p; visited.push(p); footprint(p.lon, p.lat, VISIT_M, "visit");
     if (reduced) for (const s of spots) { s.th = thetaOf(s.target); s.c = s.target; }
   }
@@ -185,12 +189,13 @@
     el.classList.add("walking");
     el.classList.toggle("west", p.lon < from.lon);
     const start = performance.now();
-    let trail = { lon: from.lon, lat: from.lat };
+    const trail = capsule([from.lon, from.lat], [from.lon, from.lat], TRAIL_M, "trail", false);   // grows behind the explorer
+    spots.push(trail);
     (function walk(now) {
       const k = Math.min(1, (now - start) / dur), e = k < 0.5 ? 2 * k * k : 1 - Math.pow(-2 * k + 2, 2) / 2;
       const lon = from.lon + (p.lon - from.lon) * e, lat = from.lat + (p.lat - from.lat) * e;
       explorer.setLngLat([lon, lat]); moveLantern(lon, lat);
-      if (metres(trail, { lon, lat }) > TRAIL_M * 0.6) { footprint(lon, lat, TRAIL_M, "trail"); trail = { lon, lat }; }
+      stretch(trail, lon, lat);
       if (k < 1) return requestAnimationFrame(walk);
       el.classList.remove("walking");
       walked += d;
@@ -207,7 +212,7 @@
   const FRAG = (precision, ns) => `precision ${precision} float;
     #define NS ${ns}
     varying vec2 vW;
-    uniform vec2 uWind; uniform float uT; uniform vec4 uSpots[NS]; uniform int uCount;
+    uniform vec2 uWind; uniform float uT; uniform vec4 uSeg[NS]; uniform vec4 uRC[NS / 2]; uniform int uCount;
     uniform vec2 uCoast[7]; uniform vec3 uLo; uniform vec3 uHi; uniform float uMax; uniform float uMpp;
     uniform vec4 uLamp; uniform vec3 uWarm;
     float hash(vec2 p){ vec3 p3 = fract(vec3(p.xyx) * 0.1031); p3 += dot(p3, p3.yzx + 33.33); return fract((p3.x + p3.y) * p3.z); }
@@ -248,9 +253,11 @@
       float wob = fbm3(km * 1.3 + vec2(3.1, 7.7) + 0.02 * uT, 770.0) - 0.5;   // ragged, breathing edges to each clearing
       float logu = 0.0;
       for (int i = 0; i < NS; i++){ if (i >= uCount) break;
-        vec4 s = uSpots[i]; vec2 dv = vW - s.xy;
-        float e = dot(dv, dv) / (s.z * s.z) * (1.0 + 0.9 * wob);
-        logu += log(max(1e-4, 1.0 - s.w * exp(-0.5 * e * e))); }       // flat-topped: clear core, crisp edge
+        vec4 sg = uSeg[i]; vec4 rc4 = uRC[i / 2]; vec2 rc = (i - 2 * (i / 2)) == 0 ? rc4.xy : rc4.zw;
+        vec2 pa = vW - sg.xy, ba = sg.zw - sg.xy;           // distance to the capsule from a to b
+        vec2 dv = pa - ba * clamp(dot(pa, ba) / max(dot(ba, ba), 1e-3), 0.0, 1.0);
+        float e = dot(dv, dv) / (rc.x * rc.x) * (1.0 + 0.9 * wob);
+        logu += log(max(1e-4, 1.0 - rc.y * exp(-0.5 * e * e))); }      // flat-topped: clear core, crisp edge
       float u = clamp(exp(logu), 0.0, 1.0);                 // belief the spot is unexplored
       float a = uMax * cover * (2.0 / 3.14159265) * asin(sqrt(u));   // density x theta / pi, the Fisher-Rao angle
       vec3 col = mix(uLo, uHi, lit) * mix(0.93, 1.0, lit);
@@ -269,14 +276,14 @@
     gl = canvas.getContext("webgl", { premultipliedAlpha: true, alpha: true, antialias: false, depth: false, stencil: false });
     if (!gl) return false;
     const hp = gl.getShaderPrecisionFormat(gl.FRAGMENT_SHADER, gl.HIGH_FLOAT);
-    NS = Math.max(8, Math.min(64, gl.getParameter(gl.MAX_FRAGMENT_UNIFORM_VECTORS) - 24));
+    NS = 2 * Math.floor(Math.max(8, Math.min(120, (gl.getParameter(gl.MAX_FRAGMENT_UNIFORM_VECTORS) - 24) / 1.5)) / 2);   // 1.5 vectors each
     prog = gl.createProgram();
     gl.attachShader(prog, compile(gl.VERTEX_SHADER, VERT));
     gl.attachShader(prog, compile(gl.FRAGMENT_SHADER, FRAG(hp && hp.precision > 0 ? "highp" : "mediump", NS)));
     gl.linkProgram(prog);
     if (!gl.getProgramParameter(prog, gl.LINK_STATUS)) throw new Error(gl.getProgramInfoLog(prog));
     gl.useProgram(prog);
-    ["uWind", "uT", "uSpots", "uCount", "uCoast", "uLo", "uHi", "uMax", "uMpp", "uLamp", "uWarm"].forEach(n => { loc[n] = gl.getUniformLocation(prog, n); });
+    ["uWind", "uT", "uSeg", "uRC", "uCount", "uCoast", "uLo", "uHi", "uMax", "uMpp", "uLamp", "uWarm"].forEach(n => { loc[n] = gl.getUniformLocation(prog, n); });
     loc.aPos = gl.getAttribLocation(prog, "aPos"); loc.aWorld = gl.getAttribLocation(prog, "aWorld");
     buf = gl.createBuffer();
     gl.uniform2fv(loc.uCoast, new Float32Array(COAST.flat()));
@@ -314,17 +321,20 @@
     const live = lantern && lantern.c > 0.004 ? [lantern] : [];
     for (let i = spots.length - 1; i >= 0 && live.length < NS; i--) {
       const s = spots[i], m = 3 * s.r;
-      if (s.c > 0.004 && s.x > minX - m && s.x < maxX + m && s.y > minY - m && s.y < maxY + m) live.push(s);
+      if (s.c > 0.004 && Math.max(s.ax, s.bx) > minX - m && Math.min(s.ax, s.bx) < maxX + m && Math.max(s.ay, s.by) > minY - m && Math.min(s.ay, s.by) < maxY + m) live.push(s);
     }
-    const arr = new Float32Array(NS * 4);
+    const seg = new Float32Array(NS * 4), rc = new Float32Array(NS * 2);
     // a visit blooms out from lantern size to full size as it clears (the rupture made visible)
-    live.forEach((s, i) => { arr[i * 4] = s.x; arr[i * 4 + 1] = s.y; arr[i * 4 + 2] = s.kind === "visit" ? s.r * (0.6 + 0.4 * s.c) : s.r; arr[i * 4 + 3] = s.c; });
+    live.forEach((s, i) => {
+      seg.set([s.ax, s.ay, s.bx, s.by], i * 4);
+      rc.set([s.kind === "visit" ? s.r * (0.6 + 0.4 * s.c) : s.r, s.c], i * 2);
+    });
     const col = colours();
-    gl.uniform4fv(loc.uSpots, arr); gl.uniform1i(loc.uCount, live.length);
+    gl.uniform4fv(loc.uSeg, seg); gl.uniform4fv(loc.uRC, rc); gl.uniform1i(loc.uCount, live.length);
     gl.uniform2f(loc.uWind, windOff[0], windOff[1]); gl.uniform1f(loc.uT, tEvo);
     gl.uniform3fv(loc.uLo, col.lo); gl.uniform3fv(loc.uHi, col.hi); gl.uniform1f(loc.uMax, col.max);
     gl.uniform1f(loc.uMpp, mpp() / SCALE);                 // metres per fog pixel, for level of detail
-    gl.uniform4f(loc.uLamp, lantern ? lantern.x : 0, lantern ? lantern.y : 0, LANTERN_M, lantern ? lantern.c : 0);
+    gl.uniform4f(loc.uLamp, lantern ? lantern.ax : 0, lantern ? lantern.ay : 0, LANTERN_M, lantern ? lantern.c : 0);
     gl.uniform3fv(loc.uWarm, col.warm);
     gl.viewport(0, 0, w, h);
     gl.clearColor(0, 0, 0, 0); gl.clear(gl.COLOR_BUFFER_BIT);
@@ -366,9 +376,14 @@
       walked = saved && saved.walked || 0; arrivals = visited.length;
       spots = [];
       visited.forEach(p => footprint(p.lon, p.lat, VISIT_M, "visit"));
+      (saved && Array.isArray(saved.trails) ? saved.trails : []).forEach(t => spots.push(capsule([t[0], t[1]], [t[2], t[3]], TRAIL_M, "trail", false)));
       spots.forEach(s => { s.th = 0; s.c = 1; });
       placeExplorer(current);
       render();
+      if (current) {                                       // resume where the explorer left off
+        const view = { center: [current.lon, current.lat], zoom: Math.max(map.getZoom(), 12.5), padding: pad() };
+        if (reduced) map.jumpTo(view); else map.flyTo({ ...view, duration: 1600 });
+      }
       lastT = 0;
       map.on("render", onRender);
       if (reduced) kick(); else raf = requestAnimationFrame(loop);
