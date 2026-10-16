@@ -16,6 +16,7 @@ urlpatterns = [
     path("this-week/", atlas_views.this_week, name="this_week"),
     path("local-help/", atlas_views.local_help, name="local_help"),
     path("about/", atlas_views.about, name="about"),
+    path("privacy/", atlas_views.privacy, name="privacy"),
     path("resource/<slug:slug>/", atlas_views.resource_detail, name="resource_detail"),
     path("api/resources.json", atlas_views.api_resources, name="api_resources"),
     path("api/resources.geojson", atlas_views.api_resources_geojson, name="api_resources_geojson"),

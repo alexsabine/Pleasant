@@ -99,3 +99,38 @@ class Onboarding(TestCase):
         self.assertEqual(r.status_code, 200)
         self.assertEqual(Submission.objects.count(), 1)
         self.assertFalse(Resource.objects.filter(name="Fictional Farm").exists())
+
+    def test_log_never_holds_names_or_emails(self):
+        user = self._join()
+        self.c.post("/accounts/request-contributor/", {"note": "happy to help"})
+        dumped = json.dumps([e.payload for e in AuditEntry.objects.all()])
+        self.assertNotIn("carer", dumped)
+        self.assertNotIn("c@example.invalid", dumped)
+        self.assertIn(f"member-{user.pk}", dumped)
+
+    def test_member_can_download_their_data(self):
+        self._join()
+        SavedPlace.objects.create(user=get_user_model().objects.get(username="carer"), resource=self.park, note="near grandma")
+        r = self.c.get("/accounts/my-data/")
+        self.assertEqual(r.status_code, 200)
+        self.assertIn("attachment", r["Content-Disposition"])
+        d = json.loads(r.content)
+        self.assertEqual(d["account"]["email"], "c@example.invalid")
+        self.assertEqual(d["saved_places"][0]["note"], "near grandma")
+        self.c.logout()
+        self.assertEqual(self.c.get("/accounts/my-data/").status_code, 302)
+
+    def test_member_can_delete_their_account(self):
+        user = self._join()
+        SavedPlace.objects.create(user=user, resource=self.park)
+        Submission.objects.create(submitter=user, proposed_payload={"attribute": "suggestion", "details": "x"})
+        reviewed = Submission.objects.create(submitter=user, proposed_payload={"attribute": "suggestion"}, status="approved")
+        self.c.post("/accounts/delete/", {"confirm": "no"})
+        self.assertTrue(get_user_model().objects.filter(pk=user.pk).exists())  # needs the typed word
+        self.assertRedirects(self.c.post("/accounts/delete/", {"confirm": "delete"}), "/")
+        self.assertFalse(get_user_model().objects.filter(pk=user.pk).exists())
+        self.assertFalse(SavedPlace.objects.exists())
+        self.assertEqual(list(Submission.objects.values_list("pk", flat=True)), [reviewed.pk])
+        self.assertIsNone(Submission.objects.get(pk=reviewed.pk).submitter)
+        self.assertEqual(AuditEntry.verify_chain(), (True, None))
+        self.assertTrue(AuditEntry.objects.filter(payload__event="account_deleted").exists())

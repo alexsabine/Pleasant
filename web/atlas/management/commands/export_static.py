@@ -23,7 +23,7 @@ from django.test import Client
 from atlas.models import GROUPS, Resource
 from compass import policy, tools
 
-PREFIXES = ("static", "api", "tiles", "logo.svg", "explore", "resource", "about", "this-week", "local-help", "contribute", "review", "plan", "accounts", "compass")
+PREFIXES = ("static", "api", "tiles", "logo.svg", "explore", "resource", "about", "this-week", "local-help", "contribute", "review", "privacy", "plan", "accounts", "compass")
 URL_RE = re.compile(r'"(/(?:' + "|".join(re.escape(p) for p in PREFIXES) + r')(?:[/?.][^"]*)?)"')
 REL_QS_RE = re.compile(r'href="\?([^"]*)"')
 CSS_URL_RE = re.compile(r"url\((['\"]?)/static/")
@@ -82,7 +82,7 @@ class Command(BaseCommand):
                 dest.write_bytes(body)
             return dest
 
-        pages = ["/", "/explore/", "/explore/?view=list", "/this-week/", "/local-help/", "/about/", "/review/", "/plan/", "/plan/at-a-glance/", "/plan/system/", "/plan/costs/", "/plan/ethics/", "/plan/future/", "/contribute/", "/accounts/join/", "/accounts/sign-in/"]
+        pages = ["/", "/explore/", "/explore/?view=list", "/this-week/", "/local-help/", "/about/", "/review/", "/plan/", "/plan/at-a-glance/", "/plan/system/", "/plan/costs/", "/plan/ethics/", "/plan/legal/", "/plan/future/", "/privacy/", "/contribute/", "/accounts/join/", "/accounts/sign-in/"]
         pages += [f"/explore/?group={k}" for k, _ in GROUPS]
         slugs = list(Resource.objects.filter(live=True, visibility="public", is_sensitive=False).values_list("slug", flat=True))
         pages += [f"/resource/{s}/" for s in slugs]

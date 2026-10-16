@@ -12,5 +12,7 @@ urlpatterns = [
     path("welcome/<int:step>/", views.welcome, name="welcome_step"),
     path("my-atlas/", views.my_atlas, name="my_atlas"),
     path("save/<int:resource_id>/", views.toggle_saved, name="toggle_saved"),
+    path("my-data/", views.download_my_data, name="my_data"),
+    path("delete/", views.delete_account, name="delete_account"),
     path("request-contributor/", views.request_contributor, name="request_contributor"),
 ]

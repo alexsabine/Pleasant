@@ -11,7 +11,7 @@ User = get_user_model()
 
 class SignupForm(UserCreationForm):
     email = forms.EmailField(required=True, help_text="Used only to sign in and, if you choose, for summaries you turn on.")
-    adult = forms.BooleanField(required=True, label="I am an adult caregiver, resident or community member (this site has no accounts for children).")
+    adult = forms.BooleanField(required=True, label="I am 18 or over, and a caregiver, resident or community member (this site has no accounts for children).")
 
     class Meta:
         model = User

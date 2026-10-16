@@ -12,7 +12,7 @@ from django.shortcuts import render
 from django.utils import timezone
 from django.views.decorators.http import require_GET, require_POST
 
-from atlas.models import AuditEntry, ProjectionVersion, ReviewNote, Submission
+from atlas.models import AuditEntry, ProjectionVersion, ReviewNote, Submission, member_ref
 
 from .guide import QUESTIONS
 
@@ -94,7 +94,7 @@ def ask(request):
                                                                                  "details": m_prep.group(2)[:1000], "via": "compass"})
         record = AuditEntry.append({
             "request_id": request_id, "retrieval_sources": [], "source_versions": {"projection_version": pv}, "policy_version": POLICY_VERSION,
-            "assumptions": {"user": request.user.get_username()}, "confidence_type": "n/a (draft prepared, not asserted)",
+            "assumptions": {"user": member_ref(request.user)}, "confidence_type": "n/a (draft prepared, not asserted)",
             "action_proposed": "prepare_submission", "user_approval": "explicit: user asked Lumen to draft it",
             "action_result": {"submission_id": sub.pk, "status": sub.status}, "timestamp": timezone.now().isoformat(),
             "limitations": ["A steward must review before anything changes publicly."]}, require_decision_fields=True)

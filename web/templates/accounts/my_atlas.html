@@ -37,6 +37,12 @@
 <label for="note">Tell the stewards what you would like to help with (optional)</label><textarea id="note" name="note" rows="3" maxlength="300"></textarea>
 <button type="submit" class="btn secondary">Ask for contributor rights</button></form>
 {% endif %}
+<h2>Your data</h2>
+<p class="src">Download everything we hold about you, or delete your account. Deleting removes your settings, saved places and unreviewed suggestions. See <a href="{% url 'privacy' %}">Privacy</a>.</p>
+<p><a class="btn secondary" href="{% url 'accounts:my_data' %}">Download my data</a></p>
+<form method="post" action="{% url 'accounts:delete_account' %}" class="form-stack">{% csrf_token %}
+<label for="confirm-delete">To delete your account, type <b>delete</b></label><input id="confirm-delete" name="confirm" autocomplete="off">
+<button type="submit" class="btn secondary">Delete my account</button></form>
 <form method="post" action="{% url 'accounts:logout' %}" class="inline">{% csrf_token %}<button type="submit" class="chip">Sign out</button></form>
 </aside>
 </div>

@@ -84,6 +84,10 @@ def local_help(request):
     return render(request, "atlas/local_help.html", ctx)
 
 
+def privacy(request):
+    return render(request, "atlas/privacy.html", _common_ctx(request))
+
+
 def about(request):
     ingest = []
     if settings.INGEST_LOG.exists():
@@ -298,7 +302,7 @@ def review(request):
 
 # ---- "For Kim": plan pages (summary, at a glance, system, costs, ethics, future) ----
 PLAN_TABS = [("summary", "Summary"), ("at-a-glance", "At a glance"), ("system", "How it's built"), ("costs", "Costs"),
-             ("ethics", "Ethics"), ("future", "Future")]
+             ("ethics", "Ethics"), ("legal", "Legal"), ("future", "Future")]
 
 
 def _cost_context():

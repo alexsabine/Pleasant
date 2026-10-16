@@ -338,6 +338,12 @@ class Submission(models.Model):
         )
 
 
+def member_ref(user) -> str:
+    """How a member appears in the sealed log: a number, never a name or email, so deleting
+    the account leaves nothing personal behind. Stewards' own decisions stay named."""
+    return f"member-{user.pk}"
+
+
 class AuditEntry(models.Model):
     """Hash-chained, append-only log (pc_core.audit_chain semantics)."""
     index = models.PositiveIntegerField(unique=True)
