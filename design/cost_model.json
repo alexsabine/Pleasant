@@ -1,0 +1,1295 @@
+{
+ "generated": "2026-10-16",
+ "people": 20,
+ "weeks": 52,
+ "budget": 1500,
+ "usage": {
+  "light": {
+   "label": "Light",
+   "questions": 5,
+   "suggestions": 0.25
+  },
+  "typical": {
+   "label": "Typical",
+   "questions": 15,
+   "suggestions": 1
+  },
+  "heavy": {
+   "label": "Heavy",
+   "questions": 40,
+   "suggestions": 3
+  }
+ },
+ "modes": {
+  "A": {
+   "label": "Rules only (today's default)"
+  },
+  "B": {
+   "label": "AI only when the rules are stuck"
+  },
+  "C": {
+   "label": "AI words every answer"
+  },
+  "D": {
+   "label": "Conversational agent"
+  }
+ },
+ "calls": {
+  "intent": [
+   700,
+   300
+  ],
+  "phrase": [
+   2600,
+   600
+  ],
+  "agent": [
+   12000,
+   1800
+  ],
+  "suggestion": [
+   1500,
+   500
+  ]
+ },
+ "gated_share": 0.2,
+ "providers": [
+  {
+   "key": "opus",
+   "label": "Claude Opus 5.5",
+   "family": "Anthropic",
+   "in": 4.0,
+   "out": 20.0,
+   "where": "Anthropic (US)",
+   "note": "Most capable Claude for this job"
+  },
+  {
+   "key": "sonnet",
+   "label": "Claude Sonnet 5.5",
+   "family": "Anthropic",
+   "in": 2.0,
+   "out": 10.0,
+   "where": "Anthropic (US)",
+   "note": "Strong, half the price of Opus"
+  },
+  {
+   "key": "haiku",
+   "label": "Claude Haiku 5.5",
+   "family": "Anthropic",
+   "in": 0.1,
+   "out": 0.5,
+   "where": "Anthropic (US)",
+   "note": "Small, fast; ample for wording checked facts"
+  },
+  {
+   "key": "gem_lite",
+   "label": "Gemini 2.5 Flash-Lite",
+   "family": "Google",
+   "in": 0.1,
+   "out": 0.4,
+   "where": "Google (US)",
+   "note": "Very cheap"
+  },
+  {
+   "key": "gem_fl",
+   "label": "Gemini 3 Flash",
+   "family": "Google",
+   "in": 0.5,
+   "out": 3.0,
+   "where": "Google (US)",
+   "note": "Mid-price"
+  },
+  {
+   "key": "gpt_nano",
+   "label": "GPT-5 nano",
+   "family": "OpenAI",
+   "in": 0.05,
+   "out": 0.4,
+   "where": "OpenAI (US)",
+   "note": "Cheapest listed; snapshot retiring Dec 2026"
+  },
+  {
+   "key": "gpt_mini",
+   "label": "GPT-5 mini",
+   "family": "OpenAI",
+   "in": 0.25,
+   "out": 2.0,
+   "where": "OpenAI (US)",
+   "note": "Mid-price"
+  },
+  {
+   "key": "mistral",
+   "label": "Mistral Small 4",
+   "family": "Mistral",
+   "in": 0.15,
+   "out": 0.6,
+   "where": "Mistral (EU)",
+   "note": "Open-weight family, EU company"
+  },
+  {
+   "key": "deepseek",
+   "label": "DeepSeek V4.1 Flash",
+   "family": "DeepSeek",
+   "in": 0.3,
+   "out": 1.2,
+   "where": "DeepSeek (China)",
+   "note": "Cheap; data leaves the US, not recommended for a family service"
+  },
+  {
+   "key": "oss_host",
+   "label": "gpt-oss-120B (Groq/Together)",
+   "family": "Open model, hosted",
+   "in": 0.15,
+   "out": 0.6,
+   "where": "Groq/Together (US)",
+   "note": "Open model without owning hardware"
+  }
+ ],
+ "hosting": {
+  "static": {
+   "label": "Static preview on GitHub Pages (no accounts, no AI)",
+   "year": 15,
+   "parts": "domain name $15"
+  },
+  "small": {
+   "label": "Small server we manage",
+   "year": 339,
+   "parts": "4 GB virtual server ~$22/mo, backups and photo storage ~$5/mo, domain $15"
+  },
+  "managed": {
+   "label": "Managed server and database",
+   "year": 543,
+   "parts": "4 GB server $24/mo, managed PostgreSQL $15/mo, storage $5/mo, domain $15"
+  }
+ },
+ "local": [
+  {
+   "key": "mac",
+   "label": "Mac mini (M5 Pro, 64 GB)",
+   "hardware": 2300,
+   "electricity_year": 91,
+   "amortised_year": 858,
+   "first_year_cash": 2391,
+   "runs": "20-30B open models (Qwen, gpt-oss-20b, Mistral Small) at chat speed"
+  },
+  {
+   "key": "3090",
+   "label": "PC with a used RTX 3090 (24 GB)",
+   "hardware": 1800,
+   "electricity_year": 273,
+   "amortised_year": 873,
+   "first_year_cash": 2073,
+   "runs": "Same class of models, faster, louder, more power"
+  },
+  {
+   "key": "5090",
+   "label": "Workstation with an RTX 5090 (32 GB)",
+   "hardware": 9000,
+   "electricity_year": 410,
+   "amortised_year": 3410,
+   "first_year_cash": 9410,
+   "runs": "Larger models; far beyond this project's needs"
+  }
+ ],
+ "rented": [
+  {
+   "key": "pod",
+   "label": "Rented cloud GPU, always on (RTX 4090)",
+   "year": 2978,
+   "note": "Community-tier pod at $0.34/hour"
+  },
+  {
+   "key": "srv",
+   "label": "Rented serverless GPU (about 2 busy hours a day)",
+   "year": 792,
+   "note": "Pay per second; 10-60 s cold starts"
+  }
+ ],
+ "rows": [
+  {
+   "usage": "light",
+   "mode": "A",
+   "provider": "opus",
+   "calls": 0,
+   "tokens_in": 0,
+   "tokens_out": 0,
+   "ai_cost": 0.0
+  },
+  {
+   "usage": "light",
+   "mode": "A",
+   "provider": "sonnet",
+   "calls": 0,
+   "tokens_in": 0,
+   "tokens_out": 0,
+   "ai_cost": 0.0
+  },
+  {
+   "usage": "light",
+   "mode": "A",
+   "provider": "haiku",
+   "calls": 0,
+   "tokens_in": 0,
+   "tokens_out": 0,
+   "ai_cost": 0.0
+  },
+  {
+   "usage": "light",
+   "mode": "A",
+   "provider": "gem_lite",
+   "calls": 0,
+   "tokens_in": 0,
+   "tokens_out": 0,
+   "ai_cost": 0.0
+  },
+  {
+   "usage": "light",
+   "mode": "A",
+   "provider": "gem_fl",
+   "calls": 0,
+   "tokens_in": 0,
+   "tokens_out": 0,
+   "ai_cost": 0.0
+  },
+  {
+   "usage": "light",
+   "mode": "A",
+   "provider": "gpt_nano",
+   "calls": 0,
+   "tokens_in": 0,
+   "tokens_out": 0,
+   "ai_cost": 0.0
+  },
+  {
+   "usage": "light",
+   "mode": "A",
+   "provider": "gpt_mini",
+   "calls": 0,
+   "tokens_in": 0,
+   "tokens_out": 0,
+   "ai_cost": 0.0
+  },
+  {
+   "usage": "light",
+   "mode": "A",
+   "provider": "mistral",
+   "calls": 0,
+   "tokens_in": 0,
+   "tokens_out": 0,
+   "ai_cost": 0.0
+  },
+  {
+   "usage": "light",
+   "mode": "A",
+   "provider": "deepseek",
+   "calls": 0,
+   "tokens_in": 0,
+   "tokens_out": 0,
+   "ai_cost": 0.0
+  },
+  {
+   "usage": "light",
+   "mode": "A",
+   "provider": "oss_host",
+   "calls": 0,
+   "tokens_in": 0,
+   "tokens_out": 0,
+   "ai_cost": 0.0
+  },
+  {
+   "usage": "light",
+   "mode": "B",
+   "provider": "opus",
+   "calls": 1536,
+   "tokens_in": 3510000,
+   "tokens_out": 657200,
+   "ai_cost": 27.18
+  },
+  {
+   "usage": "light",
+   "mode": "B",
+   "provider": "sonnet",
+   "calls": 1536,
+   "tokens_in": 3510000,
+   "tokens_out": 657200,
+   "ai_cost": 13.59
+  },
+  {
+   "usage": "light",
+   "mode": "B",
+   "provider": "haiku",
+   "calls": 1536,
+   "tokens_in": 3510000,
+   "tokens_out": 657200,
+   "ai_cost": 0.68
+  },
+  {
+   "usage": "light",
+   "mode": "B",
+   "provider": "gem_lite",
+   "calls": 1536,
+   "tokens_in": 3510000,
+   "tokens_out": 657200,
+   "ai_cost": 0.61
+  },
+  {
+   "usage": "light",
+   "mode": "B",
+   "provider": "gem_fl",
+   "calls": 1536,
+   "tokens_in": 3510000,
+   "tokens_out": 657200,
+   "ai_cost": 3.73
+  },
+  {
+   "usage": "light",
+   "mode": "B",
+   "provider": "gpt_nano",
+   "calls": 1536,
+   "tokens_in": 3510000,
+   "tokens_out": 657200,
+   "ai_cost": 0.44
+  },
+  {
+   "usage": "light",
+   "mode": "B",
+   "provider": "gpt_mini",
+   "calls": 1536,
+   "tokens_in": 3510000,
+   "tokens_out": 657200,
+   "ai_cost": 2.19
+  },
+  {
+   "usage": "light",
+   "mode": "B",
+   "provider": "mistral",
+   "calls": 1536,
+   "tokens_in": 3510000,
+   "tokens_out": 657200,
+   "ai_cost": 0.92
+  },
+  {
+   "usage": "light",
+   "mode": "B",
+   "provider": "deepseek",
+   "calls": 1536,
+   "tokens_in": 3510000,
+   "tokens_out": 657200,
+   "ai_cost": 1.84
+  },
+  {
+   "usage": "light",
+   "mode": "B",
+   "provider": "oss_host",
+   "calls": 1536,
+   "tokens_in": 3510000,
+   "tokens_out": 657200,
+   "ai_cost": 0.92
+  },
+  {
+   "usage": "light",
+   "mode": "C",
+   "provider": "opus",
+   "calls": 10896,
+   "tokens_in": 19942000,
+   "tokens_out": 5025200,
+   "ai_cost": 180.27
+  },
+  {
+   "usage": "light",
+   "mode": "C",
+   "provider": "sonnet",
+   "calls": 10896,
+   "tokens_in": 19942000,
+   "tokens_out": 5025200,
+   "ai_cost": 90.14
+  },
+  {
+   "usage": "light",
+   "mode": "C",
+   "provider": "haiku",
+   "calls": 10896,
+   "tokens_in": 19942000,
+   "tokens_out": 5025200,
+   "ai_cost": 4.51
+  },
+  {
+   "usage": "light",
+   "mode": "C",
+   "provider": "gem_lite",
+   "calls": 10896,
+   "tokens_in": 19942000,
+   "tokens_out": 5025200,
+   "ai_cost": 4.0
+  },
+  {
+   "usage": "light",
+   "mode": "C",
+   "provider": "gem_fl",
+   "calls": 10896,
+   "tokens_in": 19942000,
+   "tokens_out": 5025200,
+   "ai_cost": 25.05
+  },
+  {
+   "usage": "light",
+   "mode": "C",
+   "provider": "gpt_nano",
+   "calls": 10896,
+   "tokens_in": 19942000,
+   "tokens_out": 5025200,
+   "ai_cost": 3.01
+  },
+  {
+   "usage": "light",
+   "mode": "C",
+   "provider": "gpt_mini",
+   "calls": 10896,
+   "tokens_in": 19942000,
+   "tokens_out": 5025200,
+   "ai_cost": 15.04
+  },
+  {
+   "usage": "light",
+   "mode": "C",
+   "provider": "mistral",
+   "calls": 10896,
+   "tokens_in": 19942000,
+   "tokens_out": 5025200,
+   "ai_cost": 6.01
+  },
+  {
+   "usage": "light",
+   "mode": "C",
+   "provider": "deepseek",
+   "calls": 10896,
+   "tokens_in": 19942000,
+   "tokens_out": 5025200,
+   "ai_cost": 12.01
+  },
+  {
+   "usage": "light",
+   "mode": "C",
+   "provider": "oss_host",
+   "calls": 10896,
+   "tokens_in": 19942000,
+   "tokens_out": 5025200,
+   "ai_cost": 6.01
+  },
+  {
+   "usage": "light",
+   "mode": "D",
+   "provider": "opus",
+   "calls": 5696,
+   "tokens_in": 65182000,
+   "tokens_out": 9705200,
+   "ai_cost": 454.83
+  },
+  {
+   "usage": "light",
+   "mode": "D",
+   "provider": "sonnet",
+   "calls": 5696,
+   "tokens_in": 65182000,
+   "tokens_out": 9705200,
+   "ai_cost": 227.42
+  },
+  {
+   "usage": "light",
+   "mode": "D",
+   "provider": "haiku",
+   "calls": 5696,
+   "tokens_in": 65182000,
+   "tokens_out": 9705200,
+   "ai_cost": 11.37
+  },
+  {
+   "usage": "light",
+   "mode": "D",
+   "provider": "gem_lite",
+   "calls": 5696,
+   "tokens_in": 65182000,
+   "tokens_out": 9705200,
+   "ai_cost": 10.4
+  },
+  {
+   "usage": "light",
+   "mode": "D",
+   "provider": "gem_fl",
+   "calls": 5696,
+   "tokens_in": 65182000,
+   "tokens_out": 9705200,
+   "ai_cost": 61.71
+  },
+  {
+   "usage": "light",
+   "mode": "D",
+   "provider": "gpt_nano",
+   "calls": 5696,
+   "tokens_in": 65182000,
+   "tokens_out": 9705200,
+   "ai_cost": 7.14
+  },
+  {
+   "usage": "light",
+   "mode": "D",
+   "provider": "gpt_mini",
+   "calls": 5696,
+   "tokens_in": 65182000,
+   "tokens_out": 9705200,
+   "ai_cost": 35.71
+  },
+  {
+   "usage": "light",
+   "mode": "D",
+   "provider": "mistral",
+   "calls": 5696,
+   "tokens_in": 65182000,
+   "tokens_out": 9705200,
+   "ai_cost": 15.6
+  },
+  {
+   "usage": "light",
+   "mode": "D",
+   "provider": "deepseek",
+   "calls": 5696,
+   "tokens_in": 65182000,
+   "tokens_out": 9705200,
+   "ai_cost": 31.2
+  },
+  {
+   "usage": "light",
+   "mode": "D",
+   "provider": "oss_host",
+   "calls": 5696,
+   "tokens_in": 65182000,
+   "tokens_out": 9705200,
+   "ai_cost": 15.6
+  },
+  {
+   "usage": "typical",
+   "mode": "A",
+   "provider": "opus",
+   "calls": 0,
+   "tokens_in": 0,
+   "tokens_out": 0,
+   "ai_cost": 0.0
+  },
+  {
+   "usage": "typical",
+   "mode": "A",
+   "provider": "sonnet",
+   "calls": 0,
+   "tokens_in": 0,
+   "tokens_out": 0,
+   "ai_cost": 0.0
+  },
+  {
+   "usage": "typical",
+   "mode": "A",
+   "provider": "haiku",
+   "calls": 0,
+   "tokens_in": 0,
+   "tokens_out": 0,
+   "ai_cost": 0.0
+  },
+  {
+   "usage": "typical",
+   "mode": "A",
+   "provider": "gem_lite",
+   "calls": 0,
+   "tokens_in": 0,
+   "tokens_out": 0,
+   "ai_cost": 0.0
+  },
+  {
+   "usage": "typical",
+   "mode": "A",
+   "provider": "gem_fl",
+   "calls": 0,
+   "tokens_in": 0,
+   "tokens_out": 0,
+   "ai_cost": 0.0
+  },
+  {
+   "usage": "typical",
+   "mode": "A",
+   "provider": "gpt_nano",
+   "calls": 0,
+   "tokens_in": 0,
+   "tokens_out": 0,
+   "ai_cost": 0.0
+  },
+  {
+   "usage": "typical",
+   "mode": "A",
+   "provider": "gpt_mini",
+   "calls": 0,
+   "tokens_in": 0,
+   "tokens_out": 0,
+   "ai_cost": 0.0
+  },
+  {
+   "usage": "typical",
+   "mode": "A",
+   "provider": "mistral",
+   "calls": 0,
+   "tokens_in": 0,
+   "tokens_out": 0,
+   "ai_cost": 0.0
+  },
+  {
+   "usage": "typical",
+   "mode": "A",
+   "provider": "deepseek",
+   "calls": 0,
+   "tokens_in": 0,
+   "tokens_out": 0,
+   "ai_cost": 0.0
+  },
+  {
+   "usage": "typical",
+   "mode": "A",
+   "provider": "oss_host",
+   "calls": 0,
+   "tokens_in": 0,
+   "tokens_out": 0,
+   "ai_cost": 0.0
+  },
+  {
+   "usage": "typical",
+   "mode": "B",
+   "provider": "opus",
+   "calls": 4396,
+   "tokens_in": 6136000,
+   "tokens_out": 1671200,
+   "ai_cost": 57.97
+  },
+  {
+   "usage": "typical",
+   "mode": "B",
+   "provider": "sonnet",
+   "calls": 4396,
+   "tokens_in": 6136000,
+   "tokens_out": 1671200,
+   "ai_cost": 28.98
+  },
+  {
+   "usage": "typical",
+   "mode": "B",
+   "provider": "haiku",
+   "calls": 4396,
+   "tokens_in": 6136000,
+   "tokens_out": 1671200,
+   "ai_cost": 1.45
+  },
+  {
+   "usage": "typical",
+   "mode": "B",
+   "provider": "gem_lite",
+   "calls": 4396,
+   "tokens_in": 6136000,
+   "tokens_out": 1671200,
+   "ai_cost": 1.28
+  },
+  {
+   "usage": "typical",
+   "mode": "B",
+   "provider": "gem_fl",
+   "calls": 4396,
+   "tokens_in": 6136000,
+   "tokens_out": 1671200,
+   "ai_cost": 8.08
+  },
+  {
+   "usage": "typical",
+   "mode": "B",
+   "provider": "gpt_nano",
+   "calls": 4396,
+   "tokens_in": 6136000,
+   "tokens_out": 1671200,
+   "ai_cost": 0.98
+  },
+  {
+   "usage": "typical",
+   "mode": "B",
+   "provider": "gpt_mini",
+   "calls": 4396,
+   "tokens_in": 6136000,
+   "tokens_out": 1671200,
+   "ai_cost": 4.88
+  },
+  {
+   "usage": "typical",
+   "mode": "B",
+   "provider": "mistral",
+   "calls": 4396,
+   "tokens_in": 6136000,
+   "tokens_out": 1671200,
+   "ai_cost": 1.92
+  },
+  {
+   "usage": "typical",
+   "mode": "B",
+   "provider": "deepseek",
+   "calls": 4396,
+   "tokens_in": 6136000,
+   "tokens_out": 1671200,
+   "ai_cost": 3.85
+  },
+  {
+   "usage": "typical",
+   "mode": "B",
+   "provider": "oss_host",
+   "calls": 4396,
+   "tokens_in": 6136000,
+   "tokens_out": 1671200,
+   "ai_cost": 1.92
+  },
+  {
+   "usage": "typical",
+   "mode": "C",
+   "provider": "opus",
+   "calls": 32476,
+   "tokens_in": 55432000,
+   "tokens_out": 14775200,
+   "ai_cost": 517.23
+  },
+  {
+   "usage": "typical",
+   "mode": "C",
+   "provider": "sonnet",
+   "calls": 32476,
+   "tokens_in": 55432000,
+   "tokens_out": 14775200,
+   "ai_cost": 258.62
+  },
+  {
+   "usage": "typical",
+   "mode": "C",
+   "provider": "haiku",
+   "calls": 32476,
+   "tokens_in": 55432000,
+   "tokens_out": 14775200,
+   "ai_cost": 12.93
+  },
+  {
+   "usage": "typical",
+   "mode": "C",
+   "provider": "gem_lite",
+   "calls": 32476,
+   "tokens_in": 55432000,
+   "tokens_out": 14775200,
+   "ai_cost": 11.45
+  },
+  {
+   "usage": "typical",
+   "mode": "C",
+   "provider": "gem_fl",
+   "calls": 32476,
+   "tokens_in": 55432000,
+   "tokens_out": 14775200,
+   "ai_cost": 72.04
+  },
+  {
+   "usage": "typical",
+   "mode": "C",
+   "provider": "gpt_nano",
+   "calls": 32476,
+   "tokens_in": 55432000,
+   "tokens_out": 14775200,
+   "ai_cost": 8.68
+  },
+  {
+   "usage": "typical",
+   "mode": "C",
+   "provider": "gpt_mini",
+   "calls": 32476,
+   "tokens_in": 55432000,
+   "tokens_out": 14775200,
+   "ai_cost": 43.41
+  },
+  {
+   "usage": "typical",
+   "mode": "C",
+   "provider": "mistral",
+   "calls": 32476,
+   "tokens_in": 55432000,
+   "tokens_out": 14775200,
+   "ai_cost": 17.18
+  },
+  {
+   "usage": "typical",
+   "mode": "C",
+   "provider": "deepseek",
+   "calls": 32476,
+   "tokens_in": 55432000,
+   "tokens_out": 14775200,
+   "ai_cost": 34.36
+  },
+  {
+   "usage": "typical",
+   "mode": "C",
+   "provider": "oss_host",
+   "calls": 32476,
+   "tokens_in": 55432000,
+   "tokens_out": 14775200,
+   "ai_cost": 17.18
+  },
+  {
+   "usage": "typical",
+   "mode": "D",
+   "provider": "opus",
+   "calls": 16876,
+   "tokens_in": 191152000,
+   "tokens_out": 28815200,
+   "ai_cost": 1340.91
+  },
+  {
+   "usage": "typical",
+   "mode": "D",
+   "provider": "sonnet",
+   "calls": 16876,
+   "tokens_in": 191152000,
+   "tokens_out": 28815200,
+   "ai_cost": 670.46
+  },
+  {
+   "usage": "typical",
+   "mode": "D",
+   "provider": "haiku",
+   "calls": 16876,
+   "tokens_in": 191152000,
+   "tokens_out": 28815200,
+   "ai_cost": 33.52
+  },
+  {
+   "usage": "typical",
+   "mode": "D",
+   "provider": "gem_lite",
+   "calls": 16876,
+   "tokens_in": 191152000,
+   "tokens_out": 28815200,
+   "ai_cost": 30.64
+  },
+  {
+   "usage": "typical",
+   "mode": "D",
+   "provider": "gem_fl",
+   "calls": 16876,
+   "tokens_in": 191152000,
+   "tokens_out": 28815200,
+   "ai_cost": 182.02
+  },
+  {
+   "usage": "typical",
+   "mode": "D",
+   "provider": "gpt_nano",
+   "calls": 16876,
+   "tokens_in": 191152000,
+   "tokens_out": 28815200,
+   "ai_cost": 21.08
+  },
+  {
+   "usage": "typical",
+   "mode": "D",
+   "provider": "gpt_mini",
+   "calls": 16876,
+   "tokens_in": 191152000,
+   "tokens_out": 28815200,
+   "ai_cost": 105.42
+  },
+  {
+   "usage": "typical",
+   "mode": "D",
+   "provider": "mistral",
+   "calls": 16876,
+   "tokens_in": 191152000,
+   "tokens_out": 28815200,
+   "ai_cost": 45.96
+  },
+  {
+   "usage": "typical",
+   "mode": "D",
+   "provider": "deepseek",
+   "calls": 16876,
+   "tokens_in": 191152000,
+   "tokens_out": 28815200,
+   "ai_cost": 91.92
+  },
+  {
+   "usage": "typical",
+   "mode": "D",
+   "provider": "oss_host",
+   "calls": 16876,
+   "tokens_in": 191152000,
+   "tokens_out": 28815200,
+   "ai_cost": 45.96
+  },
+  {
+   "usage": "heavy",
+   "mode": "A",
+   "provider": "opus",
+   "calls": 0,
+   "tokens_in": 0,
+   "tokens_out": 0,
+   "ai_cost": 0.0
+  },
+  {
+   "usage": "heavy",
+   "mode": "A",
+   "provider": "sonnet",
+   "calls": 0,
+   "tokens_in": 0,
+   "tokens_out": 0,
+   "ai_cost": 0.0
+  },
+  {
+   "usage": "heavy",
+   "mode": "A",
+   "provider": "haiku",
+   "calls": 0,
+   "tokens_in": 0,
+   "tokens_out": 0,
+   "ai_cost": 0.0
+  },
+  {
+   "usage": "heavy",
+   "mode": "A",
+   "provider": "gem_lite",
+   "calls": 0,
+   "tokens_in": 0,
+   "tokens_out": 0,
+   "ai_cost": 0.0
+  },
+  {
+   "usage": "heavy",
+   "mode": "A",
+   "provider": "gem_fl",
+   "calls": 0,
+   "tokens_in": 0,
+   "tokens_out": 0,
+   "ai_cost": 0.0
+  },
+  {
+   "usage": "heavy",
+   "mode": "A",
+   "provider": "gpt_nano",
+   "calls": 0,
+   "tokens_in": 0,
+   "tokens_out": 0,
+   "ai_cost": 0.0
+  },
+  {
+   "usage": "heavy",
+   "mode": "A",
+   "provider": "gpt_mini",
+   "calls": 0,
+   "tokens_in": 0,
+   "tokens_out": 0,
+   "ai_cost": 0.0
+  },
+  {
+   "usage": "heavy",
+   "mode": "A",
+   "provider": "mistral",
+   "calls": 0,
+   "tokens_in": 0,
+   "tokens_out": 0,
+   "ai_cost": 0.0
+  },
+  {
+   "usage": "heavy",
+   "mode": "A",
+   "provider": "deepseek",
+   "calls": 0,
+   "tokens_in": 0,
+   "tokens_out": 0,
+   "ai_cost": 0.0
+  },
+  {
+   "usage": "heavy",
+   "mode": "A",
+   "provider": "oss_host",
+   "calls": 0,
+   "tokens_in": 0,
+   "tokens_out": 0,
+   "ai_cost": 0.0
+  },
+  {
+   "usage": "heavy",
+   "mode": "B",
+   "provider": "opus",
+   "calls": 11676,
+   "tokens_in": 12896000,
+   "tokens_out": 4271200,
+   "ai_cost": 137.01
+  },
+  {
+   "usage": "heavy",
+   "mode": "B",
+   "provider": "sonnet",
+   "calls": 11676,
+   "tokens_in": 12896000,
+   "tokens_out": 4271200,
+   "ai_cost": 68.5
+  },
+  {
+   "usage": "heavy",
+   "mode": "B",
+   "provider": "haiku",
+   "calls": 11676,
+   "tokens_in": 12896000,
+   "tokens_out": 4271200,
+   "ai_cost": 3.43
+  },
+  {
+   "usage": "heavy",
+   "mode": "B",
+   "provider": "gem_lite",
+   "calls": 11676,
+   "tokens_in": 12896000,
+   "tokens_out": 4271200,
+   "ai_cost": 3.0
+  },
+  {
+   "usage": "heavy",
+   "mode": "B",
+   "provider": "gem_fl",
+   "calls": 11676,
+   "tokens_in": 12896000,
+   "tokens_out": 4271200,
+   "ai_cost": 19.26
+  },
+  {
+   "usage": "heavy",
+   "mode": "B",
+   "provider": "gpt_nano",
+   "calls": 11676,
+   "tokens_in": 12896000,
+   "tokens_out": 4271200,
+   "ai_cost": 2.35
+  },
+  {
+   "usage": "heavy",
+   "mode": "B",
+   "provider": "gpt_mini",
+   "calls": 11676,
+   "tokens_in": 12896000,
+   "tokens_out": 4271200,
+   "ai_cost": 11.77
+  },
+  {
+   "usage": "heavy",
+   "mode": "B",
+   "provider": "mistral",
+   "calls": 11676,
+   "tokens_in": 12896000,
+   "tokens_out": 4271200,
+   "ai_cost": 4.5
+  },
+  {
+   "usage": "heavy",
+   "mode": "B",
+   "provider": "deepseek",
+   "calls": 11676,
+   "tokens_in": 12896000,
+   "tokens_out": 4271200,
+   "ai_cost": 8.99
+  },
+  {
+   "usage": "heavy",
+   "mode": "B",
+   "provider": "oss_host",
+   "calls": 11676,
+   "tokens_in": 12896000,
+   "tokens_out": 4271200,
+   "ai_cost": 4.5
+  },
+  {
+   "usage": "heavy",
+   "mode": "C",
+   "provider": "opus",
+   "calls": 86556,
+   "tokens_in": 144352000,
+   "tokens_out": 39215200,
+   "ai_cost": 1361.71
+  },
+  {
+   "usage": "heavy",
+   "mode": "C",
+   "provider": "sonnet",
+   "calls": 86556,
+   "tokens_in": 144352000,
+   "tokens_out": 39215200,
+   "ai_cost": 680.86
+  },
+  {
+   "usage": "heavy",
+   "mode": "C",
+   "provider": "haiku",
+   "calls": 86556,
+   "tokens_in": 144352000,
+   "tokens_out": 39215200,
+   "ai_cost": 34.04
+  },
+  {
+   "usage": "heavy",
+   "mode": "C",
+   "provider": "gem_lite",
+   "calls": 86556,
+   "tokens_in": 144352000,
+   "tokens_out": 39215200,
+   "ai_cost": 30.12
+  },
+  {
+   "usage": "heavy",
+   "mode": "C",
+   "provider": "gem_fl",
+   "calls": 86556,
+   "tokens_in": 144352000,
+   "tokens_out": 39215200,
+   "ai_cost": 189.82
+  },
+  {
+   "usage": "heavy",
+   "mode": "C",
+   "provider": "gpt_nano",
+   "calls": 86556,
+   "tokens_in": 144352000,
+   "tokens_out": 39215200,
+   "ai_cost": 22.9
+  },
+  {
+   "usage": "heavy",
+   "mode": "C",
+   "provider": "gpt_mini",
+   "calls": 86556,
+   "tokens_in": 144352000,
+   "tokens_out": 39215200,
+   "ai_cost": 114.52
+  },
+  {
+   "usage": "heavy",
+   "mode": "C",
+   "provider": "mistral",
+   "calls": 86556,
+   "tokens_in": 144352000,
+   "tokens_out": 39215200,
+   "ai_cost": 45.18
+  },
+  {
+   "usage": "heavy",
+   "mode": "C",
+   "provider": "deepseek",
+   "calls": 86556,
+   "tokens_in": 144352000,
+   "tokens_out": 39215200,
+   "ai_cost": 90.36
+  },
+  {
+   "usage": "heavy",
+   "mode": "C",
+   "provider": "oss_host",
+   "calls": 86556,
+   "tokens_in": 144352000,
+   "tokens_out": 39215200,
+   "ai_cost": 45.18
+  },
+  {
+   "usage": "heavy",
+   "mode": "D",
+   "provider": "opus",
+   "calls": 44956,
+   "tokens_in": 506272000,
+   "tokens_out": 76655200,
+   "ai_cost": 3558.19
+  },
+  {
+   "usage": "heavy",
+   "mode": "D",
+   "provider": "sonnet",
+   "calls": 44956,
+   "tokens_in": 506272000,
+   "tokens_out": 76655200,
+   "ai_cost": 1779.1
+  },
+  {
+   "usage": "heavy",
+   "mode": "D",
+   "provider": "haiku",
+   "calls": 44956,
+   "tokens_in": 506272000,
+   "tokens_out": 76655200,
+   "ai_cost": 88.95
+  },
+  {
+   "usage": "heavy",
+   "mode": "D",
+   "provider": "gem_lite",
+   "calls": 44956,
+   "tokens_in": 506272000,
+   "tokens_out": 76655200,
+   "ai_cost": 81.29
+  },
+  {
+   "usage": "heavy",
+   "mode": "D",
+   "provider": "gem_fl",
+   "calls": 44956,
+   "tokens_in": 506272000,
+   "tokens_out": 76655200,
+   "ai_cost": 483.1
+  },
+  {
+   "usage": "heavy",
+   "mode": "D",
+   "provider": "gpt_nano",
+   "calls": 44956,
+   "tokens_in": 506272000,
+   "tokens_out": 76655200,
+   "ai_cost": 55.98
+  },
+  {
+   "usage": "heavy",
+   "mode": "D",
+   "provider": "gpt_mini",
+   "calls": 44956,
+   "tokens_in": 506272000,
+   "tokens_out": 76655200,
+   "ai_cost": 279.88
+  },
+  {
+   "usage": "heavy",
+   "mode": "D",
+   "provider": "mistral",
+   "calls": 44956,
+   "tokens_in": 506272000,
+   "tokens_out": 76655200,
+   "ai_cost": 121.93
+  },
+  {
+   "usage": "heavy",
+   "mode": "D",
+   "provider": "deepseek",
+   "calls": 44956,
+   "tokens_in": 506272000,
+   "tokens_out": 76655200,
+   "ai_cost": 243.87
+  },
+  {
+   "usage": "heavy",
+   "mode": "D",
+   "provider": "oss_host",
+   "calls": 44956,
+   "tokens_in": 506272000,
+   "tokens_out": 76655200,
+   "ai_cost": 121.93
+  }
+ ],
+ "caps": {
+  "opus": 101,
+  "sonnet": 203,
+  "haiku": 4077
+ }
+}
