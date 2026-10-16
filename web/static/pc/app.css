@@ -366,3 +366,4 @@ code{overflow-wrap:anywhere}
 .tgrid .cols ol li::marker{color:var(--pc-accent);font-weight:600}
 .tgrid .ai{color:var(--pc-accent-2);font-weight:600}
 .tgrid .foot{font-size:.82rem;color:var(--pc-ink-2);margin:8px 0 0;text-align:center}
+.plan-body .callout{max-width:78ch;background:color-mix(in srgb,var(--pc-accent) 9%,var(--pc-surface));border-left:3px solid var(--pc-accent);border-radius:0 10px 10px 0;padding:12px 16px;margin:12px 0}

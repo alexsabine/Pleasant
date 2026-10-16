@@ -28,7 +28,7 @@ QUESTIONS = [
         "key": "governance",
         "title": "Map governance: who decides how the whole resource changes over time?",
         "ask": "Adding a place and changing the system are different powers. Who should decide system-level change: the categories, the freshness constants, what Lumen is allowed to do, whether a new mode (fog, people, messaging) is switched on? One organisation, two named admins, a small council, or a monthly open review?",
-        "built": "Two independent admin accounts (Moderators) approve publication and can edit the published constants without code changes. Editors draft and verify but cannot publish. Every publish, verification and Lumen answer is written to a hash-chained audit log that anyone with admin access can verify. The maths and policy are published in the repository.",
+        "built": "Steward accounts (the Moderators group), starting with the founding stewards Kim, Sasha, Daniel and Bill, approve publication and can edit the published constants without code changes. Editors draft and verify but cannot publish. Every publish, verification and Lumen answer is written to a hash-chained audit log that anyone with admin access can verify. The maths and policy are published in the repository.",
         "changes": "The proposal's monthly loop (listen, review, decide, change, report) can be run by whoever you name; the audit log and the decision records are the material for that report. Nothing in the AI can grant itself or anyone else a new power.",
     },
     {

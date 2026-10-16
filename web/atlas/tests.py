@@ -178,6 +178,12 @@ class PlanPages(TestCase):
             self.assertIn("Crescent Compass", body)
             self.assertNotIn("Pleasant Crescent", body)
         self.assertEqual(c.get("/plan/nope/").status_code, 404)
+        summary = c.get("/plan/").content.decode()
+        self.assertIn("Kim, Sasha, Daniel and Bill", summary)
+        self.assertIn("at any time through Lumen", summary)
+        self.assertIn("Coordinating a group event", summary)
+        self.assertIn("never the single source of truth", c.get("/plan/ethics/").content.decode())
+        self.assertIn("Thirteen simple T-charts", c.get("/plan/at-a-glance/").content.decode())
 
     def test_costs_come_from_the_model_and_fit_the_ceiling(self):
         body = Client().get("/plan/costs/").content.decode()
