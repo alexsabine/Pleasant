@@ -84,7 +84,7 @@ tr.total td{font-weight:600}
     <li><b>Typical use fits inside $1,500</b> with Opus, the full trust system and every feature listed, with about $493 to spare.</li>
     <li><b>It fits only with four token-saving changes.</b> As the code stands, Opus would be called twice for every question, and typical use would cost $1,848.</li>
     <li><b>Heavy use needs a daily limit</b> of about 200 Opus-worded answers. Past it, Compass still answers from the same checked listings, in plain wording.</li>
-    <li><b>Fixed costs are $433 a year</b>: server, backups and photos, domain, email and a GitHub plan. The trust system adds no AI cost.</li>
+    <li><b>Fixed costs are $433 a year</b>: server, backups and photos, domain, email and a GitHub plan. Serving the public pages from GitHub and members from a smaller server cuts this to $289. The trust system adds no AI cost.</li>
   </ul>
 </div>
 
@@ -197,6 +197,21 @@ tr.total td{font-weight:600}
   <thead><tr><th>Job</th><th class="num">A year</th><th class="num">Each</th><th class="num">Cost a year</th></tr></thead>
   <tbody><tr><td>Compass answers for members</td><td class="num">41,600 questions</td><td class="num">$0.012</td><td class="num">$504</td></tr><tr><td>Corrections and suggestions drafted</td><td class="num">1,200 drafts</td><td class="num">$0.016</td><td class="num">$19</td></tr><tr><td>Photo checks before a steward sees them</td><td class="num">2,400 photos</td><td class="num">$0.007</td><td class="num">$16</td></tr><tr><td>Monthly check of official web pages</td><td class="num">630 changed pages</td><td class="num">$0.014</td><td class="num">$9</td></tr><tr><td>Steward digest: one line per item</td><td class="num">4,230 items</td><td class="num">$0.005</td><td class="num">$21</td></tr><tr><td>Steward asks: what needs approving?</td><td class="num">12 months</td><td class="num">$0.070</td><td class="num">$1</td></tr><tr><td>Steward follow-up questions</td><td class="num">120 questions</td><td class="num">$0.028</td><td class="num">$3</td></tr><tr><td>Quadruplicate events sorted</td><td class="num">12 months</td><td class="num">$0.033</td><td class="num">$0</td></tr><tr><td>Monthly trust and audit summary</td><td class="num">12 months</td><td class="num">$0.050</td><td class="num">$1</td></tr><tr class="total"><td>Total Opus</td><td></td><td></td><td class="num">$574</td></tr></tbody>
 </table></div>
+
+<h3>Why a server as well as GitHub?</h3>
+<div class="prose">
+  <p>GitHub Pages can only hand out finished pages. It cannot run code, keep a database, sign people in, hold the secret key that pays for Opus, store photos, or record a steward's approval. Those jobs need a server. No paid GitHub plan adds one: GitHub Team and Enterprise add teamwork features, not hosting.</p>
+  <p>A bigger server is not needed. A suggested split lowers the cost instead:</p>
+</div>
+<div class="tbl"><table>
+  <thead><tr><th>Hosting</th><th>What works</th><th class="num">Fixed a year</th><th class="num">Typical total</th></tr></thead>
+  <tbody>
+    <tr><td>GitHub Pages only</td><td>Public map and listings; no Compass, accounts, photos or approvals</td><td class="num">$68</td><td class="num">$68</td></tr>
+    <tr><td><b>Suggested:</b> GitHub Pages for the public site, a 2 GB server ($12/month) for members</td><td>Everything; public visitors never touch the server, so a small one is enough</td><td class="num">$289</td><td class="num">$863</td></tr>
+    <tr><td>One 4 GB server for everything (costed above)</td><td>Everything, from one place</td><td class="num">$433</td><td class="num">$1,007</td></tr>
+  </tbody>
+</table></div>
+<p class="note">The public preview on GitHub Pages already works this way today. A 2 GB server comfortably serves 100 members; move up to 4 GB only if photo processing feels slow.</p>
 
 <h2>5. How the maths keeps tokens down and trust up</h2>
 <div class="prose"><p>Every trust check runs as code on our server, at no token cost: the 75 percent show rule, the honesty check on each sentence, the sealed log, the published-facts check, removal of photo GPS data, and the five-or-more rule for map counts. Opus is used only for language and judgement. These four changes take typical use from $1,415 to $574 of Opus a year, with the same model and the same checks.</p></div>

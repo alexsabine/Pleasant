@@ -38,3 +38,13 @@
 | Steward follow-up questions | 120 questions | 0.0280 | 3.36 |
 | Quadruplicate events sorted | 12 months | 0.0330 | 0.40 |
 | Monthly trust and audit summary | 12 months | 0.0500 | 0.60 |
+
+## Suggested hybrid hosting
+
+Public pages on GitHub Pages (covered by GitHub Pro), members' features on a 2 GB server: fixed $289/year.
+
+| Use | Total optimised, hybrid |
+|---|---|
+| Light | $515 |
+| Typical | $863 |
+| Heavy | $1,711 |

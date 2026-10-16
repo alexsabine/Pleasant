@@ -59,6 +59,12 @@ FIXED = [  # US$ per year
 ]
 
 
+# Suggested hybrid: public pages served free by GitHub Pages (static export), members' features on a
+# smaller 2 GB server ($12/month) because public traffic no longer reaches it.
+HYBRID_SERVER = 144
+SINGLE_SERVER = 288
+
+
 def usd(tokens, batch=False):
     i, o = tokens
     return (i * IN + o * OUT) / 1e6 * (BATCH if batch else 1)
@@ -127,6 +133,15 @@ def main():
     L += ["", "## Typical use, optimised, by job", "", "| Job | Count/year | US$ each | US$/year |", "|---|---|---|---|"]
     for r in out["scenarios"]["typical"]["optimised"]["rows"]:
         L.append(f"| {r['job']} | {r['count']:,} {r['unit']} | {r['per']:.4f} | {r['year']:,.2f} |")
+    hyb = fixed - SINGLE_SERVER + HYBRID_SERVER
+    out["hybrid_fixed"] = hyb
+    for k in USAGE:
+        out["scenarios"][k]["optimised"]["hybrid_total"] = round(out["scenarios"][k]["optimised"]["ai"] + hyb, 2)
+    (ROOT / "design" / "cost_model.json").write_text(json.dumps(out, indent=1))
+    L += ["", "## Suggested hybrid hosting", "",
+          f"Public pages on GitHub Pages (covered by GitHub Pro), members' features on a 2 GB server: fixed ${hyb}/year.", "",
+          "| Use | Total optimised, hybrid |", "|---|---|"]
+    L += [f"| {u['label']} | ${out['scenarios'][k]['optimised']['hybrid_total']:,.0f} |" for k, u in USAGE.items()]
     (ROOT / "research" / "09_cost_model.md").write_text("\n".join(L) + "\n")
     print("\n".join(L))
 

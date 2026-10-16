@@ -261,7 +261,8 @@
     ],
     "ai": 225.58,
     "total": 658.58,
-    "daily_cap": 233
+    "daily_cap": 233,
+    "hybrid_total": 514.58
    }
   },
   "typical": {
@@ -406,7 +407,8 @@
     ],
     "ai": 574.04,
     "total": 1007.04,
-    "daily_cap": 225
+    "daily_cap": 225,
+    "hybrid_total": 863.04
    }
   },
   "heavy": {
@@ -551,8 +553,10 @@
     ],
     "ai": 1421.98,
     "total": 1854.98,
-    "daily_cap": 204
+    "daily_cap": 204,
+    "hybrid_total": 1710.98
    }
   }
- }
+ },
+ "hybrid_fixed": 289
 }
