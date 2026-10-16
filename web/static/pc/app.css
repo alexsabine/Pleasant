@@ -391,7 +391,7 @@ code{overflow-wrap:anywhere}
 .fog-toggle{position:absolute;right:10px;bottom:30px;z-index:6;display:inline-flex;align-items:center;gap:6px;font:inherit;font-size:.82rem;min-height:40px;padding:6px 14px;border-radius:999px;border:1px solid var(--pc-line);background:color-mix(in srgb,var(--pc-surface) 94%,transparent);color:var(--pc-ink);box-shadow:0 2px 8px rgba(20,40,50,.12);cursor:pointer}
 .fog-toggle[aria-pressed="true"]{background:var(--pc-accent);color:var(--pc-accent-on);border-color:var(--pc-accent)}
 .fog-toggle:focus-visible,.fog-choice:focus-visible,.fog-link:focus-visible{outline:3px solid var(--pc-accent);outline-offset:2px}
-.fog-canvas{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;image-rendering:auto;filter:blur(1.5px)}
+.fog-canvas{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;image-rendering:auto}
 .map-wrap.fog-on .layer-switch,.map-wrap.fog-on .layers-toggle{display:none}
 .fog-explorer{width:30px;height:39px;pointer-events:none}
 .fog-body{position:relative;display:block;width:30px;height:39px;animation:fog-bob 2.4s ease-in-out infinite}
