@@ -418,3 +418,6 @@ code{overflow-wrap:anywhere}
 .map-wrap.fog-on .fog-toggle{bottom:auto;top:10px}
 @media (max-width:640px){.fog-card{left:8px;right:8px;width:auto;bottom:26px;max-height:50%;padding:10px 12px;font-size:.85rem}.fog-story{font-size:.98rem}.fog-choice{min-height:44px;padding:6px 8px}.fog-q{margin:6px 0 4px}}
 @media (prefers-reduced-motion:reduce){.fog-body,.fog-glow,.fog-explorer.walking .leg{animation:none}}
+.fog-explorer svg.fog-car{display:none;position:absolute;left:-4px;top:12px;filter:drop-shadow(0 1px 1px rgba(0,0,0,.25))}
+.fog-explorer.driving .fog-body>svg:not(.fog-car){display:none}
+.fog-explorer.driving svg.fog-car{display:block}

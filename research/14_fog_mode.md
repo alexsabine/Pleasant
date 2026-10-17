@@ -27,4 +27,6 @@ Opacity is theta / pi with theta = 2 asin(sqrt(p)), where p is the chance a spot
 
 8/8 passed.
 
+Paths: the explorer follows real footpaths and roads, pre-computed by `manage.py build_fog_routes` from the self-hosted OpenStreetMap basemap (ODbL, (c) OpenStreetMap contributors). Short hops go on foot, preferring paths and quiet streets; longer ones go by road. Each walk's trail is a chain of capsules along the route's bends. An illustration for the game, never directions.
+
 The look (domain-warped noise, light from the west-south-west, a marine layer thick offshore and on the coastal plain and thinner inland, onshore drift from the north-west) is ordinary graphics, not a claim of the equations.

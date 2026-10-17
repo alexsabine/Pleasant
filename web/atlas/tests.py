@@ -174,6 +174,40 @@ class FogMode(TestCase):
         self.assertIn("Q * s.target + (1 - Q)", js)  # regeneration on arrivals
 
 
+class FogRoutes(TestCase):
+    """Real paths for fog mode: helpers behave, and the published file carries its licence and covers every pair."""
+
+    def test_polyline_round_trip_and_simplify(self):
+        from atlas import fog_routes as fr
+        pts = [(-124.2 + i * 0.001, 41.75 + (i % 3) * 0.0004) for i in range(20)]
+        back = fr.decode(fr.encode(pts))
+        self.assertTrue(all(abs(a[0] - b[0]) < 1e-5 and abs(a[1] - b[1]) < 1e-5 for a, b in zip(pts, back)))
+        line = [(-124.2 + i * 0.001, 41.75) for i in range(10)]
+        self.assertEqual(fr.simplify(line, 5), [line[0], line[-1]])
+
+    def test_heal_joins_a_road_that_stops_short_of_another(self):
+        from atlas import fog_routes as fr
+        net = fr.Network()
+        a, b = net.node((0, 0), (-124.20, 41.75)), net.node((1, 0), (-124.19, 41.75))
+        net.link(a, b, "residential")
+        c, d = net.node((2, 0), (-124.195, 41.7501)), net.node((3, 0), (-124.195, 41.76))   # 11 m short... within 12 m
+        net.link(c, d, "residential")
+        self.assertEqual(len(net.components()[1]), 2)
+        net.heal(radius=15)
+        self.assertEqual(len(net.components()[1]), 1)
+        dist, prev = net.dijkstra(a, fr.WALK, [d])
+        self.assertIsNotNone(net.path(prev, a, d))
+
+    def test_published_routes_cover_every_pair_with_attribution(self):
+        path = Path(settings.BASE_DIR) / "static" / "data" / "fog_routes.json"
+        d = json.loads(path.read_text())
+        self.assertEqual(d["meta"]["licence"], "ODbL 1.0")
+        self.assertIn("OpenStreetMap", d["meta"]["attribution"])
+        n = d["meta"]["places"]
+        self.assertEqual(len(d["routes"]), n * (n - 1) // 2)
+        self.assertTrue(all(r[0] in "wds" for r in d["routes"].values()))
+
+
 class PlanPages(TestCase):
     """The For Kim pages render, carry their key content, and use the new names."""
 

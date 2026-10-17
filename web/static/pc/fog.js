@@ -18,6 +18,9 @@
  * The look is ordinary graphics: domain-warped noise, light from the west-south-west, a marine layer thick offshore
  * and on the coastal plain, thinner inland, drifting onshore from the north-west. It is drawn by a small shader in
  * ground coordinates (metres), redrawn in the same frame as every map movement, at half resolution.
+ * Paths: the explorer follows real footpaths and roads from our own OpenStreetMap basemap, pre-computed by
+ * `manage.py build_fog_routes` (web/static/data/fog_routes.json, ODbL, (c) OpenStreetMap contributors). An illustration
+ * for the game, never directions.
  * Privacy: no device location is ever read; the explorer goes only where you choose; the trail stays on this device.
  */
 (function () {
@@ -36,6 +39,7 @@
   const WIND = [0.78, -0.62];                              // onshore, from the north-west
 
   let map = null, places = [], on = false, canvas = null, gl = null, prog = null, buf = null, loc = {}, NS = 32;
+  let routes = null, routesLoading = null;
   let spots = [], lantern = null, visited = [], current = null, walked = 0, arrivals = 0, explorer = null, card = null, walking = false;
   let raf = 0, lastT = 0, lastDraw = 0, windOff = [0, 0], tEvo = 0;
 
@@ -64,6 +68,46 @@
   }
   const miles = m => { const mi = m / 1609.344; return mi < 0.2 ? Math.round(m * 3.281 / 10) * 10 + " ft" : (mi < 10 ? mi.toFixed(1) : Math.round(mi)) + " mi"; };
   const mpp = () => 40075016.686 * Math.cos(rad(map.getCenter().lat)) / (512 * Math.pow(2, map.getZoom()));
+
+  // --- real paths ----------------------------------------------------------------------------------------------
+  function loadRoutes() {
+    if (!routesLoading) routesLoading = fetch((window.PC_ORIGIN || "") + "/static/data/fog_routes.json")
+      .then(r => (r.ok ? r.json() : null)).then(d => { routes = (d && d.routes) || {}; render(); }).catch(() => { routes = {}; });
+    return routesLoading;
+  }
+  function decode(str) {                                   // Google encoded polyline, 1e-5 degrees, lat then lon
+    const out = []; let i = 0, lat = 0, lon = 0;
+    while (i < str.length) {
+      const v = [0, 0];
+      for (let k = 0; k < 2; k++) {
+        let shift = 0, res = 0, b;
+        do { b = str.charCodeAt(i++) - 63; res |= (b & 31) << shift; shift += 5; } while (b >= 32);
+        v[k] = res & 1 ? ~(res >> 1) : res >> 1;
+      }
+      lat += v[0]; lon += v[1]; out.push([lon / 1e5, lat / 1e5]);
+    }
+    return out;
+  }
+  function route(a, b) {
+    const lo = Math.min(a.id, b.id), hi = Math.max(a.id, b.id), r = routes && routes[lo + "-" + hi];
+    if (!r) return { mode: "s", m: metres(a, b), coords: [[a.lon, a.lat], [b.lon, b.lat]] };
+    const coords = decode(r[2]);
+    if (a.id !== lo) coords.reverse();
+    return { mode: r[0], m: r[1], coords };
+  }
+  const MODE = { w: "on foot", d: "by road", s: "" };
+  function simplify(pts, tol) {                            // Douglas-Peucker in metres, for the trail clearings
+    if (pts.length < 3) return pts.map((_, i) => i);
+    const xy = pts.map(p => toXY(p[0], p[1])), keep = new Array(pts.length).fill(false), stack = [[0, pts.length - 1]];
+    keep[0] = keep[pts.length - 1] = true;
+    while (stack.length) {
+      const [i, j] = stack.pop(), [ax, ay] = xy[i], [bx, by] = xy[j], vx = bx - ax, vy = by - ay, L = Math.hypot(vx, vy) || 1e-9;
+      let best = 0, at = -1;
+      for (let k = i + 1; k < j; k++) { const d = Math.abs((xy[k][0] - ax) * vy - (xy[k][1] - ay) * vx) / L; if (d > best) { best = d; at = k; } }
+      if (at > 0 && best > tol) { keep[at] = true; stack.push([i, at], [at, j]); }
+    }
+    return keep.map((k, i) => (k ? i : -1)).filter(i => i >= 0);   // indices of the points kept
+  }
 
   // --- choices: starts in three communities; then the nearest unvisited place in up to three kinds, new kinds first
   function starts() {
@@ -100,11 +144,15 @@
         <p class="fog-meta">${visited.length} place${visited.length === 1 ? "" : "s"} explored, ${kinds} kind${kinds === 1 ? "" : "s"}${walked > 0 ? ` · walked ${miles(walked)}, ${miles(wander)} of it wandering` : ""} · <a href="${esc(window.PC_ORIGIN || "")}/resource/${esc(current.slug)}/">About this place</a></p>`;
     }
     const list = opts.length ? opts.map((p, i) =>
-      `<button type="button" class="fog-choice" data-id="${p.id}"><span class="fog-n">${i + 1}</span><span><b>${esc(p.name)}</b><small>${esc(p.category_label)} · ${current ? esc(heading(current, p)) + ", " + miles(p._d) : "in " + esc(p.community_label || "the county")}</small></span></button>`).join("")
+      `<button type="button" class="fog-choice" data-id="${p.id}"><span class="fog-n">${i + 1}</span><span><b>${esc(p.name)}</b><small>${esc(p.category_label)} · ${current ? choiceWay(current, p) : "in " + esc(p.community_label || "the county")}</small></span></button>`).join("")
       : `<p class="fog-story">You have explored every place on the map. The fog is gone.</p>`;
     card.innerHTML = `${story}<p class="fog-q">${current ? "Where next?" : "Choose a starting place:"}</p><div class="fog-choices">${list}</div>
       <p class="fog-foot"><button type="button" class="fog-link" data-act="restart">Start again</button> · <button type="button" class="fog-link" data-act="off">Leave fog mode</button><br>
       <small>Demo. Your trail stays on this device, and fog never uses your location.</small></p>`;
+  }
+  function choiceWay(from, p) {
+    const r = route(from, p);
+    return (MODE[r.mode] ? MODE[r.mode] + ", " : "") + esc(heading(from, p)) + ", " + miles(r.m);
   }
   function onCard(e) {
     const b = e.target.closest("button");
@@ -127,7 +175,10 @@
       <path class="leg l" d="M10.2 20.5l-1.2 7.6" stroke="#364868" stroke-width="2" stroke-linecap="round"/>
       <path class="leg r" d="M13.8 20.5l1.2 7.6" stroke="#364868" stroke-width="2" stroke-linecap="round"/>
       <path d="M15.6 13.4l3.4 4.2" stroke="#364868" stroke-width="1.6" stroke-linecap="round"/>
-      <circle cx="19.6" cy="19.2" r="2.2" fill="#e4b572" stroke="#a3675b" stroke-width=".9"/></svg></span>`;
+      <circle cx="19.6" cy="19.2" r="2.2" fill="#e4b572" stroke="#a3675b" stroke-width=".9"/></svg>
+      <svg class="fog-car" viewBox="0 0 34 22" width="38" height="25"><path d="M4 14l3-7c.5-1.2 1.6-2 2.9-2h12.4c1.3 0 2.4.8 2.9 2l3 7v4H4z" fill="#00848b" stroke="#364868" stroke-width="1.2"/>
+      <path d="M9.5 7.5h15l2 5h-19z" fill="#cae9ff" stroke="#364868" stroke-width=".8"/><circle cx="10" cy="18" r="2.8" fill="#364868"/><circle cx="24" cy="18" r="2.8" fill="#364868"/>
+      <circle cx="30.4" cy="14.5" r="1.3" fill="#e4b572"/></svg></span>`;
     return el;
   }
   function placeExplorer(p) {
@@ -174,34 +225,64 @@
                                      : { left: c.width + 20, top: 0, bottom: 0, right: 0 };
   }
   function go(p) {
-    const from = current, z = Math.max(map.getZoom(), 13.2), padding = pad();
-    if (!from || reduced) {
-      if (from) walked += metres(from, p);
+    const from = current, padding = pad();
+    if (!from) {                                           // the starting place: arrive directly
       arrive(p); placeExplorer(p);
-      if (reduced) map.jumpTo({ center: [p.lon, p.lat], zoom: z, padding }); else map.flyTo({ center: [p.lon, p.lat], zoom: z, padding, duration: 2200 });
+      const view = { center: [p.lon, p.lat], zoom: Math.max(map.getZoom(), 13.2), padding };
+      if (reduced) map.jumpTo(view); else map.flyTo({ ...view, duration: 2200 });
+      save(); render(); kick(); return;
+    }
+    const r = route(from, p), path = r.coords, xy = path.map(c => toXY(c[0], c[1]));
+    const cum = [0];
+    for (let i = 1; i < xy.length; i++) cum.push(cum[i - 1] + Math.hypot(xy[i][0] - xy[i - 1][0], xy[i][1] - xy[i - 1][1]));
+    const total = cum[cum.length - 1] || 1;
+    const bendIdx = simplify(path, 35), bends = bendIdx.map(i => path[i]), bendAt = bendIdx.map(i => cum[i]);   // trail follows the bends
+    const lons = path.map(c => c[0]), lats = path.map(c => c[1]);
+    const box = [[Math.min(...lons), Math.min(...lats)], [Math.max(...lons), Math.max(...lats)]];
+    const pd = typeof padding === "object" ? padding : { top: 0, bottom: 0, left: 0, right: 0 };
+    const mb = map.getContainer(), W = mb.clientWidth, H = mb.clientHeight;   // keep the route box at least 30% of the view
+    const cur = map.getPadding();                          // fitBounds adds to the padding already in effect
+    const fitPad = {};
+    for (const k of ["top", "bottom", "left", "right"]) fitPad[k] = Math.max(10, pd[k] + 50 - (cur[k] || 0));
+    const sx = Math.min(1, (0.7 * W - cur.left - cur.right) / (fitPad.left + fitPad.right)), sy = Math.min(1, (0.7 * H - cur.top - cur.bottom) / (fitPad.top + fitPad.bottom));
+    for (const k of ["left", "right"]) fitPad[k] = Math.floor(fitPad[k] * sx);
+    for (const k of ["top", "bottom"]) fitPad[k] = Math.floor(fitPad[k] * sy);
+    if (reduced) {
+      for (let i = 1; i < bends.length; i++) spots.push(capsule(bends[i - 1], bends[i], TRAIL_M, "trail", false));
+      walked += r.m; arrive(p); placeExplorer(p);
+      map.fitBounds(box, { padding: fitPad, maxZoom: 15, animate: false });
       save(); render(); kick(); return;
     }
     walking = true;
     card.classList.add("busy");
-    const d = metres(from, p), dur = Math.min(4200, 1400 + d / 6);
-    map.easeTo({ center: [p.lon, p.lat], zoom: z, padding, duration: dur });
+    map.fitBounds(box, { padding: fitPad, maxZoom: 15, duration: 1000 });
+    const driving = r.mode === "d";
+    const dur = driving ? Math.min(7000, Math.max(2400, 1800 + total / 30)) : Math.min(6500, Math.max(1600, 1400 + total / 4));
     const el = explorer.getElement();
-    el.classList.add("walking");
-    el.classList.toggle("west", p.lon < from.lon);
-    const start = performance.now();
-    const trail = capsule([from.lon, from.lat], [from.lon, from.lat], TRAIL_M, "trail", false);   // grows behind the explorer
+    el.classList.add("walking"); el.classList.toggle("driving", driving);
+    let seg = 1, bend = 1, trail = capsule(bends[0], bends[0], TRAIL_M, "trail", false);
     spots.push(trail);
+    const start = performance.now();
     (function walk(now) {
-      const k = Math.min(1, (now - start) / dur), e = k < 0.5 ? 2 * k * k : 1 - Math.pow(-2 * k + 2, 2) / 2;
-      const lon = from.lon + (p.lon - from.lon) * e, lat = from.lat + (p.lat - from.lat) * e;
+      const k = Math.min(1, (now - start) / dur), e = k < 0.5 ? 2 * k * k : 1 - Math.pow(-2 * k + 2, 2) / 2, at = e * total;
+      while (seg < cum.length - 1 && cum[seg] < at) seg++;
+      const f = Math.min(1, Math.max(0, (at - cum[seg - 1]) / ((cum[seg] - cum[seg - 1]) || 1)));
+      const lon = path[seg - 1][0] + (path[seg][0] - path[seg - 1][0]) * f, lat = path[seg - 1][1] + (path[seg][1] - path[seg - 1][1]) * f;
+      el.classList.toggle("west", path[seg][0] < path[seg - 1][0]);
       explorer.setLngLat([lon, lat]); moveLantern(lon, lat);
+      // passing a bend: close this stretch of trail and start the next
+      while (bend < bends.length - 1 && at >= bendAt[bend]) {
+        stretch(trail, bends[bend][0], bends[bend][1]);
+        trail = capsule(bends[bend], bends[bend], TRAIL_M, "trail", false); spots.push(trail); bend++;
+      }
       stretch(trail, lon, lat);
       if (k < 1) return requestAnimationFrame(walk);
-      el.classList.remove("walking");
-      walked += d;
+      el.classList.remove("walking", "driving");
+      walked += r.m;
       arrive(p);
       walking = false; card.classList.remove("busy");
       save(); render();
+      if (driving) map.flyTo({ center: [p.lon, p.lat], zoom: Math.max(map.getZoom(), 13.2), padding: pad(), duration: 1600 });
       const first = card.querySelector(".fog-choice"); if (first) first.focus({ preventScroll: true });
     })(start);
   }
@@ -380,6 +461,7 @@
       spots.forEach(s => { s.th = 0; s.c = 1; });
       placeExplorer(current);
       render();
+      loadRoutes();
       if (current) {                                       // resume where the explorer left off
         const view = { center: [current.lon, current.lat], zoom: Math.max(map.getZoom(), 12.5), padding: pad() };
         if (reduced) map.jumpTo(view); else map.flyTo({ ...view, duration: 1600 });
